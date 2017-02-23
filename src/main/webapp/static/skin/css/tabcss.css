@@ -1,0 +1,240 @@
+
+.navbar-top-links li a {
+	padding: 20px 10px;
+	min-height: 50px
+}
+
+.dropdown-menu {
+	border: medium none;
+	display: none;
+	float: left;
+	font-size: 12px;
+	left: 0;
+	list-style: none outside none;
+	padding: 0;
+	position: absolute;
+	text-shadow: none;
+	top: 100%;
+	z-index: 1000;
+	border-radius: 0;
+	box-shadow: 0 0 3px rgba(86,96,117,.3)
+}
+
+.dropdown-menu>li>a {
+	border-radius: 3px;
+	color: inherit;
+	line-height: 25px;
+	margin: 4px;
+	text-align: left;
+	font-weight: 400
+}
+
+.dropdown-menu>li>a.font-bold {
+	font-weight: 600
+}
+
+body {
+	font-family: font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";
+	font-size: 13px;
+	color: #676a6c;
+	overflow-x: hidden
+}
+
+body,body.full-height-layout #page-wrapper,body.full-height-layout #wrapper,html {
+	height: 100%;
+}
+.animated.modal.fade .modal-dialog {
+	-webkit-transform: none;
+	-ms-transform: none;
+	transform: none
+}
+
+.inmodal .modal-title {
+	font-size: 26px
+}
+
+.inmodal .modal-icon {
+	font-size: 84px;
+	color: #e2e3e3
+}
+
+.modal-footer {
+	margin-top: 0
+}
+
+#page-wrapper {
+	padding: 0 15px;
+	position: inherit;
+	margin: 0 0 0 220px
+}
+
+.title-action {
+	text-align: right;
+	padding-top: 30px
+}
+
+.ibox-content h1,.ibox-content h2,.ibox-content h3,.ibox-content h4,.ibox-content h5,.ibox-title h1,.ibox-title h2,.ibox-title h3,.ibox-title h4,.ibox-title h5 {
+	margin-top: 5px
+}
+
+ol.unstyled,ul.unstyled {
+	list-style: none outside none;
+	margin-left: 0
+}
+
+.big-icon {
+	font-size: 160px;
+	color: #e5e6e7
+}
+
+.footer {
+	background: none repeat scroll 0 0 #fff;
+	border-top: 1px solid #e7eaec;
+	overflow: hidden;
+	padding: 10px 20px;
+	margin: 0 -15px;
+	height: 36px
+}
+
+.footer.fixed_full {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	padding: 10px 20px;
+	background: #fff;
+	border-top: 1px solid #e7eaec
+}
+
+.footer.fixed {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	padding: 10px 20px;
+	background: #fff;
+	border-top: 1px solid #e7eaec;
+	margin-left: 220px
+}
+
+body.body-small.mini-navbar .footer.fixed,body.mini-navbar .footer.fixed {
+	margin: 0 0 0 70px
+}
+
+body.canvas-menu .footer.fixed,body.mini-navbar.canvas-menu .footer.fixed {
+	margin: 0!important
+}
+
+body.fixed-sidebar.body-small.mini-navbar .footer.fixed {
+	margin: 0 0 0 220px
+}
+
+body.body-small .footer.fixed {
+	margin-left: 0
+}
+
+.page-heading {
+	border-top: 0;
+	padding: 0 20px 20px
+}
+
+.panel-heading h1,.panel-heading h2 {
+	margin-bottom: 5px
+}
+
+.content-tabs {
+	position: relative;
+	height: 42px;
+	background: #fafafa;
+	line-height: 40px
+}
+
+.content-tabs .roll-nav,.page-tabs-list {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: #999;
+	z-index: 2;
+	top: 0
+}
+
+.content-tabs .roll-left {
+	left: 0;
+	border-right: solid 1px #eee
+}
+
+.content-tabs .roll-right {
+	right: 0;
+	border-left: solid 1px #eee
+}
+
+.content-tabs button {
+	background: #fff;
+	border: 0;
+	height: 40px;
+	width: 40px;
+	outline: 0
+}
+
+.content-tabs button:hover {
+	background: #fafafa
+}
+
+nav.page-tabs {
+	margin-left: 40px;
+	width: 100000px;
+	height: 40px;
+	position: absolute;
+    top: 0;
+    left: 0;
+}
+
+nav.page-tabs .page-tabs-content {
+	float: left
+}
+
+.page-tabs a {
+	display: block;
+	float: left;
+	border-right: solid 1px #eee;
+	padding: 0 15px
+}
+
+.page-tabs a i:hover {
+	color: #c00
+}
+
+.content-tabs .roll-nav:hover,.page-tabs a:hover {
+	color: #777;
+	background: #f2f2f2;
+	cursor: pointer
+}
+
+.roll-right.J_tabRight {
+	right: 140px
+}
+
+.roll-right.btn-group {
+	right: 60px;
+	width: 80px;
+	padding: 0
+}
+
+.roll-right.btn-group button {
+	width: 80px
+}
+
+.roll-right.J_tabExit {
+	background: #fff;
+	height: 40px;
+	width: 60px;
+	outline: 0
+}
+
+.dropdown-menu-right {
+	left: auto
+}
+

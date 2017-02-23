@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.krt.admin.system.mapper.RoleMapper">
+	<resultMap id="BaseResultMap" type="com.krt.admin.system.entity.Role">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="roleName" jdbcType="VARCHAR" property="roleName" />
+		<result column="roleCode" jdbcType="VARCHAR" property="roleCode" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="sortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="inserter" jdbcType="INTEGER" property="inserter" />
+		<result column="insertTime" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="updater" jdbcType="INTEGER" property="updater" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, roleName, roleCode, status, remark, sortNo, inserter, insertTime, updater, updateTime
+	</sql>
+
+	<select id="selectById" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from t_role
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_role
+		where id = #{id,jdbcType=INTEGER} and roleCode!='admin'
+	</delete>
+
+	<insert id="insert" parameterType="com.krt.admin.system.entity.Role">
+		insert into t_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="roleName != null">
+				roleName,
+			</if>
+			<if test="roleCode != null">
+				roleCode,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="sortNo != null">
+				sortNo,
+			</if>
+			<if test="inserter != null">
+				inserter,
+			</if>
+			<if test="insertTime != null">
+				insertTime,
+			</if>
+			<if test="updater != null">
+				updater,
+			</if>
+			<if test="updateTime != null">
+				updateTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="roleName != null">
+				#{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleCode != null">
+				#{roleCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="inserter != null">
+				#{inserter,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updater != null">
+				#{updater,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="com.krt.admin.system.entity.Role">
+		update t_role
+		<set>
+			<if test="roleName != null">
+				roleName = #{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleCode != null">
+				roleCode = #{roleCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				sortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="inserter != null">
+				inserter = #{inserter,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				insertTime = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updater != null">
+				updater = #{updater,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 角色管理 -->
+	<select id="selectList" resultType="java.util.Map">
+		select id, roleName, roleCode, status, remark, sortNo from t_role where roleCode!='admin' order by sortNo asc
+	</select>
+
+	<!-- 角色管理 -->
+	<select id="selectListPara" resultType="java.util.Map">
+		select id, roleName, roleCode, status, remark, sortNo from t_role where roleCode!='admin' order by sortNo asc
+	</select>
+
+	<!-- 检测角色名 -->
+	<select id="checkRoleName" resultType="java.lang.Integer">
+		select count(id) from t_role where roleName=#{roleName}
+		<if test="id!=null and id !=''">
+			and id != #{id}
+		</if>
+	</select>
+
+	<!-- 检测角色编码 -->
+	<select id="checkRoleCode" resultType="java.lang.Integer">
+		select count(id) from t_role where roleCode=#{roleCode}
+		<if test="id!=null and id !=''">
+			and id != #{id}
+		</if>
+	</select>
+
+	<!-- 删除角色资源 -->
+	<delete id="deleteRoleRes">
+		delete from t_role_res where roleCode=#{roleCode}
+	</delete>
+
+	<!-- 批量添加角色资源 -->
+	<insert id="insertRoleRes" parameterType="java.util.List">
+		insert into t_role_res (roleCode,res_id)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			( #{item.roleCode}, #{item.res_id})
+		</foreach>
+	</insert>
+	
+	<!-- 查询角色url菜单 -->
+	<select id="selectRoleUrlRes" resultType="java.util.Map">
+		<if test="roleCode != 'admin'">
+			select s2.* from
+			(select * from t_role_res where roleCode=#{roleCode})s1 left join
+			(select id, name, url, pid, sortNo, type,target,icon  from t_res where type='url')s2 on s1.res_id = s2.id where s2.pid=#{pid} order by sortNo asc
+		</if>
+		<!-- 超级管理员拥有所有权限 -->
+		<if test="roleCode == 'admin'">
+			select id, name, url, pid, sortNo, type,target,icon  from t_res where type='url' and pid=#{pid} order by sortNo asc
+		</if>
+	</select>
+</mapper>

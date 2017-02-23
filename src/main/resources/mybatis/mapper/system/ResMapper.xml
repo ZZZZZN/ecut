@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.krt.admin.system.mapper.ResMapper">
+	<resultMap id="BaseResultMap" type="com.krt.admin.system.entity.Res">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="url" jdbcType="VARCHAR" property="url" />
+		<result column="pid" jdbcType="INTEGER" property="pid" />
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
+		<result column="permission" jdbcType="VARCHAR" property="permission" />
+		<result column="sortNo" jdbcType="INTEGER" property="sortNo" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="target" jdbcType="VARCHAR" property="target" />
+		<result column="inserter" jdbcType="INTEGER" property="inserter" />
+		<result column="insertTime" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="updater" jdbcType="INTEGER" property="updater" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, url, pid, icon, permission, sortNo, type, target, inserter, insertTime,
+		updater, updateTime
+	</sql>
+
+	<select id="selectById" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select s1.*,s2.name pname from 
+		(select id, name, url, pid, icon, permission, sortNo, type, target from t_res where id=#{id})s1 left JOIN
+		(select id,name from t_res)s2 on s1.pid = s2.id
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_res
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.krt.admin.system.entity.Res">
+		insert into t_res
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+			<if test="permission != null">
+				permission,
+			</if>
+			<if test="sortNo != null">
+				sortNo,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="target != null">
+				target,
+			</if>
+			<if test="inserter != null">
+				inserter,
+			</if>
+			<if test="insertTime != null">
+				insertTime,
+			</if>
+			<if test="updater != null">
+				updater,
+			</if>
+			<if test="updateTime != null">
+				updateTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=INTEGER},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="permission != null">
+				#{permission,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				#{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				#{target,jdbcType=VARCHAR},
+			</if>
+			<if test="inserter != null">
+				#{inserter,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updater != null">
+				#{updater,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="com.krt.admin.system.entity.Res">
+		update t_res
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=INTEGER},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="permission != null">
+				permission = #{permission,jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				sortNo = #{sortNo,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="target != null">
+				target = #{target,jdbcType=VARCHAR},
+			</if>
+			<if test="inserter != null">
+				inserter = #{inserter,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				insertTime = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updater != null">
+				updater = #{updater,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询全部资源信息 -->
+	<select id="selectList" resultType="java.util.Map">
+		select id, name, url, pid, permission, sortNo, type,target from t_res order by sortNo asc
+	</select>
+
+	<!-- 查询全部资源树信息 -->
+	<select id="selectAllTree" resultType="java.util.Map">
+		select id, name, pId, permission, sortNo, type,target from t_res order by sortNo asc
+	</select>
+
+	<!-- 查询顶级资源 -->
+	<select id="selectRootList" resultType="java.util.Map">
+		select id, name, url, pid, permission, sortNo, type,target from t_res where pid=0 order by sortNo asc
+	</select>
+	
+	<!-- 获取角色资源 -->
+	<select id="selectRoleResList" resultType="java.util.Map">
+	    select s2.* from
+		(select * from t_role_res where roleCode=#{roleCode})s1 left join
+		(select id, name, url, pid, permission, sortNo, type,target  from t_res)s2 on s1.res_id = s2.id where s2.id is not null
+	</select>
+	
+	<select id="selectListPara" resultType="java.util.Map">
+		select id, name, url, pid, permission, sortNo, type,target,res_hasChild(id) hasChild from t_res where pid=#{pid} order by sortNo asc
+	</select>
+
+	<!-- 查询子资源 -->
+	<select id="selectChildResList" resultType="java.util.Map">
+		select id, name, url, pid, permission, sortNo, type,target from t_res where pid=#{id}
+	</select>
+
+</mapper>

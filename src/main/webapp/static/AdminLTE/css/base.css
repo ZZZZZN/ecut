@@ -1,0 +1,78 @@
+
+body{
+	background-color: #ecf0f5; 
+}
+.content-wrapper{
+	margin-left: 0;
+}
+*.page-num{
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+.input-100{
+	height: 30px;
+	width: 100px;
+	display:inline;
+}
+.input-150{
+	width: 150px;
+	display:inline;
+}
+.box-header{
+	padding: 10px 10px 0px 10px;
+}
+.box-header > input{ 
+	margin-left: 5px;
+}
+.btn-primary {
+  background-color: #3498db;
+  border-color: #2489cc;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: #2489cc;
+}
+
+.btn-primary.active.focus, 
+.btn-primary.active:focus, 
+.btn-primary.active:hover, 
+.btn-primary.focus:active, 
+.btn-primary:active:focus, 
+.btn-primary:active:hover, 
+.open > .dropdown-toggle.btn-primary.focus, 
+.open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover{
+ 	background-color: #2489cc;
+ 	border-color: #2489cc;
+}
+.fa-btn{
+	padding-right:5px; 
+}
+
+/* PEACE */
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: #1ab394;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    width: 100%;
+    height: 2px;
+}
+
+.pace-inactive {
+    display: none;
+}

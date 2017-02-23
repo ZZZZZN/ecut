@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- spring工具类quartz定时调度需要 -->
+    <bean id="springUtils" class="com.krt.common.util.SpringUtils"/>
+
+    <!-- quartz定时调度 -->
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- javamelody监控需要 -->
+        <property name="exposeSchedulerInRepository" value="true"/>
+    </bean>
+
+</beans>

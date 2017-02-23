@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors tuyunkun
+ * @date    2016-06-23 16:30:00
+ * @version  reset.css + commonly.css
+ * 重置样式 + 常用样式
+ */
+
+/* Reset CSS Document */
+*{word-wrap:break-word}
+html{font-family: sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; text-size-adjust: 100%; }
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,tr,td,th,form,label,input,textarea,select,button,blockquote,span,img,a img,a,pre,hr,b{margin:0; padding:0;}
+body{font:14px "Microsoft YaHei",Arial,verdana,tahoma,"\5B8B\4F53",sans-serif; color:#444;}
+img,a img{ border:none; vertical-align:top; -ms-interpolation-mode: bicubic;}
+h1,h2,h3,h4,h5,h6{font-size: 100%; font-weight:normal;}
+ul,li,ol,dt,dl,dd{ list-style:none;}
+em,th,i,address,cite,code,b,s{font-style:normal; font-weight:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+input,textarea,select,button,option{ vertical-align:middle; line-height:normal; font-family:verdana,sans-serif; font-size:inherit;}
+textarea{overflow: auto;resize:none;}
+input:focus,textarea:focus{outline:none;resize:none;}
+select:focus{outline: none; resize:none; star:expression(this.onFocus=this.blur());}
+a{color:#444;text-decoration:none;}
+a:hover{color: #0062b0; text-decoration: none; }
+a:active,a:focus,a:hover{outline: none; star:expression(this.onFocus=this.blur());}
+map,map area{outline:none;}
+/* ::selection { background-color: transparent; color: #4281F3;}  选中字体的颜色 */
+
+/* Common CSS Document */
+.dn{display:none;}
+.di{display:inline;}
+.db{display:block;}
+.dib-t{display:inline-block; *display:inline; *zoom:1; vertical-align: top; letter-spacing: normal;}
+.dib-m{display:inline-block; *display:inline; *zoom:1; vertical-align: middle; letter-spacing: normal;}
+.layout-justify {text-align: justify; *text-justify:inter-ideograph; letter-spacing:-0.34em; }
+.layout-justify-h {text-align: justify; *text-justify:inter-ideograph; overflow: hidden; letter-spacing:-0.34em; }
+.last-justify {display:inline-block!important; *display:inline!important; *zoom:1; vertical-align: top!important; width: 100%!important; height: 0!important; font-size: 0!important; line-height: 0!important; overflow: hidden;}
+.spacing{letter-spacing:-0.34em;}
+.mc{ margin-left:auto; margin-right:auto;}
+.fl{float:left;}
+.fr{float:right;}
+.fl-in{float:left; *display:inline;}
+.fr-in{float:right; *display:inline;}
+.relative{ position:relative;}
+.absolute{ position:absolute;}
+.pointer{cursor:pointer;}
+.hidden{overflow:hidden;}
+.ma{ margin:auto;}
+.bd_none{border:0 none; outline:none;}
+.cb{clear:both;}
+.cl{clear:left;}
+.cr{clear:right;}
+.clear-no{clear: none;}
+.clear-h{clear:both; overflow:hidden;}
+.clear{ clear: both; *zoom: 1;}
+.clear:before,.clear:after {content: "\200B"; clear: both; display: block; height: 0; visibility: hidden; font-size: 0; line-height: 0;}
+
+/* font-size */
+.c-word{word-wrap:break-word; white-space: nowrap; overflow:hidden;}
+.e-word{word-break:break-all; white-space:normal; overflow:hidden;}
+.f14{ font-size:14px;} .f16{ font-size:16px;} .f18{ font-size:18px;} .f20{ font-size:20px;}
+.fb{font-weight:bold;} .fn{font-weight:normal; font-style:normal;}
+.fa{font-family:Arial,sans-serif;} .ft{font-family:Tahoma,sans-serif;} .fv{font-family:Verdana,sans-serif;} .fs{font-family:Simsun,sans-serif;} .fht{font-family:"\9ED1\4F53",sans-serif;} .fyh{font-family:"Microsoft YaHei","PT Sans", sans-serif;} .fp{font-family:"PT Mono", Menlo, "Courier New", monospace;}
+.t2{text-indent:2em;}
+
+.tc{text-align:center;}
+.tl{text-align:left;}
+.tr{text-align:right;}
+.tj{text-align:justify;}
+.vt{vertical-align: top;}
+.vm{vertical-align: middle;}
+.vb{vertical-align: bottom;}
+
+.bdc{border:1px solid #d8d8d8;}
+.blc{border-left:1px solid #d8d8d8;}
+.brc{border-right:1px solid #d8d8d8;}
+.btc{border-top:1px solid #d8d8d8;}
+.bbc{border-bottom:1px solid #d8d8d8;}
+
+.alpha{-webkit-opacity: 0.5; -khtml-opacity: .5; -moz-opacity: .5; opacity: .5; filter: alpha(opacity=50);}
+
+.hr-2,.hr-3,.hr-4,.hr-5,.hr-6,.hr-7,.hr-8,.hr-9,.hr-10,.hr-11,.hr-12,.hr-13,.hr-14,.hr-15,.hr-16,.hr-17,.hr-18,.hr-19,.hr-20,.hr-30,.hr-24,.hr-40{clear:both; overflow:hidden; font-size:0; line-height:0;}
+.hr-2{height:2px;}.hr-3{height:3px;}.hr-4{height:4px;}.hr-5{height:5px;}.hr-6{height:6px;}.hr-7{height:7px;}.hr-8{height:8px;}.hr-9{height:9px;}.hr-10{height:10px;}.hr-11{height:11px;}.hr-12{height:12px;}.hr-13{height:13px;}.hr-14{height:14px;}.hr-15{height:15px;}.hr-16{height:16px;}.hr-17{height:17px;}.hr-18{height:18px;}.hr-19{height:19px;}.hr-20{height:20px;}.hr-30{height:30px;}.hr-24{height:24px;}.hr-40{height:40px;}
+
+.wrapper{ clear: both; width: 100%; min-width: 1200px; margin: auto; }
+.layout{ clear:both; width:1200px; margin:auto;}
+
+/*
+!* 图片自适应 *!
+.l-list li, .l-list .pic, .l-list .pic i { display: inline-block; *display: inline; *zoom: 1; vertical-align: middle; letter-spacing: normal; }
+.l-list li { margin-left: 7px; margin-right: 7px; margin-bottom: 24px; padding: 9px; width: 190px; height: 328px; border: 1px solid #e9e9e9; }
+.l-list .pic { width: 190px; height: 180px; border: 1px solid #e9e9e9; text-align: center; overflow: hidden; }
+.l-list .pic img { max-width: 190px; max-height: 180px; vertical-align: middle; overflow: hidden; }
+* html .l-list .pic img { width: expression(this.width > 190 && this.width > this.height ? 190:auto); height: expression(this.height > 180 ? 180:auto); }
+.l-list .pic i { height: 100%; }
+*/
+
+
+

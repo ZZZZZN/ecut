@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.krt.admin.system.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.krt.admin.system.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="inserter" jdbcType="INTEGER" property="inserter"/>
+        <result column="insertTime" jdbcType="TIMESTAMP" property="insertTime"/>
+        <result column="updater" jdbcType="INTEGER" property="updater"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime
+	</sql>
+
+    <select id="selectById" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+		delete from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+    <insert id="insert" parameterType="com.krt.admin.system.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="roleCode != null">
+                roleCode,
+            </if>
+            <if test="inserter != null">
+                inserter,
+            </if>
+            <if test="insertTime != null">
+                insertTime,
+            </if>
+            <if test="updater != null">
+                updater,
+            </if>
+            <if test="updateTime != null">
+                updateTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode != null">
+                #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="inserter != null">
+                #{inserter,jdbcType=INTEGER},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                #{updater,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.krt.admin.system.entity.User">
+        update t_user
+        <set>
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode != null">
+                roleCode = #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="inserter != null">
+                inserter = #{inserter,jdbcType=INTEGER},
+            </if>
+            <if test="insertTime != null">
+                insertTime = #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updater != null">
+                updater = #{updater,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 用户管理 -->
+    <select id="selectListPara" resultType="java.util.Map">
+        select s1.*,s2.roleName from
+        (select id, username, name, status, roleCode from t_user where username != 'admin'
+        <if test="username!=''">
+            and username like concat('%',#{username},'%')
+        </if>
+        <if test="name!=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        )s1 left JOIN
+        (select * from t_role)s2 on s1.roleCode = s2.roleCode where 1=1
+        <if test="roleName!=''">
+            and roleName like concat('%',#{roleName},'%')
+        </if>
+    </select>
+
+    <select id="checkUsername" resultType="java.lang.Integer">
+        select count(id) from t_user where username=#{username}
+        <if test="id!=null and id !=''">
+            and id != #{id}
+        </if>
+    </select>
+
+    <!-- 根据用户查询用户信息 -->
+    <select id="selectByUsername" resultType="java.util.Map">
+		select id, username, password, name, status, roleCode from t_user where username=#{username}
+	</select>
+
+</mapper>

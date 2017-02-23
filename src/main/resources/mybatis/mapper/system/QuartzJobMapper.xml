@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.krt.admin.system.mapper.QuartzJobMapper">
+	<resultMap id="BaseResultMap" type="com.krt.admin.system.entity.QuartzJob">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="jobName" property="jobName" jdbcType="VARCHAR" />
+		<result column="jobGroup" property="jobGroup" jdbcType="VARCHAR" />
+		<result column="jobStatus" property="jobStatus" jdbcType="VARCHAR" />
+		<result column="cronExpression" property="cronExpression" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="beanClass" property="beanClass" jdbcType="VARCHAR" />
+		<result column="isConcurrent" property="isConcurrent" jdbcType="VARCHAR" />
+		<result column="springId" property="springId" jdbcType="VARCHAR" />
+		<result column="methodName" property="methodName" jdbcType="VARCHAR" />
+		<result column="inserter" property="inserter" jdbcType="INTEGER" />
+		<result column="insertTime" property="insertTime" jdbcType="TIMESTAMP" />
+		<result column="updater" property="updater" jdbcType="INTEGER" />
+		<result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, jobName, jobGroup, jobStatus, cronExpression, description, beanClass, isConcurrent,
+		springId, methodName, inserter, insertTime, updater, updateTime
+	</sql>
+	
+	<select id="selectEntityById" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_quartzjob
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectById" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from t_quartzjob
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<insert id="insert" parameterType="com.krt.admin.system.entity.QuartzJob">
+		insert into t_quartzjob (id, jobName, jobGroup,
+		jobStatus, cronExpression, description,
+		beanClass, isConcurrent, springId,
+		methodName, inserter, insertTime,
+		updater, updateTime)
+		values (#{id,jdbcType=BIGINT}, #{jobName,jdbcType=VARCHAR}, #{jobGroup,jdbcType=VARCHAR},
+		#{jobStatus,jdbcType=VARCHAR}, #{cronExpression,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+		#{beanClass,jdbcType=VARCHAR}, #{isConcurrent,jdbcType=VARCHAR}, #{springId,jdbcType=VARCHAR},
+		#{methodName,jdbcType=VARCHAR}, #{inserter,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP},
+		#{updater,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="update" parameterType="com.krt.admin.system.entity.QuartzJob">
+		update t_quartzjob
+		<set>
+			<if test="jobName != null">
+				jobName = #{jobName,jdbcType=VARCHAR},
+			</if>
+			<if test="jobGroup != null">
+				jobGroup = #{jobGroup,jdbcType=VARCHAR},
+			</if>
+			<if test="jobStatus != null">
+				jobStatus = #{jobStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cronExpression != null">
+				cronExpression = #{cronExpression,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="beanClass != null">
+				beanClass = #{beanClass,jdbcType=VARCHAR},
+			</if>
+			<if test="isConcurrent != null">
+				isConcurrent = #{isConcurrent,jdbcType=VARCHAR},
+			</if>
+			<if test="springId != null">
+				springId = #{springId,jdbcType=VARCHAR},
+			</if>
+			<if test="methodName != null">
+				methodName = #{methodName,jdbcType=VARCHAR},
+			</if>
+			<if test="inserter != null">
+				inserter = #{inserter,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				insertTime = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updater != null">
+				updater = #{updater,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from t_quartzjob
+		where id = #{id}
+	</delete>
+
+	<!-- 任务管理 -->
+	<select id="selectListPara" resultType="java.util.Map">
+		select
+			id, jobName, jobGroup, jobStatus, cronExpression, description, beanClass, isConcurrent, springId, methodName
+		from t_quartzjob
+	</select>
+	
+	<!-- 检测任务名与组名 -->
+	<select id="checkJobName" resultType="java.lang.Integer">
+		select count(id) from t_quartzjob where 1=1
+		<if test="jobName!=null">
+			and jobName = #{jobName}
+		</if>
+		<if test="jobGroup!=null">
+			and jobGroup = #{jobGroup}
+		</if>
+		<if test="id!=null">
+			and id != #{id}
+		</if>
+	</select>
+	
+	<!-- 获取正在运行的任务 -->
+	<select id="selectEntityList" resultMap="BaseResultMap">
+		select 
+			<include refid="Base_Column_List" />
+		from t_quartzjob where jobStatus='1'
+	</select>
+</mapper>

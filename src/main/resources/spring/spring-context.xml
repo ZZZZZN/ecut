@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-lazy-init="true">
+
+    <!-- 强制使用cglib代理 -->
+    <aop:config proxy-target-class="true"/>
+    <!-- 开启aspect注解支持 -->
+    <aop:aspectj-autoproxy/>
+
+    <!-- 只扫描除了@Controller的所有注解 -->
+    <context:component-scan base-package="com.krt">
+        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:db.properties</value>
+                <value>classpath*:config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 引入其他配置文件 -->
+    <import resource="classpath*:spring/spring-druid.xml"/>
+    <import resource="classpath*:spring/spring-mvc.xml"/>
+    <import resource="classpath*:spring/spring-mybatis.xml"/>
+    <import resource="classpath*:spring/spring-shiro.xml"/>
+    <import resource="classpath*:spring/spring-dubbo.xml"/>
+    <import resource="classpath*:spring/spring-quartz.xml"/>
+    <import resource="classpath*:spring/spring-javamelody.xml"/>
+</beans>

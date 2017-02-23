@@ -1,0 +1,56 @@
+TABLE{  
+	FONT-SIZE: 9pt;   
+	background-color: #ffffff;  
+}  
+TABLE.list{  
+	BORDER-BOTTOM: 1 none;  
+	BORDER-LEFT: 1 none;  
+	BORDER-RIGHT: 1 none;  
+	BORDER-TOP: 1 none;  
+	FONT: messagebox;    
+	overflow: hidden  
+	FONT-SIZE: 9pt;   
+}  
+TABLE.list TD.mouseover{  
+	BACKGROUND-COLOR: #D7DAFF;  
+	cursor:pointer;  
+}  
+TABLE.list TD.selected{  
+	BACKGROUND-COLOR: #0281D7;  
+	COLOR: white; 
+	FONT: messagebox;  
+	cursor:pointer;  
+}  
+.bgRed{
+	COLOR: red;  
+	FONT: messagebox;  
+	cursor:pointer;  
+}
+.date-time .date-list .date-down-list,.left,.right{overflow-x:hidden;overflow-y:auto}
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+a,a img,blockquote,body,button,dd,div,dl,dt,form,h1,h2,h3,h4,h5,h6,hr,img,input,label,li,ol,p,pre,select,span,table,td,textarea,th,tr,ul{margin:0;padding:0}
+a img,img{border:none;vertical-align:top;-ms-interpolation-mode:bicubic}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:400}
+dd,dl,dt,li,ol,ul{list-style:none}address,cite,code,em,i,th{font-style:normal;font-weight:400}
+table{border-collapse:collapse;border-spacing:0}
+button,input,label,select,textarea{vertical-align:middle;line-height:normal;font-family:"microsoft yahei";font-size:inherit}
+.date-time{text-align:center;width:90%;margin:0 auto;}.date-time .date-list{display:inline-block;padding:14px 0 8px}.date-time 
+.date-list li{float:left;margin:0 3px;position:relative}.date-time .date-list .date-list-tit{width:86px;font-size:14px;color:#333;height:25px;line-height:25px;border:1px solid #c9c9c9;cursor:pointer}
+.date-time .date-list .date-year{width:64px;padding-right:22px;background:url(../images/date_sel.png) 70px center no-repeat}
+.date-time .date-list .date-year span{display:block;height:100%;text-align:center;border-right:1px solid #c9c9c9}.date-time .date-list .date-month{width:109px;overflow:hidden}
+.date-time .date-list .date-month span{float:left;height:100%}.date-time .date-list .date-month .date-month-tit{padding:0 18px 0 5px;width:40px;background:url(../images/date_sel.png) 44px center no-repeat}
+.date-time .date-list .date-month .date-month-left{width:22px;border-right:1px solid #c9c9c9;background:url(../images/date_left.png) center center no-repeat}
+.date-time .date-list .date-month .date-month-right{float:right;width:22px;border-left:1px solid #c9c9c9;background:url(../images/date_right.png) center center no-repeat}
+.date-time .date-list .date-down-list{display:none;position:absolute;top:26px;left:0;right:0;max-height:266px;z-index:9;border:1px solid #c9c9c9;background:#fff}
+.date-time .date-list .date-down-list p{height:22px;line-height:22px;font-size:12px;color:#333;cursor:pointer}
+.date-time .date-list .date-down-list .date-down-on,.date-time .date-list .date-down-list p:hover{background:#f1f1f1}
+.date-time .date-list .date-month-down{left:23px;right:23px}.date-time .date-table{width:100%;margin-bottom:-1px}
+.date-time .date-table td{font-size:14px;color:#333;text-align:center;height:65px;border-bottom:1px solid #e4e6ed;border-right:1px solid #e4e6ed}
+.date-time .date-table .date-tab-th td{border-right:none;height:60px;background:#F1F1F1;}
+.date-time .date-table .date-tab-tr td{position:relative;cursor:pointer}
+.date-time .date-table .date-tab-tr td p{position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;padding:1px;line-height:50px}
+.date-time .date-table .date-tab-tr td span{position:relative;display:inline-block;width:40px;height:40px;line-height:40px;text-align:center;border:1px solid #fff;border-radius:50%}
+.date-time .date-table .date-tab-tr td .date-tab-day{border-color:#1476df}
+.date-time .date-table .date-tab-tr td .date-tab-icon{position:absolute;top:8px;right:1px;width:9px;height:9px;border-radius:50%;background:#1476df}
+.date-time .date-table .date-tab-tr td:hover p{padding:0;height:50px;border:1px solid #1476df}.date-time .date-table .date-tab-tr .date-tab-not span{color:#8c96ab}
+.date-time .date-table .date-tab-tr .on span{color:#fff;border-color:#1476df;background:#1476df}

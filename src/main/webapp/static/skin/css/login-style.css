@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors tuyunkun
+ * @date    2016-06-29 17:00:00
+ * @version 登录 注册
+ */
+.body{ background: #ffffff;}
+
+.login-tit-bg{ height: 119px; background: url(../images/login-top-bg_02.png) repeat-x;}
+.login-tit{ width: 1000px; height: 118px; margin:auto; background: url(../images/logo-tit.png) 0 50% no-repeat;}
+.login-form-area{margin: 70px auto 0;width: 1000px;/* height: 430px; */background: url(../images/logo-bg-img_06.jpg) no-repeat;overflow: hidden;}
+
+
+
+
+.login{float: right;width: 396px;background: url(../images/login-form-bg_11.jpg) repeat-y;}
+.login h1{ height: 74px; background: url(../images/login-form-bg_05.jpg) no-repeat; text-indent: -9999px; overflow: hidden;}
+
+.login input{color: #CACACA;}
+.login div{width: 360px;margin: auto;position: relative;}
+.login .user-box,.login .pass-box{padding-top: 7px;}
+.login .username,.login .userpwd{clear: none;display: block;height: 52px;line-height: 52px;border: none;background: none;padding-left: 15px;padding-right: 50px;border: 1px solid #dcdde1;background: #ffffff;border-radius: 3px;width: 285px;margin: auto;}
+
+.login .on{background: url(../images/login-bk-bg.png)  no-repeat;height: 68px;border: 0;}
+.login .on input{border: 0;background: 0;}
+.login .user{position: relative;margin-top: 20px;}
+.login .user i{position: absolute;top: 24px;right: 15px;width: 21px;height: 21px;background: url(../images/logo-icon1.png) no-repeat;}
+.login .pass{margin-top: 20px;position: relative;}
+.login .pass.mt0{ margin-top: 0;}
+.login .pass i{position: absolute;top: 22px;right: 15px;width: 22px;height: 25px;background: url(../images/logo-icon2.png) no-repeat;}
+.login-label{font-size: 16px;color: #404040;position: relative;top: 2px;left: 5px;font-weight: bold;}
+.login-remember{color:#313131;font-size: 12px;position: relative;top: -1px;left: 4px;}
+.login-remember-right{float: right;}
+.login-remember a{color: #296DBE;}
+.login .warning{position: absolute;bottom: -20px;right: 15px;color: #ff6600;font-size: 12px;display: none;}
+.login .password-tx{width: 100px;text-align: right;position: relative;top: -35px;left: 24px;z-index: 0;color: #CACACA;}
+.login .pwd-text {
+   position: absolute;
+   left: 15px;
+   bottom: -2px;
+  color: #ff6600;
+  font-size: 12px;
+   }
+.login .user-text {
+  position: absolute;
+  left: 15px;
+  bottom: -20px;
+  color: #ff6600;
+  font-size: 12px;
+  }
+.unbind-show{height: 364px;width: 535px;margin: 0 auto;position: absolute;background: white;    z-index: 10000;top: 120px;left: 400px;}
+.unbind-show div{width: 450px;padding: 8px;}
+.unbind-show label{font-size: 16px;position: relative;top: 25px;display: inline-block;width: 80px;text-align: left;left: 0px;cursor: pointer;}
+.grxx-dateform .unbind-name{font-size: 16px;color: #8E8E8E;width: 182px;display: inline-block;text-align: left;}
+/*.unbind-show input{padding-left: 5px;line-height: 28px;width: 182px;height: 28px;font-size: 12px;color: #8E8E8E; border: 1px solid #DCDCDC}*/
+.unbind-show .fpwd-code{border: 1px solid #DCDCDC;font-size:14px;background-color: white;height: 28px;line-height: 16px;margin-left: 20px;width: 120px;text-align: center;background-color: #EAE9D5}
+.unbind-img{position: relative;left: -32px;top: 2px;}
+.unbind-sub{text-align: center;margin-top: 50px;}
+.unbind-show .unbind-show-main{width: 440px;margin: 0 auto;}
+.unbind-show .unbind-title{color: white;font-size: 14px;top: 0px;width: 95px;}
+.unbind-show .close{float: right;margin-top: 0px;margin-right: 20px;cursor: pointer;}
+.unbind-sub img{cursor: pointer;margin-right: 23px; margin-top: 40px;}
+.remodal-overlay{position: fixed;z-index: 9999;top: 0px;left:0px;display: none;background: #2B2E38;
+  background: rgba(43,46,56,.9);height: 20000px;width: 2000px;cursor:pointer}
+.unbindphone{position: relative;top: -2px;}
+.login_change{border-bottom: 1px dotted #DEDEDE; height: 60px;padding: 12px 8px 12px 8px;}
+.login_change input{ position: relative;top: 25px;}
+.login_change select{position: relative;top: 25px;width: 250px;border: 1px solid #c2dddd;font-size: 14px;}
+.login .btn{display: block;margin: 26px auto 15px;width: 360px;height: 46px;border: none;color: #fff;font-size: 16px;line-height: 46px;cursor: pointer;background: #578cda;border-radius: 5px;}
+
+.login .bottom-img{margin: 0;padding: 0;width: 396px;height: 4px;background: url(../images/login-form-bg_14.jpg) no-repeat;overflow: hidden;}
+
+.login .lzm{
+    padding-top: 5px;
+    width: 350px;
+}
+.login .lzm input{width: 150px;height: 36px;line-height: 36;padding-left: 10px;padding-right: 10px;border: 1px solid #dcdde1;background: #ffffff;}
+.login .lzm .lzm-img{width: 100px;padding-left: 70px;}
+
+.login .lzm-text {
+  position: absolute;
+  left: 10px;
+  bottom: -20px;
+  color: #ff6600;
+  font-size: 12px;
+  }
