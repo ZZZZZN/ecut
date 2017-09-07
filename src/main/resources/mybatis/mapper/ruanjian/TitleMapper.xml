@@ -85,7 +85,7 @@
 	<!-- 带参数查询选题表列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
 		select
-			title_name,start_time,end_time,title_limit,author,title_type,dr,ts
+			id,title_name,start_time,end_time,title_limit,author,title_type,dr,ts
 		from title where 1=1
 	</select>
 
