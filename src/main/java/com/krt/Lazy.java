@@ -23,7 +23,6 @@ public class Lazy {
 		new GenServiceUtil(packageName, tableName, entityName);
 		new GenMapperUtil(packageName, tableName, entityName);
 		new GenEntityUtil(packageName, tableName, entityName);
-
 		new GenJspUtil(packageName, tableName, entityName);
 		new GenMapperXmlUtil(packageName, tableName, entityName);
 	}

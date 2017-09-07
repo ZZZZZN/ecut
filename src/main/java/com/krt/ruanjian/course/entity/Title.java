@@ -12,11 +12,13 @@ import com.krt.core.base.BaseEntity;
 public class Title extends BaseEntity {
 
 	private String title_name;//题名
-	private String start_time;//选题开始时间
-	private String end_time;//选题结束时间
-	private String title_limit;//选题上限数量
-	private String author;//出题人
-	private String title_type;//1 : 校内选题  2 ： 校外选题
+	private String title_type;//课题类型
+	private String title_source;//课题来源
+	private String suitMajor;//适用专业
+	private String suitScope;//适用实训所在地
+	private String limit_person;//上线人数
+	private String meaning_target;//课程意义与目标
+	private String condition_work;//学生基本条件和前期工作
 	private Integer dr;//逻辑删除
 	private String ts;//时间戳
 
@@ -27,40 +29,54 @@ public class Title extends BaseEntity {
 	public String getTitle_name(){
 		return this.title_name;
 	}
-	public void setStart_time(String start_time){
-		this.start_time = start_time;
-	}
-
-	public String getStart_time(){
-		return this.start_time;
-	}
-	public void setEnd_time(String end_time){
-		this.end_time = end_time;
-	}
-
-	public String getEnd_time(){
-		return this.end_time;
-	}
-	public void setTitle_limit(String title_limit){
-		this.title_limit = title_limit;
-	}
-
-	public String getTitle_limit(){
-		return this.title_limit;
-	}
-	public void setAuthor(String author){
-		this.author = author;
-	}
-
-	public String getAuthor(){
-		return this.author;
-	}
 	public void setTitle_type(String title_type){
 		this.title_type = title_type;
 	}
 
 	public String getTitle_type(){
 		return this.title_type;
+	}
+	public void setTitle_source(String title_source){
+		this.title_source = title_source;
+	}
+
+	public String getTitle_source(){
+		return this.title_source;
+	}
+	public void setSuitMajor(String suitMajor){
+		this.suitMajor = suitMajor;
+	}
+
+	public String getSuitMajor(){
+		return this.suitMajor;
+	}
+	public void setSuitScope(String suitScope){
+		this.suitScope = suitScope;
+	}
+
+	public String getSuitScope(){
+		return this.suitScope;
+	}
+	public void setLimit_person(String limit_person){
+		this.limit_person = limit_person;
+	}
+
+	public String getLimit_person(){
+		return this.limit_person;
+	}
+	public void setMeaning_target(String meaning_target){
+		this.meaning_target = meaning_target;
+	}
+
+	public String getMeaning_target(){
+		return this.meaning_target;
+	}
+	public void setCondition_work(String condition_work){
+		this.condition_work = condition_work;
+	}
+
+	public String getCondition_work(){
+		return this.condition_work;
 	}
 	public void setDr(Integer dr){
 		this.dr = dr;

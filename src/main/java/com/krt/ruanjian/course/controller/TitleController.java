@@ -4,18 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
-import com.krt.core.annotation.LogAop;
-import com.krt.core.base.BaseController;
-import com.krt.core.bean.DataTable;
-import com.krt.core.bean.ReturnBean;
-import com.krt.core.util.ShiroUtil;
-import com.krt.ruanjian.course.service.TitleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.krt.ruanjian.course.entity.Title;
+import com.krt.ruanjian.course.service.TitleService;
+import com.krt.core.bean.DataTable;
+import com.krt.core.bean.ReturnBean;
+import com.krt.core.annotation.LogAop;
+import com.krt.core.base.BaseController;
 
 /**
  * @Description:选题表控制层
@@ -88,8 +86,6 @@ public class TitleController extends BaseController {
 	public ReturnBean title_insert(Title title) {
 		ReturnBean rb;
 		try {
-			Map user = ShiroUtil.getCurrentUser();
-			//System.out.println(user.get("id"));
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
