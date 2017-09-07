@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.krt.admin.system.entity.Region;
 import com.krt.admin.system.mapper.RegionMapper;
-import com.krt.common.base.BaseMapper;
-import com.krt.common.base.BaseServiceImpl;
+import com.krt.core.base.BaseMapper;
+import com.krt.core.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

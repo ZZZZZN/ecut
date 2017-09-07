@@ -1,7 +1,7 @@
 package com.krt.admin.system.mapper;
 
 import com.krt.admin.system.entity.User;
-import com.krt.common.base.BaseMapper;
+import com.krt.core.base.BaseMapper;
 
 import java.util.Map;
 

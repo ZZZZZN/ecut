@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.krt.admin.system.entity.Dictionary;
 import com.krt.admin.system.service.DictionaryService;
-import com.krt.common.annotation.LogAop;
-import com.krt.common.base.BaseController;
-import com.krt.common.bean.DataTable;
-import com.krt.common.bean.ReturnBean;
+import com.krt.core.annotation.LogAop;
+import com.krt.core.base.BaseController;
+import com.krt.core.bean.DataTable;
+import com.krt.core.bean.ReturnBean;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.krt.common.util.Common;
+import com.krt.core.util.Common;
 
 /**
  * @author 殷帅

@@ -1,7 +1,7 @@
 package com.krt.admin.system.mapper;
 
 import com.krt.admin.system.entity.Log;
-import com.krt.common.base.BaseMapper;
+import com.krt.core.base.BaseMapper;
 
 /**  
  * @Description: 日志管理映射层

@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.krt.admin.system.entity.Role;
 import com.krt.admin.system.mapper.ResMapper;
 import com.krt.admin.system.mapper.RoleMapper;
-import com.krt.common.base.BaseMapper;
-import com.krt.common.base.BaseServiceImpl;
+import com.krt.core.base.BaseMapper;
+import com.krt.core.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
