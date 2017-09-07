@@ -11,7 +11,6 @@ import com.krt.core.base.BaseEntity;
 @SuppressWarnings("serial")
 public class Title extends BaseEntity {
 
-	private Integer title_id;//主键
 	private String title_name;//题名
 	private String start_time;//选题开始时间
 	private String end_time;//选题结束时间
@@ -21,13 +20,6 @@ public class Title extends BaseEntity {
 	private Integer dr;//逻辑删除
 	private String ts;//时间戳
 
-	public void setTitle_id(Integer title_id){
-		this.title_id = title_id;
-	}
-
-	public Integer getTitle_id(){
-		return this.title_id;
-	}
 	public void setTitle_name(String title_name){
 		this.title_name = title_name;
 	}
