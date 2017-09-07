@@ -12,84 +12,97 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <div class="form-box">
-        <form action="#" id="krtForm" class="form-horizontal">
-            <table class="table table-bordered table-krt">
-                <tr>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            题名
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="title_name" id="title_name" value="${title.title_name}" class="form-control"></td>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            课题类型
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="title_type" id="title_type" value="${title.title_type}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            课题来源
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="title_source" id="title_source" value="${title.title_source}" class="form-control"></td>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            适用专业
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="suitMajor" id="suitMajor" value="${title.suitMajor}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            适用实训所在地
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="suitScope" id="suitScope" value="${title.suitScope}" class="form-control"></td>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            上线人数
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="limit_person" id="limit_person" value="${title.limit_person}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            课程意义与目标
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="meaning_target" id="meaning_target" value="${title.meaning_target}" class="form-control"></td>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            学生基本条件和前期工作
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="condition_work" id="condition_work" value="${title.condition_work}" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            逻辑删除
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="dr" id="dr" value="${title.dr}" class="form-control"></td>
-                    <td class="active width-15">
-                        <label class="pull-right">
-                            时间戳
-                        </label>
-                    </td>
-                    <td class="width-35"><input type="text" name="ts" id="ts" value="${title.ts}" class="form-control"></td>
-                </tr>
-            </table>
-            <!-- 参数 -->
-            <input type="hidden" name="id" value="${title.id}">
-        </form>
-    </div>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h5>选题表查看</h5>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-box">
+                            <form action="#" id="krtForm" class="form-horizontal">
+                                <table class="table table-bordered table-krt" style="width: 80%;margin-left: 100px">
+                                    <tr>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                课题名称
+                                            </label>
+                                        </td>
+                                        <td class="width-35">${title.title_name}</td>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                课题类型
+                                            </label>
+                                        </td>
+                                        <td class="width-35">
+                                            ${title.title_type}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                课题来源
+                                            </label>
+                                        </td>
+                                        <td class="width-35">
+                                            ${title.title_source}
+                                        </td>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                适用专业
+                                            </label>
+                                        </td>
+                                        <td class="width-35">
+                                            ${title.suitMajor}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                适用实训所在地
+                                            </label>
+                                        </td>
+                                        <td class="width-35">
+                                            ${title.suitScope}
+                                        </td>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                上限人数
+                                            </label>
+                                        </td>
+                                        <td class="width-35">${title.limit_person}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="active width-15">
+                                            <label class="pull-right">
+                                                课程意义与目标
+                                            </label>
+                                        </td>
+                                        <td colspan="3">
+                                            ${title.meaning_target}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="active width-15" style="text-align: center;">
+                                            <label class="pull-right">
+                                                学生基本条件和前期工作
+                                            </label>
+                                        </td>
+                                        <td colspan="3">
+                                            ${title.condition_work}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
 </div><!-- ./wrapper -->
 
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -99,6 +112,7 @@
 <script src="<%=basePath%>static/plugins/JQueryValidate/localization/messages_zh.js"></script>
 <script src="<%=basePath%>static/skin/js/common.js"></script>
 <script type="text/javascript">
+
 
 </script>
 </body>
