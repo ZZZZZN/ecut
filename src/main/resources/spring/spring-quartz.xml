@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- spring工具类quartz定时调度需要 -->
-    <bean id="springUtils" class="com.krt.common.util.SpringUtils"/>
+    <bean id="springUtils" class="com.krt.core.util.SpringUtils"/>
 
     <!-- quartz定时调度 -->
     <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">

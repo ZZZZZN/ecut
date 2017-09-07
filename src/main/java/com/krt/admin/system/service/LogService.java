@@ -2,8 +2,8 @@ package com.krt.admin.system.service;
 
 import com.krt.admin.system.entity.Log;
 import com.krt.admin.system.mapper.LogMapper;
-import com.krt.common.base.BaseMapper;
-import com.krt.common.base.BaseServiceImpl;
+import com.krt.core.base.BaseMapper;
+import com.krt.core.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

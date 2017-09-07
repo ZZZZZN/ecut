@@ -76,7 +76,7 @@
     <!-- 解决xss漏洞 -->
     <filter>
         <filter-name>xssFilter</filter-name>
-        <filter-class>com.krt.common.filter.XSSFilter</filter-class>
+        <filter-class>com.krt.core.filter.XSSFilter</filter-class>
     </filter>
 
     <!-- 解决xss漏洞 -->

@@ -1,7 +1,7 @@
 package com.krt.admin.system.mapper;
 
 import com.krt.admin.system.entity.Region;
-import com.krt.common.base.BaseMapper;
+import com.krt.core.base.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

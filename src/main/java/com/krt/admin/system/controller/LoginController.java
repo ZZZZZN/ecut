@@ -1,12 +1,10 @@
 package com.krt.admin.system.controller;
 
 import com.krt.admin.system.service.LoginService;
-import com.krt.common.annotation.LogAop;
-import com.krt.common.base.BaseController;
-import com.krt.common.bean.ReturnBean;
-import com.krt.common.config.Constant;
-import com.krt.common.util.AESvbjavajs;
-import com.krt.common.util.ShiroUtil;
+import com.krt.core.annotation.LogAop;
+import com.krt.core.base.BaseController;
+import com.krt.core.bean.ReturnBean;
+import com.krt.core.util.ShiroUtil;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -84,7 +82,7 @@ public class LoginController extends BaseController {
             String sessionCode = (String) session.getAttribute("imgCode");
             if (sessionCode != null && sessionCode.equalsIgnoreCase(code)) {
                 // 密码AES加密
-                password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
+                //password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
                 // shiro的登录
                 UsernamePasswordToken token = new UsernamePasswordToken(username, password);
                 Subject currentUser = SecurityUtils.getSubject();
