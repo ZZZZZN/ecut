@@ -1,7 +1,7 @@
 package com.krt.admin.system.util;
 
 import com.krt.admin.system.entity.QuartzJob;
-import com.krt.common.util.SpringUtils;
+import com.krt.core.util.SpringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 

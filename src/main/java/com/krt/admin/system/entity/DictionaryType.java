@@ -1,7 +1,7 @@
 package com.krt.admin.system.entity;
 
 
-import com.krt.common.base.BaseEntity;
+import com.krt.core.base.BaseEntity;
 /**
  * @Description: 字典类型实体类
  * @author 殷帅
