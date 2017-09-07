@@ -18,68 +18,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<tr>
 					 	 <td class="active width-15">
       						<label class="pull-right">
-      							主键
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="title_id" id="title_id" value="${title.title_id}" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
       							题名
       						</label>
       					</td>
       					<td class="width-35"><input type="text" name="title_name" id="title_name" value="${title.title_name}" class="form-control"></td>
-  					</tr>
-					<tr>
 					 	 <td class="active width-15">
       						<label class="pull-right">
-      							选题开始时间
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="start_time" id="start_time" value="${title.start_time}" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							选题结束时间
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="end_time" id="end_time" value="${title.end_time}" class="form-control"></td>
-  					</tr>
-					<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							选题上限数量
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="title_limit" id="title_limit" value="${title.title_limit}" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							出题人
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="author" id="author" value="${title.author}" class="form-control"></td>
-  					</tr>
-					<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							1 : 校内选题  2 ： 校外选题
+      							课题类型
       						</label>
       					</td>
       					<td class="width-35"><input type="text" name="title_type" id="title_type" value="${title.title_type}" class="form-control"></td>
+  					</tr>
+					<tr>
+					 	 <td class="active width-15">
+      						<label class="pull-right">
+      							课题来源
+      						</label>
+      					</td>
+      					<td class="width-35"><input type="text" name="title_source" id="title_source" value="${title.title_source}" class="form-control"></td>
+					 	 <td class="active width-15">
+      						<label class="pull-right">
+      							适用专业
+      						</label>
+      					</td>
+      					<td class="width-35"><input type="text" name="suitMajor" id="suitMajor" value="${title.suitMajor}" class="form-control"></td>
+  					</tr>
+					<tr>
+					 	 <td class="active width-15">
+      						<label class="pull-right">
+      							适用实训所在地
+      						</label>
+      					</td>
+      					<td class="width-35"><input type="text" name="suitScope" id="suitScope" value="${title.suitScope}" class="form-control"></td>
+					 	 <td class="active width-15">
+      						<label class="pull-right">
+      							上线人数
+      						</label>
+      					</td>
+      					<td class="width-35"><input type="text" name="limit_person" id="limit_person" value="${title.limit_person}" class="form-control"></td>
+  					</tr>
+					<tr>
+					 	 <td class="active width-15">
+      						<label class="pull-right">
+      							课程意义与目标
+      						</label>
+      					</td>
+      					<td class="width-35"><input type="text" name="meaning_target" id="meaning_target" value="${title.meaning_target}" class="form-control"></td>
+					 	 <td class="active width-15">
+      						<label class="pull-right">
+      							学生基本条件和前期工作
+      						</label>
+      					</td>
+      					<td class="width-35"><input type="text" name="condition_work" id="condition_work" value="${title.condition_work}" class="form-control"></td>
+  					</tr>
+					<tr>
 					 	 <td class="active width-15">
       						<label class="pull-right">
       							逻辑删除
       						</label>
       					</td>
       					<td class="width-35"><input type="text" name="dr" id="dr" value="${title.dr}" class="form-control"></td>
-  					</tr>
-					<tr>
 					 	 <td class="active width-15">
       						<label class="pull-right">
       							时间戳
       						</label>
       					</td>
       					<td class="width-35"><input type="text" name="ts" id="ts" value="${title.ts}" class="form-control"></td>
-						<td></td>
-						<td></td>
   					</tr>
       			</table>
       			<!-- 参数 -->

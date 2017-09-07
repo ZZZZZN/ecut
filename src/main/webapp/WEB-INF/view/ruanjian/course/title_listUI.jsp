@@ -39,13 +39,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<tr>
 											<th>序号</th>
 											<th>题名</th>
-											<th>选题开始时间</th>
-											<th>选题结束时间</th>
-											<th>选题上限数量</th>
-											<th>出题人</th>
-											<th>1 : 校内选题  2 ： 校外选题</th>
+											<th>课题类型</th>
+											<th>课题来源</th>
+											<th>适用专业</th>
+											<th>适用实训所在地</th>
+											<th>上线人数</th>
+											<th>课程意义与目标</th>
+											<th>学生基本条件和前期工作</th>
 											<th>逻辑删除</th>
-											<th></th>
+											<th>时间戳</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -101,17 +103,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            "columns": [
 	                {"data": "id", "width": "5%"},
 					{"data": "title_name", "width": "20%"},
-					{"data": "start_time", "width": "20%"},
-					{"data": "end_time", "width": "20%"},
-					{"data": "title_limit", "width": "20%"},
-					{"data": "author", "width": "20%"},
 					{"data": "title_type", "width": "20%"},
+					{"data": "title_source", "width": "20%"},
+					{"data": "suitMajor", "width": "20%"},
+					{"data": "suitScope", "width": "20%"},
+					{"data": "limit_person", "width": "20%"},
+					{"data": "meaning_target", "width": "20%"},
+					{"data": "condition_work", "width": "20%"},
 					{"data": "dr", "width": "20%"},
 					{"data": "ts", "width": "20%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 9,
+	                    "targets": 11,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
