@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.krt.ruanjian.course.mapper.TitleMapper">
+
+	<resultMap id="BaseResultMap" type="com.krt.ruanjian.course.entity.Title">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title_name" jdbcType="VARCHAR" property="title_name" />
+		<result column="start_time" jdbcType="VARCHAR" property="start_time" />
+		<result column="end_time" jdbcType="VARCHAR" property="end_time" />
+		<result column="title_limit" jdbcType="VARCHAR" property="title_limit" />
+		<result column="author" jdbcType="VARCHAR" property="author" />
+		<result column="title_type" jdbcType="VARCHAR" property="title_type" />
+		<result column="dr" jdbcType="INTEGER" property="dr" />
+		<result column="ts" jdbcType="VARCHAR" property="ts" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,title_name,start_time,end_time,title_limit,author,title_type,dr,ts
+	</sql>
+
+	<!-- 添加选题表 -->
+	<insert id="insert" parameterType="com.krt.ruanjian.course.entity.Title">
+		insert into title
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id, </if>
+			<if test="title_name != null"> title_name, </if>
+			<if test="start_time != null"> start_time, </if>
+			<if test="end_time != null"> end_time, </if>
+			<if test="title_limit != null"> title_limit, </if>
+			<if test="author != null"> author, </if>
+			<if test="title_type != null"> title_type, </if>
+			<if test="dr != null"> dr, </if>
+			<if test="ts != null"> ts, </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=INTEGER}, </if>
+			<if test="title_name != null"> #{title_name,jdbcType=VARCHAR}, </if>
+			<if test="start_time != null"> #{start_time,jdbcType=VARCHAR}, </if>
+			<if test="end_time != null"> #{end_time,jdbcType=VARCHAR}, </if>
+			<if test="title_limit != null"> #{title_limit,jdbcType=VARCHAR}, </if>
+			<if test="author != null"> #{author,jdbcType=VARCHAR}, </if>
+			<if test="title_type != null"> #{title_type,jdbcType=VARCHAR}, </if>
+			<if test="dr != null"> #{dr,jdbcType=INTEGER}, </if>
+			<if test="ts != null"> #{ts,jdbcType=VARCHAR}, </if>
+		</trim>
+	</insert>
+	
+	<!-- 删除选题表 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from title where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 修改选题表 -->
+	<update id="update" parameterType="com.krt.ruanjian.course.entity.Title">
+		update title
+		<set>
+			<if test="id != null"> id = #{title_id,jdbcType=INTEGER}, </if>
+			<if test="title_name != null"> title_name = #{title_name,jdbcType=VARCHAR}, </if>
+			<if test="start_time != null"> start_time = #{start_time,jdbcType=VARCHAR}, </if>
+			<if test="end_time != null"> end_time = #{end_time,jdbcType=VARCHAR}, </if>
+			<if test="title_limit != null"> title_limit = #{title_limit,jdbcType=VARCHAR}, </if>
+			<if test="author != null"> author = #{author,jdbcType=VARCHAR}, </if>
+			<if test="title_type != null"> title_type = #{title_type,jdbcType=VARCHAR}, </if>
+			<if test="dr != null"> dr = #{dr,jdbcType=INTEGER}, </if>
+			<if test="ts != null"> ts = #{ts,jdbcType=VARCHAR}, </if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据ID查询选题表 -->
+	<select id="selectById" resultType="java.util.Map">
+		select
+			 id,title_name,start_time,end_time,title_limit,author,title_type,dr,ts
+		from title
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 查询选题表列表 -->
+	<select id="selectList" resultType="java.util.Map">
+		select
+			id,title_name,start_time,end_time,title_limit,author,title_type,dr,ts
+		from title
+	</select>
+	
+	<!-- 带参数查询选题表列表 -->
+	<select id="selectListPara" resultType="java.util.Map">
+		select
+			title_name,start_time,end_time,title_limit,author,title_type,dr,ts
+		from title where 1=1
+	</select>
+
+</mapper>
+
