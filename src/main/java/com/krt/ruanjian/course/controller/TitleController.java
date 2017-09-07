@@ -135,16 +135,15 @@ public class TitleController extends BaseController {
 	}
 
 	/**
-	 * 查看选题表
+	 * 查看选题表页
 	 *
 	 * @param id
-	 *            选题表
+	 *            选题表 id
+	 * @param request
 	 * @return
 	 */
-	@LogAop(description = "查看选题表")
 	@RequiresPermissions("title:see")
 	@RequestMapping("ruanjian/course/title_seeUI")
-	@ResponseBody
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
 		request.setAttribute("title", titleMap);
