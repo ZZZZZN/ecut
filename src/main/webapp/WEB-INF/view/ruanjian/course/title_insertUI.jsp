@@ -12,82 +12,125 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-      	<div class="form-box">
-      		<form action="#" id="krtForm" class="form-horizontal">
-				<table class="table table-bordered table-krt">
-									<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							题名
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							课题类型
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="title_type" id="title_type" class="form-control"></td>
-  					</tr>
-					<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							课题来源
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="title_source" id="title_source" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							适用专业
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="suitMajor" id="suitMajor" class="form-control"></td>
-  					</tr>
-					<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							适用实训所在地
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="suitScope" id="suitScope" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							上线人数
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control"></td>
-  					</tr>
-					<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							课程意义与目标
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="meaning_target" id="meaning_target" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							学生基本条件和前期工作
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="condition_work" id="condition_work" class="form-control"></td>
-  					</tr>
-					<tr>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							逻辑删除
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="dr" id="dr" class="form-control"></td>
-					 	 <td class="active width-15">
-      						<label class="pull-right">
-      							时间戳
-      						</label>
-      					</td>
-      					<td class="width-35"><input type="text" name="ts" id="ts" class="form-control"></td>
-  					</tr>
-      			</table>
-      		</form>
-      	 </div>
+		<section class="content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<h5>选题表管理</h5>
+						</div>
+						<div class="box-body">
+							<div class="form-box">
+								<form action="#" id="krtForm" class="form-horizontal">
+									<table class="table table-bordered table-krt" style="width: 80%;margin-left: 100px">
+										<tr>
+											<td class="active width-15">
+												<label class="pull-right">
+													课题名称
+												</label>
+											</td>
+											<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control"></td>
+											<td class="active width-15">
+												<label class="pull-right">
+													课题类型
+												</label>
+											</td>
+											<td class="width-35">
+												<select name="title_type" id="title_type" class="form-control">
+													<option value="1">理论研究</option>
+													<option value="2">应用研究</option>
+													<option value="3">开发研究</option>
+													<option value="4">工艺设计</option>
+													<option value="5">工程设计</option>
+													<option value="6">设备设计</option>
+													<option value="7">软件设计</option>
+													<option value="8">实践研究</option>
+													<option value="9">指定问题研究</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td class="active width-15">
+												<label class="pull-right">
+													课题来源
+												</label>
+											</td>
+											<td class="width-35">
+												<select name="title_source" id="title_source" class="form-control">
+													<option value="1">国家资助</option>
+													<option value="2">省资助项目</option>
+													<option value="3">企业资助项目</option>
+													<option value="4">学校资助项目</option>
+													<option value="5">自选项目</option>
+													<option value="6">储备项目</option>
+												</select>
+											</td>
+											<td class="active width-15">
+												<label class="pull-right">
+													适用专业
+												</label>
+											</td>
+											<td class="width-35">
+												<select name="suitMajor" id="suitMajor" class="form-control">
+													<option value="1">通信工程</option>
+													<option value="2">计算机科学与技术</option>
+													<option value="3">软件工程专业</option>
+													<option value="4">物联网工程</option>
+													<option value="5">网络工程专业</option>
+													<option value="6">数字媒体专业</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td class="active width-15">
+												<label class="pull-right">
+													适用实训所在地
+												</label>
+											</td>
+											<td class="width-35">
+												<select name="suitScope" id="suitScope" class="form-control">
+													<option value="1">校内实训</option>
+													<option value="2">校外实训</option>
+												</select>
+											</td>
+											<td class="active width-15">
+												<label class="pull-right">
+													上限人数
+												</label>
+											</td>
+											<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control"></td>
+										</tr>
+										<tr>
+											<td class="active width-15">
+												<label class="pull-right">
+													课程意义与目标
+												</label>
+											</td>
+											<td colspan="3">
+												<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control"></textarea>
+											</td>
+										</tr>
+										<tr>
+											<td class="active width-15">
+												<label class="pull-right">
+													学生基本条件和前期工作
+												</label>
+											</td>
+											<td colspan="3">
+												<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control"></textarea>
+											</td>
+										</tr>
+									</table>
+									<button type="submit" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
     </div><!-- ./wrapper -->
     
     <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>

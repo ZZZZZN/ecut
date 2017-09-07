@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.krt.ruanjian.course.mapper.TimeRuleMapper">
+
+	<resultMap id="BaseResultMap" type="com.krt.ruanjian.course.entity.TimeRule">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="teacher_time_begin" jdbcType="VARCHAR" property="teacher_time_begin" />
+		<result column="teacher_time_end" jdbcType="VARCHAR" property="teacher_time_end" />
+		<result column="student_time_begin" jdbcType="VARCHAR" property="student_time_begin" />
+		<result column="student_time_end" jdbcType="VARCHAR" property="student_time_end" />
+		<result column="task_time_begin" jdbcType="VARCHAR" property="task_time_begin" />
+		<result column="task_time_end" jdbcType="VARCHAR" property="task_time_end" />
+		<result column="early_stage_begin" jdbcType="VARCHAR" property="early_stage_begin" />
+		<result column="early_stage_end" jdbcType="VARCHAR" property="early_stage_end" />
+		<result column="mid_stage_begin" jdbcType="VARCHAR" property="mid_stage_begin" />
+		<result column="mid_stage_end" jdbcType="VARCHAR" property="mid_stage_end" />
+		<result column="later_stage_begin" jdbcType="VARCHAR" property="later_stage_begin" />
+		<result column="later_stage_end" jdbcType="VARCHAR" property="later_stage_end" />
+		<result column="defence_time_begin" jdbcType="VARCHAR" property="defence_time_begin" />
+		<result column="defence_time_end" jdbcType="VARCHAR" property="defence_time_end" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,teacher_time_begin,teacher_time_end,student_time_begin,student_time_end,task_time_begin,task_time_end,early_stage_begin,early_stage_end,mid_stage_begin,mid_stage_end,later_stage_begin,later_stage_end,defence_time_begin,defence_time_end
+	</sql>
+
+	<!-- 添加time_rule -->
+	<insert id="insert" parameterType="com.krt.ruanjian.course.entity.TimeRule">
+		insert into time_rule
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id, </if>
+			<if test="teacher_time_begin != null"> teacher_time_begin, </if>
+			<if test="teacher_time_end != null"> teacher_time_end, </if>
+			<if test="student_time_begin != null"> student_time_begin, </if>
+			<if test="student_time_end != null"> student_time_end, </if>
+			<if test="task_time_begin != null"> task_time_begin, </if>
+			<if test="task_time_end != null"> task_time_end, </if>
+			<if test="early_stage_begin != null"> early_stage_begin, </if>
+			<if test="early_stage_end != null"> early_stage_end, </if>
+			<if test="mid_stage_begin != null"> mid_stage_begin, </if>
+			<if test="mid_stage_end != null"> mid_stage_end, </if>
+			<if test="later_stage_begin != null"> later_stage_begin, </if>
+			<if test="later_stage_end != null"> later_stage_end, </if>
+			<if test="defence_time_begin != null"> defence_time_begin, </if>
+			<if test="defence_time_end != null"> defence_time_end, </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=INTEGER}, </if>
+			<if test="teacher_time_begin != null"> #{teacher_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="teacher_time_end != null"> #{teacher_time_end,jdbcType=VARCHAR}, </if>
+			<if test="student_time_begin != null"> #{student_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="student_time_end != null"> #{student_time_end,jdbcType=VARCHAR}, </if>
+			<if test="task_time_begin != null"> #{task_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="task_time_end != null"> #{task_time_end,jdbcType=VARCHAR}, </if>
+			<if test="early_stage_begin != null"> #{early_stage_begin,jdbcType=VARCHAR}, </if>
+			<if test="early_stage_end != null"> #{early_stage_end,jdbcType=VARCHAR}, </if>
+			<if test="mid_stage_begin != null"> #{mid_stage_begin,jdbcType=VARCHAR}, </if>
+			<if test="mid_stage_end != null"> #{mid_stage_end,jdbcType=VARCHAR}, </if>
+			<if test="later_stage_begin != null"> #{later_stage_begin,jdbcType=VARCHAR}, </if>
+			<if test="later_stage_end != null"> #{later_stage_end,jdbcType=VARCHAR}, </if>
+			<if test="defence_time_begin != null"> #{defence_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="defence_time_end != null"> #{defence_time_end,jdbcType=VARCHAR}, </if>
+		</trim>
+	</insert>
+	
+	<!-- 删除time_rule -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from time_rule where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 修改time_rule -->
+	<update id="update" parameterType="com.krt.ruanjian.course.entity.TimeRule">
+		update time_rule
+		<set>
+			<if test="id != null"> id = #{id,jdbcType=INTEGER}, </if>
+			<if test="teacher_time_begin != null"> teacher_time_begin = #{teacher_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="teacher_time_end != null"> teacher_time_end = #{teacher_time_end,jdbcType=VARCHAR}, </if>
+			<if test="student_time_begin != null"> student_time_begin = #{student_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="student_time_end != null"> student_time_end = #{student_time_end,jdbcType=VARCHAR}, </if>
+			<if test="task_time_begin != null"> task_time_begin = #{task_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="task_time_end != null"> task_time_end = #{task_time_end,jdbcType=VARCHAR}, </if>
+			<if test="early_stage_begin != null"> early_stage_begin = #{early_stage_begin,jdbcType=VARCHAR}, </if>
+			<if test="early_stage_end != null"> early_stage_end = #{early_stage_end,jdbcType=VARCHAR}, </if>
+			<if test="mid_stage_begin != null"> mid_stage_begin = #{mid_stage_begin,jdbcType=VARCHAR}, </if>
+			<if test="mid_stage_end != null"> mid_stage_end = #{mid_stage_end,jdbcType=VARCHAR}, </if>
+			<if test="later_stage_begin != null"> later_stage_begin = #{later_stage_begin,jdbcType=VARCHAR}, </if>
+			<if test="later_stage_end != null"> later_stage_end = #{later_stage_end,jdbcType=VARCHAR}, </if>
+			<if test="defence_time_begin != null"> defence_time_begin = #{defence_time_begin,jdbcType=VARCHAR}, </if>
+			<if test="defence_time_end != null"> defence_time_end = #{defence_time_end,jdbcType=VARCHAR}, </if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据ID查询time_rule -->
+	<select id="selectById" resultType="java.util.Map">
+		select
+			 id,teacher_time_begin,teacher_time_end,student_time_begin,student_time_end,task_time_begin,task_time_end,early_stage_begin,early_stage_end,mid_stage_begin,mid_stage_end,later_stage_begin,later_stage_end,defence_time_begin,defence_time_end
+		from time_rule
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 查询time_rule列表 -->
+	<select id="selectList" resultType="java.util.Map">
+		select
+			id,teacher_time_begin,teacher_time_end,student_time_begin,student_time_end,task_time_begin,task_time_end,early_stage_begin,early_stage_end,mid_stage_begin,mid_stage_end,later_stage_begin,later_stage_end,defence_time_begin,defence_time_end 
+		from time_rule
+	</select>
+	
+	<!-- 带参数查询time_rule列表 -->
+	<select id="selectListPara" resultType="java.util.Map">
+		select
+			id,teacher_time_begin,teacher_time_end,student_time_begin,student_time_end,task_time_begin,task_time_end,early_stage_begin,early_stage_end,mid_stage_begin,mid_stage_end,later_stage_begin,later_stage_end,defence_time_begin,defence_time_end 
+		from time_rule where 1=1
+	</select>
+
+</mapper>
+
