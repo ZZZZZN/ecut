@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			
 	        //新增
 	   	    $("#insertBtn").click(function(){
-                window.location.href = "<%=basePath%>ruanjian/course/title_insertUI";
+                location.href = "<%=basePath%>ruanjian/course/title_insertUI";
 	   	    });
 	   	    
 	   	    //查看
