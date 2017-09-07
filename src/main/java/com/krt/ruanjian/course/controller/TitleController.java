@@ -9,6 +9,7 @@ import com.krt.core.annotation.LogAop;
 import com.krt.core.base.BaseController;
 import com.krt.core.bean.DataTable;
 import com.krt.core.bean.ReturnBean;
+import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.service.TitleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -87,6 +88,8 @@ public class TitleController extends BaseController {
 	public ReturnBean title_insert(Title title) {
 		ReturnBean rb;
 		try {
+			Map user = ShiroUtil.getCurrentUser();
+			//System.out.println(user.get("id"));
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
