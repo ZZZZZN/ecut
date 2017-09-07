@@ -101,7 +101,7 @@ public class UserController extends BaseController {
             user.setStatus("0");
             String password = user.getPassword();
             // 密码加密
-            password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
+//            password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
             user.setPassword(password);
             userService.insert(user);
             rb = ReturnBean.getSuccessReturnBean();
@@ -148,7 +148,7 @@ public class UserController extends BaseController {
                 password = userMap.get("password") + "";
             } else {
                 // 密码加密
-                password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
+//                password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
             }
             user.setPassword(password);
             userService.update(user);
