@@ -1,6 +1,6 @@
 package com.krt.admin.system.controller;
 
-import com.krt.common.base.BaseController;
+import com.krt.core.base.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

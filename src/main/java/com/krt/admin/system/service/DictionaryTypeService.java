@@ -3,8 +3,8 @@ package com.krt.admin.system.service;
 import com.krt.admin.system.entity.DictionaryType;
 import com.krt.admin.system.mapper.DictionaryMapper;
 import com.krt.admin.system.mapper.DictionaryTypeMapper;
-import com.krt.common.base.BaseMapper;
-import com.krt.common.base.BaseServiceImpl;
+import com.krt.core.base.BaseMapper;
+import com.krt.core.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

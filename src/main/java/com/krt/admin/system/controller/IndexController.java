@@ -1,8 +1,8 @@
 package com.krt.admin.system.controller;
 
 import com.krt.admin.system.service.RoleService;
-import com.krt.common.base.BaseController;
-import com.krt.common.util.ShiroUtil;
+import com.krt.core.base.BaseController;
+import com.krt.core.util.ShiroUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,5 +1,4 @@
 package com.krt;
-
 import com.krt.generator.GenControllerUtil;
 import com.krt.generator.GenEntityUtil;
 import com.krt.generator.GenJspUtil;
@@ -16,7 +15,7 @@ import com.krt.generator.GenServiceUtil;
 public class Lazy {
 	
 	public static void main(String[] args) {
-		new Lazy().generator("com.krt.admin.poi", "t_poi", "Poi");
+		new Lazy().generator("com.krt.ruanjian.course", "title", "Title");
 	}
 	
 	public void generator(String packageName,String tableName,String entityName){
@@ -24,7 +23,8 @@ public class Lazy {
 		new GenServiceUtil(packageName, tableName, entityName);
 		new GenMapperUtil(packageName, tableName, entityName);
 		new GenEntityUtil(packageName, tableName, entityName);
-		new GenMapperXmlUtil(packageName, tableName, entityName);
+
 		new GenJspUtil(packageName, tableName, entityName);
+		new GenMapperXmlUtil(packageName, tableName, entityName);
 	}
 }
