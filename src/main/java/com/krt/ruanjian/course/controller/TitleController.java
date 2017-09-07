@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.krt.core.util.DateUtil;
 import com.krt.ruanjian.course.service.MajorService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -93,6 +94,7 @@ public class TitleController extends BaseController {
 	public ReturnBean title_insert(Title title) {
 		ReturnBean rb;
 		try {
+            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
