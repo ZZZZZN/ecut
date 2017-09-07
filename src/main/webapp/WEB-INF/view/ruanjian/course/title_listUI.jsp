@@ -164,19 +164,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			
 	        //新增
 	   	    $("#insertBtn").click(function(){
-	   			openDialog("新增表单","<%=basePath%>ruanjian/course/title_insertUI","800px", "380px","");
+                location.href = "<%=basePath%>ruanjian/course/title_insertUI";
 	   	    });
 	   	    
 	   	    //查看
 	   	    $(document).on("click",".seeBtn",function(){
-	   			var id = $(this).attr("rid");
-	   			openDialogView("查看表单","<%=basePath%>ruanjian/course/title_seeUI?id="+id,"800px", "380px","");
+                var id = $(this).attr("rid");
+                location.href = "<%=basePath%>ruanjian/course/title_seeUI?id=" + id +'"';
+                <%--openDialogView("查看表单","<%=basePath%>ruanjian/course/title_seeUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
 	   	    //修改
 	   	    $(document).on("click",".updateBtn",function(){
-	   		    var id = $(this).attr("rid");
-	   			openDialog("修改表单","<%=basePath%>ruanjian/course/title_updateUI?id="+id,"800px", "380px","");
+                var id = $(this).attr("rid");
+                location.href = "<%=basePath%>ruanjian/course/title_updateUI?id=" + id +'"';
+                <%--openDialog("修改表单","<%=basePath%>ruanjian/course/title_updateUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
 	   	    //删除
