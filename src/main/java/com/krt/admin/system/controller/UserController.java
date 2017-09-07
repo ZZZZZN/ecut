@@ -215,13 +215,13 @@ public class UserController extends BaseController {
      * @return
      */
     @RequiresPermissions("user:see")
-    @RequestMapping("admin/system/user/user_seeUI")
-    public String user_seeUI(Integer id, HttpServletRequest request) {
-        List roleList = roleService.selectAll();
-        request.setAttribute("roleList", roleList);
-        Map userMap = userService.selectById(id);
-        request.setAttribute("user", userMap);
-        return "admin/system/user/user_seeUI";
+        @RequestMapping("admin/system/user/user_seeUI")
+        public String user_seeUI(Integer id, HttpServletRequest request) {
+            List roleList = roleService.selectAll();
+            request.setAttribute("roleList", roleList);
+            Map userMap = userService.selectById(id);
+            request.setAttribute("user", userMap);
+            return "admin/system/user/user_seeUI";
     }
 
     /**

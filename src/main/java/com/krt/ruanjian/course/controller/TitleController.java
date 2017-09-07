@@ -142,6 +142,23 @@ public class TitleController extends BaseController {
 	}
 
 	/**
+	 * 查看选题表
+	 *
+	 * @param id
+	 *            选题表
+	 * @return
+	 */
+	@LogAop(description = "查看选题表")
+	@RequiresPermissions("title:see")
+	@RequestMapping("ruanjian/course/title_seeUI")
+	@ResponseBody
+	public String title_seeUI(Integer id, HttpServletRequest request) {
+		Map titleMap = titleService.selectById(id);
+		request.setAttribute("title", titleMap);
+		return "ruanjian/course/title_seeUI";
+	}
+
+	/**
 	 * 删除选题表
 	 * 
 	 * @param id
