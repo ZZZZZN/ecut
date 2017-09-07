@@ -1,9 +1,12 @@
 package com.krt.ruanjian.course.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import com.krt.ruanjian.course.service.MajorService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,8 @@ public class TitleController extends BaseController {
 
 	@Resource
 	private TitleService titleService;
+	@Resource
+	private MajorService majorService;
 
 	/**
 	 * 选题表管理页
@@ -69,6 +74,8 @@ public class TitleController extends BaseController {
 	@RequiresPermissions("title:insert")
 	@RequestMapping("ruanjian/course/title_insertUI")
 	public String title_insertUI(HttpServletRequest request) {
+        List<Map> map= majorService.selectAll();
+        request.setAttribute("map",map);
 		return "ruanjian/course/title_insertUI";
 	}
 
