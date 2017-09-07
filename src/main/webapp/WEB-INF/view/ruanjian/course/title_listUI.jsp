@@ -38,16 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th>题名</th>
+											<th>课题名称</th>
 											<th>课题类型</th>
 											<th>课题来源</th>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
-											<th>上线人数</th>
-											<th>课程意义与目标</th>
-											<th>学生基本条件和前期工作</th>
-											<th>逻辑删除</th>
-											<th>时间戳</th>
+											<th>上限人数</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -101,21 +97,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	            },
 	            "columns": [
-	                {"data": "id", "width": "5%"},
-					{"data": "title_name", "width": "20%"},
-					{"data": "title_type", "width": "20%"},
-					{"data": "title_source", "width": "20%"},
-					{"data": "suitMajor", "width": "20%"},
-					{"data": "suitScope", "width": "20%"},
-					{"data": "limit_person", "width": "20%"},
-					{"data": "meaning_target", "width": "20%"},
-					{"data": "condition_work", "width": "20%"},
-					{"data": "dr", "width": "20%"},
-					{"data": "ts", "width": "20%"},
+	                {"data": "id", "width": "7%"},
+					{"data": "title_name", "width": "22%"},
+					{"data": "title_type", "width": "10%"},
+					{"data": "title_source", "width": "10%"},
+					{"data": "suitMajor", "width": "10%"},
+					{"data": "suitScope", "width": "13%"},
+					{"data": "limit_person", "width": "10%"},
+					{"data": "operate", "width": "18%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 11,
+	                    "targets": 7,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
@@ -164,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			
 	        //新增
 	   	    $("#insertBtn").click(function(){
-                location.href = "<%=basePath%>ruanjian/course/title_insertUI";
+                window.location.href = "<%=basePath%>ruanjian/course/title_insertUI";
 	   	    });
 	   	    
 	   	    //查看
@@ -177,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	    //修改
 	   	    $(document).on("click",".updateBtn",function(){
                 var id = $(this).attr("rid");
-                location.href = "<%=basePath%>ruanjian/course/title_updateUI?id=" + id +'"';
+                location.href = "<%=basePath%>ruanjian/course/title_updateUI?rid=" + id +'"';
                 <%--openDialog("修改表单","<%=basePath%>ruanjian/course/title_updateUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
