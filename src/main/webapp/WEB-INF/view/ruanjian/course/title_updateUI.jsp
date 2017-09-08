@@ -98,7 +98,7 @@
 												上限人数
 											</label>
 										</td>
-										<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" value="${title.limit_person}"></td>
+										<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" value="${title.limit_person}" AUTOCOMPLETE="off"></td>
 									</tr>
 									<tr>
 										<td class="active width-15">
