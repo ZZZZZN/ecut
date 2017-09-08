@@ -232,4 +232,27 @@
 		select id, username, password, name, status, roleCode from t_user where username=#{username}
 	</select>
 
+    <!--当前学生可申请的课题列表-->
+    <select id="selectListStudent" resultType="java.util.Map">
+        SELECT
+        *
+        FROM
+        title
+        where
+        FIND_IN_SET(#{major},title.suitMajor)
+        AND ! FIND_IN_SET(
+        title.id
+
+        ,
+        (
+        SELECT
+        GROUP_CONCAT(a.title_id)
+        FROM
+        title_examine a
+        WHERE
+        a.applicant = #{id}
+        )
+        )
+    </select>
+
 </mapper>
