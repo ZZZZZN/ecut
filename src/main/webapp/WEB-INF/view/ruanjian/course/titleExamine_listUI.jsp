@@ -38,13 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th>主键</th>
-											<th>题目id</th>
+											<th>题目</th>
 											<th>申请人</th>
 											<th>审核人</th>
-											<th>1 : 未审核  2 ： 审核通过  3 ： 审核未通过</th>
-											<th></th>
-											<th></th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -99,17 +95,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "5%"},
-					{"data": "title_examine_id", "width": "20%"},
-					{"data": "title_id", "width": "20%"},
-					{"data": "applicant", "width": "20%"},
-					{"data": "auditor", "width": "20%"},
-					{"data": "status", "width": "20%"},
-					{"data": "ts", "width": "20%"},
-					{"data": "dr", "width": "20%"},
+					{"data": "titleName", "width": "20%"},
+					{"data": "applyer", "width": "20%"},
+					{"data": "author", "width": "20%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 8,
+	                    "targets": 4,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
