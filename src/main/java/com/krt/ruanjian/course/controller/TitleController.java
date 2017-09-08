@@ -81,6 +81,13 @@ public class TitleController extends BaseController {
 	public DataTable title_list(Integer start, Integer length, Integer draw,
 			HttpServletRequest request) {
 		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		Integer userId = (Integer)user.get("id");
+		if(userId==1){
+			DataTable dt = titleService.selectListPara(start, length, draw, para);
+			return dt;
+		}
+		para.put("userId", userId);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
 		return dt;
 	}
@@ -112,7 +119,11 @@ public class TitleController extends BaseController {
 	public ReturnBean title_insert(Title title) {
 		ReturnBean rb;
 		try {
-            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
+			Map user = ShiroUtil.getCurrentUser();
+            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss"
+					, DateUtil.getIntenetTime()));
+			title.setAuthor((Integer)user.get("id"));
+			title.setDr(0);
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
