@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.krt.ruanjian.course.mapper.TitleExamineMapper">
+
+	<resultMap id="BaseResultMap" type="com.krt.ruanjian.course.entity.TitleExamine">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title_examine_id" jdbcType="INTEGER" property="title_examine_id" />
+		<result column="title_id" jdbcType="INTEGER" property="title_id" />
+		<result column="applicant" jdbcType="INTEGER" property="applicant" />
+		<result column="auditor" jdbcType="INTEGER" property="auditor" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="ts" jdbcType="VARCHAR" property="ts" />
+		<result column="dr" jdbcType="INTEGER" property="dr" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		title_examine_id,title_id,applicant,auditor,status,ts,dr
+	</sql>
+
+	<!-- 添加审核表（记录学生申请的题目） -->
+	<insert id="insert" parameterType="com.krt.ruanjian.course.entity.TitleExamine">
+		insert into title_examine
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="title_examine_id != null"> title_examine_id, </if>
+			<if test="title_id != null"> title_id, </if>
+			<if test="applicant != null"> applicant, </if>
+			<if test="auditor != null"> auditor, </if>
+			<if test="status != null"> status, </if>
+			<if test="ts != null"> ts, </if>
+			<if test="dr != null"> dr, </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="title_examine_id != null"> #{title_examine_id,jdbcType=INTEGER}, </if>
+			<if test="title_id != null"> #{title_id,jdbcType=INTEGER}, </if>
+			<if test="applicant != null"> #{applicant,jdbcType=INTEGER}, </if>
+			<if test="auditor != null"> #{auditor,jdbcType=INTEGER}, </if>
+			<if test="status != null"> #{status,jdbcType=VARCHAR}, </if>
+			<if test="ts != null"> #{ts,jdbcType=VARCHAR}, </if>
+			<if test="dr != null"> #{dr,jdbcType=INTEGER}, </if>
+		</trim>
+	</insert>
+	
+	<!-- 删除审核表（记录学生申请的题目） -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from title_examine where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 修改审核表（记录学生申请的题目） -->
+	<update id="update" parameterType="com.krt.ruanjian.course.entity.TitleExamine">
+		update title_examine
+		<set>
+			<if test="title_examine_id != null"> title_examine_id = #{title_examine_id,jdbcType=INTEGER}, </if>
+			<if test="title_id != null"> title_id = #{title_id,jdbcType=INTEGER}, </if>
+			<if test="applicant != null"> applicant = #{applicant,jdbcType=INTEGER}, </if>
+			<if test="auditor != null"> auditor = #{auditor,jdbcType=INTEGER}, </if>
+			<if test="status != null"> status = #{status,jdbcType=VARCHAR}, </if>
+			<if test="ts != null"> ts = #{ts,jdbcType=VARCHAR}, </if>
+			<if test="dr != null"> dr = #{dr,jdbcType=INTEGER}, </if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据ID查询审核表（记录学生申请的题目） -->
+	<select id="selectById" resultType="java.util.Map">
+		select
+			 title_examine_id,title_id,applicant,auditor,status,ts,dr
+		from title_examine
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- 查询审核表（记录学生申请的题目）列表 -->
+	<select id="selectList" resultType="java.util.Map">
+		select
+			title_examine_id,title_id,applicant,auditor,status,ts,dr 
+		from title_examine
+	</select>
+	
+	<!-- 带参数查询审核表（记录学生申请的题目）列表 -->
+	<select id="selectListPara" resultType="java.util.Map">
+		select
+			title_examine_id,title_id,applicant,auditor,status,ts,dr 
+		from title_examine where 1=1
+	</select>
+
+</mapper>
+

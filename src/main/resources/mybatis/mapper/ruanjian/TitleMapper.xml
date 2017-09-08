@@ -81,7 +81,7 @@
 	<!-- 根据ID查询选题表 -->
 	<select id="selectById" resultType="java.util.Map">
 		select
-			 id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,dr,ts
+			 id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,dr,ts,author
 		from title
 		where id = #{id,jdbcType=INTEGER}
 	</select>
@@ -96,10 +96,10 @@
 	<!-- 带参数查询选题表列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
 		SELECT
-		  *
+		*
 		FROM
-			title t
-		JOIN major m ON t.suitMajor = m.major_code
+		title t
+	    JOIN major m ON t.suitMajor = m.major_code
 		where 1=1
 		<if test="userId != null">
 			AND t.author = #{userId}

@@ -15,7 +15,7 @@ import com.krt.generator.GenServiceUtil;
 public class Lazy {
 	
 	public static void main(String[] args) {
-		new Lazy().generator("com.krt.ruanjian.course", "time_rule", "TimeRule");
+		new Lazy().generator("com.krt.ruanjian.course", "title_examine", "TitleExamine");
 	}
 	
 	public void generator(String packageName,String tableName,String entityName){
