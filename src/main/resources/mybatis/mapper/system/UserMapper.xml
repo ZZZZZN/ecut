@@ -17,13 +17,16 @@
         <result column="direction" jdbcType="INTEGER" property="direction"/>
         <result column="company" jdbcType="VARCHAR" property="company"/>
         <result column="title_level" jdbcType="VARCHAR" property="title_level"/>
+        <result column="training_site" jdbcType="VARCHAR" property="training_site"/>
         <result column="major" jdbcType="VARCHAR" property="major"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
 
     </resultMap>
 
     <sql id="Base_Column_List">
 		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime,
-		stu_class,stu_no,tel,direction,company,title_level,major
+		stu_class,stu_no,tel,direction,company,title_level
 	</sql>
 
     <select id="selectById" resultType="java.util.Map">
