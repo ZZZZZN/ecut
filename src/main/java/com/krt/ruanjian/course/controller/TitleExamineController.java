@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.krt.core.bean.DataTable;
 import com.krt.core.bean.ReturnBean;
+import com.krt.core.util.ShiroUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ public class TitleExamineController extends BaseController {
 	@RequiresPermissions("titleExamine:list")
 	@RequestMapping("ruanjian/course/titleExamine_listUI")
 	public String titleExamine_listUI() {
+
 		return "ruanjian/course/titleExamine_listUI";
 	}
 
@@ -58,6 +60,9 @@ public class TitleExamineController extends BaseController {
 	public DataTable titleExamine_list(Integer start, Integer length, Integer draw,
 									   HttpServletRequest request) {
 		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		Integer authorId = (Integer)user.get("id");
+		para.put("authorId", authorId);
 		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
 		return dt;
 	}
