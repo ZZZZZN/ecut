@@ -11,6 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<jsp:include page="/static/common/head.jsp" flush="true" />
 	<link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
 	<link rel="stylesheet" href="<%=basePath%>static/plugins/datatables/dataTables.bootstrap.css">
+	<script src="<%=basePath%>static/plugins/My97DatePicker/WdatePicker.js"></script>
 </head>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
@@ -26,38 +27,147 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12">
-										<shiro:hasPermission name="timeRule:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-												<i class="fa fa-plus"></i> 添加
-											</button>
-										</shiro:hasPermission>
+								</div>
+								<div class="form-box">
+									<form id="krtForm" class="form-horizontal">
+										<input type="hidden" name="id" value="${timeRule.id}">
+										<table class="table table-bordered table-krt" style="width: 90%;margin-left: 50px">
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														教师出题开始时间
+													</label>
+												</td>
+												<td class="width-35">
+													<input type="text" name="teacher_time_begin" id="teacher_time_begin" value="${timeRule.teacher_time_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														教师出题结束时间
+													</label>
+												</td>
+												<td class="width-35">
+													<input type="text" name="teacher_time_end" id="teacher_time_end" value="${timeRule.teacher_time_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														学生选题开始时间
+													</label>
+												</td>
+												<td class="width-35">
+													<input type="text" name="student_time_begin" id="student_time_begin" value="${timeRule.student_time_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														学生选题结束时间
+													</label>
+												</td>
+												<td class="width-35">
+													<input type="text" name="student_time_end" id="student_time_end" value="${timeRule.student_time_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														毕业设计任务书下达开始时间
+													</label>
+												</td>
+												<td class="width-35">
+													<input type="text" name="task_time_begin" id="task_time_begin" value="${timeRule.task_time_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														毕业设计任务书下达结束时间
+													</label>
+												</td>
+												<td class="width-35">
+													<input type="text" name="task_time_end" id="task_time_end" value="${timeRule.task_time_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														过程前期开始时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="early_stage_begin" id="early_stage_begin" value="${timeRule.early_stage_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														过程前期结束时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="early_stage_end" id="early_stage_end" value="${timeRule.early_stage_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														过程中期开始时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="mid_stage_begin" id="mid_stage_begin" value="${timeRule.mid_stage_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														过程中期结束时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="mid_stage_end" id="mid_stage_end" value="${timeRule.mid_stage_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														过程后期开始时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="later_stage_begin" id="later_stage_begin" value="${timeRule.later_stage_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														过程后期结束时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="later_stage_end" id="later_stage_end" value="${timeRule.later_stage_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+											<tr>
+												<td class="active width-15">
+													<label class="pull-right">
+														答辩开始时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="defence_time_begin" id="defence_time_begin" value="${timeRule.defence_time_begin}" onclick="WdatePicker()" class="form-control">
+												</td>
+												<td class="active width-15">
+													<label class="pull-right">
+														答辩结束时间
+													</label>
+												</td>
+												<td>
+													<input type="text" name="defence_time_end" id="defence_time_end" value="${timeRule.defence_time_end}" onclick="WdatePicker()" class="form-control">
+												</td>
+											</tr>
+										</table>
+									</form>
+									<div style="text-align: center;">
+										<button onclick="doEdit(event)" class="btn btn-warning" style="width: 100px;margin-top: 20px">编辑</button>
+									</div>
+									<div style="text-align: center;" id="operator">
+										<button onclick="doSubmit()" class="btn btn-primary" style="width: 100px;margin-top: 20px">保存</button>
+										<button onclick="doCancel()" class="btn btn-danger" style="width: 100px;margin-top: 20px; margin-left: 20px">取消</button>
 									</div>
 								</div>
-								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
-									<thead>
-										<tr>
-											<th>序号</th>
-											<th>教师出题开始时间</th>
-											<th>教师出题结束时间</th>
-											<th>学生选题开始时间</th>
-											<th>学生选题结束时间</th>
-											<th>毕业设计任务书下达开始时间</th>
-											<th>毕业设计任务书下达结束时间</th>
-											<th>过程前期开始时间</th>
-											<th>过程前期开始时间</th>
-											<th>过程中期开始时间</th>
-											<th>过程中期结束时间</th>
-											<th>过程后期开始时间</th>
-											<th>过程后期结束时间</th>
-											<th>答辩开始时间</th>
-											<th>答辩结束时间</th>
-											<th>操作</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
 							</div>
 							<!-- /.box-body -->
 						</div>
@@ -74,147 +184,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<!-- ./wrapper -->
 
-	<!-- jQuery 2.1.4 -->
 	<script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-	<!-- DataTables -->
-	<script src="<%=basePath%>static/plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="<%=basePath%>static/plugins/datatables/dataTables.bootstrap.min.js"></script>
-	<script src="<%=basePath%>static/plugins/layer/layer.js"></script>
-	<script src="<%=basePath%>static/skin/js/common.js"></script>
 	<script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
-	<!-- page script -->
+	<script src="<%=basePath%>static/plugins/layer/layer.js"></script>
+	<script src="<%=basePath%>static/plugins/JQueryValidate/jquery.validate.min.js"></script>
+	<script src="<%=basePath%>static/plugins/JQueryValidate/localization/messages_zh.js"></script>
+	<script src="<%=basePath%>static/skin/js/common.js"></script>
 	<script type="text/javascript">
-   		var datatable;
-   	    function initDatatable() {
-   	        datatable = $('#datatable').DataTable({
-   	            "lengthChange": false,//选择lenth
-   	        	"autoWidth": false,//自动宽度
-	   			"searching": false,//搜索
-	            "processing": false,//loding
-	            "serverSide": true,//服务器模式
-	            "ordering": false,//排序
-	            "pageLength": 10,//初始化lenth
-	            "language": {
-	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
-	            },
-	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/course/timeRule_list",
-	                "type": "post",
-	                "data": function (d) {
-	                
-	                }
-	            },
-	            "columns": [
-	                {"data": "id", "width": "5%"},
-					{"data": "teacher_time_begin", "width": "20%"},
-					{"data": "teacher_time_end", "width": "20%"},
-					{"data": "student_time_begin", "width": "20%"},
-					{"data": "student_time_end", "width": "20%"},
-					{"data": "task_time_begin", "width": "20%"},
-					{"data": "task_time_end", "width": "20%"},
-					{"data": "early_stage_begin", "width": "20%"},
-					{"data": "early_stage_end", "width": "20%"},
-					{"data": "mid_stage_begin", "width": "20%"},
-					{"data": "mid_stage_end", "width": "20%"},
-					{"data": "later_stage_begin", "width": "20%"},
-					{"data": "later_stage_end", "width": "20%"},
-					{"data": "defence_time_begin", "width": "20%"},
-					{"data": "defence_time_end", "width": "20%"},
-	            ],
-	            "columnDefs": [
-	                {
-	                    "targets": 15,
-	                    "data": "id",
-	                    "width": "20%",
-	                    "render": function(data, type, row) {
-	                        return  ' <shiro:hasPermission name="timeRule:see">'
-			                        +'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-eye fa-btn"></i>查看'
-			                        +'</button>'
-			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="timeRule:update">'
-			                        +'<button class="btn btn-xs btn-warning updateBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-edit fa-btn"></i>修改'
-			                        +'</button>'
-			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="timeRule:delete">'
-			                        +'<button class="btn btn-xs btn-danger deleteBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-trash fa-btn"></i>删除'
-			                        +'</button>'
-			                        +'</shiro:hasPermission>';
-	                    }
-	                }
-	            ],
-	            "fnDrawCallback": function(){
-	            	var api = this.api();
-	            	var startIndex= api.context[0]._iDisplayStart;//获取到本页开始的条数
-	            	api.column(0).nodes().each(function(cell, i) {
-	            		cell.innerHTML = startIndex + i + 1;
-	            	}); 
-	            }
-	        });
-   	    }
-   	    
-   	    $(function(){
-   	    
-   	    	//pace监听ajax
-   	    	$(document).ajaxStart(function() {
-				Pace.restart();
-			});
-			
-   	    	//初始化datatable
-   	     	initDatatable();
-   	    
-	   	    $("#searchBtn").on('click', function () {
-	            datatable.ajax.reload();
-	        });
-	  		   
-	  			
-	        //新增
-	   	    $("#insertBtn").click(function(){
-	   			openDialog("新增表单","<%=basePath%>ruanjian/course/timeRule_insertUI","800px", "380px","");
-	   	    });
-	   	    
-	   	    //查看
-	   	    $(document).on("click",".seeBtn",function(){
-	   			var id = $(this).attr("rid");
-	   			openDialogView("查看表单","<%=basePath%>ruanjian/course/timeRule_seeUI?id="+id,"800px", "380px","");
-	   	    });
-	   	   
-	   	    //修改
-	   	    $(document).on("click",".updateBtn",function(){
-	   		    var id = $(this).attr("rid");
-	   			openDialog("修改表单","<%=basePath%>ruanjian/course/timeRule_updateUI?id="+id,"800px", "380px","");
-	   	    });
-	   	   
-	   	    //删除
-	   	    $(document).on("click",".deleteBtn",function(){
-	   	    	var id = $(this).attr("rid");
-	   	    	var fun = function(){
-	   	    	 $.ajax({   
-			         type: "POST",
-			         url:"<%=basePath%>ruanjian/course/timeRule_delete?id="+id,
-			         beforeSend:function(){
-			         	return loading();
-			         },
-			         success: function(msg) {
-			        	 closeloading();
-			         	if(msg.state=='success'){
-			         		top.layer.msg("操作成功");
-			         		refreshTable(datatable);
-			         	}else{
-			         		top.layer.msg("操作失败");
-			         	} 
-			         },
-			         error: function(){
-			        	 closeloading();
-			         }
-			      });
-	   	    	};
-	   	    	confirmx("你确定删除吗？",fun);
-	   	    });
-       
-	    }); 
- 	</script>
+
+        var validateForm;
+
+        var operator = document.getElementById('operator');
+
+        $(function(){
+            $('input').each(function(index, item){
+                item.disabled = 'disabled'
+			})
+            operator.style.display = 'none';
+		})
+
+		function doEdit(event){
+            $('input').each(function(index, item){
+                item.disabled = false;
+            })
+            operator.style.display = 'block' ;
+            event.target.style.display = 'none'
+		}
+
+		function doCancel(){
+            window.location.href = "<%=basePath%>ruanjian/course/timeRule_listUI";
+		}
+
+        function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
+            $.ajax({
+                type: "POST",
+                url:"<%=basePath%>ruanjian/course/timeRule_update",
+                data:$('#krtForm').serialize(),// 要提交的表单
+                beforeSend:function(){
+                    return  validateForm.form() && loading();
+                },
+                success: function(msg) {
+                    closeloading();
+                    if(msg.state=='success'){
+                        top.layer.msg("操作成功");
+                        window.location.href = "<%=basePath%>ruanjian/course/timeRule_listUI";
+                        var index = top.layer.getFrameIndex(window.name); //获取窗口索引
+                        refreshTable();
+                        top.layer.close(index);
+                    }else{
+                        top.layer.msg("操作失败");
+                    }
+                },
+                error: function(){
+                    closeloading();
+                }
+            });
+        }
+
+        $(function(){
+            validateForm= $("#krtForm").validate();
+            //立即验证
+            validateForm.form();
+        });
+	</script>
 </body>
 </html>

@@ -38,9 +38,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th>题目</th>
+											<th>选题名称</th>
 											<th>申请人</th>
 											<th>审核人</th>
+											<th>状态</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -94,30 +95,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	            },
 	            "columns": [
-	                {"data": "id", "width": "5%"},
-					{"data": "titleName", "width": "20%"},
-					{"data": "applyer", "width": "20%"},
-					{"data": "author", "width": "20%"},
+	                {"data": "id", "width": "12%"},
+					{"data": "title_id", "width": "34%"},
+					{"data": "applicant", "width": "13%"},
+					{"data": "auditor", "width": "13%"},
+					{"data": "status", "width": "13%"},
+					{"data": "operate", "width": "15%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 4,
+	                    "targets": 5,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
-	                        return  ' <shiro:hasPermission name="titleExamine:see">'
-			                        +'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-eye fa-btn"></i>查看'
+	                        return  ' <shiro:hasPermission name="titleExamine:pass">'
+			                        +'<button class="btn btn-xs btn-success" rid="'+row.id+'">'
+			                        +'<i class="fa fa-check fa-btn"></i>通过'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="titleExamine:update">'
-			                        +'<button class="btn btn-xs btn-warning updateBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-edit fa-btn"></i>修改'
-			                        +'</button>'
-			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="titleExamine:delete">'
-			                        +'<button class="btn btn-xs btn-danger deleteBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-trash fa-btn"></i>删除'
+			                        +' <shiro:hasPermission name="titleExamine:fail">'
+			                        +'<button class="btn btn-xs btn-danger" rid="'+row.id+'">'
+			                        +'<i class="fa fa-remove fa-btn"></i>不通过'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>';
 	                    }

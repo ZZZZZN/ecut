@@ -15,6 +15,7 @@ import com.krt.ruanjian.course.entity.TimeRule;
 import com.krt.ruanjian.course.service.TimeRuleService;
 import com.krt.core.annotation.LogAop;
 import com.krt.core.base.BaseController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Description:time_rule控制层
@@ -36,7 +37,9 @@ public class TimeRuleController extends BaseController {
 	 */
 	@RequiresPermissions("timeRule:list")
 	@RequestMapping("ruanjian/course/timeRule_listUI")
-	public String timeRule_listUI() {
+	public String timeRule_listUI(HttpServletRequest request) {
+		Map timeRuleMap = timeRuleService.selectById(1);
+		request.setAttribute("timeRule", timeRuleMap);
 		return "ruanjian/course/timeRule_listUI";
 	}
 
@@ -69,9 +72,7 @@ public class TimeRuleController extends BaseController {
 	 */
 	@RequiresPermissions("timeRule:insert")
 	@RequestMapping("ruanjian/course/timeRule_insertUI")
-	public String timeRule_insertUI(HttpServletRequest request) {
-		return "ruanjian/course/timeRule_insertUI";
-	}
+	public String timeRule_insertUI(HttpServletRequest request) { return "ruanjian/course/timeRule_insertUI"; }
 
 	/**
 	 * 添加time_rule
@@ -81,7 +82,7 @@ public class TimeRuleController extends BaseController {
 	 * @return
 	 */
 	@LogAop(description = "添加time_rule")
-	@RequiresPermissions("timeRule:insert")
+//	@RequiresPermissions("timeRule:insert")
 	@RequestMapping("ruanjian/course/timeRule_insert")
 	@ResponseBody
 	public ReturnBean timeRule_insert(TimeRule timeRule) {
@@ -120,7 +121,7 @@ public class TimeRuleController extends BaseController {
 	 * @return
 	 */
 	@LogAop(description = "修改time_rule")
-	@RequiresPermissions("timeRule:update")
+//	@RequiresPermissions("timeRule:update")
 	@RequestMapping("ruanjian/course/timeRule_update")
 	@ResponseBody
 	public ReturnBean timeRule_update(TimeRule timeRule) {

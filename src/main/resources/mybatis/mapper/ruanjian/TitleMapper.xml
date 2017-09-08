@@ -105,6 +105,15 @@
 			AND t.author = #{userId}
 		</if>
 	</select>
+	<!--当前学生可申请的课题列表-->
+	<select id="selectListStudent" resultType="java.util.Map">
+		SELECT
+		 *
+		 FROM
+		title
+		 where
+		FIND_IN_SET(#{major},title.suitMajor)
+	</select>
 
 </mapper>
 
