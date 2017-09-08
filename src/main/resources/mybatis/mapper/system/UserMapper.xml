@@ -26,7 +26,7 @@
 
     <sql id="Base_Column_List">
 		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime,
-		stu_class,stu_no,tel,direction,company,title_level,training_site,major,note,department
+		stu_class,stu_no,tel,direction,company,title_level
 	</sql>
 
     <select id="selectById" resultType="java.util.Map">
@@ -231,28 +231,5 @@
     <select id="selectByUsername" resultType="java.util.Map">
 		select id, username, password, name, status, roleCode from t_user where username=#{username}
 	</select>
-
-    <!--当前学生可申请的课题列表-->
-    <select id="selectListStudent" resultType="java.util.Map">
-        SELECT
-        *
-        FROM
-        title
-        where
-        FIND_IN_SET(#{major},title.suitMajor)
-        AND ! FIND_IN_SET(
-        title.id
-
-        ,
-        (
-        SELECT
-        GROUP_CONCAT(a.title_id)
-        FROM
-        title_examine a
-        WHERE
-        a.applicant = #{id}
-        )
-        )
-    </select>
 
 </mapper>
