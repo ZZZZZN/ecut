@@ -96,10 +96,10 @@
 	<!-- 带参数查询选题表列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
 		SELECT
-		  *
+		*
 		FROM
-			title t
-		JOIN major m ON t.suitMajor = m.major_code
+		title t
+	    JOIN major m ON t.suitMajor = m.major_code
 		where 1=1
 		<if test="userId != null">
 			AND t.author = #{userId}
