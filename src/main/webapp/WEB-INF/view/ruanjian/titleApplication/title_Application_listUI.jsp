@@ -22,16 +22,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>选题表管理</h5>
+								<h5>学生选题管理</h5>
 							</div>
 							<div class="box-body">
 								<div class="row">
 									<div class="col-sm-12">
-										<shiro:hasPermission name="title:insert">
+										<%--<shiro:hasPermission name="title:insert">
 											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
 												<i class="fa fa-plus"></i> 添加
 											</button>
-										</shiro:hasPermission>
+										</shiro:hasPermission>--%>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/course/title_list",
+	                "url": "<%=basePath%>ruanjian/course/title_application_list",
 	                "type": "post",
 	                "data": function (d) {
 	                
@@ -98,11 +98,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "7%"},
-					{"data": "title_name", "width": "18%"},
+					{"data": "title_name", "width": "22%"},
 					{"data": "title_type", "width": "10%"},
 					{"data": "title_source", "width": "10%"},
-					{"data": "major_name", "width": "13%"},
-					{"data": "suitScope", "width": "14%"},
+					{"data": "suitMajor", "width": "10%"},
+					{"data": "suitScope", "width": "13%"},
 					{"data": "limit_person", "width": "10%"},
 					{"data": "operate", "width": "18%"},
 	            ],
@@ -117,16 +117,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                        +'<i class="fa fa-eye fa-btn"></i>查看'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="title:update">'
+			                        +' <shiro:hasPermission name="title:application">'
 			                        +'<button class="btn btn-xs btn-warning updateBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-edit fa-btn"></i>修改'
+			                        +'<i class="fa fa-edit fa-btn"></i>申请'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="title:delete">'
+			                       /* +' <shiro:hasPermission name="title:delete">'
 			                        +'<button class="btn btn-xs btn-danger deleteBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-trash fa-btn"></i>删除'
 			                        +'</button>'
-			                        +'</shiro:hasPermission>';
+			                        +'</shiro:hasPermission>';*/
 	                    }
 	                }
 	            ],
@@ -167,10 +167,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <%--openDialogView("查看表单","<%=basePath%>ruanjian/course/title_seeUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
-	   	    //修改
+	   	    //申请
 	   	    $(document).on("click",".updateBtn",function(){
                 var id = $(this).attr("rid");
-                location.href = "<%=basePath%>ruanjian/course/title_updateUI?id=" + id;
+                location.href = "<%=basePath%>ruanjian/course/title_application?id=" + id;
                 <%--openDialog("修改表单","<%=basePath%>ruanjian/course/title_updateUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
