@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/course/title_list",
+	                "url": "<%=basePath%>ruanjian/course/title_application_list",
 	                "type": "post",
 	                "data": function (d) {
 	                

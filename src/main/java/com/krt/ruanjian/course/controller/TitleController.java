@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.krt.admin.system.service.UserService;
 import com.krt.core.util.DateUtil;
 import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.entity.TitleExamine;
@@ -39,6 +40,8 @@ public class TitleController extends BaseController {
 	private MajorService majorService;
 	@Resource
 	private TitleExamineService titleExamineService;
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 选题表管理页
@@ -82,6 +85,29 @@ public class TitleController extends BaseController {
 			HttpServletRequest request) {
 		Map para = new HashMap();
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
+		return dt;
+	}
+	/**
+	 * 学生选题表管理
+	 *
+	 * @param start
+	 *            起始数
+	 * @param length
+	 *            每页显示行数
+	 * @param draw
+	 *            客户端请求次数
+	 * @param request
+	 * @return
+	 */
+	@RequiresPermissions("title:list")
+	@RequestMapping("ruanjian/course/title_application_list")
+	@ResponseBody
+	public DataTable title_application_list(Integer start, Integer length, Integer draw,
+								HttpServletRequest request) {
+		Map para = new HashMap();
+        Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+        para.put("major",info.get("major"));
+		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
 
