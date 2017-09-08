@@ -7,7 +7,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import com.krt.core.util.DateUtil;
+import com.krt.core.util.ShiroUtil;
+import com.krt.ruanjian.course.entity.TitleExamine;
 import com.krt.ruanjian.course.service.MajorService;
+import com.krt.ruanjian.course.service.TitleExamineService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,16 +37,30 @@ public class TitleController extends BaseController {
 	private TitleService titleService;
 	@Resource
 	private MajorService majorService;
+	@Resource
+	private TitleExamineService titleExamineService;
 
 	/**
 	 * 选题表管理页
-	 * 
-	 * @return
+	 *
+	 * @ return
 	 */
+
 	@RequiresPermissions("title:list")
 	@RequestMapping("ruanjian/course/title_listUI")
 	public String title_listUI() {
 		return "ruanjian/course/title_listUI";
+	}
+
+	/**
+	 * 学生申请课题管理页
+	 * 
+	 * @return
+	 */
+	@RequiresPermissions("title：application")
+	@RequestMapping("ruanjian/course/title_Application_listUI")
+	public String title_Application_listUI() {
+		return "ruanjian/titleApplication/title_Application_listUI";
 	}
 
 	/**
@@ -96,6 +114,31 @@ public class TitleController extends BaseController {
 		try {
             title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
 			titleService.insert(title);
+			rb = ReturnBean.getSuccessReturnBean();
+		} catch (Exception e) {
+			logger.error("添加选题表失败", e);
+			rb = ReturnBean.getErrorReturnBean();
+		}
+		return rb;
+	}
+
+	@LogAop(description = "申请选题")
+	@RequiresPermissions("title:application")
+	@RequestMapping("ruanjian/course/title_application")
+	@ResponseBody
+	public ReturnBean title_application(HttpServletRequest request) {
+		ReturnBean rb;
+		try {
+			String id= request.getParameter("id");
+			Map map= titleService.selectById(Integer.parseInt(id));
+			TitleExamine titleExamine=new TitleExamine();
+			titleExamine.setTitle_id(Integer.parseInt(id));
+			titleExamine.setAuditor(Integer.parseInt(map.get("author").toString()));
+			titleExamine.setApplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+			titleExamine.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
+			titleExamine.setDr(0);
+			titleExamine.setStatus("1");
+			titleExamineService.insert(titleExamine);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
 			logger.error("添加选题表失败", e);
