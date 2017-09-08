@@ -93,8 +93,8 @@ public class TitleController extends BaseController {
 	@RequiresPermissions("title:insert")
 	@RequestMapping("ruanjian/course/title_insertUI")
 	public String title_insertUI(HttpServletRequest request) {
-//        List<Map> map= majorService.selectAll();
-//        request.setAttribute("map",map);
+        List<Map> map= majorService.selectAll();
+        request.setAttribute("map",map);
 		return "ruanjian/course/title_insertUI";
 	}
 

@@ -67,23 +67,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</td>
 											<td class="active width-15">
 												<label class="pull-right">
-													适用专业
-												</label>
-											</td>
-											<td class="width-35">
-												<select name="suitMajor" id="suitMajor" class="form-control">
-													<option value="1">通信工程</option>
-													<option value="2">计算机科学与技术</option>
-													<option value="3">软件工程专业</option>
-													<option value="4">物联网工程</option>
-													<option value="5">网络工程专业</option>
-													<option value="6">数字媒体专业</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<td class="active width-15">
-												<label class="pull-right">
 													适用实训所在地
 												</label>
 											</td>
@@ -93,12 +76,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<option value="校外实训">校外实训</option>
 												</select>
 											</td>
+										</tr>
+										<tr>
 											<td class="active width-15">
 												<label class="pull-right">
 													上限人数
 												</label>
 											</td>
 											<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" AUTOCOMPLETE="off"></td>
+										</tr>
+										<tr>
+											<td class="active width-15">
+												<label class="pull-right">
+													适用专业
+												</label>
+											</td>
+											<td colspan="3" id="majorScope">
+												${title.major_name}
+											</td>
 										</tr>
 										<tr>
 											<td class="active width-15">
