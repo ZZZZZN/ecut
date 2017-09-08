@@ -26,7 +26,7 @@
 
     <sql id="Base_Column_List">
 		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime,
-		stu_class,stu_no,tel,direction,company,title_level
+		stu_class,stu_no,tel,direction,company,title_level,training_site,major,note,department
 	</sql>
 
     <select id="selectById" resultType="java.util.Map">
@@ -93,6 +93,18 @@
             <if test="title_level != null">
                 title_level,
             </if>
+            <if test="training_site != null">
+                training_site,
+            </if>
+            <if test="major != null">
+                major,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+            <if test="department != null">
+                department,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -143,6 +155,18 @@
             </if>
             <if test="title_level != null">
                 #{title_level,jdbcType=VARCHAR},
+            </if>
+            <if test="training_site != null">
+                #{training_site,jdbcType=VARCHAR},
+            </if>
+            <if test="major != null">
+                #{major,jdbcType=VARCHAR},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                #{department,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -198,6 +222,18 @@
             </if>
             <if test="title_level != null">
                 title_level = #{title_level,jdbcType=VARCHAR},
+            </if>
+            <if test="training_site != null">
+                training_site = #{training_site,jdbcType=VARCHAR},
+            </if>
+            <if test="major != null">
+                major = #{major,jdbcType=VARCHAR},
+            </if>
+            <if test="note != null">
+                note = #{note,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                department = #{department,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
