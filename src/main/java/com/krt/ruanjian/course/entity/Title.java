@@ -14,11 +14,12 @@ public class Title extends BaseEntity {
 	private String title_name;//题名
 	private String title_type;//课题类型
 	private String title_source;//课题来源
-	private String suitMajor;//适用专业
+	private Integer suitMajor;//适用专业
 	private String suitScope;//适用实训所在地
 	private String limit_person;//上线人数
 	private String meaning_target;//课程意义与目标
 	private String condition_work;//学生基本条件和前期工作
+	private Integer author;//出题人
 	private Integer dr;//逻辑删除
 	private String ts;//时间戳
 
@@ -43,11 +44,11 @@ public class Title extends BaseEntity {
 	public String getTitle_source(){
 		return this.title_source;
 	}
-	public void setSuitMajor(String suitMajor){
+	public void setSuitMajor(Integer suitMajor){
 		this.suitMajor = suitMajor;
 	}
 
-	public String getSuitMajor(){
+	public Integer getSuitMajor(){
 		return this.suitMajor;
 	}
 	public void setSuitScope(String suitScope){
@@ -80,6 +81,14 @@ public class Title extends BaseEntity {
 	}
 	public void setDr(Integer dr){
 		this.dr = dr;
+	}
+
+	public Integer getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Integer author) {
+		this.author = author;
 	}
 
 	public Integer getDr(){
