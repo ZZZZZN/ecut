@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import com.krt.core.util.DateUtil;
+import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.service.MajorService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -94,7 +95,10 @@ public class TitleController extends BaseController {
 	public ReturnBean title_insert(Title title) {
 		ReturnBean rb;
 		try {
-            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
+			Map user = ShiroUtil.getCurrentUser();
+            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss"
+					, DateUtil.getIntenetTime()));
+			title.setAuthor((Integer)user.get("id"));
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {

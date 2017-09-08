@@ -19,6 +19,7 @@ public class Title extends BaseEntity {
 	private String limit_person;//上线人数
 	private String meaning_target;//课程意义与目标
 	private String condition_work;//学生基本条件和前期工作
+	private Integer author;//出题人
 	private Integer dr;//逻辑删除
 	private String ts;//时间戳
 
@@ -80,6 +81,14 @@ public class Title extends BaseEntity {
 	}
 	public void setDr(Integer dr){
 		this.dr = dr;
+	}
+
+	public Integer getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Integer author) {
+		this.author = author;
 	}
 
 	public Integer getDr(){
