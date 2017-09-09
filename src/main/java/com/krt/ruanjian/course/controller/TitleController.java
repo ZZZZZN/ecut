@@ -95,7 +95,6 @@ public class TitleController extends BaseController {
 		List<HashMap<String, String>> list = dt.getData();
 		for (int i =0; i < list.size(); i++) {
 			String[] array = list.get(i).get("suitMajor").split(",");
-			HashMap<String, String> map = new HashMap<String,String>();
 			String newData = "";
 			MajorEnum tmpEnum;
 			for (int j = 0; j < array.length; j++) {
@@ -252,6 +251,18 @@ public class TitleController extends BaseController {
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
+		String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		MajorEnum majorEnum;
+		String newData = "";
+		for (int i = 0; i< array.length; i++) {
+			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
+			if (i+1 == array.length) {
+				newData += majorEnum.getName() ;
+			} else {
+				newData += majorEnum.getName() + ",";
+			}
+		}
+		titleMap.put("suitMajor", newData);
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/title_seeUI";
 	}
