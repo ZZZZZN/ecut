@@ -10,6 +10,7 @@ import com.krt.admin.system.service.UserService;
 import com.krt.core.util.DateUtil;
 import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.entity.TitleExamine;
+import com.krt.ruanjian.course.enums.MajorEnum;
 import com.krt.ruanjian.course.service.MajorService;
 import com.krt.ruanjian.course.service.TitleExamineService;
 import org.apache.shiro.SecurityUtils;
@@ -86,12 +87,27 @@ public class TitleController extends BaseController {
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer userId = (Integer)user.get("id");
-		if(userId==1){
-			DataTable dt = titleService.selectListPara(start, length, draw, para);
-			return dt;
-		}
+		String roleCode = (String)user.get("roleCode");
 		para.put("userId", userId);
+		para.put("roleCode", roleCode);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
+		//取出list中的data值将专业代码转换成专业代码
+		List<HashMap<String, String>> list = dt.getData();
+		for (int i =0; i < list.size(); i++) {
+			String[] array = list.get(i).get("suitMajor").split(",");
+			HashMap<String, String> map = new HashMap<String,String>();
+			String newData = "";
+			MajorEnum tmpEnum;
+			for (int j = 0; j < array.length; j++) {
+				tmpEnum = MajorEnum.getMajorNameByCode(array[j]);
+				if (j+1 == array.length) {
+					newData += tmpEnum.getName() ;
+				} else {
+					newData += tmpEnum.getName() + ",";
+				}
+			}
+			list.get(i).put("suitMajor", newData);
+		}
 		return dt;
 	}
 	/**
