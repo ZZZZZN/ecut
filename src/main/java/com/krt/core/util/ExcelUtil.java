@@ -92,12 +92,19 @@ public class ExcelUtil {
                         }
                     }else if (c == 4){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String institute = String.valueOf(cell.getNumericCellValue());
+                            user.setInstitute(institute.substring(0, institute.length()-2>0?institute.length()-2:1));//学院
+                        }else{
+                            user.setInstitute(cell.getStringCellValue());//学院
+                        }
+                    }else if (c == 5){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String department = String.valueOf(cell.getNumericCellValue());
                             user.setDepartment(department.substring(0, department.length()-2>0?department.length()-2:1));//所在系
                         }else{
                             user.setDepartment(cell.getStringCellValue());//所在系
                         }
-                    }else if (c == 5){
+                    }else if (c == 6){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注
@@ -170,19 +177,26 @@ public class ExcelUtil {
                         }
                     }else if (c == 4){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String institute = String.valueOf(cell.getNumericCellValue());
+                            user.setInstitute(institute.substring(0, institute.length()-2>0?institute.length()-2:1));//学院
+                        }else{
+                            user.setInstitute(cell.getStringCellValue());//学院
+                        }
+                    }else if (c == 5){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String training_site = String.valueOf(cell.getNumericCellValue());
                             user.setTraining_site(training_site.substring(0, training_site.length()-2>0?training_site.length()-2:1));//实训地点
                         }else{
                             user.setTraining_site(cell.getStringCellValue());//实训地点
                         }
-                    }else if (c == 5){
+                    }else if (c == 6){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String company = String.valueOf(cell.getNumericCellValue());
                             user.setCompany(company.substring(0, company.length()-2>0?company.length()-2:1));//所在企业
                         }else{
                             user.setCompany(cell.getStringCellValue());//所在企业
                         }
-                    }else if (c == 6){
+                    }else if (c == 7){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注
