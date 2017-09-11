@@ -10,6 +10,7 @@ import com.krt.admin.system.service.UserService;
 import com.krt.core.util.DateUtil;
 import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.entity.TitleExamine;
+import com.krt.ruanjian.course.enums.MajorEnum;
 import com.krt.ruanjian.course.service.MajorService;
 import com.krt.ruanjian.course.service.TitleExamineService;
 import org.apache.shiro.SecurityUtils;
@@ -86,12 +87,26 @@ public class TitleController extends BaseController {
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer userId = (Integer)user.get("id");
-		if(userId==1){
-			DataTable dt = titleService.selectListPara(start, length, draw, para);
-			return dt;
-		}
+		String roleCode = (String)user.get("roleCode");
 		para.put("userId", userId);
+		para.put("roleCode", roleCode);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
+		//取出list中的data值将专业代码转换成专业名称
+		/*List<HashMap<String, String>> list = dt.getData();
+		for (int i =0; i < list.size(); i++) {
+			String[] array = list.get(i).get("suitMajor").split(",");
+			String newData = "";
+			MajorEnum tmpEnum;
+			for (int j = 0; j < array.length; j++) {
+				tmpEnum = MajorEnum.getMajorNameByCode(array[j]);
+				if (j+1 == array.length) {
+					newData += tmpEnum.getName() ;
+				} else {
+					newData += tmpEnum.getName() + ",";
+				}
+			}
+			list.get(i).put("suitMajor", newData);
+		}*/
 		return dt;
 	}
 	/**
@@ -113,8 +128,9 @@ public class TitleController extends BaseController {
 								HttpServletRequest request) {
 		Map para = new HashMap();
         Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
-        para.put("major",info.get("major"));
+		Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());
         para.put("id",info.get("id"));
+        para.put("major",major.get("major"));
 		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
@@ -169,15 +185,22 @@ public class TitleController extends BaseController {
 		try {
 			String id= request.getParameter("id");
 			Map map= titleService.selectById(Integer.parseInt(id));
-			TitleExamine titleExamine=new TitleExamine();
-			titleExamine.setTitle_id(Integer.parseInt(id));
-			titleExamine.setAuditor(Integer.parseInt(map.get("author").toString()));
-			titleExamine.setApplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
-			titleExamine.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
-			titleExamine.setDr(0);
-			titleExamine.setStatus("1");
-			titleExamineService.insert(titleExamine);
-			rb = ReturnBean.getSuccessReturnBean();
+			Integer number= titleService.countPassNumber(id);
+			if (number<Integer.parseInt(map.get("limit_person").toString())) {
+				TitleExamine titleExamine = new TitleExamine();
+				titleExamine.setTitle_id(Integer.parseInt(id));
+				titleExamine.setAuditor(Integer.parseInt(map.get("author").toString()));
+				titleExamine.setApplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+				titleExamine.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
+				titleExamine.setDr(0);
+				titleExamine.setStatus("1");
+				titleExamineService.insert(titleExamine);
+				rb = ReturnBean.getSuccessReturnBean();
+			}
+			else
+			{
+				rb=ReturnBean.getCustomReturnBean("overstep");
+			}
 		} catch (Exception e) {
 			logger.error("添加选题表失败", e);
 			rb = ReturnBean.getErrorReturnBean();
@@ -236,6 +259,18 @@ public class TitleController extends BaseController {
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
+		String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		MajorEnum majorEnum;
+		String newData = "";
+		for (int i = 0; i< array.length; i++) {
+			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
+			if (i+1 == array.length) {
+				newData += majorEnum.getName() ;
+			} else {
+				newData += majorEnum.getName() + ",";
+			}
+		}
+		titleMap.put("suitMajor", newData);
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/title_seeUI";
 	}

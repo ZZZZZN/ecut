@@ -7,6 +7,8 @@ import com.krt.ruanjian.course.mapper.MajorMapper;
 import com.krt.core.base.BaseMapper;
 import com.krt.core.base.BaseServiceImpl;
 
+import java.util.Map;
+
 /**
  * @Description: 专业表服务层
  * @author pengYi
@@ -22,5 +24,9 @@ public class MajorService extends BaseServiceImpl<Major>{
 	@Override
 	public BaseMapper<Major> getMapper() {
 		return majorMapper;
+	}
+
+	public Map selectMajorCodeByMajorName(String major){
+		return majorMapper.selectMajorCodeByMajorName(major);
 	}
 }

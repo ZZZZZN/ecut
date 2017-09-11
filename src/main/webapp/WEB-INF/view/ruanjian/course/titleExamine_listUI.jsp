@@ -41,7 +41,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>选题名称</th>
 											<th>申请人</th>
 											<th>审核人</th>
-											<th>状态</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -96,25 +95,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "12%"},
-					{"data": "title_id", "width": "34%"},
-					{"data": "applicant", "width": "13%"},
-					{"data": "auditor", "width": "13%"},
-					{"data": "status", "width": "13%"},
+					{"data": "titleName", "width": "34%"},
+					{"data": "applyer", "width": "13%"},
+					{"data": "author", "width": "13%"},
 					{"data": "operate", "width": "15%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 5,
+	                    "targets": 4,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
-	                        return  ' <shiro:hasPermission name="titleExamine:pass">'
-			                        +'<button class="btn btn-xs btn-success" rid="'+row.id+'">'
+	                        return  ' <shiro:hasPermission name="titleExamine:passOrFail">'
+			                        +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-check fa-btn"></i>通过'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="titleExamine:fail">'
-			                        +'<button class="btn btn-xs btn-danger" rid="'+row.id+'">'
+			                        +' <shiro:hasPermission name="titleExamine:passOrFail">'
+			                        +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-remove fa-btn"></i>不通过'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>';
@@ -162,6 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   		    var id = $(this).attr("rid");
 	   			openDialog("修改表单","<%=basePath%>ruanjian/course/titleExamine_updateUI?id="+id,"800px", "380px","");
 	   	    });
+
 	   	   
 	   	    //删除
 	   	    $(document).on("click",".deleteBtn",function(){
@@ -189,6 +188,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	    	};
 	   	    	confirmx("你确定删除吗？",fun);
 	   	    });
+
+            //通过
+            $(document).on("click",".passBtn",function(){
+                var id = $(this).attr("rid");
+                var fun = function(){
+                    $.ajax({
+                        type: "POST",
+                        url:"<%=basePath%>ruanjian/course/titleExamine_passOrFail?id=" +id + "&status=2&dr=0",
+                        beforeSend:function(){
+                            return loading();
+                        },
+                        success: function(msg) {
+                            closeloading();
+                            if(msg.state=='success'){
+                                top.layer.msg("审核成功");
+                                refreshTable(datatable);
+                            }else{
+                                top.layer.msg("审核失败");
+                            }
+                        },
+                        error: function(){
+                            closeloading();
+                        }
+                    });
+                };
+                confirmx("允许该学生选择该课题？",fun);
+            });
+
+            //未通过
+            $(document).on("click",".failBtn",function(){
+                var id = $(this).attr("rid");
+                var fun = function(){
+                    $.ajax({
+                        type: "POST",
+                        url:"<%=basePath%>ruanjian/course/titleExamine_passOrFail?id=" +id + "&status=3&dr=1",
+                        beforeSend:function(){
+                            return loading();
+                        },
+                        success: function(msg) {
+                            closeloading();
+                            if(msg.state=='success'){
+                                top.layer.msg("审核成功");
+                                refreshTable(datatable);
+                            }else{
+                                top.layer.msg("审核失败");
+                            }
+                        },
+                        error: function(){
+                            closeloading();
+                        }
+                    });
+                };
+                confirmx("不允许该学生选择该课题？",fun);
+            });
        
 	    }); 
  	</script>

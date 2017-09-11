@@ -45,4 +45,8 @@ public class TitleService extends BaseServiceImpl<Title> {
 		dataTable.setRecordsFiltered(pageInfo.getTotal());
 		return dataTable;
 	}
+
+	public Integer countPassNumber(String id){
+		return titleMapper.countPassNumber(id);
+	}
 }
