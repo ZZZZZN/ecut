@@ -72,6 +72,18 @@ public class UserController extends BaseController {
         return dt;
     }
 
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/students")
+    @ResponseBody
+    public DataTable student_list(Integer start, Integer length, Integer draw, HttpServletRequest request) {
+//        String institute = request.getParameter("institute");
+//        String major_code = request.getParameter("major_code");
+        String institute = "软件学院";
+        String major_code = "080902";
+        DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
+        return dt;
+    }
+
     /**
      * 新增用户页
      *

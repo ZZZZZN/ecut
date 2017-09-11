@@ -37,6 +37,7 @@
 			<if test="author != null"> author, </if>
 			<if test="dr != null"> dr, </if>
 			<if test="ts != null"> ts, </if>
+			<if test="suitMajorName!=null">suitMajorName,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null"> #{id,jdbcType=INTEGER}, </if>
@@ -51,6 +52,7 @@
 			<if test="author != null"> #{author,jdbcType=INTEGER}, </if>
 			<if test="dr != null"> #{dr,jdbcType=INTEGER}, </if>
 			<if test="ts != null"> #{ts,jdbcType=VARCHAR}, </if>
+			<if test="suitMajorName!=null">#{suitMajorName,jdbcType=VARCHAR},</if>
 		</trim>
 	</insert>
 	

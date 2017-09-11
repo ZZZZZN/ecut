@@ -64,6 +64,15 @@
 			id,major_name,major_code 
 		from major where 1=1
 	</select>
+	<!--根据major名称查询code-->
+	<select id="selectMajorCodeByMajorName" resultType="java.util.Map">
+		SELECT
+		major_code
+		FROM
+		major
+		WHERE
+		major_name=#{major}
+	</select>
 
 </mapper>
 
