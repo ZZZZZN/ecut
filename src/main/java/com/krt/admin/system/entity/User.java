@@ -22,6 +22,10 @@ public class User extends BaseEntity{
 	private Integer direction;//学生方向
 	private String company;//企业（学生）
 	private String title_level;//职称（教师）
+	private String training_site;//实训地点（校内、校外、其他）
+	private String major;//专业（学生：软件工程、网络工程、物联网工程、数字媒体技术、计算机科学与技术、通信工程）
+	private String note;//备注
+	private String department;//所在系（教师：软件工程系、网络工程系、数字媒体系、计算机科学与技术系、通信工程系）
 
 
 	public void setUsername(String username){
@@ -103,6 +107,38 @@ public class User extends BaseEntity{
 		this.title_level = title_level;
 	}
 
+	public String getTraining_site() {
+		return training_site;
+	}
+
+	public void setTraining_site(String training_site) {
+		this.training_site = training_site;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
@@ -117,6 +153,10 @@ public class User extends BaseEntity{
 				", direction=" + direction +
 				", company='" + company + '\'' +
 				", title_level='" + title_level + '\'' +
+				", training_site='" + training_site + '\'' +
+				", major='" + major + '\'' +
+				", note='" + note + '\'' +
+				", department='" + department + '\'' +
 				'}';
 	}
 }

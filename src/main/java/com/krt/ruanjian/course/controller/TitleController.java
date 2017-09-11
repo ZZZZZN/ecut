@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.krt.admin.system.service.UserService;
 import com.krt.core.util.DateUtil;
 import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.entity.TitleExamine;
@@ -39,6 +40,8 @@ public class TitleController extends BaseController {
 	private MajorService majorService;
 	@Resource
 	private TitleExamineService titleExamineService;
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 选题表管理页
@@ -81,7 +84,38 @@ public class TitleController extends BaseController {
 	public DataTable title_list(Integer start, Integer length, Integer draw,
 			HttpServletRequest request) {
 		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		Integer userId = (Integer)user.get("id");
+		if(userId==1){
+			DataTable dt = titleService.selectListPara(start, length, draw, para);
+			return dt;
+		}
+		para.put("userId", userId);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
+		return dt;
+	}
+	/**
+	 * 学生选题表管理
+	 *
+	 * @param start
+	 *            起始数
+	 * @param length
+	 *            每页显示行数
+	 * @param draw
+	 *            客户端请求次数
+	 * @param request
+	 * @return
+	 */
+	@RequiresPermissions("title:list")
+	@RequestMapping("ruanjian/course/title_application_list")
+	@ResponseBody
+	public DataTable title_application_list(Integer start, Integer length, Integer draw,
+								HttpServletRequest request) {
+		Map para = new HashMap();
+        Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+        para.put("major",info.get("major"));
+        para.put("id",info.get("id"));
+		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
 
@@ -112,7 +146,11 @@ public class TitleController extends BaseController {
 	public ReturnBean title_insert(Title title) {
 		ReturnBean rb;
 		try {
-            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
+			Map user = ShiroUtil.getCurrentUser();
+            title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss"
+					, DateUtil.getIntenetTime()));
+			title.setAuthor((Integer)user.get("id"));
+			title.setDr(0);
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {

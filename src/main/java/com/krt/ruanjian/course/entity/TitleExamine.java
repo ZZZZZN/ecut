@@ -11,7 +11,6 @@ import com.krt.core.base.BaseEntity;
 @SuppressWarnings("serial")
 public class TitleExamine extends BaseEntity {
 
-	private Integer title_examine_id;//主键
 	private Integer title_id;//题目id
 	private Integer applicant;//申请人
 	private Integer auditor;//审核人
@@ -19,13 +18,6 @@ public class TitleExamine extends BaseEntity {
 	private String ts;//
 	private Integer dr;//
 
-	public void setTitle_examine_id(Integer title_examine_id){
-		this.title_examine_id = title_examine_id;
-	}
-
-	public Integer getTitle_examine_id(){
-		return this.title_examine_id;
-	}
 	public void setTitle_id(Integer title_id){
 		this.title_id = title_id;
 	}

@@ -4,7 +4,6 @@
 
 	<resultMap id="BaseResultMap" type="com.krt.ruanjian.course.entity.TitleExamine">
 		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="title_examine_id" jdbcType="INTEGER" property="title_examine_id" />
 		<result column="title_id" jdbcType="INTEGER" property="title_id" />
 		<result column="applicant" jdbcType="INTEGER" property="applicant" />
 		<result column="auditor" jdbcType="INTEGER" property="auditor" />
@@ -14,14 +13,14 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		title_examine_id,title_id,applicant,auditor,status,ts,dr
+		id,title_id,applicant,auditor,status,ts,dr
 	</sql>
 
 	<!-- 添加审核表（记录学生申请的题目） -->
 	<insert id="insert" parameterType="com.krt.ruanjian.course.entity.TitleExamine">
 		insert into title_examine
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="title_examine_id != null"> title_examine_id, </if>
+			<if test="id != null"> title_examine_id, </if>
 			<if test="title_id != null"> title_id, </if>
 			<if test="applicant != null"> applicant, </if>
 			<if test="auditor != null"> auditor, </if>
@@ -30,7 +29,7 @@
 			<if test="dr != null"> dr, </if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="title_examine_id != null"> #{title_examine_id,jdbcType=INTEGER}, </if>
+			<if test="id != null"> #{title_examine_id,jdbcType=INTEGER}, </if>
 			<if test="title_id != null"> #{title_id,jdbcType=INTEGER}, </if>
 			<if test="applicant != null"> #{applicant,jdbcType=INTEGER}, </if>
 			<if test="auditor != null"> #{auditor,jdbcType=INTEGER}, </if>
@@ -49,7 +48,7 @@
 	<update id="update" parameterType="com.krt.ruanjian.course.entity.TitleExamine">
 		update title_examine
 		<set>
-			<if test="title_examine_id != null"> title_examine_id = #{title_examine_id,jdbcType=INTEGER}, </if>
+			<if test="id != null"> title_examine_id = #{id,jdbcType=INTEGER}, </if>
 			<if test="title_id != null"> title_id = #{title_id,jdbcType=INTEGER}, </if>
 			<if test="applicant != null"> applicant = #{applicant,jdbcType=INTEGER}, </if>
 			<if test="auditor != null"> auditor = #{auditor,jdbcType=INTEGER}, </if>
@@ -63,7 +62,7 @@
 	<!-- 根据ID查询审核表（记录学生申请的题目） -->
 	<select id="selectById" resultType="java.util.Map">
 		select
-			 title_examine_id,title_id,applicant,auditor,status,ts,dr
+			 id,title_id,applicant,auditor,status,ts,dr
 		from title_examine
 		where id = #{id,jdbcType=INTEGER}
 	</select>
@@ -71,16 +70,29 @@
 	<!-- 查询审核表（记录学生申请的题目）列表 -->
 	<select id="selectList" resultType="java.util.Map">
 		select
-			title_examine_id,title_id,applicant,auditor,status,ts,dr 
+			id,title_id,applicant,auditor,status,ts,dr
 		from title_examine
 	</select>
 	
 	<!-- 带参数查询审核表（记录学生申请的题目）列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
-		select
-			title_examine_id,title_id,applicant,auditor,status,ts,dr 
+	<!--	select
+			id,title_id,applicant,auditor,status,ts,dr
 		from title_examine where 1=1
+	</select>-->
+		SELECT
+			t.id ,
+			t.title_name AS titleName,
+			e.applicant AS applicantId,
+			uu. NAME AS applyer,
+			e.auditor AS auditorId,
+			u. NAME AS author
+		FROM
+			title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		AND u.id = #{authorId}
+		JOIN t_user uu ON uu.id = e.applicant
 	</select>
-
 </mapper>
 
