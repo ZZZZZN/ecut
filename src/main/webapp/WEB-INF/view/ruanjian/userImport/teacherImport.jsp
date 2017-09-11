@@ -11,14 +11,30 @@
     <link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-
-<form enctype="multipart/form-data" id="batchUpload" action="ExcelImport/TeacherImport" method="post" class="form-horizontal">
-    <button class="btn btn-success btn-xs" id="uploadEventBtn" style="height:26px;" type="button">选择文件</button>
-    <input type="file" name="file" style="width:0px;height:0px;" id="uploadEventFile">
-    <input id="uploadEventPath" disabled="disabled" type="text" placeholder="请选择excel表"
-           style="border: 1px solid #e6e6e6; height: 26px;width: 200px;">
-</form>
-<button type="button" class="btn btn-success btn-sm" id="uploadBtn">上传</button>
+<div class="wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h5>教师批量导入</h5>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-box">
+                            <form enctype="multipart/form-data" id="batchUpload" action="ExcelImport/TeacherImport" method="post" class="form-horizontal">
+                                <button class="btn btn-primary btn-sm" id="uploadEventBtn" style="margin-right: 5px; float: left" type="button">选择文件</button>
+                                <input type="file" name="file" style="width:0px;height:0px;" id="uploadEventFile">
+                                <input id="uploadEventPath" disabled="disabled" type="text" placeholder="请选择excel表"
+                                       style="border: 1px solid #e6e6e6; height: 30px;width: 200px;float: left;text-indent: 5px">
+                            </form>
+                            <button type="button" class="btn btn-primary btn-sm" id="uploadBtn" style="margin-left: 20px">上传</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
