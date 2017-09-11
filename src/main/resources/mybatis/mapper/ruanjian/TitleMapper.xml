@@ -99,9 +99,8 @@
 		 *
 		FROM
 		title t
-	    JOIN major m ON t.suitMajor = m.major_code
 		where 1=1
-		<if test="userId != null">
+		<if test="roleCode != 'admin'">
 			AND t.author = #{userId}
 		</if>
 	</select>
