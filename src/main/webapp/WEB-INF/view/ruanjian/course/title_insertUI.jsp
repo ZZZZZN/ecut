@@ -120,10 +120,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													适用专业
 												</label>
 											</td>
-											<td colspan="3" id="majorScope">
+											<td colspan="3">
 												<c:forEach items="${map}" var="title">
-													<input type="text" name="suitMajor" style="display: none;">
-													<label style="font-weight: normal;"><input type="checkbox" name="majorCode" value="${title.major_code}">${title.major_name}</label>
+													<label style="font-weight: normal;"><input type="checkbox" name="suitMajor" value="${title.major_code}">${title.major_name}</label>
 												</c:forEach>
 											</td>
 										</tr>
@@ -169,17 +168,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
 	
 	    var validateForm;
-	    
+
 		function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
-			  var majorScope = $("input[name='majorCode']:checked").serialize();
-			  $("input[name='suitMajor']").val(majorScope);
 			  $.ajax({   
 			         type: "POST",
-			         url:"<%=basePath%>ruanjian/course/title_insert",
-			         data:$('#krtForm').serialize(),// 要提交的表单
+			         url: "<%=basePath%>ruanjian/course/title_insert",
+			         data: $('#krtForm').serialize(),// 要提交的表单
 			         beforeSend:function(){
-						 console.log($('#krtForm').serialize());
-						 return  validateForm.form() && loading();
+						 return validateForm.form() && loading();
 			         },
 			         success: function(msg) {
 			             closeloading();
