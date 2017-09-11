@@ -125,6 +125,17 @@
 	)
 )
 	</select>
+	<!--当前课题已审核通过人数-->
+	<select id="countPassNumber" resultType="java.lang.Integer" >
+		SELECT
+		COUNT(id) as idNumber
+		FROM
+		title_examine a
+		WHERE
+		a.title_id = #{id}
+		AND
+		a.status='2'
+	</select>
 
 </mapper>
 

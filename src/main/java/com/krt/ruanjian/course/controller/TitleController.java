@@ -169,15 +169,22 @@ public class TitleController extends BaseController {
 		try {
 			String id= request.getParameter("id");
 			Map map= titleService.selectById(Integer.parseInt(id));
-			TitleExamine titleExamine=new TitleExamine();
-			titleExamine.setTitle_id(Integer.parseInt(id));
-			titleExamine.setAuditor(Integer.parseInt(map.get("author").toString()));
-			titleExamine.setApplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
-			titleExamine.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
-			titleExamine.setDr(0);
-			titleExamine.setStatus("1");
-			titleExamineService.insert(titleExamine);
-			rb = ReturnBean.getSuccessReturnBean();
+			Integer number= titleService.countPassNumber(id);
+			if (number<Integer.parseInt(map.get("limit_person").toString())) {
+				TitleExamine titleExamine = new TitleExamine();
+				titleExamine.setTitle_id(Integer.parseInt(id));
+				titleExamine.setAuditor(Integer.parseInt(map.get("author").toString()));
+				titleExamine.setApplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+				titleExamine.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss", DateUtil.getIntenetTime()));
+				titleExamine.setDr(0);
+				titleExamine.setStatus("1");
+				titleExamineService.insert(titleExamine);
+				rb = ReturnBean.getSuccessReturnBean();
+			}
+			else
+			{
+				rb=ReturnBean.getCustomReturnBean("overstep");
+			}
 		} catch (Exception e) {
 			logger.error("添加选题表失败", e);
 			rb = ReturnBean.getErrorReturnBean();
