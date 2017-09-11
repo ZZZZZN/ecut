@@ -38,9 +38,9 @@
     </select>
 
     <delete id="delete" parameterType="java.lang.Integer">
-		delete from t_user
-		where id = #{id,jdbcType=INTEGER}
-	</delete>
+        delete from t_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
 
     <insert id="insert" parameterType="com.krt.admin.system.entity.User" useGeneratedKeys="true" keyProperty="id">
         insert into t_user
@@ -276,34 +276,33 @@
     <!-- 根据用户查询用户信息 -->
     <select id="selectByUsername" resultType="java.util.Map">
         SELECT
-            id,
-            username,
-            password,
-            name,
-            status,
-            roleCode
+        id,
+        username,
+        password,
+        name,
+        status,
+        roleCode
         FROM t_user
         WHERE username = #{username}
     </select>
 
-    /*根据学院和专业查询学生名单*/
-    <select id="selectStudentsByInstituteAndMajor" resultMap="java.util.Map">
+    <select id="selectStudentsByInstituteAndMajor" resultType="java.util.Map" parameterType="java.lang.String">
         SELECT
-            NAME,
-            a.username,
-            stu_class,
-            training_site,
-            company,
-            note,
-            b.major_name
+        NAME,
+        a.username,
+        stu_class,
+        training_site,
+        company,
+        note,
+        b.major_name
         FROM
-            t_user a,
-            major b
+        t_user a,
+        major b
         WHERE
-            a.major = b.major_code
-            AND a.institute = #{institude}
-            AND a.major = #{major}
-            AND a.roleCode LIKE 'stu%';
+        a.major = b.major_code
+        AND a.institute = #{institute}
+        AND a.major = #{major}
+        AND a.roleCode LIKE 'stu%'
     </select>
 
 </mapper>
