@@ -21,12 +21,13 @@
         <result column="major" jdbcType="VARCHAR" property="major"/>
         <result column="note" jdbcType="VARCHAR" property="note"/>
         <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="institute" jdbcType="VARCHAR" property="institute"/>
 
     </resultMap>
 
     <sql id="Base_Column_List">
 		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime,
-		stu_class,stu_no,tel,direction,company,title_level,training_site,major,note,department
+		stu_class,stu_no,tel,direction,company,title_level,training_site,major,note,department,institute
 	</sql>
 
     <select id="selectById" resultType="java.util.Map">
@@ -105,6 +106,9 @@
             <if test="department != null">
                 department,
             </if>
+            <if test="institute != null">
+                institute,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -167,6 +171,9 @@
             </if>
             <if test="department != null">
                 #{department,jdbcType=VARCHAR},
+            </if>
+            <if test="institute != null">
+                #{institute,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -235,6 +242,9 @@
             <if test="department != null">
                 department = #{department,jdbcType=VARCHAR},
             </if>
+            <if test="institute != null">
+                institute = #{department,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -265,7 +275,35 @@
 
     <!-- 根据用户查询用户信息 -->
     <select id="selectByUsername" resultType="java.util.Map">
-		select id, username, password, name, status, roleCode from t_user where username=#{username}
-	</select>
+        SELECT
+            id,
+            username,
+            password,
+            name,
+            status,
+            roleCode
+        FROM t_user
+        WHERE username = #{username}
+    </select>
+
+    /*根据学院和专业查询学生名单*/
+    <select id="selectStudentsByInstituteAndMajor" resultMap="java.util.Map">
+        SELECT
+            NAME,
+            a.username,
+            stu_class,
+            training_site,
+            company,
+            note,
+            b.major_name
+        FROM
+            t_user a,
+            major b
+        WHERE
+            a.major = b.major_code
+            AND a.institute = #{institude}
+            AND a.major = #{major}
+            AND a.roleCode LIKE 'stu%';
+    </select>
 
 </mapper>
