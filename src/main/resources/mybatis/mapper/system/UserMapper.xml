@@ -300,9 +300,9 @@
             major b
         WHERE
             a.major = b.major_code
-            AND a.institute = #{institude}
+            AND a.institute = #{institute}
             AND a.major = #{major}
-            AND a.roleCode LIKE 'stu%';
+            AND a.roleCode LIKE 'stu%'
     </select>
 
 </mapper>
