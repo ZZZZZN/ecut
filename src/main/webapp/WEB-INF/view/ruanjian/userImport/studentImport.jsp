@@ -12,6 +12,7 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
+<<<<<<< HEAD
 <div class="wrapper">
     <section class="content">
         <div class="row">
@@ -36,6 +37,19 @@
         </div>
     </section>
 </div>
+=======
+<form enctype="multipart/form-data" id="batchUpload" action="ExcelImport/StudentImport" method="post" class="form-horizontal">
+    <button class="btn btn-success btn-xs" id="uploadEventBtn" style="height:26px;" type="button">选择文件</button>
+    <input type="file" name="file" style="width:0px;height:0px;" id="uploadEventFile">
+    <input id="uploadEventPath" disabled="disabled" type="text" placeholder="请选择excel表"
+           style="border: 1px solid #e6e6e6; height: 26px;width: 200px;">
+</form>
+<button type="button" class="btn btn-success btn-sm" id="uploadBtn">上传</button>
+
+<a href="<%=path%>/upload/students.xlsx"/>">点击下载模板</a>
+
+
+>>>>>>> 801bd7c478a944291673bc58a44809c3e5457f11
 
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>

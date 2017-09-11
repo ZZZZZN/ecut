@@ -36,6 +36,7 @@
     </section>
 </div>
 
+<a href="<%=path%>/upload/teachers.xlsx"/>">点击下载模板</a>
 
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
