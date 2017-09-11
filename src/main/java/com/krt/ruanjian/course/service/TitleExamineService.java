@@ -7,6 +7,8 @@ import com.krt.ruanjian.course.mapper.TitleExamineMapper;
 import com.krt.core.base.BaseMapper;
 import com.krt.core.base.BaseServiceImpl;
 
+import java.util.Map;
+
 /**
  * @Description: 审核表（记录学生申请的题目）服务层
  * @author pengYi
@@ -23,4 +25,11 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	public BaseMapper<TitleExamine> getMapper() {
 		return titleExamineMapper;
 	}
+
+	/**
+	 * 修改审核状态
+	 */
+    public int updateStatusById(Map param) {
+		return titleExamineMapper.updateStatusById(param);
+    }
 }

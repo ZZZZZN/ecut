@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                        +'<i class="fa fa-edit fa-btn"></i>申请'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                       /* +' <shiro:hasPermission name="title:delete">'
+			                       /* +'<shiro:hasPermission name="title:delete">'
 			                        +'<button class="btn btn-xs btn-danger deleteBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-trash fa-btn"></i>删除'
 			                        +'</button>'
@@ -167,20 +167,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <%--openDialogView("查看表单","<%=basePath%>ruanjian/course/title_seeUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
-	   	    //申请
+	   	/*    //申请
 	   	    $(document).on("click",".updateBtn",function(){
                 var id = $(this).attr("rid");
                 location.href = "<%=basePath%>ruanjian/course/title_application?id=" + id;
                 <%--openDialog("修改表单","<%=basePath%>ruanjian/course/title_updateUI?id="+id,"800px", "380px","");--%>
-	   	    });
+	   	    });*/
 	   	   
-	   	    //删除
-	   	    $(document).on("click",".deleteBtn",function(){
+	   	    //申请
+	   	    $(document).on("click",".updateBtn",function(){
 	   	    	var id = $(this).attr("rid");
-	   	    	var fun = function(){
 	   	    	 $.ajax({   
 			         type: "POST",
-			         url:"<%=basePath%>ruanjian/course/title_delete?id="+id,
+			         url:"<%=basePath%>ruanjian/course/title_application?id="+id,
 			         beforeSend:function(){
 			         	return loading();
 			         },
@@ -189,7 +188,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         	if(msg.state=='success'){
 			         		top.layer.msg("操作成功");
 			         		refreshTable(datatable);
-			         	}else{
+			         	}
+			         	if (msg.state=='overstep'){
+						 top.layer.msg("超出选题人数上限");
+						 refreshTable(datatable);
+						 }
+			         	else{
 			         		top.layer.msg("操作失败");
 			         	} 
 			         },
@@ -197,8 +201,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        	 closeloading();
 			         }
 			      });
-	   	    	};
-	   	    	confirmx("你确定删除吗？",fun);
 	   	    });
        
 	    }); 

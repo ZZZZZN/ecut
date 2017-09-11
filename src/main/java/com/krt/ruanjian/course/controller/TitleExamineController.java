@@ -63,6 +63,7 @@ public class TitleExamineController extends BaseController {
 		Map user = ShiroUtil.getCurrentUser();
 		Integer authorId = (Integer)user.get("id");
 		para.put("authorId", authorId);
+		para.put("status", 1);
 		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
 		return dt;
 	}
@@ -161,5 +162,55 @@ public class TitleExamineController extends BaseController {
 			rb = ReturnBean.getErrorReturnBean();
 		}
 		return rb;
+	}
+
+	/**
+	 * 审核
+	 * @author pengYi
+	 * @date 2017-9-10
+	 */
+	@RequiresPermissions("titleExamine:passOrFail")
+	@RequestMapping("ruanjian/course/titleExamine_passOrFail")
+	@ResponseBody
+	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
+		ReturnBean rb = null;
+		Map param = new HashMap();
+		param.put("id", id);
+		param.put("status", status);
+		int result = titleExamineService.updateStatusById(param);
+		if (result == 1) {
+			rb = ReturnBean.getSuccessReturnBean();
+			return rb;
+		} else {
+			rb = ReturnBean.getErrorReturnBean();
+			return rb;
+		}
+	}
+
+	/**
+	 * 选题结果页面
+	 */
+	@RequiresPermissions("titleExamine:passList")
+	@RequestMapping("ruanjian/course/titleExamine_passListUI")
+	public String titleExamine_passListtUI() {
+
+		return "ruanjian/course/titleExamine_passListUI";
+	}
+
+	/**
+	 * 返回选题结果集合
+	 */
+	@RequiresPermissions("titleExamine:passList")
+	@RequestMapping("ruanjian/course/titleExamine_passList")
+	@ResponseBody
+	public DataTable titleExamine_passList(Integer start, Integer length, Integer draw,
+									   HttpServletRequest request) {
+		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		Integer authorId = (Integer)user.get("id");
+		para.put("authorId", authorId);
+		para.put("status", 2);
+		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
+		return dt;
 	}
 }
