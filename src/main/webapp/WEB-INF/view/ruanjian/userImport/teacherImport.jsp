@@ -19,7 +19,7 @@
                     <div class="box-header">
                         <h5>教师批量导入</h5>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body"  style="height: 100px">
                         <div class="form-box">
                             <form enctype="multipart/form-data" id="batchUpload" action="ExcelImport/TeacherImport" method="post" class="form-horizontal">
                                 <button class="btn btn-primary btn-sm" id="uploadEventBtn" style="margin-right: 5px; float: left" type="button">选择文件</button>
@@ -31,12 +31,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h5>教师模版下载</h5>
+                    </div>
+                    <div class="box-body" style="height: 100px">
+                        <a href="<%=path%>/upload/teachers.xlsx" style="position: relative; top:20px"/>
+                            <i class="fa fa-file-excel-o" style="margin-right: 10px">&nbsp;teachers.xlsx</i>
+                            点击下载模板
+                            <i class="fa fa-download"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </div>
-
-<a href="<%=path%>/upload/teachers.xlsx"/>">点击下载模板</a>
 
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
