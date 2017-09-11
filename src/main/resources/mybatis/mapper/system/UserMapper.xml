@@ -286,8 +286,7 @@
         WHERE username = #{username}
     </select>
 
-    /*根据学院和专业查询学生名单*/
-    <select id="selectStudentsByInstituteAndMajor" resultMap="java.util.Map">
+    <select id="selectStudentsByInstituteAndMajor" resultType="java.util.Map" parameterType="java.lang.String">
         SELECT
             NAME,
             a.username,
