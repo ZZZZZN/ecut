@@ -121,6 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</label>
 											</td>
 											<td colspan="3">
+												<input type="text" name="suitMajorName" style="display: none;">
 												<c:forEach items="${map}" var="title">
 													<label style="font-weight: normal;"><input type="checkbox" name="suitMajor" value="${title.major_code}">${title.major_name}</label>
 												</c:forEach>
@@ -170,6 +171,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var validateForm;
 
 		function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
+            var name = [];
+            var majorScope = $("input[name='suitMajor']:checked").each(function (index,val) {
+                name.push(val.parentNode.innerText);
+            });
+            var suitMajorName = name.join(',')
+            $("input[name='suitMajorName']").val(suitMajorName);
 			  $.ajax({   
 			         type: "POST",
 			         url: "<%=basePath%>ruanjian/course/title_insert",
