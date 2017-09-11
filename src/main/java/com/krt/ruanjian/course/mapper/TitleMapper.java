@@ -2,6 +2,7 @@ package com.krt.ruanjian.course.mapper;
 
 import com.krt.core.base.BaseMapper;
 import com.krt.ruanjian.course.entity.Title;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -15,5 +16,7 @@ import java.util.Map;
 public interface TitleMapper extends BaseMapper<Title>{
 
     List<Map> selectListStudent (Map para);
+
+    Integer countPassNumber(@Param("id") String id);
 
 }

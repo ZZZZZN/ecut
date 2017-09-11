@@ -10,6 +10,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <jsp:include page="/static/common/head.jsp" flush="true"/>
     <link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
   </head>
+  <style>
+	  input[type="checkbox"] {
+		  -webkit-appearance: none;
+		  vertical-align: middle;
+		  margin: 0 15px 0 15px;
+		  background-color: #fff;
+		  border: 1px solid rgba(0,0,0,0.15);
+		  border-radius: 2px;
+		  display: inline-block;
+		  height: 16px;
+		  width: 16px;
+		  line-height: 16px;
+	  }
+	  input[type='checkbox']:focus{
+		  outline:none;
+	  }
+	  input[type='checkbox']:checked::after{
+		  background-color: #3498db;
+		  border-radius: 2px;
+		  content: "";
+		  display: inline-block;
+		  height: 12px;
+		  width: 12px;
+		  margin: 1px;
+	  }
+  </style>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 		<section class="content">
@@ -18,6 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="box">
 						<div class="box-header">
 							<h5>选题表添加</h5>
+							<span type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" onclick="history.go(-1);" style="float: right; cursor: pointer;">
+                            <i class="fa fa-mail-reply"></i> 返回
+                        </span>
 						</div>
 						<div class="box-body">
 							<div class="form-box">
@@ -92,7 +121,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</label>
 											</td>
 											<td colspan="3" id="majorScope">
-												${title.major_name}
+												<c:forEach items="${map}" var="title">
+													<input type="text" name="suitMajor" style="display: none;">
+													<label style="font-weight: normal;"><input type="checkbox" name="majorCode" value="${title.major_code}">${title.major_name}</label>
+												</c:forEach>
 											</td>
 										</tr>
 										<tr>
@@ -139,24 +171,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    var validateForm;
 	    
 		function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
+			  var majorScope = $("input[name='majorCode']:checked").serialize();
+			  $("input[name='suitMajor']").val(majorScope);
 			  $.ajax({   
 			         type: "POST",
 			         url:"<%=basePath%>ruanjian/course/title_insert",
 			         data:$('#krtForm').serialize(),// 要提交的表单
 			         beforeSend:function(){
-			         	return  validateForm.form() && loading();
+						 console.log($('#krtForm').serialize());
+						 return  validateForm.form() && loading();
 			         },
 			         success: function(msg) {
-			        	 closeloading();
-			         	if(msg.state=='success'){
+			             closeloading();
+			         	 if(msg.state=='success'){
 			         		top.layer.msg("操作成功");
 							window.location.href = "<%=basePath%>ruanjian/course/title_listUI";
 			         		var index = top.layer.getFrameIndex(window.name); //获取窗口索引
 			         		refreshTable();
 			         		top.layer.close(index);
-			         	}else{
+						  }else{
 			         		top.layer.msg("操作失败");
-			         	}
+			         	 }
 			         },
 			         error: function(){
 			        	 closeloading();

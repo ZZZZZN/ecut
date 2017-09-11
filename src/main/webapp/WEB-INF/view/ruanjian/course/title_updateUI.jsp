@@ -18,6 +18,9 @@
 				<div class="box">
 					<div class="box-header">
 						<h5>选题表修改</h5>
+						<span type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" onclick="history.go(-1);" style="float: right; cursor: pointer;">
+                            <i class="fa fa-mail-reply"></i> 返回
+                        </span>
 					</div>
 					<div class="box-body">
 						<div class="form-box">
