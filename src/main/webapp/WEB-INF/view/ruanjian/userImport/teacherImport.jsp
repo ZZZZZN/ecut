@@ -20,6 +20,7 @@
 </form>
 <button type="button" class="btn btn-success btn-sm" id="uploadBtn">上传</button>
 
+<a href="<%=path%>/upload/teachers.xlsx"/>">点击下载模板</a>
 
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
