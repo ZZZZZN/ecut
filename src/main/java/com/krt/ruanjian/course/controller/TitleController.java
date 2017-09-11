@@ -91,7 +91,7 @@ public class TitleController extends BaseController {
 		para.put("userId", userId);
 		para.put("roleCode", roleCode);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
-		//取出list中的data值将专业代码转换成专业代码
+		//取出list中的data值将专业代码转换成专业名称
 		List<HashMap<String, String>> list = dt.getData();
 		for (int i =0; i < list.size(); i++) {
 			String[] array = list.get(i).get("suitMajor").split(",");
