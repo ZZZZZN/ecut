@@ -220,6 +220,8 @@ public class TitleController extends BaseController {
 	@RequestMapping("ruanjian/course/title_updateUI")
 	public String title_updateUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
+		List<Map> map= majorService.selectAll();
+		request.setAttribute("map",map);
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/title_updateUI";
 	}
@@ -259,7 +261,7 @@ public class TitleController extends BaseController {
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
-		String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
 		MajorEnum majorEnum;
 		String newData = "";
 		for (int i = 0; i< array.length; i++) {
@@ -269,8 +271,7 @@ public class TitleController extends BaseController {
 			} else {
 				newData += majorEnum.getName() + ",";
 			}
-		}
-		titleMap.put("suitMajor", newData);
+		}*/
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/title_seeUI";
 	}
