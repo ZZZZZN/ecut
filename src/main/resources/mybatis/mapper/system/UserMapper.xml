@@ -265,7 +265,7 @@
 
     <!-- 根据用户查询用户信息 -->
     <select id="selectByUsername" resultType="java.util.Map">
-		select id, username, password, name, status, roleCode from t_user where username=#{username}
+		select id, username, password, name, status, roleCode, major from t_user where username=#{username}
 	</select>
 
 </mapper>
