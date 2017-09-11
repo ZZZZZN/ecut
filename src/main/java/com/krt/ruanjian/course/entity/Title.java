@@ -22,7 +22,15 @@ public class Title extends BaseEntity {
 	private Integer author;//出题人
 	private Integer dr;//逻辑删除
 	private String ts;//时间戳
+	private String suitMajorName;
 
+
+	public String getSuitMajorName() {
+		return suitMajorName;
+	}
+	public void setSuitMajorName(String suitMajorName) {
+		this.suitMajorName = suitMajorName;
+	}
 	public void setTitle_name(String title_name){
 		this.title_name = title_name;
 	}
