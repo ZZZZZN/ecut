@@ -22,4 +22,7 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
 
     List<Map> selectByApplicant(Map param);
 
+    List<Map> getTitleByMajor(Map para);
+
+    List<Map> getTitlePassAndFail(Map para);
 }

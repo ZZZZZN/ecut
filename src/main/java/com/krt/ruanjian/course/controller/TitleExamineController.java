@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.krt.core.bean.DataTable;
 import com.krt.core.bean.ReturnBean;
 import com.krt.core.util.ShiroUtil;
+import com.krt.ruanjian.course.entity.Title;
+import com.krt.ruanjian.course.service.TitleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,9 @@ public class TitleExamineController extends BaseController {
 
 	@Resource
 	private TitleExamineService titleExamineService;
+
+	@Resource
+	private TitleService titleService;
 
 	/**
 	 * 审核表（记录学生申请的题目）管理页
@@ -165,7 +170,7 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
-	 * 审核
+	 * 教师审核
 	 * @author pengYi
 	 * @date 2017-9-10
 	 */
@@ -213,4 +218,76 @@ public class TitleExamineController extends BaseController {
 		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
 		return dt;
 	}
+
+	@RequiresPermissions("titleExamine:bossList")
+	@RequestMapping("ruanjian/course/boss/titleExamine_bossListUI")
+	public String titleExamine_bossListUI() {
+
+		return "ruanjian/course/boss/titleExamine_bossListUI";
+	}
+
+	/**
+	 * 系主任查看该专业老师上传题目
+	 */
+	@RequiresPermissions("titleExamine:bossList")
+	@RequestMapping("ruanjian/course/boss/titleExamine_bossList")
+	@ResponseBody
+	public DataTable titleExamine_bossList(Integer start, Integer length, Integer draw,
+									   HttpServletRequest request) {
+		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		//获取系主任所在专业查看该范围内的专业
+		String major = (String)user.get("major");
+		para.put("flag", "1");
+		para.put("major", major);
+		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
+		return dt;
+	}
+	/**
+	 * 系主任审核
+	 * @author pengYi
+	 * @date 2017-9-11
+	 */
+	@RequiresPermissions("titleExamine:anoPassOrFail")
+	@RequestMapping("ruanjian/course/boss/titleExamine_anoPassOrFail")
+	@ResponseBody
+	public ReturnBean titleExamine_anoPassOrFail(Integer id, Integer flag) {
+		ReturnBean rb = null;
+		Title title = new Title();
+		title.setId(id);
+		title.setFlag(flag);
+		try {
+			titleService.update(title);
+			rb = ReturnBean.getSuccessReturnBean();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rb;
+	}
+
+	@RequiresPermissions("titleExamine:bossResultList")
+	@RequestMapping("ruanjian/course/boss/titleExamine_bossResultListUI")
+	public String titleExamine_bossResultListUI() {
+
+		return "ruanjian/course/boss/titleExamine_bossResultListUI";
+	}
+
+	/**
+	 * 系主任审题结果
+	 */
+	@RequiresPermissions("titleExamine:bossResultList")
+	@RequestMapping("ruanjian/course/boss/titleExamine_bossResultList")
+	@ResponseBody
+	public DataTable titleExamine_bossResultList(Integer start, Integer length, Integer draw,
+										   HttpServletRequest request) {
+		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		//获取系主任所在专业查看该范围内的专业
+		String major = (String)user.get("major");
+		para.put("major", major);
+		para.put("flag",null);
+		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
+		return dt;
+	}
+
 }

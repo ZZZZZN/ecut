@@ -95,10 +95,8 @@
 												适用专业
 											</label>
 										</td>
-										<td colspan="3">
-											<c:forEach items="${map}" var="title">
-												<label style="font-weight: normal;"><input type="checkbox" name="suitMajor" value="${title.major_code}">${title.major_name}</label>
-											</c:forEach>
+										<td colspan="3" id="major_td">
+											<div><span>${ title.suitMajorName }</span><a onclick="doEdit()" class="btn btn-warning" style="display: block;font-size: 12px;padding: 2px 8px;margin-top: 5px;width: 70px;">重新选择</a></div>
 										</td>
 									</tr>
 									<tr>
@@ -122,8 +120,9 @@
 										</td>
 									</tr>
 								</table>
-								<button onclick="doSubmit()" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
+								<input type="hidden" name="id" id="id" value="${ title.id }">
 							</form>
+                            <button onclick="doSubmit()" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
 						</div>
 					</div>
 				</div>
@@ -146,11 +145,39 @@
 
     var validateForm;
 
-//    function checkNum(elm){
-//        return /\d+/.test(elm.val())
-//    }
+    function checkNum(elm){
+        return /\d+/.test(elm.val())
+    }
+
+    function doEdit() {
+        var node = document.getElementById("major_td");
+        var oldDiv = node.getElementsByTagName('div')[0];
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = '<input type="text" name="suitMajorName" style="display: none;"><c:forEach items="${map}" var="title">\n' +
+            '\t\t\t\t\t\t\t\t\t\t\t\t<label style="font-weight: normal;"><input type="checkbox" name="suitMajor" value="${title.major_code}">${title.major_name}</label>\n' +
+            '\t\t\t\t\t\t\t\t\t\t\t</c:forEach><a onclick="doCancel()" class="btn btn-danger" style="display: block;font-size: 12px;padding: 2px 8px;margin-left: 15px;margin-top: 5px;width: 45px;">取消</a>';
+        node.replaceChild(newDiv,oldDiv);
+    }
+
+    function doCancel() {
+        var node = document.getElementById("major_td");
+        var oldDiv = node.getElementsByTagName('div')[0];
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = '<span>${ title.suitMajorName }</span><a onclick="doEdit()" class="btn btn-warning" style="display: block;font-size: 12px;padding: 2px 8px;margin-top: 5px;width: 70px;">重新选择</a>';
+        node.replaceChild(newDiv,oldDiv);
+    }
 
     function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
+		var majorInput = $("input[name='suitMajorName']");
+		console.log(majorInput);
+		if(majorInput.length){
+            var name = [];
+            var majorScope = $("input[name='suitMajor']:checked").each(function (index,val) {
+                name.push(val.parentNode.innerText);
+            });
+            var suitMajorName = name.join(',')
+            $("input[name='suitMajorName']").val(suitMajorName);
+		}
         if(checkNum($('#limit_person'))) {
             $.ajax({
                 type: "POST",
