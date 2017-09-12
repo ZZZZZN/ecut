@@ -163,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			             closeloading();
 			         	 if(msg.state=='success'){
 			         		top.layer.msg("操作成功");
-							window.location.href = "<%=basePath%>ruanjian/course/title_listUI";
+							location.href = "<%=basePath%>ruanjian/course/title_listUI";
 			         		var index = top.layer.getFrameIndex(window.name); //获取窗口索引
 			         		refreshTable();
 			         		top.layer.close(index);
