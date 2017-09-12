@@ -281,7 +281,8 @@
             password,
             name,
             status,
-            roleCode
+            roleCode,
+            major
         FROM t_user
         WHERE username = #{username}
     </select>
