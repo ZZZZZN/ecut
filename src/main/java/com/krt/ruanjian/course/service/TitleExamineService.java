@@ -1,12 +1,17 @@
 package com.krt.ruanjian.course.service;
 
 import javax.annotation.Resource;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.krt.core.bean.DataTable;
 import org.springframework.stereotype.Service;
 import com.krt.ruanjian.course.entity.TitleExamine;
 import com.krt.ruanjian.course.mapper.TitleExamineMapper;
 import com.krt.core.base.BaseMapper;
 import com.krt.core.base.BaseServiceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,4 +37,20 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
     public int updateStatusById(Map param) {
 		return titleExamineMapper.updateStatusById(param);
     }
+
+
+	public DataTable selectByApplicant(Integer start, Integer length, Integer draw, Map para) {
+		DataTable dataTable = new DataTable();
+		// 下面两句要连着写在一起，就可以实现分页
+		dataTable.setLength(length);
+		dataTable.setPageNum(start);
+		PageHelper.startPage(dataTable.getPageNum(), dataTable.getLength());
+		List<Map> list = titleExamineMapper.selectByApplicant(para);
+		// 下面这句是为了获取分页信息，比如记录总数等等
+		PageInfo<Map> pageInfo = new PageInfo<Map>(list);
+		dataTable.setData(list);
+		dataTable.setRecordsTotal(Long.valueOf(dataTable.getLength()));
+		dataTable.setRecordsFiltered(pageInfo.getTotal());
+		return dataTable;
+	}
 }
