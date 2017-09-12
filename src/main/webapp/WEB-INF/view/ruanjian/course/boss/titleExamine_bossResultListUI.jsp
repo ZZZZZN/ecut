@@ -116,7 +116,7 @@
                         return	' <shiro:hasPermission name="title:see">'
 								+'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
 								+'<i class="fa fa-eye fa-btn"></i>查看'
-								+'</button>'
+								+'</button>';
 								/*+'</shiro:hasPermission>'
 								+'<shiro:hasPermission name="titleExamine:anoPassOrFail">'
 								+'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
@@ -127,7 +127,7 @@
 								+'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
 								+'<i class="fa fa-remove fa-btn"></i>不通过'
 								+'</button>'
-								+'</shiro:hasPermission>'*/;
+								+'</shiro:hasPermission>'*/
                     }
                 }
             ],
