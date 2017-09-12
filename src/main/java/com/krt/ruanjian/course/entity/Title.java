@@ -20,6 +20,9 @@ public class Title extends BaseEntity {
 	private String meaning_target;//课程意义与目标
 	private String condition_work;//学生基本条件和前期工作
 	private Integer author;//出题人
+	private Integer flag;
+
+
 	private Integer dr;//逻辑删除
 	private String ts;//时间戳
 
@@ -91,6 +94,13 @@ public class Title extends BaseEntity {
 		this.author = author;
 	}
 
+	public Integer getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 	public Integer getDr(){
 		return this.dr;
 	}
