@@ -20,4 +20,7 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
      */
     int updateStatusById(Map param);
 
+    List<Map> getTitleByMajor(Map para);
+
+    List<Map> getTitlePassAndFail(Map para);
 }
