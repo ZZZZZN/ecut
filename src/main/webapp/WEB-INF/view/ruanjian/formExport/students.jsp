@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>选题表管理</h5>
+								<h5>学生信息导出</h5>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -38,13 +38,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th>课题名称</th>
-											<th>课题类型</th>
-											<th>课题来源</th>
-											<th>适用专业</th>
-											<th>适用实训所在地</th>
-											<th>上限人数</th>
-											<th>操作</th>
+											<th>姓名</th>
+											<th>学号</th>
+											<th>班级</th>
+											<th>学院</th>
+											<th>专业</th>
+											<th>实训地点</th>
+											<th>所在企业</th>
+											<th>备注</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -90,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/course/title_list",
+	                "url": "<%=basePath%>ruanjian/formExport/students_export",
 	                "type": "post",
 	                "data": function (d) {
 	                
@@ -98,13 +99,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "7%"},
-					{"data": "title_name", "width": "18%"},
-					{"data": "title_type", "width": "10%"},
-					{"data": "title_source", "width": "10%"},
-					{"data": "suitMajorName", "width": "13%"},
-					{"data": "suitScope", "width": "14%"},
-					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "18%"},
+					{"data": "name", "width": "18%"},
+					{"data": "username", "width": "10%"},
+					{"data": "class", "width": "10%"},
+					{"data": "institute", "width": "13%"},
+					{"data": "major", "width": "14%"},
+					{"data": "training_site", "width": "10%"},
+					{"data": "company", "width": "18%"},
+					{"data": "note", "width": "18%"},
 	            ],
 	            "columnDefs": [
 	                {

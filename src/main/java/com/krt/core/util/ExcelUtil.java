@@ -1,6 +1,8 @@
 package com.krt.core.util;
 
 import com.krt.admin.system.entity.User;
+import com.krt.ruanjian.course.mapper.MajorMapper;
+import com.krt.ruanjian.course.service.MajorService;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -10,10 +12,12 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by WangXin on 2017/9/8.
@@ -34,6 +38,7 @@ public class ExcelUtil {
     public int getTotalCells() {  return totalCells;}
     //获取错误信息
     public String getErrorInfo() { return errorMsg; }
+
 
     /**
      * 读取教师excel表的数据
@@ -92,12 +97,19 @@ public class ExcelUtil {
                         }
                     }else if (c == 4){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String institute = String.valueOf(cell.getNumericCellValue());
+                            user.setInstitute(institute.substring(0, institute.length()-2>0?institute.length()-2:1));//学院
+                        }else{
+                            user.setInstitute(cell.getStringCellValue());//学院
+                        }
+                    }else if (c == 5){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String department = String.valueOf(cell.getNumericCellValue());
                             user.setDepartment(department.substring(0, department.length()-2>0?department.length()-2:1));//所在系
                         }else{
                             user.setDepartment(cell.getStringCellValue());//所在系
                         }
-                    }else if (c == 5){
+                    }else if (c == 6){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注
@@ -163,26 +175,33 @@ public class ExcelUtil {
                         }
                     }else if (c == 3){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String institute = String.valueOf(cell.getNumericCellValue());
+                            user.setInstitute(institute.substring(0, institute.length()-2>0?institute.length()-2:1));//学院
+                        }else{
+                            user.setInstitute(cell.getStringCellValue());//学院
+                        }
+                    }else if (c == 4){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String major = String.valueOf(cell.getNumericCellValue());
                             user.setMajor(major.substring(0, major.length()-2>0?major.length()-2:1));//专业
                         }else{
                             user.setMajor(cell.getStringCellValue());//专业
                         }
-                    }else if (c == 4){
+                    }else if (c == 5){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String training_site = String.valueOf(cell.getNumericCellValue());
                             user.setTraining_site(training_site.substring(0, training_site.length()-2>0?training_site.length()-2:1));//实训地点
                         }else{
                             user.setTraining_site(cell.getStringCellValue());//实训地点
                         }
-                    }else if (c == 5){
+                    }else if (c == 6){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String company = String.valueOf(cell.getNumericCellValue());
                             user.setCompany(company.substring(0, company.length()-2>0?company.length()-2:1));//所在企业
                         }else{
                             user.setCompany(cell.getStringCellValue());//所在企业
                         }
-                    }else if (c == 6){
+                    }else if (c == 7){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注

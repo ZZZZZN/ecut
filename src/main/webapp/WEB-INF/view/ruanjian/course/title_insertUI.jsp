@@ -9,33 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <jsp:include page="/static/common/head.jsp" flush="true"/>
     <link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
+	  <link rel="stylesheet" href="<%=basePath%>static/skin/css/checkbox.css">
   </head>
-  <style>
-	  input[type="checkbox"] {
-		  -webkit-appearance: none;
-		  vertical-align: middle;
-		  margin: 0 15px 0 15px;
-		  background-color: #fff;
-		  border: 1px solid rgba(0,0,0,0.15);
-		  border-radius: 2px;
-		  display: inline-block;
-		  height: 16px;
-		  width: 16px;
-		  line-height: 16px;
-	  }
-	  input[type='checkbox']:focus{
-		  outline:none;
-	  }
-	  input[type='checkbox']:checked::after{
-		  background-color: #3498db;
-		  border-radius: 2px;
-		  content: "";
-		  display: inline-block;
-		  height: 12px;
-		  width: 12px;
-		  margin: 1px;
-	  }
-  </style>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 		<section class="content">

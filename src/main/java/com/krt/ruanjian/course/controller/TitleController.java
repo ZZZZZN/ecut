@@ -92,7 +92,7 @@ public class TitleController extends BaseController {
 		para.put("roleCode", roleCode);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
 		//取出list中的data值将专业代码转换成专业名称
-		List<HashMap<String, String>> list = dt.getData();
+		/*List<HashMap<String, String>> list = dt.getData();
 		for (int i =0; i < list.size(); i++) {
 			String[] array = list.get(i).get("suitMajor").split(",");
 			String newData = "";
@@ -106,7 +106,7 @@ public class TitleController extends BaseController {
 				}
 			}
 			list.get(i).put("suitMajor", newData);
-		}
+		}*/
 		return dt;
 	}
 	/**
@@ -128,8 +128,9 @@ public class TitleController extends BaseController {
 								HttpServletRequest request) {
 		Map para = new HashMap();
         Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
-        para.put("major",info.get("major"));
+		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
         para.put("id",info.get("id"));
+        para.put("major",info.get("major"));
 		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
@@ -220,6 +221,8 @@ public class TitleController extends BaseController {
 	@RequestMapping("ruanjian/course/title_updateUI")
 	public String title_updateUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
+		List<Map> map= majorService.selectAll();
+		request.setAttribute("map",map);
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/title_updateUI";
 	}
@@ -259,7 +262,7 @@ public class TitleController extends BaseController {
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
-		String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
 		MajorEnum majorEnum;
 		String newData = "";
 		for (int i = 0; i< array.length; i++) {
@@ -269,8 +272,7 @@ public class TitleController extends BaseController {
 			} else {
 				newData += majorEnum.getName() + ",";
 			}
-		}
-		titleMap.put("suitMajor", newData);
+		}*/
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/title_seeUI";
 	}

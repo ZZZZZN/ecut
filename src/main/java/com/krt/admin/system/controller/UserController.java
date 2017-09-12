@@ -73,6 +73,33 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 学生信息导出页面跳转
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/students")
+    public String student_list( HttpServletRequest request) {
+        return "ruanjian/formExport/students";
+    }
+
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/students_export")
+    @ResponseBody
+    public DataTable student_list_Export(Integer start, Integer length, Integer draw, HttpServletRequest request) {
+//        String institute = request.getParameter("institute");
+//        String major_code = request.getParameter("major_code");
+        start = 0;
+        length = 10;
+        draw = 1;
+        String institute = "软件学院";
+        String major_code = "080902";
+        DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
+        return dt;
+    }
+
+
+    /**
      * 新增用户页
      *
      * @return

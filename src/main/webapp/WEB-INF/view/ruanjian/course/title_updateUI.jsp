@@ -9,6 +9,7 @@
 <head>
 	<jsp:include page="/static/common/head.jsp" flush="true"/>
 	<link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
+	<link rel="stylesheet" href="<%=basePath%>static/skin/css/checkbox.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -32,7 +33,7 @@
 												课题名称
 											</label>
 										</td>
-										<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control" value="${title.title_name}"></td>
+										<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control" value="${title.title_name}" required></td>
 										<td class="active width-15">
 											<label class="pull-right">
 												课题类型
@@ -70,18 +71,6 @@
 										</td>
 										<td class="active width-15">
 											<label class="pull-right">
-												适用专业
-											</label>
-										</td>
-										<td colspan="3">
-											<c:forEach items="${map}" var="title">
-												<label style="font-weight: normal;"><input type="checkbox" name="suitMajor" value="${title.major_code}">${title.major_name}</label>
-											</c:forEach>
-										</td>
-									</tr>
-									<tr>
-										<td class="active width-15">
-											<label class="pull-right">
 												适用实训所在地
 											</label>
 										</td>
@@ -98,7 +87,19 @@
 												上限人数
 											</label>
 										</td>
-										<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" AUTOCOMPLETE="off"></td>
+										<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" AUTOCOMPLETE="off" value="${title.limit_person}" required></td>
+									</tr>
+									<tr>
+										<td class="active width-15">
+											<label class="pull-right">
+												适用专业
+											</label>
+										</td>
+										<td colspan="3">
+											<c:forEach items="${map}" var="title">
+												<label style="font-weight: normal;"><input type="checkbox" name="suitMajor" value="${title.major_code}">${title.major_name}</label>
+											</c:forEach>
+										</td>
 									</tr>
 									<tr>
 										<td class="active width-15">
@@ -107,7 +108,7 @@
 											</label>
 										</td>
 										<td colspan="3">
-											<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control">${title.meaning_target}</textarea>
+											<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control"  required>${title.meaning_target}</textarea>
 										</td>
 									</tr>
 									<tr>
@@ -117,7 +118,7 @@
 											</label>
 										</td>
 										<td colspan="3">
-											<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control">${title.condition_work}</textarea>
+											<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control" required>${title.condition_work}</textarea>
 										</td>
 									</tr>
 								</table>
@@ -145,30 +146,38 @@
 
     var validateForm;
 
+//    function checkNum(elm){
+//        return /\d+/.test(elm.val())
+//    }
+
     function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
-        $.ajax({
-            type: "POST",
-            url:"<%=basePath%>ruanjian/course/title_update",
-            data:$('#krtForm').serialize(),// 要提交的表单
-            beforeSend:function(){
-                return  validateForm.form() && loading();
-            },
-            success: function(msg) {
-                closeloading();
-                if(msg.state=='success'){
-                    top.layer.msg("操作成功");
-                    window.location.href = "<%=basePath%>ruanjian/course/title_listUI";
-                    var index = top.layer.getFrameIndex(window.name); //获取窗口索引
-                    refreshTable();
-                    top.layer.close(index);
-                }else{
-                    top.layer.msg("操作失败");
+        if(checkNum($('#limit_person'))) {
+            $.ajax({
+                type: "POST",
+                url: "<%=basePath%>ruanjian/course/title_update",
+                data: $('#krtForm').serialize(),// 要提交的表单
+                beforeSend: function () {
+                    return validateForm.form() && loading();
+                },
+                success: function (msg) {
+                    closeloading();
+                    if (msg.state == 'success') {
+                        top.layer.msg("操作成功");
+                        location.href = "<%=basePath%>ruanjian/course/title_listUI";
+                        var index = top.layer.getFrameIndex(window.name); //获取窗口索引
+                        refreshTable();
+                        top.layer.close(index);
+                    } else {
+                        top.layer.msg("操作失败");
+                    }
+                },
+                error: function () {
+                    closeloading();
                 }
-            },
-            error: function(){
-                closeloading();
-            }
-        });
+            });
+        }else{
+            top.layer.msg("人数上限必须为数字！");
+		}
     }
 
     $(function(){

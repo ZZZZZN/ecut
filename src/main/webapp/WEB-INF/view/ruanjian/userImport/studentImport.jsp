@@ -20,7 +20,7 @@
                     <div class="box-header">
                         <h5>学生批量导入</h5>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" style="height: 100px">
                         <div class="form-box">
                             <form enctype="multipart/form-data" id="batchUpload" action="ExcelImport/StudentImport" method="post" class="form-horizontal">
                                 <button class="btn btn-primary btn-sm" id="uploadEventBtn" type="button" style="margin-right: 5px; float: left">选择文件</button>
@@ -30,6 +30,18 @@
                             </form>
                             <button type="button" class="btn btn-primary btn-sm" id="uploadBtn" style="margin-left: 20px">上传</button>
                         </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h5>学生模版下载</h5>
+                    </div>
+                    <div class="box-body" style="height: 100px">
+                        <a href="<%=path%>/upload/students.xlsx"  style="position: relative; top:20px"/>
+                            <i class="fa fa-file-excel-o" style="margin-right: 10px">&nbsp;students.xlsx</i>
+                            点击下载模板
+                            <i class="fa fa-download"></i>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -2,11 +2,13 @@ package com.krt.admin.system.service;
 
 import com.krt.admin.system.entity.User;
 import com.krt.core.util.ExcelUtil;
+import com.krt.ruanjian.course.service.MajorService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by WangXin on 2017/9/7.
@@ -16,6 +18,9 @@ public class UserImportService {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private MajorService majorService;
     /**
      * 将读出的教师excel数据存到数据库
      * @param file
@@ -66,7 +71,11 @@ public class UserImportService {
                     } else {
                         userList.get(i).setRoleCode("stu_out");
                     }
-                    userService.insert(userList.get(i));;
+                    if (userList.get(i).getMajor() != null) {
+                        Map map = majorService.selectMajorCodeByMajorName(userList.get(i).getMajor());
+                        userList.get(i).setMajor((String) map.get("major_code"));
+                    }
+                    userService.insert(userList.get(i));
                 }
                 result = "上传成功";
             }else{

@@ -39,6 +39,7 @@
 			<if test="flag != null"> flag, </if>
 			<if test="dr != null"> dr, </if>
 			<if test="ts != null"> ts, </if>
+			<if test="suitMajorName!=null">suitMajorName,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null"> #{id,jdbcType=INTEGER}, </if>
@@ -54,6 +55,7 @@
 			<if test="flag != null"> #{flag,jdbcType=INTEGER}, </if>
 			<if test="dr != null"> #{dr,jdbcType=INTEGER}, </if>
 			<if test="ts != null"> #{ts,jdbcType=VARCHAR}, </if>
+			<if test="suitMajorName!=null">#{suitMajorName,jdbcType=VARCHAR},</if>
 		</trim>
 	</insert>
 	
@@ -85,7 +87,7 @@
 	<!-- 根据ID查询选题表 -->
 	<select id="selectById" resultType="java.util.Map">
 		select
-			 id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,dr,ts,author
+			 id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,dr,ts,author,suitMajorName
 		from title
 		where id = #{id,jdbcType=INTEGER}
 	</select>
