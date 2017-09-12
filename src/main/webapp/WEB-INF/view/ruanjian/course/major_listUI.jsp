@@ -95,13 +95,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "5%"},
-					{"data": "major_name", "width": "30%"},
-					{"data": "major_code", "width": "30%"},
-                    {"data": "institute", "width": "30%"},
+					{"data": "major_name", "width": "20%"},
+					{"data": "major_code", "width": "20%"},
+                    {"data": "institute", "width": "20%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 3,
+	                    "targets": 4,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
