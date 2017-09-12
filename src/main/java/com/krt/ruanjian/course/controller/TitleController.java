@@ -167,6 +167,7 @@ public class TitleController extends BaseController {
 					, DateUtil.getIntenetTime()));
 			title.setAuthor((Integer)user.get("id"));
 			title.setDr(0);
+			title.setFlag(1);
 			titleService.insert(title);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {

@@ -13,6 +13,7 @@ public class Major extends BaseEntity {
 
 	private String major_name;//专业名称
 	private String major_code;//专业代码
+	private String institute;//学院
 
 	public void setMajor_name(String major_name){
 		this.major_name = major_name;
@@ -27,5 +28,13 @@ public class Major extends BaseEntity {
 
 	public String getMajor_code(){
 		return this.major_code;
+	}
+
+	public String getInstitute() {
+		return institute;
+	}
+
+	public void setInstitute(String institute) {
+		this.institute = institute;
 	}
 }

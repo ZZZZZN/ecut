@@ -98,5 +98,40 @@
 		set status = #{status},dr = 1
 		where id = #{id}
 	</update>
+
+	<!-- 带参数查询审核表（记录学生申请的题目）列表 -->
+	<select id="getTitleByMajor" resultType="java.util.Map">
+		SELECT
+			*, CASE
+		WHEN flag = '2' THEN
+			'审核通过'
+		WHEN flag = '3' THEN
+			'审核未通过'
+		ELSE
+			'未审核'
+		END 审核状态
+		FROM
+			title
+		WHERE
+		    suitMajor like CONCAT('%',#{major},'%')
+		AND flag = 1
+	</select>
+	<select id="getTitlePassAndFail" resultType="java.util.Map">
+		SELECT
+		*, CASE
+		WHEN flag = '2' THEN
+		'审核通过'
+		WHEN flag = '3' THEN
+		'审核未通过'
+		ELSE
+		'未审核'
+		END 审核状态
+		FROM
+		title
+		WHERE
+		suitMajor like CONCAT('%',#{major},'%')
+		AND flag != 1
+	</select>
+
 </mapper>
 

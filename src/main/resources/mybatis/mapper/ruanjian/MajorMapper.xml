@@ -6,10 +6,11 @@
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="major_name" jdbcType="VARCHAR" property="major_name" />
 		<result column="major_code" jdbcType="VARCHAR" property="major_code" />
+		<result column="institute" jdbcType="VARCHAR" property="institute" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,major_name,major_code
+		id,major_name,major_code,institute
 	</sql>
 
 	<!-- 添加专业表 -->
@@ -19,19 +20,21 @@
 			<if test="id != null"> id, </if>
 			<if test="major_name != null"> major_name, </if>
 			<if test="major_code != null"> major_code, </if>
+			<if test="institute != null"> institute, </if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null"> #{id,jdbcType=INTEGER}, </if>
 			<if test="major_name != null"> #{major_name,jdbcType=VARCHAR}, </if>
 			<if test="major_code != null"> #{major_code,jdbcType=VARCHAR}, </if>
+			<if test="institute != null"> #{institute,jdbcType=VARCHAR}, </if>
 		</trim>
 	</insert>
-	
+
 	<!-- 删除专业表 -->
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from major where id = #{id,jdbcType=INTEGER}
 	</delete>
-	
+
 	<!-- 修改专业表 -->
 	<update id="update" parameterType="com.krt.ruanjian.course.entity.Major">
 		update major
@@ -39,14 +42,15 @@
 			<if test="id != null"> id = #{id,jdbcType=INTEGER}, </if>
 			<if test="major_name != null"> major_name = #{major_name,jdbcType=VARCHAR}, </if>
 			<if test="major_code != null"> major_code = #{major_code,jdbcType=VARCHAR}, </if>
+			<if test="institute != null"> institute = #{institute,jdbcType=VARCHAR}, </if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	
+
 	<!-- 根据ID查询专业表 -->
 	<select id="selectById" resultType="java.util.Map">
 		select
-			 id,major_name,major_code
+			 id,major_name,major_code,institute
 		from major
 		where id = #{id,jdbcType=INTEGER}
 	</select>
@@ -54,14 +58,14 @@
 	<!-- 查询专业表列表 -->
 	<select id="selectList" resultType="java.util.Map">
 		select
-			id,major_name,major_code 
+			id,major_name,major_code,institute
 		from major
 	</select>
-	
+
 	<!-- 带参数查询专业表列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
 		select
-			id,major_name,major_code 
+			id,major_name,major_code,institute
 		from major where 1=1
 	</select>
 	<!--根据major名称查询code-->

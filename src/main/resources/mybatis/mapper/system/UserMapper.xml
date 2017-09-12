@@ -281,7 +281,8 @@
             password,
             name,
             status,
-            roleCode
+            roleCode,
+            major
         FROM t_user
         WHERE username = #{username}
     </select>
@@ -293,6 +294,7 @@
             stu_class,
             training_site,
             company,
+            a.institute,
             note,
             b.major_name
         FROM

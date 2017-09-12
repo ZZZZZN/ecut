@@ -13,12 +13,13 @@
 		<result column="meaning_target" jdbcType="VARCHAR" property="meaning_target" />
 		<result column="condition_work" jdbcType="VARCHAR" property="condition_work" />
 		<result column="author" jdbcType="INTEGER" property="author" />
+		<result column="flag" jdbcType="INTEGER" property="flag" />
 		<result column="dr" jdbcType="INTEGER" property="dr" />
 		<result column="ts" jdbcType="VARCHAR" property="ts" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,author,dr,ts
+		id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,author,flag,dr,ts
 	</sql>
 
 	<!-- 添加选题表 -->
@@ -35,6 +36,7 @@
 			<if test="meaning_target != null"> meaning_target, </if>
 			<if test="condition_work != null"> condition_work, </if>
 			<if test="author != null"> author, </if>
+			<if test="flag != null"> flag, </if>
 			<if test="dr != null"> dr, </if>
 			<if test="ts != null"> ts, </if>
 			<if test="suitMajorName!=null">suitMajorName,</if>
@@ -50,6 +52,7 @@
 			<if test="meaning_target != null"> #{meaning_target,jdbcType=VARCHAR}, </if>
 			<if test="condition_work != null"> #{condition_work,jdbcType=VARCHAR}, </if>
 			<if test="author != null"> #{author,jdbcType=INTEGER}, </if>
+			<if test="flag != null"> #{flag,jdbcType=INTEGER}, </if>
 			<if test="dr != null"> #{dr,jdbcType=INTEGER}, </if>
 			<if test="ts != null"> #{ts,jdbcType=VARCHAR}, </if>
 			<if test="suitMajorName!=null">#{suitMajorName,jdbcType=VARCHAR},</if>
@@ -74,6 +77,7 @@
 			<if test="limit_person != null"> limit_person = #{limit_person,jdbcType=VARCHAR}, </if>
 			<if test="meaning_target != null"> meaning_target = #{meaning_target,jdbcType=VARCHAR}, </if>
 			<if test="condition_work != null"> condition_work = #{condition_work,jdbcType=VARCHAR}, </if>
+			<if test="flag != null"> flag = #{flag,jdbcType=INTEGER}, </if>
 			<if test="dr != null"> dr = #{dr,jdbcType=INTEGER}, </if>
 			<if test="ts != null"> ts = #{ts,jdbcType=VARCHAR}, </if>
 		</set>
