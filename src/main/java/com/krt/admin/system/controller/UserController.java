@@ -10,6 +10,7 @@ import com.krt.core.bean.ReturnBean;
 import com.krt.core.config.Constant;
 import com.krt.core.util.AESvbjavajs;
 import com.krt.core.util.ShiroUtil;
+import com.krt.ruanjian.course.service.MajorService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,8 @@ public class UserController extends BaseController {
     @Resource
     private RoleService roleService;
 
+    @Resource
+    private MajorService majorService;
 
     /**
      * 用户管理页
@@ -73,27 +78,100 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 学生信息导出页面跳转
+     * 软件学院学生信息导出页面跳转
      * @param request
      * @return
      */
     @RequiresPermissions("user:list")
     @RequestMapping("ruanjian/formExport/students")
     public String student_list( HttpServletRequest request) {
+        List<Map> map0= majorService.selectAll();
+        List<Map> map = new ArrayList<>();
+        for (int i = 0; i < map0.size(); i++) {
+            if (map0.get(i).get("institute").toString().contains("软件")) {
+                map.add(map0.get(i));
+            }
+        }
+        request.setAttribute("map",map);
         return "ruanjian/formExport/students";
     }
 
+    /**
+     * 信工学院学生信息导出页面跳转
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/students_xg")
+    public String student_list_xg( HttpServletRequest request) {
+        List<Map> map0= majorService.selectAll();
+        List<Map> map = new ArrayList<>();
+        for (int i = 0; i < map0.size(); i++) {
+            if (map0.get(i).get("institute").toString().contains("信工")) {
+                map.add(map0.get(i));
+            }
+        }
+        request.setAttribute("map",map);
+        return "ruanjian/formExport/students_xg";
+    }
+
+
+    /**
+     * 软件学院学生信息搜索
+     * @param start
+     * @param length
+     * @param draw
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @RequiresPermissions("user:list")
     @RequestMapping("ruanjian/formExport/students_export")
     @ResponseBody
-    public DataTable student_list_Export(Integer start, Integer length, Integer draw, HttpServletRequest request) {
+    public DataTable student_list_Export(Integer start, Integer length, Integer draw, HttpServletRequest request) throws UnsupportedEncodingException {
 //        String institute = request.getParameter("institute");
-//        String major_code = request.getParameter("major_code");
-        start = 0;
-        length = 10;
-        draw = 1;
+        String major_name = null;
+        if (request.getParameter("major_name") != null && !"".equals(request.getParameter("major_name"))) {
+            major_name = new String(request.getParameter("major_name").getBytes("iso-8859-1"), "utf-8");
+        }
+//        start = 0;
+//        length = 10;
+//        draw = 1;
         String institute = "软件学院";
-        String major_code = "080902";
+        String major_code = "";
+        if (major_name !=null&&!"".equals(major_name)) {
+            major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
+        }else{
+            major_code = "080902";
+        }
+        DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
+        return dt;
+    }
+
+    /**
+     * 信工学院学生信息搜索
+     * @param start
+     * @param length
+     * @param draw
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/students_xg_export")
+    @ResponseBody
+    public DataTable student_xg_list_Export(Integer start, Integer length, Integer draw, HttpServletRequest request) throws UnsupportedEncodingException {
+        String major_name = null;
+        if (request.getParameter("major_name") != null && !"".equals(request.getParameter("major_name"))) {
+            major_name = new String(request.getParameter("major_name").getBytes("iso-8859-1"), "utf-8");
+        }
+        String institute = "信工学院";
+        String major_code = "";
+        if (major_name !=null&&!"".equals(major_name)) {
+            major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
+        }else{
+            major_code = "080703";
+        }
         DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
         return dt;
     }
