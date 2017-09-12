@@ -144,7 +144,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
 	
 	    var validateForm;
-
 		function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
             var name = [];
             var majorScope = $("input[name='suitMajor']:checked").each(function (index,val) {
