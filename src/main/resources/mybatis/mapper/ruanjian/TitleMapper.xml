@@ -118,11 +118,12 @@
 		title
 		 where
 		FIND_IN_SET(#{major},title.suitMajor)
+		AND flag='2'
         AND ! FIND_IN_SET(
 	title.id,
 	(
 		SELECT
-			GROUP_CONCAT(a.title_id)
+			IFNULL(GROUP_CONCAT(a.title_id),'')
 		FROM
 			title_examine a
 		WHERE
