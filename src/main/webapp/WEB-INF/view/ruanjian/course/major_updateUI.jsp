@@ -21,13 +21,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       							专业名称
       						</label>
       					</td>
-      					<td class="width-35"><input type="text" name="major_name" id="major_name" value="${major.major_name}" class="form-control"></td>
+      					<td class="width-35"><input type="text" name="major_name" id="major_name" value="${major.major_name}" class="form-control" required></td>
 					 	 <td class="active width-15">
       						<label class="pull-right">
       							专业代码
       						</label>
       					</td>
-      					<td class="width-35"><input type="text" name="major_code" id="major_code" value="${major.major_code}" class="form-control"></td>
+      					<td class="width-35"><input type="text" name="major_code" id="major_code" value="${major.major_code}" class="form-control" required></td>
   					</tr>
 					<tr>
 						<td class="active width-15">
@@ -35,7 +35,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								学院名称
 							</label>
 						</td>
-						<td class="width-35"><input type="text" name="institute" id="institute" class="form-control"></td>
+						<td class="width-35"><select name="institute" id="institute" class="form-control"  required>
+							<option value ="软件学院"  ${major.institute=="软件学院"?'selected':''}>软件学院</option>
+							<option value ="信工学院" ${major.institute=="信工学院"?'selected':''}>信工学院</option>
+						</select>
+						</td>
 					</tr>
       			</table>
       			<!-- 参数 -->
