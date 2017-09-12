@@ -61,7 +61,7 @@ public class TitleController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequiresPermissions("title：application")
+	@RequiresPermissions("title:application")
 	@RequestMapping("ruanjian/course/title_Application_listUI")
 	public String title_Application_listUI() {
 		return "ruanjian/titleApplication/title_Application_listUI";
@@ -147,7 +147,7 @@ public class TitleController extends BaseController {
 	 * @param request
 	 * @return
 	 */
-	@RequiresPermissions("title:list")
+	@RequiresPermissions("title:application")
 	@RequestMapping("ruanjian/course/title_application_list")
 	@ResponseBody
 	public DataTable title_application_list(Integer start, Integer length, Integer draw,
