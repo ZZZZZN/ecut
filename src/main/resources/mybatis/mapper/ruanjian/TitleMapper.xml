@@ -83,7 +83,7 @@
 	<!-- 根据ID查询选题表 -->
 	<select id="selectById" resultType="java.util.Map">
 		select
-			 id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,dr,ts,author
+			 id,title_name,title_type,title_source,suitMajor,suitScope,limit_person,meaning_target,condition_work,dr,ts,author,suitMajorName
 		from title
 		where id = #{id,jdbcType=INTEGER}
 	</select>
