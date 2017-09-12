@@ -120,9 +120,9 @@
 										</td>
 									</tr>
 								</table>
-								<button onclick="doSubmit()" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
 								<input type="hidden" name="id" id="id" value="${ title.id }">
 							</form>
+                            <button onclick="doSubmit()" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
 						</div>
 					</div>
 				</div>
