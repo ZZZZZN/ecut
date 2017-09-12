@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<tr>
 						<td class="active width-15">
 							<label class="pull-right">
-								专业名称
+								学院名称
 							</label>
 						</td>
 						<td class="width-35"><input type="text" name="institute" id="institute" class="form-control"></td>
