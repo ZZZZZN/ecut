@@ -80,6 +80,7 @@
 			<if test="flag != null"> flag = #{flag,jdbcType=INTEGER}, </if>
 			<if test="dr != null"> dr = #{dr,jdbcType=INTEGER}, </if>
 			<if test="ts != null"> ts = #{ts,jdbcType=VARCHAR}, </if>
+			<if test="suitMajorName!=null">suitMajorName=#{suitMajorName},</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
