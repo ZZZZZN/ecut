@@ -43,8 +43,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>课题来源</th>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
-											<th>上限人数</th>
-											<th>操作</th>
+											<th>指导老师</th>
+											<th>选题状态</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/course/title_application_list",
+	                "url": "<%=basePath%>ruanjian/course/title_application_Resulelist",
 	                "type": "post",
 	                "data": function (d) {
 	                
@@ -103,15 +103,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "title_source", "width": "10%"},
 					{"data": "suitMajorName", "width": "10%"},
 					{"data": "suitScope", "width": "13%"},
-					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "18%"},
+					{"data": "NAME", "width": "10%"},
+					{"data": "status", "width": "18%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 7,
+	                    "targets": 6,
 	                    "data": "id",
 	                    "width": "20%",
-	                    "render": function(data, type, row) {
+	                    /*"render": function(data, type, row) {
 	                        return  ' <shiro:hasPermission name="title:see">'
 			                        +'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-eye fa-btn"></i>查看'
@@ -122,15 +122,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                        +'<i class="fa fa-edit fa-btn"></i>申请'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                       /* +'<shiro:hasPermission name="title:delete">'
+			                       /!* +'<shiro:hasPermission name="title:delete">'
 			                        +'<button class="btn btn-xs btn-danger deleteBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-trash fa-btn"></i>删除'
 			                        +'</button>'
-			                        +'</shiro:hasPermission>';*/
-	                    }
+			                        +'</shiro:hasPermission>';*!/
+	                    }*/
 	                }
 	            ],
 	            "fnDrawCallback": function(){
+
 	            	var api = this.api();
 	            	var startIndex= api.context[0]._iDisplayStart;//获取到本页开始的条数
 	            	api.column(0).nodes().each(function(cell, i) {

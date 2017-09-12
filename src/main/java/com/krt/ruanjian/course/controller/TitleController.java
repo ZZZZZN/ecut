@@ -109,6 +109,32 @@ public class TitleController extends BaseController {
 		}*/
 		return dt;
 	}
+	/*
+	* 选题结果查看
+	* */
+	@RequiresPermissions("title:result")
+	@RequestMapping("ruanjian/course/title_Application_ResultUI")
+	public String title_Application_resultUI() {
+		return "ruanjian/titleApplication/title_Application_ResultUI";
+	}
+
+	/**
+	 *
+	 */
+	@RequiresPermissions("title:result")
+	@RequestMapping("ruanjian/course/title_application_Resulelist")
+	@ResponseBody
+	public DataTable title_application_Resultlist(Integer start, Integer length, Integer draw,
+											HttpServletRequest request) {
+		Map para = new HashMap();
+		Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
+		para.put("id",info.get("id"));
+		para.put("major",info.get("major"));
+		DataTable dt = titleExamineService.selectByApplicant(start,length,draw,para);
+		return dt;
+	}
+
 	/**
 	 * 学生选题表管理
 	 *

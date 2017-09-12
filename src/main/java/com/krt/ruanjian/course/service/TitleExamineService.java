@@ -38,6 +38,22 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		return titleExamineMapper.updateStatusById(param);
     }
 
+
+	public DataTable selectByApplicant(Integer start, Integer length, Integer draw, Map para) {
+		DataTable dataTable = new DataTable();
+		// 下面两句要连着写在一起，就可以实现分页
+		dataTable.setLength(length);
+		dataTable.setPageNum(start);
+		PageHelper.startPage(dataTable.getPageNum(), dataTable.getLength());
+		List<Map> list = titleExamineMapper.selectByApplicant(para);
+		// 下面这句是为了获取分页信息，比如记录总数等等
+		PageInfo<Map> pageInfo = new PageInfo<Map>(list);
+		dataTable.setData(list);
+		dataTable.setRecordsTotal(Long.valueOf(dataTable.getLength()));
+		dataTable.setRecordsFiltered(pageInfo.getTotal());
+		return dataTable;
+	}
+
 	/**
 	 * 系主任获取所有题目
 	 */

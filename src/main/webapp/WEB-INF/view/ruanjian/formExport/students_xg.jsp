@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>学生信息导出</h5>
+								<h5>信工学院学生信息导出</h5>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/formExport/students_export",
+	                "url": "<%=basePath%>ruanjian/formExport/students_xg_export",
 	                "type": "post",
 	                "data":  {
 //	                    major_name: $("#major_name").val()
@@ -164,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	     	initDatatable();
    	    
 	   	    $("#searchBtn").on('click', function () {
-                var url = '<%=basePath%>ruanjian/formExport/students_export?major_name=' + $("#major_name").val();
+                var url = '<%=basePath%>ruanjian/formExport/students_xg_export?major_name=' + $("#major_name").val();
                 url = encodeURI(url);
 	            console.log(url);
                 datatable.ajax.url(url).load();
