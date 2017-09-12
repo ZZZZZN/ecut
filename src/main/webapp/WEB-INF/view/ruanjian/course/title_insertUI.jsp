@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													课题名称
 												</label>
 											</td>
-											<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control"></td>
+											<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control" required="required"></td>
 											<td class="active width-15">
 												<label class="pull-right">
 													课题类型
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													上限人数
 												</label>
 											</td>
-											<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" AUTOCOMPLETE="off"></td>
+											<td class="width-35"><input type="text" name="limit_person" id="limit_person" class="form-control" AUTOCOMPLETE="off" required="required"></td>
 										</tr>
 										<tr>
 											<td class="active width-15">
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</label>
 											</td>
 											<td colspan="3">
-												<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control"></textarea>
+												<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control" required="required"></textarea>
 											</td>
 										</tr>
 										<tr>
@@ -119,12 +119,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</label>
 											</td>
 											<td colspan="3">
-												<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control"></textarea>
+												<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control" required="required"></textarea>
 											</td>
 										</tr>
 									</table>
-									<button onclick="doSubmit()" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
 								</form>
+								<button onclick="doSubmit()" class="btn btn-primary" style="position: relative;left: 50%;width: 100px;right: 50px">保存</button>
 							</div>
 						</div>
 					</div>
@@ -145,6 +145,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	    var validateForm;
 
+	    function checkNum(elm){
+	        return /\d+/.test(elm.val())
+		}
+
+		function checkMajor(){
+	        var majors = document.getElementsByName('suitMajor');
+	        var flag = false;
+	        marjorArr = [].slice.apply(majors);
+			marjorArr.forEach(function(item){
+			    if(item.checked) {
+			        flag = true
+				}
+			})
+			return flag
+		}
+
 		function doSubmit(){//回调函数，在编辑和保存动作时，供openDialog调用提交表单。
             var name = [];
             var majorScope = $("input[name='suitMajor']:checked").each(function (index,val) {
@@ -152,29 +168,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
             var suitMajorName = name.join(',')
             $("input[name='suitMajorName']").val(suitMajorName);
-			  $.ajax({   
-			         type: "POST",
-			         url: "<%=basePath%>ruanjian/course/title_insert",
-			         data: $('#krtForm').serialize(),// 要提交的表单
-			         beforeSend:function(){
-						 return validateForm.form() && loading();
-			         },
-			         success: function(msg) {
-			             closeloading();
-			         	 if(msg.state=='success'){
-			         		top.layer.msg("操作成功");
-							location.href = "<%=basePath%>ruanjian/course/title_listUI";
-			         		var index = top.layer.getFrameIndex(window.name); //获取窗口索引
-			         		refreshTable();
-			         		top.layer.close(index);
-						  }else{
-			         		top.layer.msg("操作失败");
-			         	 }
-			         },
-			         error: function(){
-			        	 closeloading();
-			         }
-			      });
+			  if(checkNum($('#limit_person')) && checkMajor()){
+                  $.ajax({
+                      type: "POST",
+                      url:"<%=basePath%>ruanjian/course/title_insert",
+                      data:$('#krtForm').serialize(),// 要提交的表单
+                      beforeSend:function(){
+                          console.log($('#krtForm').serialize());
+                          return  validateForm.form() && loading();
+                      },
+                      success: function(msg) {
+                          closeloading();
+                          if(msg.state=='success'){
+                              top.layer.msg("操作成功");
+                              location.href = "<%=basePath%>ruanjian/course/title_listUI";
+                              var index = top.layer.getFrameIndex(window.name); //获取窗口索引
+                              refreshTable();
+                              top.layer.close(index);
+                          }else{
+                              top.layer.msg("操作失败");
+                          }
+                      },
+                      error: function(){
+                          closeloading();
+                      }
+                  });
+			  }else if(!checkNum($('#limit_person'))){
+                  top.layer.msg("人数上限必须为数字！");
+			  }else {
+			      top.layer.msg("适用专业至少选择一项！")
+			  }
 		}
 		
     	$(function(){
