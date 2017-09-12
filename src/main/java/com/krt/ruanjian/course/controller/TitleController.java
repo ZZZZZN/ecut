@@ -128,9 +128,9 @@ public class TitleController extends BaseController {
 								HttpServletRequest request) {
 		Map para = new HashMap();
         Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
-		Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());
+		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
         para.put("id",info.get("id"));
-        para.put("major",major.get("major"));
+        para.put("major",info.get("major"));
 		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
