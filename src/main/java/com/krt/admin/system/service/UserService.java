@@ -78,4 +78,30 @@ public class UserService extends BaseServiceImpl<User> {
         return dataTable;
     }
 
+    /**
+     * 根据学院和专业查询教师名单
+     * @param start
+     * @param length
+     * @param draw
+     * @param institute
+     * @param major_code
+     * @return
+     */
+    public DataTable selectTeachersByInstituteAndMajor(Integer start, Integer length, Integer draw,
+                                                       String institute,String major_code) {
+        DataTable dataTable = new DataTable();
+        // 下面两句要连着写在一起，就可以实现分页
+        dataTable.setLength(length);
+        dataTable.setPageNum(start);
+        PageHelper.startPage(dataTable.getPageNum(), dataTable.getLength());
+//        List<Map> list = titleMapper.selectListStudent(para);
+        List<Map> list = userMapper.selectTeachersByInstituteAndMajor(institute,major_code);
+        // 下面这句是为了获取分页信息，比如记录总数等等
+        PageInfo<Map> pageInfo = new PageInfo<Map>(list);
+        dataTable.setData(list);
+        dataTable.setRecordsTotal(Long.valueOf(dataTable.getLength()));
+        dataTable.setRecordsFiltered(pageInfo.getTotal());
+        return dataTable;
+    }
+
 }

@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>学生信息导出</h5>
+								<h5>信工学院教师信息导出</h5>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -44,12 +44,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<tr>
 											<th>序号</th>
 											<th>姓名</th>
-											<th>学号</th>
-											<th>班级</th>
+											<th>工号</th>
 											<th>学院</th>
-											<th>专业</th>
-											<th>实训地点</th>
-											<th>所在企业</th>
+											<th>职称</th>
+											<th>所在系</th>
 											<th>备注</th>
 										</tr>
 									</thead>
@@ -102,22 +100,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/formExport/students_export",
+	                "url": "<%=basePath%>ruanjian/formExport/teachers_xg_export",
 	                "type": "post",
 	                "data":  {
 //	                    major_name: $("#major_name").val()
                     }
 	            },
 	            "columns": [
-	                {"data": "id", "width": "7%"},
-					{"data": "NAME", "width": "18%"},
-					{"data": "username", "width": "10%"},
-					{"data": "stu_class", "width": "10%"},
-					{"data": "institute", "width": "13%"},
-					{"data": "major_name", "width": "14%"},
-					{"data": "training_site", "width": "10%"},
-					{"data": "company", "width": "18%"},
-					{"data": "note", "width": "18%"},
+                    {"data": "id", "width": "7%"},
+                    {"data": "NAME", "width": "18%"},
+                    {"data": "username", "width": "10%"},
+                    {"data": "institute", "width": "13%"},
+                    {"data": "title_level", "width": "13%"},
+                    {"data": "department", "width": "13%"},
+                    {"data": "note", "width": "18%"},
 	            ],
 	            "columnDefs": [
 	                <%--{--%>
@@ -164,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	     	initDatatable();
    	    
 	   	    $("#searchBtn").on('click', function () {
-                var url = '<%=basePath%>ruanjian/formExport/students_export?major_name=' + $("#major_name").val();
+                var url = '<%=basePath%>ruanjian/formExport/teachers_xg_export?major_name=' + $("#major_name").val();
                 url = encodeURI(url);
 	            console.log(url);
                 datatable.ajax.url(url).load();

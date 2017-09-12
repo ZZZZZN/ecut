@@ -57,7 +57,7 @@
                                             </label>
                                         </td>
                                         <td class="width-35">
-                                            ${title.suitMajor}
+                                            ${title.suitMajorName}
                                         </td>
                                     </tr>
                                     <tr>
