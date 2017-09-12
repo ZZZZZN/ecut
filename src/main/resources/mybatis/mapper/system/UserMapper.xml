@@ -293,6 +293,7 @@
             stu_class,
             training_site,
             company,
+            a.institute,
             note,
             b.major_name
         FROM

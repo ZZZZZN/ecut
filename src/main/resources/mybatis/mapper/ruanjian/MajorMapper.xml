@@ -29,12 +29,12 @@
 			<if test="institute != null"> #{institute,jdbcType=VARCHAR}, </if>
 		</trim>
 	</insert>
-	
+
 	<!-- 删除专业表 -->
 	<delete id="delete" parameterType="java.lang.Integer">
 		delete from major where id = #{id,jdbcType=INTEGER}
 	</delete>
-	
+
 	<!-- 修改专业表 -->
 	<update id="update" parameterType="com.krt.ruanjian.course.entity.Major">
 		update major
@@ -46,7 +46,7 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	
+
 	<!-- 根据ID查询专业表 -->
 	<select id="selectById" resultType="java.util.Map">
 		select
@@ -61,7 +61,7 @@
 			id,major_name,major_code,institute
 		from major
 	</select>
-	
+
 	<!-- 带参数查询专业表列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
 		select
