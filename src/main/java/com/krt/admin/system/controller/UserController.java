@@ -97,6 +97,25 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 软件学院教师信息导出页面跳转
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/teachers")
+    public String teacher_list( HttpServletRequest request) {
+        List<Map> map0= majorService.selectAll();
+        List<Map> map = new ArrayList<>();
+        for (int i = 0; i < map0.size(); i++) {
+            if (map0.get(i).get("institute").toString().contains("软件")) {
+                map.add(map0.get(i));
+            }
+        }
+        request.setAttribute("map",map);
+        return "ruanjian/formExport/teachers";
+    }
+
+    /**
      * 信工学院学生信息导出页面跳转
      * @param request
      * @return
@@ -113,6 +132,25 @@ public class UserController extends BaseController {
         }
         request.setAttribute("map",map);
         return "ruanjian/formExport/students_xg";
+    }
+
+    /**
+     * 信工学院教师信息导出页面跳转
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/teachers_xg")
+    public String teacher_list_xg( HttpServletRequest request) {
+        List<Map> map0= majorService.selectAll();
+        List<Map> map = new ArrayList<>();
+        for (int i = 0; i < map0.size(); i++) {
+            if (map0.get(i).get("institute").toString().contains("信工")) {
+                map.add(map0.get(i));
+            }
+        }
+        request.setAttribute("map",map);
+        return "ruanjian/formExport/teachers_xg";
     }
 
 
@@ -149,6 +187,34 @@ public class UserController extends BaseController {
     }
 
     /**
+     * 软件学院教师信息搜索
+     * @param start
+     * @param length
+     * @param draw
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/teachers_export")
+    @ResponseBody
+    public DataTable teacher_list_Export(Integer start, Integer length, Integer draw, HttpServletRequest request) throws UnsupportedEncodingException {
+        String major_name = null;
+        if (request.getParameter("major_name") != null && !"".equals(request.getParameter("major_name"))) {
+            major_name = new String(request.getParameter("major_name").getBytes("iso-8859-1"), "utf-8");
+        }
+        String institute = "软件学院";
+        String major_code = "";
+        if (major_name !=null&&!"".equals(major_name)) {
+            major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
+        }else{
+            major_code = "080902";
+        }
+        DataTable dt = userService.selectTeachersByInstituteAndMajor(start,length,draw,institute,major_code);
+        return dt;
+    }
+
+    /**
      * 信工学院学生信息搜索
      * @param start
      * @param length
@@ -173,6 +239,34 @@ public class UserController extends BaseController {
             major_code = "080703";
         }
         DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
+        return dt;
+    }
+
+    /**
+     * 信工学院学生信息搜索
+     * @param start
+     * @param length
+     * @param draw
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @RequiresPermissions("user:list")
+    @RequestMapping("ruanjian/formExport/teachers_xg_export")
+    @ResponseBody
+    public DataTable teacher_xg_list_Export(Integer start, Integer length, Integer draw, HttpServletRequest request) throws UnsupportedEncodingException {
+        String major_name = null;
+        if (request.getParameter("major_name") != null && !"".equals(request.getParameter("major_name"))) {
+            major_name = new String(request.getParameter("major_name").getBytes("iso-8859-1"), "utf-8");
+        }
+        String institute = "信工学院";
+        String major_code = "";
+        if (major_name !=null&&!"".equals(major_name)) {
+            major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
+        }else{
+            major_code = "080703";
+        }
+        DataTable dt = userService.selectTeachersByInstituteAndMajor(start,length,draw,institute,major_code);
         return dt;
     }
 

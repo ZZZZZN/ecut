@@ -308,4 +308,24 @@
             AND a.roleCode LIKE 'stu%'
     </select>
 
+    <select id="selectTeachersByInstituteAndMajor" resultType="java.util.Map" parameterType="java.lang.String">
+        SELECT
+            a.id,
+            a.NAME,
+            a.username,
+            a.password,
+            a.institute,
+            a.title_level,
+            a.department,
+            b.major_name,
+            a.note
+        FROM
+            t_user a,
+            major b
+        WHERE
+            a.major = b.major_code
+            AND a.institute = #{institute}
+            AND a.major = #{major}
+            AND a.roleCode LIKE 'tea%'
+    </select>
 </mapper>
