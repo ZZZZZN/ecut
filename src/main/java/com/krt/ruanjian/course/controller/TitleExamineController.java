@@ -236,10 +236,9 @@ public class TitleExamineController extends BaseController {
 									   HttpServletRequest request) {
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
-		//获取系主任所在专业查看该范围内的专业
-		String major = (String)user.get("major");
+		Integer id = (Integer)user.get("id");
+		para.put("userId", id);
 		para.put("flag", "1");
-		para.put("major", major);
 		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
 		return dt;
 	}
@@ -282,9 +281,8 @@ public class TitleExamineController extends BaseController {
 										   HttpServletRequest request) {
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
-		//获取系主任所在专业查看该范围内的专业
-		String major = (String)user.get("major");
-		para.put("major", major);
+		Integer id = (Integer)user.get("id");
+		para.put("userId", id);
 		para.put("flag",null);
 		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
 		return dt;
