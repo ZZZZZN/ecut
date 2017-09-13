@@ -12,6 +12,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
 	<link rel="stylesheet" href="<%=basePath%>static/plugins/datatables/dataTables.bootstrap.css">
 </head>
+<style>
+	.mybtn{
+		margin-left: 5px;
+	}
+</style>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
@@ -78,6 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
    		var datatable;
    		var disflag = '未审核';
+   		var status = $('#flag').val();
    	    function initDatatable() {
    	        datatable = $('#datatable').DataTable({
    	            "lengthChange": false,//选择lenth
@@ -86,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            "processing": false,//loding
 	            "serverSide": true,//服务器模式
 	            "ordering": false,//排序
-	            "pageLength": 10,//初始化lenth
+	            "pageLength": 10,//初始化length
 	            "language": {
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
@@ -94,16 +100,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/titleExamine_list",
 	                "type": "post",
 	                "data": function (d) {
-	                
+	                	d.status = status;
 	                }
 	            },
 	            "columns": [
-	                {"data": "id", "width": "10%"},
+	                {"data": "id", "width": "7%"},
 					{"data": "titleName", "width": "31%"},
 					{"data": "applyer", "width": "13%"},
 					{"data": "author", "width": "13%"},
                     {"data": "flag", "width": "13%"},
-					{"data": "operate", "width": "19%"},
+					{"data": "operate", "width": "23%"},
 	            ],
 	            "columnDefs": [
 	                {
@@ -111,24 +117,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
-	                        return  ' <shiro:hasPermission name="title:see">'
-                                	+'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
-                                	+'<i class="fa fa-eye fa-btn"></i>查看'
-                                	+'</button>'
-                                	+'</shiro:hasPermission>'
-									+'<span>' + data + '</span>'
-                               	 	+'<c:if test="' + row.flag + '==' + disflag + '">'
-									+'<shiro:hasPermission name="titleExamine:passOrFail">'
-			                        +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-check fa-btn"></i>通过'
-			                        +'</button>'
-			                        +'</shiro:hasPermission>'
-			                        +'<shiro:hasPermission name="titleExamine:passOrFail">'
-			                        +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
-			                        +'<i class="fa fa-remove fa-btn"></i>不通过'
-			                        +'</button>'
-			                        +'</shiro:hasPermission>'
-									+'</c:if>';
+                            var optBtn = '';
+                            if (row.flag == disflag ) {
+                                optBtn = '<shiro:hasPermission name="titleExamine:passOrFail">'
+                                    +'<button class="btn mybtn btn-xs btn-success passBtn" rid="'+row.id+'">'
+                                    +'<i class="fa fa-check fa-btn"></i>通过'
+                                    +'</button>'
+                                    +'</shiro:hasPermission>'
+                                    +'<shiro:hasPermission name="titleExamine:passOrFail">'
+                                    +'<button class="btn mybtn btn-xs btn-danger failBtn" rid="'+row.id+'">'
+                                    +'<i class="fa fa-remove fa-btn"></i>不通过'
+                                    +'</button>'
+                                    +'</shiro:hasPermission>'
+                            }
+                            return  ' <shiro:hasPermission name="title:see">'
+                                +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
+                                +'<i class="fa fa-eye fa-btn"></i>查看'
+                                +'</button>'
+                                +'</shiro:hasPermission>'
+                                +optBtn;
 	                    }
 	                }
 	            ],
@@ -143,29 +150,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	    }
 
         function handleSelect(e) {
-            var status = e.target.value;
-            $.ajax({
-                type: "POST",
-                url:"<%=basePath%>ruanjian/course/titleExamine_list",
-                data: {
-                    status: status
-                },
-                beforeSend:function(){
-                    return loading();
-                },
-                success: function(msg) {
-                    closeloading();
-                    if(msg.state=='success'){
-//                        top.layer.msg("审核成功");
-                        refreshTable(datatable);
-                    }else{
-                        top.layer.msg("筛选失败");
-                    }
-                },
-                error: function(){
-                    closeloading();
-                }
-            });
+            status = e.target.value;
+            datatable.ajax.reload();
+            <%--$.ajax({--%>
+                <%--type: "POST",--%>
+                <%--url:"<%=basePath%>ruanjian/course/titleExamine_list",--%>
+                <%--data: {--%>
+                    <%--status: status--%>
+                <%--},--%>
+                <%--beforeSend:function(){--%>
+                    <%--return loading();--%>
+                <%--},--%>
+                <%--success: function(msg) {--%>
+                    <%--closeloading();--%>
+                    <%--if(msg.state=='success'){--%>
+<%--//                        top.layer.msg("审核成功");--%>
+                        <%--refreshTable(datatable);--%>
+                    <%--}else{--%>
+                        <%--top.layer.msg("筛选失败");--%>
+                    <%--}--%>
+                <%--},--%>
+                <%--error: function(){--%>
+                    <%--closeloading();--%>
+                <%--}--%>
+            <%--});--%>
         }
 
    	    $(function(){
