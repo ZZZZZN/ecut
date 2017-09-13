@@ -100,7 +100,7 @@
 		AND u.id = #{authorId}
 		JOIN t_user uu ON uu.id = e.applicant
 		where 1=1
-			<if test="status!=''">
+			<if test="status!=null">
 				 AND e.status = #{status}
 			</if>
 		</if>
@@ -127,6 +127,9 @@
 			AND u.id = e.auditor
 			JOIN t_user uu ON uu.id = e.applicant
 			WHERE 1=1
+			<if test="status!=null">
+				AND e.status = #{status}
+			</if>
 		</if>
 	</select>
 
