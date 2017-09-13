@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 4,
+	                    "targets": 5,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {

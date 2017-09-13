@@ -76,6 +76,8 @@
 	
 	<!-- 带参数查询审核表（记录学生申请的题目）列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
+
+        <if test="role!='admin'">
 		SELECT
 			e.id ,
 			t.title_name AS titleName,
@@ -83,14 +85,49 @@
 			uu. NAME AS applyer,
 			e.auditor AS auditorId,
 			u. NAME AS author,
-			'审核已通过' as flag
+			CASE
+			WHEN  a.status='1' THEN
+			'未审核'
+			WHEN a.status='2'THEN
+			'审核通过'
+			ELSE
+			'审核未通过'
+			END flag
 		FROM
 			title_examine e
 		JOIN title t ON e.title_id = t.id
 		JOIN t_user u ON u.id = e.auditor
 		AND u.id = #{authorId}
 		JOIN t_user uu ON uu.id = e.applicant
-		where e.status = #{status}
+		where 1=1
+			<if test="status!=''">
+				 AND e.status = #{status}
+			</if>
+		</if>
+		<if test="role=='admin'">
+			SELECT
+			e.id ,
+			t.title_name AS titleName,
+			e.applicant AS applicantId,
+			uu. NAME AS applyer,
+			e.auditor AS auditorId,
+			u. NAME AS author,
+			CASE
+			WHEN e.status='1' THEN
+			'未审核'
+			WHEN e.status='2'THEN
+			'审核通过'
+			ELSE
+			'审核未通过'
+			END flag
+			FROM
+			title_examine e
+			JOIN title t ON e.title_id = t.id
+			JOIN t_user u ON u.id = e.auditor
+			AND u.id = e.auditor
+			JOIN t_user uu ON uu.id = e.applicant
+			WHERE 1=1
+		</if>
 	</select>
 
 	<update id="updateStatusById" parameterType="java.util.Map">

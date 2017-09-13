@@ -63,11 +63,13 @@ public class TitleExamineController extends BaseController {
 	@ResponseBody
 	public DataTable titleExamine_list(Integer start, Integer length, Integer draw,
 									   HttpServletRequest request) {
+		String status=request.getParameter("status");
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer authorId = (Integer)user.get("id");
 		para.put("authorId", authorId);
-		para.put("status", 1);
+		para.put("status", status);
+		para.put("role",user.get("roleCode"));
 		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
 		return dt;
 	}
