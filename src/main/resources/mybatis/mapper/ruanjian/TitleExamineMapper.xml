@@ -104,11 +104,12 @@
             AND e.status = #{status}
         </if>
         <if test="titleName!=''">
-            AND e.title_Name = #{titleName}
+            AND t.title_name = #{titleName}
         </if>
         <if test="applyer!=''">
-            AND e.applicant = #{applyer}
+            AND uu.NAME = #{applyer}
 		</if>
+        </if>
 		<if test="role=='admin'">
 			SELECT
 			e.id ,
@@ -136,10 +137,10 @@
                 AND e.status = #{status}
             </if>
             <if test="titleName!=''">
-                AND e.title_Name = #{titleName}
+                AND t.title_name = #{titleName}
             </if>
             <if test="applyer!=''">
-                AND e.applicant = #{applyer}
+                AND uu.NAME = #{applyer}
             </if>
 		</if>
 	</select>
