@@ -27,11 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="box-body">
 								<div class="row">
 									<div class="col-sm-12">
-										<%--<shiro:hasPermission name="title:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-												<i class="fa fa-plus"></i> 添加
-											</button>
-										</shiro:hasPermission>--%>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
