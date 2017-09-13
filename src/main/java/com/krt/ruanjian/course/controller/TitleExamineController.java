@@ -64,11 +64,15 @@ public class TitleExamineController extends BaseController {
 	public DataTable titleExamine_list(Integer start, Integer length, Integer draw,
 									   HttpServletRequest request) {
 		String status=request.getParameter("status");
+		String titleName=request.getParameter("titleName");
+		String applyer=request.getParameter("applyer");
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer authorId = (Integer)user.get("id");
 		para.put("authorId", authorId);
 		para.put("status", status);
+		para.put("titleName",titleName);
+		para.put("applyer",applyer);
 		para.put("role",user.get("roleCode"));
 		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
 		return dt;

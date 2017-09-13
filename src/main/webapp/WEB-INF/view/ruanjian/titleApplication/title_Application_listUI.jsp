@@ -43,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>课题来源</th>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
+											<th>指导老师</th>
 											<th>上限人数</th>
 											<th>操作</th>
 										</tr>
@@ -93,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/title_application_list",
 	                "type": "post",
 	                "data": function (d) {
-	                
+
 	                }
 	            },
 	            "columns": [
@@ -103,12 +104,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "title_source", "width": "10%"},
 					{"data": "suitMajorName", "width": "10%"},
 					{"data": "suitScope", "width": "13%"},
+					{"data": "name","width":"13"},
 					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "18%"},
+					{"data": "operate", "width": "10%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 7,
+	                    "targets": 8,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {

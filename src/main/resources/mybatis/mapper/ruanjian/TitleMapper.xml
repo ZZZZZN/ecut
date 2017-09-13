@@ -115,11 +115,14 @@
 	<select id="selectListStudent" resultType="java.util.Map" parameterType="java.util.Map">
        <if test="role!='admin'">
 		SELECT
-		 *
+		 b.*,c.name
 		 FROM
-		title
+		title b,
+		t_user c
 		 where
 		FIND_IN_SET(#{major},title.suitMajor)
+		   AND
+		   a.author=b.id
 		AND flag='2'
 		  <if test="role=='stu_in'">
 			  AND suitScope='校内实训'
@@ -141,10 +144,13 @@
 	   </if>
 		<if test="role=='admin'">
 			SELECT
-			*
+			a.*,b.name
 			FROM
-			title
+			title a,
+			t_user b
 			where
+			a.author=b.id
+			AND
 			flag='2'
 		</if>
 	</select>
