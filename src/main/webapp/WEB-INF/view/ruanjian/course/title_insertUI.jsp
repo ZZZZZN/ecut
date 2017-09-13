@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													课题名称
 												</label>
 											</td>
-											<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control" required="required"></td>
+											<td class="width-35"><input type="text" name="title_name" id="title_name" class="form-control" AUTOCOMPLETE="off" required="required"></td>
 											<td class="active width-15">
 												<label class="pull-right">
 													课题类型
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</label>
 											</td>
 											<td colspan="3">
-												<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control" required="required"></textarea>
+												<textarea rows="7" type="text" name="meaning_target" id="meaning_target" class="form-control" AUTOCOMPLETE="off" required="required"></textarea>
 											</td>
 										</tr>
 										<tr>
@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</label>
 											</td>
 											<td colspan="3">
-												<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control" required="required"></textarea>
+												<textarea rows="7" type="text" name="condition_work" id="condition_work" class="form-control" AUTOCOMPLETE="off" required="required"></textarea>
 											</td>
 										</tr>
 									</table>
