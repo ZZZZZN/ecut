@@ -112,7 +112,8 @@
 		</if>
 	</select>
 	<!--当前学生可申请的课题列表-->
-	<select id="selectListStudent" resultType="java.util.Map">
+	<select id="selectListStudent" resultType="java.util.Map" parameterType="java.util.Map">
+       <if test="role!='admin'">
 		SELECT
 		 *
 		 FROM
@@ -120,6 +121,12 @@
 		 where
 		FIND_IN_SET(#{major},title.suitMajor)
 		AND flag='2'
+		  <if test="role=='stu_in'">
+			  AND suitScope='校内实训'
+		  </if>
+		   <if test="role=='stu_out'">
+			   AND suitScope='校外实训'
+		   </if>
         AND ! FIND_IN_SET(
 	title.id,
 	(
@@ -131,6 +138,15 @@
 			a.applicant = #{id}
 	)
 )
+	   </if>
+		<if test="role=='admin'">
+			SELECT
+			*
+			FROM
+			title
+			where
+			flag='2'
+		</if>
 	</select>
 	<!--当前课题已审核通过人数-->
 	<select id="countPassNumber" resultType="java.lang.Integer" >
