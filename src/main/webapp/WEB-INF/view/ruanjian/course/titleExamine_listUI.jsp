@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- page script -->
 	<script type="text/javascript">
    		var datatable;
-
+   		var disflag = '未审核';
    	    function initDatatable() {
    	        datatable = $('#datatable').DataTable({
    	            "lengthChange": false,//选择lenth
@@ -116,7 +116,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	+'<i class="fa fa-eye fa-btn"></i>查看'
                                 	+'</button>'
                                 	+'</shiro:hasPermission>'
-                               	 	+'<c:if test="${title.flag==1}">'
+									+'<span>' + data + '</span>'
+                               	 	+'<c:if test="' + row.flag + '==' + disflag + '">'
 									+'<shiro:hasPermission name="titleExamine:passOrFail">'
 			                        +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-check fa-btn"></i>通过'
