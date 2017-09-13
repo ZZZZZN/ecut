@@ -94,7 +94,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
    		var datatable;
    		var disflag = '未审核';
-   		var status = $('#flag').val();
    	    function initDatatable() {
    	        datatable = $('#datatable').DataTable({
    	            "lengthChange": false,//选择lenth
@@ -111,7 +110,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/titleExamine_list",
 	                "type": "post",
 	                "data": function (d) {
-	                	d.status = status;
+	                	d.status = $('#flag').val(),
+	                	d.applyer = $('#applyer').val(),
+							d.titleName = $('#titleName').val();
 	                }
 	            },
 	            "columns": [
