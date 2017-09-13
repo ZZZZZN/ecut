@@ -116,7 +116,7 @@
         AND b.name like CONCAT('%',#{author},'%')
         </if>
         <if test="titlename != ''">
-            AND a.title_name =like CONCAT('%',#{author},'%')
+            AND a.title_name like CONCAT('%',#{author},'%')
         </if>
 	</select>
 	<!--当前学生可申请的课题列表-->
