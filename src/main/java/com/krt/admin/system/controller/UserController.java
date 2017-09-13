@@ -49,7 +49,7 @@ public class UserController extends BaseController {
      */
     @RequiresPermissions("user:list")
     @RequestMapping("admin/system/user/user_listUI")
-    public String user_listUI() {
+    public String user_listUI(HttpServletRequest request) {
         return "admin/system/user/user_listUI";
     }
 
@@ -79,83 +79,88 @@ public class UserController extends BaseController {
 
     /**
      * 软件学院学生信息导出页面跳转
+     *
      * @param request
      * @return
      */
     @RequiresPermissions("user:list")
     @RequestMapping("ruanjian/formExport/students")
-    public String student_list( HttpServletRequest request) {
-        List<Map> map0= majorService.selectAll();
+    public String student_list(HttpServletRequest request) {
+        List<Map> map0 = majorService.selectAll();
         List<Map> map = new ArrayList<>();
         for (int i = 0; i < map0.size(); i++) {
             if (map0.get(i).get("institute").toString().contains("软件")) {
                 map.add(map0.get(i));
             }
         }
-        request.setAttribute("map",map);
+        request.setAttribute("map", map);
         return "ruanjian/formExport/students";
     }
 
     /**
      * 软件学院教师信息导出页面跳转
+     *
      * @param request
      * @return
      */
     @RequiresPermissions("user:list")
     @RequestMapping("ruanjian/formExport/teachers")
-    public String teacher_list( HttpServletRequest request) {
-        List<Map> map0= majorService.selectAll();
+    public String teacher_list(HttpServletRequest request) {
+        List<Map> map0 = majorService.selectAll();
         List<Map> map = new ArrayList<>();
         for (int i = 0; i < map0.size(); i++) {
             if (map0.get(i).get("institute").toString().contains("软件")) {
                 map.add(map0.get(i));
             }
         }
-        request.setAttribute("map",map);
+        request.setAttribute("map", map);
         return "ruanjian/formExport/teachers";
     }
 
     /**
      * 信工学院学生信息导出页面跳转
+     *
      * @param request
      * @return
      */
     @RequiresPermissions("user:list")
     @RequestMapping("ruanjian/formExport/students_xg")
-    public String student_list_xg( HttpServletRequest request) {
-        List<Map> map0= majorService.selectAll();
+    public String student_list_xg(HttpServletRequest request) {
+        List<Map> map0 = majorService.selectAll();
         List<Map> map = new ArrayList<>();
         for (int i = 0; i < map0.size(); i++) {
             if (map0.get(i).get("institute").toString().contains("信工")) {
                 map.add(map0.get(i));
             }
         }
-        request.setAttribute("map",map);
+        request.setAttribute("map", map);
         return "ruanjian/formExport/students_xg";
     }
 
     /**
      * 信工学院教师信息导出页面跳转
+     *
      * @param request
      * @return
      */
     @RequiresPermissions("user:list")
     @RequestMapping("ruanjian/formExport/teachers_xg")
-    public String teacher_list_xg( HttpServletRequest request) {
-        List<Map> map0= majorService.selectAll();
+    public String teacher_list_xg(HttpServletRequest request) {
+        List<Map> map0 = majorService.selectAll();
         List<Map> map = new ArrayList<>();
         for (int i = 0; i < map0.size(); i++) {
             if (map0.get(i).get("institute").toString().contains("信工")) {
                 map.add(map0.get(i));
             }
         }
-        request.setAttribute("map",map);
+        request.setAttribute("map", map);
         return "ruanjian/formExport/teachers_xg";
     }
 
 
     /**
      * 软件学院学生信息搜索
+     *
      * @param start
      * @param length
      * @param draw
@@ -177,17 +182,18 @@ public class UserController extends BaseController {
 //        draw = 1;
         String institute = "软件学院";
         String major_code = "";
-        if (major_name !=null&&!"".equals(major_name)) {
+        if (major_name != null && !"".equals(major_name)) {
             major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
-        }else{
+        } else {
             major_code = "080902";
         }
-        DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
+        DataTable dt = userService.selectStudentsByInstituteAndMajor(start, length, draw, institute, major_code);
         return dt;
     }
 
     /**
      * 软件学院教师信息搜索
+     *
      * @param start
      * @param length
      * @param draw
@@ -205,17 +211,18 @@ public class UserController extends BaseController {
         }
         String institute = "软件学院";
         String major_code = "";
-        if (major_name !=null&&!"".equals(major_name)) {
+        if (major_name != null && !"".equals(major_name)) {
             major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
-        }else{
+        } else {
             major_code = "080902";
         }
-        DataTable dt = userService.selectTeachersByInstituteAndMajor(start,length,draw,institute,major_code);
+        DataTable dt = userService.selectTeachersByInstituteAndMajor(start, length, draw, institute, major_code);
         return dt;
     }
 
     /**
      * 信工学院学生信息搜索
+     *
      * @param start
      * @param length
      * @param draw
@@ -233,17 +240,18 @@ public class UserController extends BaseController {
         }
         String institute = "信工学院";
         String major_code = "";
-        if (major_name !=null&&!"".equals(major_name)) {
+        if (major_name != null && !"".equals(major_name)) {
             major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
-        }else{
+        } else {
             major_code = "080703";
         }
-        DataTable dt = userService.selectStudentsByInstituteAndMajor(start,length,draw,institute,major_code);
+        DataTable dt = userService.selectStudentsByInstituteAndMajor(start, length, draw, institute, major_code);
         return dt;
     }
 
     /**
      * 信工学院学生信息搜索
+     *
      * @param start
      * @param length
      * @param draw
@@ -261,12 +269,12 @@ public class UserController extends BaseController {
         }
         String institute = "信工学院";
         String major_code = "";
-        if (major_name !=null&&!"".equals(major_name)) {
+        if (major_name != null && !"".equals(major_name)) {
             major_code = majorService.selectMajorCodeByMajorName(major_name).get("major_code").toString();
-        }else{
+        } else {
             major_code = "080703";
         }
-        DataTable dt = userService.selectTeachersByInstituteAndMajor(start,length,draw,institute,major_code);
+        DataTable dt = userService.selectTeachersByInstituteAndMajor(start, length, draw, institute, major_code);
         return dt;
     }
 
@@ -280,7 +288,25 @@ public class UserController extends BaseController {
     @RequestMapping("admin/system/user/user_insertUI")
     public String user_insertUI(HttpServletRequest request) {
         List roleList = roleService.selectAll();
-        request.setAttribute("roleList", roleList);
+        List<Map> map = majorService.selectAll();
+        List<Map> departments = new ArrayList<>();
+        departments.addAll(map);
+        for (int i = 0; i < departments.size(); i++) {
+            if (departments.get(i).get("major_code").equals("080905")) {
+                departments.remove(i);
+            }
+        }
+        List<Map> list1 = new ArrayList<>();
+        Map<String, String> map1 = new HashMap<>();
+        Map<String, String> map2 = new HashMap<>();
+        map1.put("institute", "软件学院");
+        map2.put("institute", "信工学院");
+        list1.add(0, map1);
+        list1.add(1, map2);
+        request.setAttribute("departs", departments);//所在系
+        request.setAttribute("list1", list1);//学院
+        request.setAttribute("map", map);//专业
+        request.setAttribute("roleList", roleList);//角色
         return "admin/system/user/user_insertUI";
     }
 
@@ -302,6 +328,10 @@ public class UserController extends BaseController {
             // 密码加密
 //            password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
             user.setPassword(password);
+            if (user.getMajor() != null) {
+                Map map = majorService.selectMajorCodeByMajorName(user.getMajor());
+                user.setMajor((String) map.get("major_code"));
+            }
             userService.insert(user);
             rb = ReturnBean.getSuccessReturnBean();
         } catch (Exception e) {
@@ -414,13 +444,13 @@ public class UserController extends BaseController {
      * @return
      */
     @RequiresPermissions("user:see")
-        @RequestMapping("admin/system/user/user_seeUI")
-        public String user_seeUI(Integer id, HttpServletRequest request) {
-            List roleList = roleService.selectAll();
-            request.setAttribute("roleList", roleList);
-            Map userMap = userService.selectById(id);
-            request.setAttribute("user", userMap);
-            return "admin/system/user/user_seeUI";
+    @RequestMapping("admin/system/user/user_seeUI")
+    public String user_seeUI(Integer id, HttpServletRequest request) {
+        List roleList = roleService.selectAll();
+        request.setAttribute("roleList", roleList);
+        Map userMap = userService.selectById(id);
+        request.setAttribute("user", userMap);
+        return "admin/system/user/user_seeUI";
     }
 
     /**
