@@ -157,6 +157,7 @@ public class TitleController extends BaseController {
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
         para.put("id",info.get("id"));
         para.put("major",info.get("major"));
+        para.put("role",info.get("roleCode"));
 		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
@@ -284,7 +285,7 @@ public class TitleController extends BaseController {
 	 * @param request
 	 * @return
 	 */
-	@RequiresPermissions("title:see")
+	@RequiresPermissions("title:applicationSee")
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
@@ -300,7 +301,7 @@ public class TitleController extends BaseController {
 			}
 		}*/
 		request.setAttribute("title", titleMap);
-		return "ruanjian/course/title_seeUI";
+		return "ruanjian/titleApplication/title_ApplicationseeUI";
 	}
 
 	/**

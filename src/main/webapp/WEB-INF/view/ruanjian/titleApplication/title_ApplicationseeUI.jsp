@@ -17,7 +17,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h5>选题表查看</h5>
+                        <h5>课题详情</h5>
                     </div>
                     <div class="box-body">
                         <div class="form-box">
@@ -54,7 +54,7 @@
                                             </label>
                                         </td>
                                         <td class="width-35">
-                                            ${title.suitMajor}
+                                            ${title.suitMajorName}
                                         </td>
                                     </tr>
                                     <tr>
@@ -93,8 +93,16 @@
                                             ${title.condition_work}
                                         </td>
                                     </tr>
+                                    <input type="hidden" name="id" id="id" value="${ title.id }">
                                 </table>
                             </form>
+                            <shiro:hasPermission name="title:application">
+                                <div style="text-align: center;">
+                                    <button class="btn btn-md btn-warning updateBtn" style="width: 100px;margin-top: 20px">
+                                        <i class="fa fa-edit fa-btn"></i>申请
+                                    </button>
+                                </div>
+                            </shiro:hasPermission>
                         </div>
                     </div>
                 </div>
@@ -113,6 +121,36 @@
 <script src="<%=basePath%>static/skin/js/common.js"></script>
 <script type="text/javascript">
 
+    //申请
+    $(document).on("click",".updateBtn",function(){
+        var id = document.getElementsByName('id')[0].value;
+        console.log(id)
+        $.ajax({
+            type: "POST",
+            url:"<%=basePath%>ruanjian/course/title_application?id="+id,
+            beforeSend:function(){
+                return loading();
+            },
+            success: function(msg) {
+                closeloading();
+                if(msg.state=='success'){
+                top.layer.msg("操作成功");
+                location.href = "<%=basePath%>ruanjian/course/title_Application_listUI";
+//                refreshTable(datatable);
+                }
+                if (msg.state=='overstep'){
+                top.layer.msg("超出选题人数上限");
+//                refreshTable(datatable);
+                }
+                else{
+                top.layer.msg("操作失败");
+                }
+            },
+            error: function(){
+                closeloading();
+            }
+        });
+    });
 
 </script>
 </body>

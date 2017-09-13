@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>审核表（记录学生申请的题目）管理</h5>
+								<h5>学生申请记录表</h5>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>选题名称</th>
 											<th>申请人</th>
 											<th>审核人</th>
+											<th>审核状态</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -98,6 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "titleName", "width": "34%"},
 					{"data": "applyer", "width": "13%"},
 					{"data": "author", "width": "13%"},
+                    {"data": "flag", "width": "13%"},
 					{"data": "operate", "width": "15%"},
 	            ],
 	            "columnDefs": [
