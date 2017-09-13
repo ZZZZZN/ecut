@@ -24,7 +24,17 @@
 						<div class="box-header">
 							<h5>选题表管理</h5>
 						</div>
+
 						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+									<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
+									<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+										<i class="fa fa-search fa-btn"></i>搜索
+									</button>
+								</div>
+							</div>
 							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 								<thead>
 								<tr>
@@ -84,7 +94,8 @@
                 "url": "<%=basePath%>ruanjian/course/boss/titleExamine_bossList",
                 "type": "post",
                 "data": function (d) {
-
+                    d.titlename = $("#titlename").val(),
+                        d.author = $("#author").val();
                 }
             },
             "columns": [

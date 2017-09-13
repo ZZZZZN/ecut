@@ -86,9 +86,9 @@
 			e.auditor AS auditorId,
 			u. NAME AS author,
 			CASE
-			WHEN  a.status='1' THEN
+			WHEN  e.status='1' THEN
 			'未审核'
-			WHEN a.status='2'THEN
+			WHEN e.status='2'THEN
 			'审核通过'
 			ELSE
 			'审核未通过'
@@ -174,6 +174,12 @@
     JOIN t_user c ON a.auditor = c.id
      WHERE
 		applicant=#{id}
+		<if test="author != ''">
+			AND c.name like CONCAT('%',#{author},'%')
+		</if>
+		<if test="titlename != ''">
+			AND b.title_name like CONCAT('%',#{titlename},'%')
+		</if>
 </if>
 		<if test="role=='admin'">
 			SELECT
@@ -198,6 +204,12 @@
 			JOIN t_user c ON a.auditor = c.id
 			WHERE
 			1=1
+			<if test="author != ''">
+				AND c.name like CONCAT('%',#{author},'%')
+			</if>
+			<if test="titlename != ''">
+				AND b.title_name like CONCAT('%',#{titlename},'%')
+			</if>
 		</if>
 	</select>
 
@@ -215,8 +227,14 @@
 			t.meaning_target meaningTarget,
 			t.condition_work conditionWork
 		FROM title t JOIN (
-		SELECT id FROM t_user WHERE major = (
+		SELECT id,name FROM t_user WHERE major = (
 		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag=1
+		<if test="author != ''">
+			AND tmp.name like CONCAT('%',#{author},'%')
+		</if>
+		<if test="titlename != ''">
+			AND t.title_name like CONCAT('%',#{titlename},'%')
+		</if>
 	</select>
 	<select id="getTitlePassAndFail" resultType="java.util.Map">
 		SELECT
