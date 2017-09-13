@@ -112,6 +112,12 @@
 		<if test="roleCode != 'admin'">
 			AND a.author = #{userId}
 		</if>
+        <if test="author != ''">
+        AND b.name like CONCAT('%',#{author},'%')
+        </if>
+        <if test="titlename != ''">
+            AND a.title_name =like CONCAT('%',#{author},'%')
+        </if>
 	</select>
 	<!--当前学生可申请的课题列表-->
 	<select id="selectListStudent" resultType="java.util.Map" parameterType="java.util.Map">
