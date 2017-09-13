@@ -100,10 +100,16 @@
 		AND u.id = #{authorId}
 		JOIN t_user uu ON uu.id = e.applicant
 		where 1=1
-			<if test="status!=''">
-				 AND e.status = #{status}
-			</if>
+        <if test="status!=''">
+            AND e.status = #{status}
+        </if>
+        <if test="titleName!=''">
+            AND t.title_name = #{titleName}
+        </if>
+        <if test="applyer!=''">
+            AND uu.NAME = #{applyer}
 		</if>
+        </if>
 		<if test="role=='admin'">
 			SELECT
 			e.id ,
@@ -127,9 +133,15 @@
 			AND u.id = e.auditor
 			JOIN t_user uu ON uu.id = e.applicant
 			WHERE 1=1
-			<if test="status!=''">
-				AND e.status = #{status}
-			</if>
+            <if test="status!=''">
+                AND e.status = #{status}
+            </if>
+            <if test="titleName!=''">
+                AND t.title_name like CONCAT('%',#{titleName},'%')
+            </if>
+            <if test="applyer!=''">
+                AND uu.NAME like CONCAT('%',#{applyer},'%')
+            </if>
 		</if>
 	</select>
 

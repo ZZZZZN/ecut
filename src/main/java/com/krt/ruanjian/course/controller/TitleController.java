@@ -88,8 +88,12 @@ public class TitleController extends BaseController {
 		Map user = ShiroUtil.getCurrentUser();
 		Integer userId = (Integer)user.get("id");
 		String roleCode = (String)user.get("roleCode");
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
 		para.put("userId", userId);
 		para.put("roleCode", roleCode);
+		para.put("author",author);
+		para.put("titlename",titlename);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
 		//取出list中的data值将专业代码转换成专业名称
 		/*List<HashMap<String, String>> list = dt.getData();

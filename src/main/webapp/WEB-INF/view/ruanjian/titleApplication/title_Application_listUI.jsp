@@ -27,11 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="box-body">
 								<div class="row">
 									<div class="col-sm-12">
-										<%--<shiro:hasPermission name="title:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-												<i class="fa fa-plus"></i> 添加
-											</button>
-										</shiro:hasPermission>--%>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -43,6 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>课题来源</th>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
+											<th>指导老师</th>
 											<th>上限人数</th>
 											<th>操作</th>
 										</tr>
@@ -93,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/title_application_list",
 	                "type": "post",
 	                "data": function (d) {
-	                
+
 	                }
 	            },
 	            "columns": [
@@ -102,13 +98,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "title_type", "width": "10%"},
 					{"data": "title_source", "width": "10%"},
 					{"data": "suitMajorName", "width": "10%"},
-					{"data": "suitScope", "width": "14%"},
+					{"data": "suitScope", "width": "13%"},
+					{"data": "name","width":"13"},
 					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "12%"},
+					{"data": "operate", "width": "10%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 7,
+	                    "targets": 8,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {

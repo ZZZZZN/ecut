@@ -16,6 +16,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	.mybtn{
 		margin-left: 5px;
 	}
+	.search-input{
+		margin-right:10px;
+		margin-left: 2px;
+	}
 </style>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
@@ -31,15 +35,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-3 pull-right">
-										<select name="flag" id="flag" class="form-control" onchange="handleSelect(event)">
-											<option value="">全部</option>
-											<option value="1">待审核</option>
-											<option value="2">审核通过</option>
-											<option value="3">审核未通过</option>
-										</select>
+									<div class="col-sm-12">
+										<span>课题名称: </span><input type="text" name="titleName" id="titleName" value="" class="form-control input-150 search-input">
+										<span>审核人: </span> <input type="text" name="applyer" id="applyer" value="" class="form-control input-150 search-input">
+										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+											<i class="fa fa-search fa-btn"></i>搜索
+										</button>
+										<div class="col-sm-3 pull-right">
+											<select name="flag" id="flag" class="form-control" onchange="handleSelect(event)">
+												<option value="">全部</option>
+												<option value="1">待审核</option>
+												<option value="2">审核通过</option>
+												<option value="3">审核未通过</option>
+											</select>
+										</div>
+										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 									</div>
-									<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 									<thead>
@@ -83,7 +94,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
    		var datatable;
    		var disflag = '未审核';
-   		var status = $('#flag').val();
    	    function initDatatable() {
    	        datatable = $('#datatable').DataTable({
    	            "lengthChange": false,//选择lenth
@@ -100,7 +110,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/titleExamine_list",
 	                "type": "post",
 	                "data": function (d) {
-	                	d.status = status;
+	                	d.status = $('#flag').val(),
+	                	d.applyer = $('#applyer').val(),
+							d.titleName = $('#titleName').val();
 	                }
 	            },
 	            "columns": [
