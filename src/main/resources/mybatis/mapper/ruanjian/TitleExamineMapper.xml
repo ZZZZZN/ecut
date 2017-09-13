@@ -137,10 +137,10 @@
                 AND e.status = #{status}
             </if>
             <if test="titleName!=''">
-                AND t.title_name = #{titleName}
+                AND t.title_name like CONCAT('%',#{titleName},'%')
             </if>
             <if test="applyer!=''">
-                AND uu.NAME = #{applyer}
+                AND uu.NAME like CONCAT('%',#{applyer},'%')
             </if>
 		</if>
 	</select>
@@ -217,15 +217,23 @@
 	<!-- 系主任查看本系所有老师出的所有题目-->
 	<select id="getTitleByMajor" resultType="java.util.Map">
 		SELECT
-			t.id,
-			t.title_name titleName,
-		  	t.title_type titleType,
-		 	t.title_source titleSource,
-			t.suitMajorName,
-			t.suitScope,
-			t.limit_person limitPerson,
-			t.meaning_target meaningTarget,
-			t.condition_work conditionWork
+		t.id,
+		t.title_name titleName,
+		t.title_type titleType,
+		t.title_source titleSource,
+		t.suitMajorName,
+		t.suitScope,
+		t.limit_person limitPerson,
+		t.meaning_target meaningTarget,
+		t.condition_work conditionWork,
+		CASE
+		when t.flag='1' THEN
+		'待审核'
+		WHEN t.flag='2'THEN
+		'审核通过'
+		ELSE
+		'审核未通过'
+		END flag
 		FROM title t JOIN (
 		SELECT id,name FROM t_user WHERE major = (
 		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag=1
@@ -235,7 +243,13 @@
 		<if test="titlename != ''">
 			AND t.title_name like CONCAT('%',#{titlename},'%')
 		</if>
+		SELECT id FROM t_user WHERE major = (
+		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id
+		<if test="flag != ''">
+			and t.flag=#{flag}
+		</if>
 	</select>
+
 	<select id="getTitlePassAndFail" resultType="java.util.Map">
 		SELECT
 			t.id,
