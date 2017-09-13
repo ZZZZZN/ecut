@@ -137,10 +137,10 @@
                 AND e.status = #{status}
             </if>
             <if test="titleName!=''">
-                AND t.title_name = #{titleName}
+                AND t.title_name like CONCAT('%',#{titleName},'%')
             </if>
             <if test="applyer!=''">
-                AND uu.NAME = #{applyer}
+                AND uu.NAME like CONCAT('%',#{applyer},'%')
             </if>
 		</if>
 	</select>
