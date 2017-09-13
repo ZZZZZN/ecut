@@ -76,6 +76,8 @@
 	
 	<!-- 带参数查询审核表（记录学生申请的题目）列表 -->
 	<select id="selectListPara" resultType="java.util.Map">
+
+        <if test="role!='admin'">
 		SELECT
 			e.id ,
 			t.title_name AS titleName,
@@ -83,14 +85,49 @@
 			uu. NAME AS applyer,
 			e.auditor AS auditorId,
 			u. NAME AS author,
-			'审核已通过' as flag
+			CASE
+			WHEN  a.status='1' THEN
+			'未审核'
+			WHEN a.status='2'THEN
+			'审核通过'
+			ELSE
+			'审核未通过'
+			END flag
 		FROM
 			title_examine e
 		JOIN title t ON e.title_id = t.id
 		JOIN t_user u ON u.id = e.auditor
 		AND u.id = #{authorId}
 		JOIN t_user uu ON uu.id = e.applicant
-		where e.status = #{status}
+		where 1=1
+			<if test="status!=''">
+				 AND e.status = #{status}
+			</if>
+		</if>
+		<if test="role=='admin'">
+			SELECT
+			e.id ,
+			t.title_name AS titleName,
+			e.applicant AS applicantId,
+			uu. NAME AS applyer,
+			e.auditor AS auditorId,
+			u. NAME AS author,
+			CASE
+			WHEN e.status='1' THEN
+			'未审核'
+			WHEN e.status='2'THEN
+			'审核通过'
+			ELSE
+			'审核未通过'
+			END flag
+			FROM
+			title_examine e
+			JOIN title t ON e.title_id = t.id
+			JOIN t_user u ON u.id = e.auditor
+			AND u.id = e.auditor
+			JOIN t_user uu ON uu.id = e.applicant
+			WHERE 1=1
+		</if>
 	</select>
 
 	<update id="updateStatusById" parameterType="java.util.Map">
@@ -123,26 +160,35 @@ END status
 		applicant=#{id}
 	</select>
 
-	<!-- 带参数查询审核表（记录学生申请的题目）列表 -->
+	<!-- 校内校外的题目都由该系主任审核 -->
+	<!-- 系主任查看本系所有老师出的所有题目-->
 	<select id="getTitleByMajor" resultType="java.util.Map">
 		SELECT
-			*, CASE
-		WHEN flag = '2' THEN
-			'审核通过'
-		WHEN flag = '3' THEN
-			'审核未通过'
-		ELSE
-			'未审核'
-		END 审核状态
-		FROM
-			title
-		WHERE
-		    suitMajor like CONCAT('%',#{major},'%')
-		AND flag = 1
+			t.id,
+			t.title_name titleName,
+		  	t.title_type titleType,
+		 	t.title_source titleSource,
+			t.suitMajorName,
+			t.suitScope,
+			t.limit_person limitPerson,
+			t.meaning_target meaningTarget,
+			t.condition_work conditionWork
+		FROM title t JOIN (
+		SELECT id FROM t_user WHERE major = (
+		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag=1
 	</select>
 	<select id="getTitlePassAndFail" resultType="java.util.Map">
 		SELECT
-		*, CASE
+			t.id,
+			t.title_name titleName,
+		  	t.title_type titleType,
+		 	t.title_source titleSource,
+			t.suitMajorName,
+			t.suitScope,
+			t.limit_person limitPerson,
+			t.meaning_target meaningTarget,
+			t.condition_work conditionWork,
+		CASE
 		WHEN flag = '2' THEN
 		'审核通过'
 		WHEN flag = '3' THEN
@@ -150,11 +196,9 @@ END status
 		ELSE
 		'未审核'
 		END 审核状态
-		FROM
-		title
-		WHERE
-		suitMajor like CONCAT('%',#{major},'%')
-		AND flag != 1
+		FROM title t JOIN (
+		SELECT id FROM t_user WHERE major = (
+		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag!=1
 	</select>
 
 </mapper>

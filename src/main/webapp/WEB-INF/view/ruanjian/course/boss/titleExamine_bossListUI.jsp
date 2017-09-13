@@ -98,12 +98,12 @@
             },
             "columns": [
                 {"data": "id", "width": "7%"},
-                {"data": "title_name", "width": "12%"},
-                {"data": "title_type", "width": "10%"},
-                {"data": "title_source", "width": "10%"},
+                {"data": "titleName", "width": "12%"},
+                {"data": "titleType", "width": "10%"},
+                {"data": "titleSource", "width": "10%"},
                 {"data": "suitMajorName", "width": "13%"},
                 {"data": "suitScope", "width": "10%"},
-                {"data": "limit_person", "width": "10%"},
+                {"data": "limitPerson", "width": "10%"},
                 {"data": "operate", "width": "18%"},
             ],
             "columnDefs": [
