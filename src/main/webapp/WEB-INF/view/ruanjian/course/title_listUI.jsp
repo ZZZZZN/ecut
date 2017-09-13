@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>序号</th>
 											<th>课题名称</th>
 											<th>课题类型</th>
-											<th>课题来源</th>
+											<%--<th>课题来源</th>--%>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
 											<th>上限人数</th>
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                {"data": "id", "width": "7%"},
 					{"data": "title_name", "width": "18%"},
 					{"data": "title_type", "width": "10%"},
-					{"data": "title_source", "width": "10%"},
+//					{"data": "title_source", "width": "10%"},
 					{"data": "suitMajorName", "width": "13%"},
 					{"data": "suitScope", "width": "14%"},
 					{"data": "limit_person", "width": "10%"},
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 8,
+	                    "targets": 7,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
