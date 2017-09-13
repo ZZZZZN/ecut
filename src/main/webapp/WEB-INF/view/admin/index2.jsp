@@ -107,8 +107,9 @@
             <a href="<%=basePath%>admin/logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="J_mainContent" id="content-main" style="width: 100%">
-            <%--<iframe class="J_iframe" src="<%=basePath%>druid" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless></iframe>--%>
-            <img src="<%=path%>/upload/ecut-1.jpg" alt="ecut-1" style="width: 100%;height: 100%">
+            <iframe class="J_iframe" src="<%=basePath%>druid" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless hidden>
+            </iframe>
+
         </div>
     </div><!-- /.content-wrapper -->
 
