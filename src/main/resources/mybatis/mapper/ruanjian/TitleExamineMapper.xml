@@ -104,10 +104,10 @@
             AND e.status = #{status}
         </if>
         <if test="titleName!=''">
-            AND t.title_name = #{titleName}
+            AND t.title_name like CONCAT('%',#{titleName},'%')
         </if>
         <if test="applyer!=''">
-            AND uu.NAME = #{applyer}
+            AND uu.NAME like CONCAT('%',#{applyer},'%')
 		</if>
         </if>
 		<if test="role=='admin'">
@@ -236,15 +236,13 @@
 		END flag
 		FROM title t JOIN (
 		SELECT id,name FROM t_user WHERE major = (
-		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag=1
+		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id
 		<if test="author != ''">
 			AND tmp.name like CONCAT('%',#{author},'%')
 		</if>
 		<if test="titlename != ''">
 			AND t.title_name like CONCAT('%',#{titlename},'%')
 		</if>
-		SELECT id FROM t_user WHERE major = (
-		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id
 		<if test="flag != ''">
 			and t.flag=#{flag}
 		</if>
