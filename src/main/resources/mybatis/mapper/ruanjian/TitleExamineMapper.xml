@@ -100,7 +100,7 @@
 		AND u.id = #{authorId}
 		JOIN t_user uu ON uu.id = e.applicant
 		where 1=1
-			<if test="status!=''">
+			<if test="status!=null">
 				 AND e.status = #{status}
 			</if>
 		</if>
@@ -127,6 +127,9 @@
 			AND u.id = e.auditor
 			JOIN t_user uu ON uu.id = e.applicant
 			WHERE 1=1
+			<if test="status!=null">
+				AND e.status = #{status}
+			</if>
 		</if>
 	</select>
 
@@ -136,6 +139,7 @@
 		where id = #{id}
 	</update>
 	<select id="selectByApplicant"  resultType="java.util.Map" parameterType="java.util.Map">
+    <if test="role!='admin'">
 	SELECT
 	b.title_name AS title_name,
 	title_type AS title_type,
@@ -145,19 +149,44 @@
 	c. NAME AS NAME,
 	a.id as id,
 	CASE
-when a.status='1' THEN
-'未审核'
-WHEN a.status='2'THEN
-'审核通过'
-ELSE
-'审核未通过'
-END status
+    when a.status='1' THEN
+    '未审核'
+    WHEN a.status='2'THEN
+    '审核通过'
+     ELSE
+     '审核未通过'
+     END status
    FROM
 	title_examine a
     JOIN title b ON a.title_id = b.id
     JOIN t_user c ON a.auditor = c.id
      WHERE
 		applicant=#{id}
+</if>
+		<if test="role=='admin'">
+			SELECT
+			b.title_name AS title_name,
+			title_type AS title_type,
+			title_source AS title_source,
+			suitMajorName AS suitMajorName,
+			suitScope AS suitScope,
+			c. NAME AS NAME,
+			a.id as id,
+			CASE
+			when a.status='1' THEN
+			'未审核'
+			WHEN a.status='2'THEN
+			'审核通过'
+			ELSE
+			'审核未通过'
+			END status
+			FROM
+			title_examine a
+			JOIN title b ON a.title_id = b.id
+			JOIN t_user c ON a.auditor = c.id
+			WHERE
+			1=1
+		</if>
 	</select>
 
 	<!-- 校内校外的题目都由该系主任审核 -->

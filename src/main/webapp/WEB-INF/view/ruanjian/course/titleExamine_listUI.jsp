@@ -26,13 +26,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12">
-										<shiro:hasPermission name="titleExamine:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-												<i class="fa fa-plus"></i> 添加
-											</button>
-										</shiro:hasPermission>
+									<div class="col-sm-3 pull-right">
+										<select name="flag" id="flag" class="form-control" onchange="handleSelect(event)">
+											<option value="">全部</option>
+											<option value="1">待审核</option>
+											<option value="2">审核通过</option>
+											<option value="3">审核未通过</option>
+										</select>
 									</div>
+									<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 									<thead>
@@ -75,6 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- page script -->
 	<script type="text/javascript">
    		var datatable;
+   		var disflag = '未审核';
    	    function initDatatable() {
    	        datatable = $('#datatable').DataTable({
    	            "lengthChange": false,//选择lenth
@@ -95,12 +98,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	            },
 	            "columns": [
-	                {"data": "id", "width": "12%"},
-					{"data": "titleName", "width": "34%"},
+	                {"data": "id", "width": "10%"},
+					{"data": "titleName", "width": "31%"},
 					{"data": "applyer", "width": "13%"},
 					{"data": "author", "width": "13%"},
                     {"data": "flag", "width": "13%"},
-					{"data": "operate", "width": "15%"},
+					{"data": "operate", "width": "19%"},
 	            ],
 	            "columnDefs": [
 	                {
@@ -108,16 +111,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
-	                        return  ' <shiro:hasPermission name="titleExamine:passOrFail">'
+	                        return  ' <shiro:hasPermission name="title:see">'
+                                	+'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
+                                	+'<i class="fa fa-eye fa-btn"></i>查看'
+                                	+'</button>'
+                                	+'</shiro:hasPermission>'
+									+'<span>' + data + '</span>'
+                               	 	+'<c:if test="' + row.flag + '==' + disflag + '">'
+									+'<shiro:hasPermission name="titleExamine:passOrFail">'
 			                        +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-check fa-btn"></i>通过'
 			                        +'</button>'
 			                        +'</shiro:hasPermission>'
-			                        +' <shiro:hasPermission name="titleExamine:passOrFail">'
+			                        +'<shiro:hasPermission name="titleExamine:passOrFail">'
 			                        +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-remove fa-btn"></i>不通过'
 			                        +'</button>'
-			                        +'</shiro:hasPermission>';
+			                        +'</shiro:hasPermission>'
+									+'</c:if>';
 	                    }
 	                }
 	            ],
@@ -130,7 +141,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            }
 	        });
    	    }
-   	    
+
+        function handleSelect(e) {
+            var status = e.target.value;
+            $.ajax({
+                type: "POST",
+                url:"<%=basePath%>ruanjian/course/titleExamine_list",
+                data: {
+                    status: status
+                },
+                beforeSend:function(){
+                    return loading();
+                },
+                success: function(msg) {
+                    closeloading();
+                    if(msg.state=='success'){
+//                        top.layer.msg("审核成功");
+                        refreshTable(datatable);
+                    }else{
+                        top.layer.msg("筛选失败");
+                    }
+                },
+                error: function(){
+                    closeloading();
+                }
+            });
+        }
+
    	    $(function(){
    	    
    	    	//pace监听ajax

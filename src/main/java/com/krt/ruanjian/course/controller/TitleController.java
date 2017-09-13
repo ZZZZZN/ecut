@@ -131,6 +131,7 @@ public class TitleController extends BaseController {
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
 		para.put("id",info.get("id"));
 		para.put("major",info.get("major"));
+		para.put("role",info.get("roleCode"));
 		DataTable dt = titleExamineService.selectByApplicant(start,length,draw,para);
 		return dt;
 	}
@@ -288,6 +289,33 @@ public class TitleController extends BaseController {
 	@RequiresPermissions("title:applicationSee")
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
+		Map titleMap = titleService.selectById(id);
+		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		MajorEnum majorEnum;
+		String newData = "";
+		for (int i = 0; i< array.length; i++) {
+			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
+			if (i+1 == array.length) {
+				newData += majorEnum.getName() ;
+			} else {
+				newData += majorEnum.getName() + ",";
+			}
+		}*/
+		request.setAttribute("title", titleMap);
+		return "ruanjian/course/title_seeUI";
+	}
+
+	/**
+	 * 查看选题表页
+	 *
+	 * @param id
+	 *            选题表 id
+	 * @param request
+	 * @return
+	 */
+	@RequiresPermissions("title:applicationSee")
+	@RequestMapping("ruanjian/course/title_application_seeUI")
+	public String title_application_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);
 		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
 		MajorEnum majorEnum;
