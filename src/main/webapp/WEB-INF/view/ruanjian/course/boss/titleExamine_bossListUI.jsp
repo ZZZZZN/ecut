@@ -25,15 +25,6 @@
 							<h5>选题表管理</h5>
 						</div>
 						<div class="box-body">
-							<%--<div class="row">
-								<div class="col-sm-12">
-									<shiro:hasPermission name="title:insert">
-										<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-											<i class="fa fa-plus"></i> 添加
-										</button>
-									</shiro:hasPermission>
-								</div>
-							</div>--%>
 							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 								<thead>
 								<tr>
@@ -104,7 +95,7 @@
                 {"data": "suitMajorName", "width": "13%"},
                 {"data": "suitScope", "width": "10%"},
                 {"data": "limit_person", "width": "10%"},
-                {"data": "operate", "width": "18%"},
+                {"data": "operate", "width": "20%"},
             ],
             "columnDefs": [
                 {
@@ -224,7 +215,7 @@
                     }
                 });
             };
-            confirmx("允许该学生选择该课题？",fun);
+            confirmx("是否确定课题审核通过？",fun);
         });
 
         //未通过
