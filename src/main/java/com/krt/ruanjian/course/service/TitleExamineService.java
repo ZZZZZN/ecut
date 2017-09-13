@@ -65,11 +65,7 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		dataTable.setPageNum(start);
 		PageHelper.startPage(dataTable.getPageNum(), dataTable.getLength());
 		List<Map> list;
-		if (flag == "1") {
-			list = titleExamineMapper.getTitleByMajor(para);
-		} else {
-			list = titleExamineMapper.getTitlePassAndFail(para);
-		}
+		list = titleExamineMapper.getTitleByMajor(para);
 		// 下面这句是为了获取分页信息，比如记录总数等等
 		PageInfo<Map> pageInfo = new PageInfo<Map>(list);
 		dataTable.setData(list);
