@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
-	                        return  ' <shiro:hasPermission name="title:see">'
+	                        return  ' <shiro:hasPermission name="title:applicationSee">'
 			                        +'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
 			                        +'<i class="fa fa-eye fa-btn"></i>查看'
 			                        +'</button>'
@@ -163,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	    //查看
 	   	    $(document).on("click",".seeBtn",function(){
                 var id = $(this).attr("rid");
-                location.href = "<%=basePath%>ruanjian/course/title_seeUI?id=" +id;
+                location.href = "<%=basePath%>ruanjian/course/title_application_seeUI?id=" +id;
                 <%--openDialogView("查看表单","<%=basePath%>ruanjian/course/title_seeUI?id="+id,"800px", "380px","");--%>
 	   	    });
 	   	   
