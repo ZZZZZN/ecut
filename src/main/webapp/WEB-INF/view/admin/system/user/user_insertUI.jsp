@@ -144,11 +144,19 @@
                 <tr>
                     <td class="active width-15">
                         <label class="pull-right">
+                            <font color="red"></font>班级
+                        </label>
+                    </td>
+                    <td class="width-35" >
+                        <input class="form-control" id="stu_class" name="stu_class" type="text" disabled="disabled"></input>
+                    </td>
+                    <td class="active width-15">
+                        <label class="pull-right">
                             <font color="red"></font>备注
                         </label>
                     </td>
-                    <td class="width-35" colspan="4">
-                        <textarea class="form-control" id="note" rows="4"></textarea>
+                    <td class="width-35" >
+                        <textarea class="form-control" id="note"></textarea>
                     </td>
                 </tr>
             </table>
@@ -219,11 +227,13 @@
         $("#training_site").attr("disabled", "disabled");
         $("#company").attr("disabled", "disabled");
         $("#title_level").attr("disabled", "disabled");
+        $("#stu_class").attr("disabled", "disabled");
         var role = $("#roleCode").val();
         var t = role.indexOf('stu');
         if (t>=0) {
             $("#training_site").removeAttr("disabled");
             $("#company").removeAttr("disabled");
+            $("#stu_class").removeAttr("disabled");
         }else {
             $("#title_level").removeAttr("disabled");
         }
