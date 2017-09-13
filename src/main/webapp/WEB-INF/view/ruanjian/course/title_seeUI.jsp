@@ -27,72 +27,77 @@
                             <form action="#" id="krtForm" class="form-horizontal">
                                 <table class="table table-bordered table-krt" style="width: 80%;margin-left: 100px">
                                     <tr>
-                                        <td class="active width-15">
+                                        <td class="active" style="width: 25%;">
                                             <label class="pull-right">
                                                 课题名称
                                             </label>
                                         </td>
-                                        <td class="width-35">${title.title_name}</td>
-                                        <td class="active width-15">
+                                        <td class="">${title.title_name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="active">
                                             <label class="pull-right">
                                                 课题类型
                                             </label>
                                         </td>
-                                        <td class="width-35">
+                                        <td class="">
                                             ${title.title_type}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="active width-15">
+                                        <td class="active">
                                             <label class="pull-right">
                                                 课题来源
                                             </label>
                                         </td>
-                                        <td class="width-35">
+                                        <td class="">
                                             ${title.title_source}
                                         </td>
-                                        <td class="active width-15">
+                                    </tr>
+                                    <tr>
+                                        <td class="active">
                                             <label class="pull-right">
                                                 适用专业
                                             </label>
                                         </td>
-                                        <td class="width-35">
+                                        <td class="">
                                             ${title.suitMajorName}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="active width-15">
+                                        <td class="active">
                                             <label class="pull-right">
                                                 适用实训所在地
                                             </label>
                                         </td>
-                                        <td class="width-35">
+                                        <td class="">
                                             ${title.suitScope}
                                         </td>
-                                        <td class="active width-15">
+                                    <tr>
+                                        <td class="active">
                                             <label class="pull-right">
                                                 上限人数
                                             </label>
                                         </td>
-                                        <td class="width-35">${title.limit_person}</td>
+                                        <td class="">${title.limit_person}</td>
                                     </tr>
                                     <tr>
-                                        <td class="active width-15">
+                                        <td class="active">
                                             <label class="pull-right">
                                                 课程意义与目标
                                             </label>
                                         </td>
-                                        <td colspan="3">
+                                        <td>
                                             ${title.meaning_target}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="active width-15" style="text-align: center;">
+                                        <td class="active" style="text-align: center;">
                                             <label class="pull-right">
                                                 学生基本条件和前期工作
                                             </label>
                                         </td>
-                                        <td colspan="3">
+                                        <td>
                                             ${title.condition_work}
                                         </td>
                                     </tr>

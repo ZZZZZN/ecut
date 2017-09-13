@@ -31,7 +31,12 @@ public class IndexController extends BaseController {
      */
     @RequestMapping("admin/index")
     public String index() {
-        return "admin/index";
+        Map mapUser = ShiroUtil.getCurrentUser();
+        String roleCode = mapUser.get("roleCode")+"";
+        if ("admin".equals(roleCode)) {
+            return "admin/index";
+        }
+        return "admin/index2";
     }
 
     /**

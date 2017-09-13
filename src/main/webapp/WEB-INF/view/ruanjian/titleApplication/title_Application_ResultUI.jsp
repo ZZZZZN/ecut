@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>学生选题管理</h5>
+								<h5>申请记录</h5>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
 											<th>指导老师</th>
-											<th>选题状态</th>
+											<th>申请状态</th>
 										</tr>
 									</thead>
 									<tbody>
