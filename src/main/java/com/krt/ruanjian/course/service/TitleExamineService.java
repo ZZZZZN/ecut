@@ -55,7 +55,7 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	}
 
 	/**
-	 * 系主任获取所有题目
+	 * 系主任获取所有题目（审核教师所在系的教师上传的题目）
 	 */
 	public DataTable getTitleByMajor(Integer start, Integer length, Integer draw, Map para) {
 		String flag = (String)para.get("flag");

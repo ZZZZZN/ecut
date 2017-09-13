@@ -131,6 +131,7 @@ public class TitleController extends BaseController {
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
 		para.put("id",info.get("id"));
 		para.put("major",info.get("major"));
+		para.put("role",info.get("roleCode"));
 		DataTable dt = titleExamineService.selectByApplicant(start,length,draw,para);
 		return dt;
 	}

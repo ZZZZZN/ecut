@@ -43,9 +43,8 @@
 									<th>课题来源</th>
 									<th>适用专业</th>
 									<th>适用实训所在地</th>
-									<th>上线人数</th>
 									<th>审核状态</th>
-									<%--<th>操作</th>--%>
+									<th>操作</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -99,10 +98,10 @@
             },
             "columns": [
                 {"data": "id", "width": "7%"},
-                {"data": "title_name", "width": "10%"},
-                {"data": "title_type", "width": "10%"},
-                {"data": "title_source", "width": "10%"},
-                {"data": "suitMajor", "width": "13%"},
+                {"data": "titleName", "width": "10%"},
+                {"data": "titleType", "width": "10%"},
+                {"data": "titleSource", "width": "10%"},
+                {"data": "suitMajorName", "width": "13%"},
                 {"data": "suitScope", "width": "10%"},
                 {"data": "审核状态", "width": "10%"},
                 {"data": "operate", "width": "18%"}
