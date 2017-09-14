@@ -192,17 +192,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         		top.layer.msg("操作成功");
 			         		refreshTable(datatable);
 			         	}
-			         	else if (msg.state=='overstep'){
+                         if(msg.state=='overnumber'){
+                            top.layer.msg("预选题超过三个，无法继续预选");
+                            refreshTable(datatable);
+						}
+			         	if (msg.state=='overstep'){
 						 top.layer.msg("超出选题人数上限");
 						 refreshTable(datatable);
 						 }
-			         	else{
-			         		top.layer.msg("操作失败");
-			         	} 
+                         if (msg.state=='alreadselected'){
+                             top.layer.msg("已被选择，无法继续选题");
+                             refreshTable(datatable);
+                         }
+                         if (msg.state=='overteacherlevel'){
+                             top.layer.msg("所选课题教师超出指导人数上限");
+                             refreshTable(datatable);
+                         }
+                         if (msg.state=='error'){
+                            top.layer.msg("操作失败");
+                        }
 			         },
 			         error: function(){
 			        	 closeloading();
-                         top.layer.msg("操作失败");
 			         }
 			      });
 	   	    });
