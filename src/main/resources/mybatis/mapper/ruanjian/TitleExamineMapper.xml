@@ -294,5 +294,44 @@ WHERE
 	AND
     status='2'
 	</select>
+	<!-- 带分页参数查询 -->
+	<select id="getStuSelData" resultType="java.util.Map">
+		SELECT
+			e.id ,
+			uu.username as stuNo,  # 学号
+			uu.name as stuName,
+			uu.stu_class as stuClass,
+			t.title_name AS titleName,
+			t.title_type as titleType,
+     		t.title_source as titleSource,
+			u. NAME AS teacName,
+			u.title_level as titleLevel
+		FROM
+			title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		JOIN t_user uu ON uu.id = e.applicant and  e.status=1
+		order by uu.stu_class
+	</select>
+	<!-- 不带分页参数 -->
+	<select id="getStuSelDataList" resultType="java.util.Map">
+		SELECT
+		e.id ,
+		uu.username as stuNo,  # 学号
+		uu.name as stuName,
+		uu.stu_class as stuClass,
+		t.title_name AS titleName,
+		t.title_type as titleType,
+		t.title_source as titleSource,
+		u. NAME AS teacName,
+		u.title_level as titleLevel
+		FROM
+		title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		JOIN t_user uu ON uu.id = e.applicant and  e.status=1
+		order by uu.stu_class
+	</select>
+
 </mapper>
 
