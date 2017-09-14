@@ -82,6 +82,32 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
+	 * 查看审核信息
+	 *
+	 * @return
+	 */
+	@RequiresPermissions("titleExamine:see")
+	@RequestMapping("ruanjian/course/titleExamine_seeUI")
+	public String titleExamine_seeUI(Integer id, HttpServletRequest request) {
+		Map titleMap = titleExamineService.selectById(id);
+		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		MajorEnum majorEnum;
+		String newData = "";
+		for (int i = 0; i< array.length; i++) {
+			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
+			if (i+1 == array.length) {
+				newData += majorEnum.getName() ;
+			} else {
+				newData += majorEnum.getName() + ",";
+			}
+		}*/
+		request.setAttribute("title", titleMap);
+		return "ruanjian/course/titleExamine_seeUI";
+	}
+
+
+
+	/**
 	 * 新增审核表（记录学生申请的题目）页
 	 * 
 	 * @return
@@ -91,6 +117,8 @@ public class TitleExamineController extends BaseController {
 	public String titleExamine_insertUI(HttpServletRequest request) {
 		return "ruanjian/course/titleExamine_insertUI";
 	}
+
+
 
 	/**
 	 * 添加审核表（记录学生申请的题目）
