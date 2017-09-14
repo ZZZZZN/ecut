@@ -64,8 +64,8 @@ public class TitleExamineController extends BaseController {
 	public DataTable titleExamine_list(Integer start, Integer length, Integer draw,
 									   HttpServletRequest request) {
 		String status=request.getParameter("status");
-		String titleName=request.getParameter("titleName");
-		String applyer=request.getParameter("applyer");
+		String titleName=request.getParameter("titlename");
+		String applyer=request.getParameter("author");
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer authorId = (Integer)user.get("id");
@@ -242,8 +242,12 @@ public class TitleExamineController extends BaseController {
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer id = (Integer)user.get("id");
+		String titleName=request.getParameter("titlename");
+		String applyer=request.getParameter("author");
 		para.put("userId", id);
 		para.put("flag", "1");
+		para.put("titlename",titleName);
+		para.put("author",applyer);
 		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
 		return dt;
 	}

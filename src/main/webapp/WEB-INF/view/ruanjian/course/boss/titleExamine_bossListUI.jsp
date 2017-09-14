@@ -24,19 +24,17 @@
 						<div class="box-header">
 							<h5>选题表管理</h5>
 						</div>
+
 						<div class="box-body">
 							<div class="row">
-								<div class="col-sm-3 pull-right">
-									<select name="flag" id="flag" class="form-control" onchange="handleSelect(event)">
-										<option value="">全部</option>
-										<option value="1">待审核</option>
-										<option value="2">审核通过</option>
-										<option value="3">审核未通过</option>
-									</select>
+								<div class="col-sm-12">
+									<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+									<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
+									<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+										<i class="fa fa-search fa-btn"></i>搜索
+									</button>
 								</div>
-								<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
-						</div>
-						<div class="box-body">
+							</div>
 							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 								<thead>
 								<tr>
@@ -98,6 +96,8 @@
                 "url": "<%=basePath%>ruanjian/course/boss/titleExamine_bossList",
                 "type": "post",
                 "data": function (d) {
+                    d.titlename = $("#titlename").val(),
+                        d.author = $("#author").val();
                     d.status = status;
                 }
             },

@@ -36,8 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="box-body">
 								<div class="row">
 									<div class="col-sm-12">
-										<span>课题名称: </span><input type="text" name="titleName" id="titleName" value="" class="form-control input-150 search-input">
-										<span>审核人: </span> <input type="text" name="applyer" id="applyer" value="" class="form-control input-150 search-input">
+										<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+										<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
 										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
 											<i class="fa fa-search fa-btn"></i>搜索
 										</button>
@@ -111,8 +111,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "type": "post",
 	                "data": function (d) {
 	                	d.status = $('#flag').val(),
-	                	d.applyer = $('#applyer').val(),
-							d.titleName = $('#titleName').val();
+                        d.titlename = $("#titlename").val(),
+							d.author = $("#author").val();
+
 	                }
 	            },
 	            "columns": [

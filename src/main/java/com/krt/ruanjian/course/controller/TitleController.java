@@ -133,9 +133,13 @@ public class TitleController extends BaseController {
 		Map para = new HashMap();
 		Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
 		para.put("id",info.get("id"));
 		para.put("major",info.get("major"));
 		para.put("role",info.get("roleCode"));
+		para.put("author",author);
+		para.put("titlename",titlename);
 		DataTable dt = titleExamineService.selectByApplicant(start,length,draw,para);
 		return dt;
 	}
@@ -160,9 +164,13 @@ public class TitleController extends BaseController {
 		Map para = new HashMap();
         Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
         para.put("id",info.get("id"));
         para.put("major",info.get("major"));
         para.put("role",info.get("roleCode"));
+		para.put("author",author);
+		para.put("titlename",titlename);
 		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
