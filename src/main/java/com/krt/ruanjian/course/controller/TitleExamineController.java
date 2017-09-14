@@ -185,8 +185,6 @@ public class TitleExamineController extends BaseController {
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
 		ReturnBean rb = null;
 		Map param = new HashMap();
-		//id 为审核表的 id
-		//根据id查看审核人的id 也就是申请人的id
 		param.put("id", id);
 		param.put("status", status);
 		int count = 0;
@@ -248,9 +246,8 @@ public class TitleExamineController extends BaseController {
 		Integer id = (Integer)user.get("id");
 		String titleName=request.getParameter("titlename");
 		String applyer=request.getParameter("author");
-		String status = request.getParameter("status");
 		para.put("userId", id);
-		para.put("flag", status);
+		para.put("flag", "1");
 		para.put("titlename",titleName);
 		para.put("author",applyer);
 		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
@@ -277,4 +274,29 @@ public class TitleExamineController extends BaseController {
 		}
 		return rb;
 	}
+
+	@RequiresPermissions("titleExamine:bossResultList")
+	@RequestMapping("ruanjian/course/boss/titleExamine_bossResultListUI")
+	public String titleExamine_bossResultListUI() {
+
+		return "ruanjian/course/boss/titleExamine_bossResultListUI";
+	}
+
+	/**
+	 * 系主任审题结果
+	 */
+	@RequiresPermissions("titleExamine:bossResultList")
+	@RequestMapping("ruanjian/course/boss/titleExamine_bossResultList")
+	@ResponseBody
+	public DataTable titleExamine_bossResultList(Integer start, Integer length, Integer draw,
+										   HttpServletRequest request) {
+		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		Integer id = (Integer)user.get("id");
+		para.put("userId", id);
+		para.put("flag",null);
+		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
+		return dt;
+	}
+
 }

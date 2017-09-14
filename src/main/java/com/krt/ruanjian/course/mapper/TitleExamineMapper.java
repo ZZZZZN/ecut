@@ -2,6 +2,7 @@ package com.krt.ruanjian.course.mapper;
 
 import com.krt.core.base.BaseMapper;
 import com.krt.ruanjian.course.entity.TitleExamine;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,4 +26,6 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
     List<Map> getTitleByMajor(Map para);
 
     List<TitleExamine> checkStuSelTitles(Map param);
+    Integer countnumbyapplicant(@Param("applicant") Integer applicant);
+    Integer countSelectednumber(@Param("applicant") Integer applicant);
 }

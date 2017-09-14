@@ -78,4 +78,11 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		List<TitleExamine> tmp = titleExamineMapper.checkStuSelTitles(param);
 		return tmp.size();
     }
+	public Integer countnumbyapplicant(Integer applicant){
+		return titleExamineMapper.countnumbyapplicant(applicant);
+	}
+
+	public Integer countSelectednumber(Integer applicant){
+		return titleExamineMapper.countSelectednumber(applicant);
+	}
 }

@@ -276,5 +276,23 @@
 	<select id="checkStuSelTitles" parameterType="java.util.Map" resultMap="BaseResultMap">
 		SELECT id FROM `title_examine` where applicant =(select applicant from title_examine where id = #{id} ) and status=2
 	</select>
+	<select id="countnumbyapplicant" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	applicant = #{applicant}
+	</select>
+	<select id="countSelectednumber" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	applicant = #{applicant}
+	AND
+    status='2'
+	</select>
 </mapper>
 
