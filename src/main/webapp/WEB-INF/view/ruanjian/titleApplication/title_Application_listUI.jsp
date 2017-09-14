@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "suitScope", "width": "13%"},
 					{"data": "name","width":"13"},
 					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "10%"},
+					{"data": "operate", "width": "12%"},
 	            ],
 	            "columnDefs": [
 	                {
