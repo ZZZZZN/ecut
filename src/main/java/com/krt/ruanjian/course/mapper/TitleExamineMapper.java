@@ -24,4 +24,5 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
 
     List<Map> getTitleByMajor(Map para);
 
+    List<TitleExamine> checkStuSelTitles(Map param);
 }
