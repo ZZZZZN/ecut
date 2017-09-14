@@ -185,14 +185,18 @@ public class TitleExamineController extends BaseController {
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
 		ReturnBean rb = null;
 		Map param = new HashMap();
+		//id 为审核表的 id
+		//根据id查看审核人的id 也就是申请人的id
 		param.put("id", id);
 		param.put("status", status);
-		int result = titleExamineService.updateStatusById(param);
-		if (result == 1) {
-			rb = ReturnBean.getSuccessReturnBean();
+		int count = 0;
+		count = titleExamineService.checkStuSelTitles(param);
+		if(count > 0) {
+			rb = ReturnBean.getCustomReturnBean("该生已选题成功不能重复选题");
 			return rb;
 		} else {
-			rb = ReturnBean.getErrorReturnBean();
+			titleExamineService.updateStatusById(param);
+			rb = ReturnBean.getSuccessReturnBean();
 			return rb;
 		}
 	}
