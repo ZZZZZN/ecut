@@ -3,8 +3,7 @@ package com.krt.admin.system.entity;
 import com.krt.core.base.BaseEntity;
 
 /**
- * @Description：T_user实体类 
- * @author：殷帅
+ * @Description：T_user实体类
  * @date：2016-08-30
  * @version 1.0
  */
@@ -22,6 +21,7 @@ public class User extends BaseEntity{
 	private Integer direction;//学生方向
 	private String company;//企业（学生）
 	private String title_level;//职称（教师）
+	private Integer title_level_num;//职称对应可带人数
 	private String training_site;//实训地点（校内、校外、其他）
 	private String major;//专业（学生：软件工程、网络工程、物联网工程、数字媒体技术、计算机科学与技术、通信工程）
 	private String note;//备注
@@ -147,6 +147,14 @@ public class User extends BaseEntity{
 		this.institute = institute;
 	}
 
+	public Integer getTitle_level_num() {
+		return title_level_num;
+	}
+
+	public void setTitle_level_num(Integer title_level_num) {
+		this.title_level_num = title_level_num;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
@@ -161,6 +169,7 @@ public class User extends BaseEntity{
 				", direction=" + direction +
 				", company='" + company + '\'' +
 				", title_level='" + title_level + '\'' +
+				", title_level_num=" + title_level_num +
 				", training_site='" + training_site + '\'' +
 				", major='" + major + '\'' +
 				", note='" + note + '\'' +

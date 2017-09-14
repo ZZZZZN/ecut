@@ -17,6 +17,7 @@
         <result column="direction" jdbcType="INTEGER" property="direction"/>
         <result column="company" jdbcType="VARCHAR" property="company"/>
         <result column="title_level" jdbcType="VARCHAR" property="title_level"/>
+        <result column="title_level_num" jdbcType="INTEGER" property="title_level_num"/>
         <result column="training_site" jdbcType="VARCHAR" property="training_site"/>
         <result column="major" jdbcType="VARCHAR" property="major"/>
         <result column="note" jdbcType="VARCHAR" property="note"/>
@@ -27,7 +28,7 @@
 
     <sql id="Base_Column_List">
 		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime,
-		stu_class,stu_no,tel,direction,company,title_level,training_site,major,note,department,institute
+		stu_class,stu_no,tel,direction,company,title_level,title_level_num,training_site,major,note,department,institute
 	</sql>
 
     <select id="selectById" resultType="java.util.Map">
@@ -94,6 +95,9 @@
             <if test="title_level != null">
                 title_level,
             </if>
+            <if test="title_level_num != null">
+                title_level_num,
+            </if>
             <if test="training_site != null">
                 training_site,
             </if>
@@ -159,6 +163,9 @@
             </if>
             <if test="title_level != null">
                 #{title_level,jdbcType=VARCHAR},
+            </if>
+            <if test="title_level_num != null">
+                #{title_level_num,jdbcType=INTEGER},
             </if>
             <if test="training_site != null">
                 #{training_site,jdbcType=VARCHAR},
@@ -229,6 +236,9 @@
             </if>
             <if test="title_level != null">
                 title_level = #{title_level,jdbcType=VARCHAR},
+            </if>
+            <if test="title_level_num != null">
+                title_level_num = #{title_level_num,jdbcType=VARCHAR},
             </if>
             <if test="training_site != null">
                 training_site = #{training_site,jdbcType=VARCHAR},
@@ -316,6 +326,7 @@
             a.password,
             a.institute,
             a.title_level,
+            a.title_level_num,
             a.department,
             b.major_name,
             a.note
@@ -327,5 +338,14 @@
             AND a.institute = #{institute}
             AND a.major = #{major}
             AND a.roleCode LIKE 'tea%'
+    </select>
+
+    <select id="selectTeacherLevelnumByid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT
+        title_level_num
+        FROM
+        t_user
+        WHERE
+        id=#{id}
     </select>
 </mapper>

@@ -27,4 +27,5 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
 
     Integer countnumbyapplicant(@Param("applicant") Integer applicant);
     Integer countSelectednumber(@Param("applicant") Integer applicant);
+    Integer countStudentsByteacherId(@Param("auditor") Integer auditor);
 }

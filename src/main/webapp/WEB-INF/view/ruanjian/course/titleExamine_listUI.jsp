@@ -264,7 +264,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             if(msg.state=='success'){
                                 top.layer.msg("审核成功");
                                 refreshTable(datatable);
-                            }else{
+                            }
+                            if(msg.state=='overteacherlevel'){
+                                top.layer.msg("所选课题教师超出指导人数上限");
+                                refreshTable(datatable);
+                            }
+                            if(msg.state=='error')
+                            {
                                 top.layer.msg("审核失败");
                             }
                         },
