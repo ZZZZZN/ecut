@@ -180,6 +180,9 @@
 		<if test="titlename != ''">
 			AND b.title_name like CONCAT('%',#{titlename},'%')
 		</if>
+		<if test="flag != ''">
+			AND a.status=#{flag}
+		</if>
 </if>
 		<if test="role=='admin'">
 			SELECT
@@ -209,6 +212,9 @@
 			</if>
 			<if test="titlename != ''">
 				AND b.title_name like CONCAT('%',#{titlename},'%')
+			</if>
+			<if test="flag != ''">
+				AND a.status=#{flag}
 			</if>
 		</if>
 	</select>

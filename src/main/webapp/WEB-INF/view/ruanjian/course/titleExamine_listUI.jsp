@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     +'</button>'
                                     +'</shiro:hasPermission>'
                             }
-                            return  ' <shiro:hasPermission name="title:see">'
+                            return  ' <shiro:hasPermission name="titleExamine:see">'
                                 +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
                                 +'<i class="fa fa-eye fa-btn"></i>查看'
                                 +'</button>'
@@ -165,28 +165,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         function handleSelect(e) {
             status = e.target.value;
             datatable.ajax.reload();
-            <%--$.ajax({--%>
-                <%--type: "POST",--%>
-                <%--url:"<%=basePath%>ruanjian/course/titleExamine_list",--%>
-                <%--data: {--%>
-                    <%--status: status--%>
-                <%--},--%>
-                <%--beforeSend:function(){--%>
-                    <%--return loading();--%>
-                <%--},--%>
-                <%--success: function(msg) {--%>
-                    <%--closeloading();--%>
-                    <%--if(msg.state=='success'){--%>
-<%--//                        top.layer.msg("审核成功");--%>
-                        <%--refreshTable(datatable);--%>
-                    <%--}else{--%>
-                        <%--top.layer.msg("筛选失败");--%>
-                    <%--}--%>
-                <%--},--%>
-                <%--error: function(){--%>
-                    <%--closeloading();--%>
-                <%--}--%>
-            <%--});--%>
         }
 
    	    $(function(){
