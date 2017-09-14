@@ -24,7 +24,17 @@
 						<div class="box-header">
 							<h5>选题表管理</h5>
 						</div>
+
 						<div class="box-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+									<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
+									<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+										<i class="fa fa-search fa-btn"></i>搜索
+									</button>
+								</div>
+							</div>
 							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 								<thead>
 								<tr>
@@ -68,6 +78,8 @@
 <!-- page script -->
 <script type="text/javascript">
     var datatable;
+    var disflag = '待审核';
+    var status = $('#flag').val();
     function initDatatable() {
         datatable = $('#datatable').DataTable({
             "lengthChange": false,//选择lenth
@@ -84,7 +96,9 @@
                 "url": "<%=basePath%>ruanjian/course/boss/titleExamine_bossList",
                 "type": "post",
                 "data": function (d) {
-
+                    d.titlename = $("#titlename").val(),
+                        d.author = $("#author").val();
+                    d.status = status;
                 }
             },
             "columns": [
@@ -103,21 +117,25 @@
                     "data": "id",
                     "width": "20%",
                     "render": function(data, type, row) {
-                        return	' <shiro:hasPermission name="title:see">'
-								+'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
-								+'<i class="fa fa-eye fa-btn"></i>查看'
-								+'</button>'
-								+'</shiro:hasPermission>'
-								+'<shiro:hasPermission name="titleExamine:anoPassOrFail">'
-								+'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
-								+'<i class="fa fa-check fa-btn"></i>通过'
-								+'</button>'
-								+'</shiro:hasPermission>'
-								+' <shiro:hasPermission name="titleExamine:anoPassOrFail">'
-								+'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
-								+'<i class="fa fa-remove fa-btn"></i>不通过'
-								+'</button>'
-								+'</shiro:hasPermission>';
+                        var optBtn = '';
+                        if (row.flag == disflag ) {
+                            optBtn = '<shiro:hasPermission name="titleExamine:anoPassOrFail">'
+                            +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
+                            +'<i class="fa fa-check fa-btn"></i>通过'
+                            +'</button>'
+                            +'</shiro:hasPermission>'
+                            +' <shiro:hasPermission name="titleExamine:anoPassOrFail">'
+                            +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
+                            +'<i class="fa fa-remove fa-btn"></i>不通过'
+                            +'</button>'
+                            +'</shiro:hasPermission>'
+                        }
+                        return ' <shiro:hasPermission name="title:see">'
+                            +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
+                            +'<i class="fa fa-eye fa-btn"></i>查看'
+                            +'</button>'
+                            +'</shiro:hasPermission>'
+                            +optBtn;
                     }
                 }
             ],
@@ -129,6 +147,10 @@
                 });
             }
         });
+    }
+    function handleSelect(e) {
+        status = e.target.value;
+        datatable.ajax.reload();
     }
 
     $(function(){

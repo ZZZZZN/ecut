@@ -12,6 +12,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
 	<link rel="stylesheet" href="<%=basePath%>static/plugins/datatables/dataTables.bootstrap.css">
 </head>
+<style>
+	.search-input{
+		margin-right:10px;
+		margin-left: 2px;
+	}
+</style>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
@@ -28,10 +34,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="row">
 									<div class="col-sm-12">
 										<shiro:hasPermission name="title:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
+											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm" style="margin-right: 15px;">
 												<i class="fa fa-plus"></i> 添加
 											</button>
 										</shiro:hasPermission>
+										<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+										<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
+										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+											<i class="fa fa-search fa-btn"></i>搜索
+										</button>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -40,10 +51,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>序号</th>
 											<th>课题名称</th>
 											<th>课题类型</th>
-											<th>课题来源</th>
+											<%--<th>课题来源</th>--%>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
 											<th>上限人数</th>
+											<th>出题老师</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -93,17 +105,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/title_list",
 	                "type": "post",
 	                "data": function (d) {
-	                
+	                	d.titlename = $("#titlename").val(),
+							d.author = $("#author").val();
 	                }
 	            },
 	            "columns": [
 	                {"data": "id", "width": "7%"},
 					{"data": "title_name", "width": "18%"},
 					{"data": "title_type", "width": "10%"},
-					{"data": "title_source", "width": "10%"},
+//					{"data": "title_source", "width": "10%"},
 					{"data": "suitMajorName", "width": "13%"},
 					{"data": "suitScope", "width": "14%"},
 					{"data": "limit_person", "width": "10%"},
+					{"data": "author", "width": "10%"},
 					{"data": "operate", "width": "18%"},
 	            ],
 	            "columnDefs": [

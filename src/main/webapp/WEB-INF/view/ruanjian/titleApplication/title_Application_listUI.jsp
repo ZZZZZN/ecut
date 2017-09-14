@@ -27,11 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="box-body">
 								<div class="row">
 									<div class="col-sm-12">
-										<%--<shiro:hasPermission name="title:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-												<i class="fa fa-plus"></i> 添加
-											</button>
-										</shiro:hasPermission>--%>
+										<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+										<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
+										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+											<i class="fa fa-search fa-btn"></i>搜索
+										</button>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -43,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>课题来源</th>
 											<th>适用专业</th>
 											<th>适用实训所在地</th>
+											<th>指导老师</th>
 											<th>上限人数</th>
 											<th>操作</th>
 										</tr>
@@ -93,7 +94,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/title_application_list",
 	                "type": "post",
 	                "data": function (d) {
-	                
+                        d.titlename = $("#titlename").val(),
+							d.author = $("#author").val();
 	                }
 	            },
 	            "columns": [
@@ -103,12 +105,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "title_source", "width": "10%"},
 					{"data": "suitMajorName", "width": "10%"},
 					{"data": "suitScope", "width": "13%"},
+					{"data": "name","width":"13"},
 					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "18%"},
+					{"data": "operate", "width": "10%"},
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 7,
+	                    "targets": 8,
 	                    "data": "id",
 	                    "width": "20%",
 	                    "render": function(data, type, row) {
@@ -189,13 +192,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         		top.layer.msg("操作成功");
 			         		refreshTable(datatable);
 			         	}
+                         if(msg.state=='overnumber'){
+                            top.layer.msg("预选题超过三个，无法继续预选");
+                            refreshTable(datatable);
+						}
 			         	if (msg.state=='overstep'){
 						 top.layer.msg("超出选题人数上限");
 						 refreshTable(datatable);
 						 }
-			         	else{
-			         		top.layer.msg("操作失败");
-			         	} 
+                         if (msg.state=='alreadselected'){
+                             top.layer.msg("已被选择，无法继续选题");
+                             refreshTable(datatable);
+                         }
+                         if (msg.state=='error'){
+                            top.layer.msg("操作失败");
+                        }
 			         },
 			         error: function(){
 			        	 closeloading();

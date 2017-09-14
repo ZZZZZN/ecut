@@ -101,25 +101,36 @@
 	</select>
 	
 	<!-- 带参数查询选题表列表 -->
-	<select id="selectListPara" resultType="java.util.Map">
+	<select id="selectListPara" resultType="java.util.Map" parameterType="java.util.Map">
 		SELECT
-		 *
+		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,b.name as author
 		FROM
-		title t
-		where 1=1
+		title a,
+        t_user b
+		where
+        a.author=b.id
 		<if test="roleCode != 'admin'">
-			AND t.author = #{userId}
+			AND a.author = #{userId}
 		</if>
+        <if test="author != ''">
+        AND b.name like CONCAT('%',#{author},'%')
+        </if>
+        <if test="titlename != ''">
+            AND a.title_name like CONCAT('%',#{titlename},'%')
+        </if>
 	</select>
 	<!--当前学生可申请的课题列表-->
 	<select id="selectListStudent" resultType="java.util.Map" parameterType="java.util.Map">
        <if test="role!='admin'">
 		SELECT
-		 *
+		 a.*,b.name
 		 FROM
-		title
+		title a,
+		t_user b
 		 where
-		FIND_IN_SET(#{major},title.suitMajor)
+		FIND_IN_SET(#{major},a.suitMajor)
+		   AND
+		   a.author=b.id
 		AND flag='2'
 		  <if test="role=='stu_in'">
 			  AND suitScope='校内实训'
@@ -127,8 +138,14 @@
 		   <if test="role=='stu_out'">
 			   AND suitScope='校外实训'
 		   </if>
+		   <if test="author != ''">
+			   AND b.name like CONCAT('%',#{author},'%')
+		   </if>
+		   <if test="titlename != ''">
+			   AND a.title_name like CONCAT('%',#{titlename},'%')
+		   </if>
         AND ! FIND_IN_SET(
-	title.id,
+	a.id,
 	(
 		SELECT
 			IFNULL(GROUP_CONCAT(a.title_id),'')
@@ -141,11 +158,20 @@
 	   </if>
 		<if test="role=='admin'">
 			SELECT
-			*
+			a.*,b.name
 			FROM
-			title
+			title a,
+			t_user b
 			where
+			a.author=b.id
+			AND
 			flag='2'
+			<if test="author != ''">
+				AND b.name like CONCAT('%',#{author},'%')
+			</if>
+			<if test="titlename != ''">
+				AND a.title_name like CONCAT('%',#{titlename},'%')
+			</if>
 		</if>
 	</select>
 	<!--当前课题已审核通过人数-->

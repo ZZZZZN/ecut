@@ -86,9 +86,9 @@
 			e.auditor AS auditorId,
 			u. NAME AS author,
 			CASE
-			WHEN  a.status='1' THEN
+			WHEN  e.status='1' THEN
 			'未审核'
-			WHEN a.status='2'THEN
+			WHEN e.status='2'THEN
 			'审核通过'
 			ELSE
 			'审核未通过'
@@ -100,10 +100,16 @@
 		AND u.id = #{authorId}
 		JOIN t_user uu ON uu.id = e.applicant
 		where 1=1
-			<if test="status!=null">
-				 AND e.status = #{status}
-			</if>
+        <if test="status!=''">
+            AND e.status = #{status}
+        </if>
+        <if test="titleName!=''">
+            AND t.title_name like CONCAT('%',#{titleName},'%')
+        </if>
+        <if test="applyer!=''">
+            AND uu.NAME like CONCAT('%',#{applyer},'%')
 		</if>
+        </if>
 		<if test="role=='admin'">
 			SELECT
 			e.id ,
@@ -127,9 +133,15 @@
 			AND u.id = e.auditor
 			JOIN t_user uu ON uu.id = e.applicant
 			WHERE 1=1
-			<if test="status!=null">
-				AND e.status = #{status}
-			</if>
+            <if test="status!=''">
+                AND e.status = #{status}
+            </if>
+            <if test="titleName!=''">
+                AND t.title_name like CONCAT('%',#{titleName},'%')
+            </if>
+            <if test="applyer!=''">
+                AND uu.NAME like CONCAT('%',#{applyer},'%')
+            </if>
 		</if>
 	</select>
 
@@ -162,6 +174,12 @@
     JOIN t_user c ON a.auditor = c.id
      WHERE
 		applicant=#{id}
+		<if test="author != ''">
+			AND c.name like CONCAT('%',#{author},'%')
+		</if>
+		<if test="titlename != ''">
+			AND b.title_name like CONCAT('%',#{titlename},'%')
+		</if>
 </if>
 		<if test="role=='admin'">
 			SELECT
@@ -186,6 +204,12 @@
 			JOIN t_user c ON a.auditor = c.id
 			WHERE
 			1=1
+			<if test="author != ''">
+				AND c.name like CONCAT('%',#{author},'%')
+			</if>
+			<if test="titlename != ''">
+				AND b.title_name like CONCAT('%',#{titlename},'%')
+			</if>
 		</if>
 	</select>
 
@@ -193,19 +217,37 @@
 	<!-- 系主任查看本系所有老师出的所有题目-->
 	<select id="getTitleByMajor" resultType="java.util.Map">
 		SELECT
-			t.id,
-			t.title_name titleName,
-		  	t.title_type titleType,
-		 	t.title_source titleSource,
-			t.suitMajorName,
-			t.suitScope,
-			t.limit_person limitPerson,
-			t.meaning_target meaningTarget,
-			t.condition_work conditionWork
+		t.id,
+		t.title_name titleName,
+		t.title_type titleType,
+		t.title_source titleSource,
+		t.suitMajorName,
+		t.suitScope,
+		t.limit_person limitPerson,
+		t.meaning_target meaningTarget,
+		t.condition_work conditionWork,
+		CASE
+		when t.flag='1' THEN
+		'待审核'
+		WHEN t.flag='2'THEN
+		'审核通过'
+		ELSE
+		'审核未通过'
+		END flag
 		FROM title t JOIN (
-		SELECT id FROM t_user WHERE major = (
-		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag=1
+		SELECT id,name FROM t_user WHERE major = (
+		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id
+		<if test="author != ''">
+			AND tmp.name like CONCAT('%',#{author},'%')
+		</if>
+		<if test="titlename != ''">
+			AND t.title_name like CONCAT('%',#{titlename},'%')
+		</if>
+		<if test="flag != ''">
+			and t.flag=#{flag}
+		</if>
 	</select>
+
 	<select id="getTitlePassAndFail" resultType="java.util.Map">
 		SELECT
 			t.id,
@@ -230,5 +272,23 @@
 		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag!=1
 	</select>
 
+	<select id="countnumbyapplicant" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	applicant = #{applicant}
+	</select>
+	<select id="countSelectednumber" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	applicant = #{applicant}
+	AND
+    status='2'
+	</select>
 </mapper>
 

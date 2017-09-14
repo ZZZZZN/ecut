@@ -27,11 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="box-body">
 								<div class="row">
 									<div class="col-sm-12">
-										<%--<shiro:hasPermission name="title:insert">
-											<button title="添加" type="button" id="insertBtn" data-placement="left" data-toggle="tooltip" class="btn btn-white btn-sm">
-												<i class="fa fa-plus"></i> 添加
-											</button>
-										</shiro:hasPermission>--%>
+										<span>课题名称: </span><input type="text" name="titlename" id="titlename" value="" class="form-control input-150 search-input">
+										<span>出题老师: </span> <input type="text" name="author" id="author" value="" class="form-control input-150 search-input">
+										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+											<i class="fa fa-search fa-btn"></i>搜索
+										</button>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -93,7 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/title_application_Resulelist",
 	                "type": "post",
 	                "data": function (d) {
-	                
+                        d.titlename = $("#titlename").val(),
+                            d.author = $("#author").val();
 	                }
 	            },
 	            "columns": [

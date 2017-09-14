@@ -64,11 +64,15 @@ public class TitleExamineController extends BaseController {
 	public DataTable titleExamine_list(Integer start, Integer length, Integer draw,
 									   HttpServletRequest request) {
 		String status=request.getParameter("status");
+		String titleName=request.getParameter("titlename");
+		String applyer=request.getParameter("author");
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer authorId = (Integer)user.get("id");
 		para.put("authorId", authorId);
 		para.put("status", status);
+		para.put("titleName",titleName);
+		para.put("applyer",applyer);
 		para.put("role",user.get("roleCode"));
 		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
 		return dt;
@@ -179,11 +183,19 @@ public class TitleExamineController extends BaseController {
 	@RequestMapping("ruanjian/course/titleExamine_passOrFail")
 	@ResponseBody
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
-		ReturnBean rb = null;
+		ReturnBean rb ;
 		Map param = new HashMap();
 		param.put("id", id);
 		param.put("status", status);
-		int result = titleExamineService.updateStatusById(param);
+		int result = 0;
+		try {
+			result = titleExamineService.updateStatusById(param);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			rb = ReturnBean.getErrorReturnBean();
+			return rb;
+		}
 		if (result == 1) {
 			rb = ReturnBean.getSuccessReturnBean();
 			return rb;
@@ -238,8 +250,12 @@ public class TitleExamineController extends BaseController {
 		Map para = new HashMap();
 		Map user = ShiroUtil.getCurrentUser();
 		Integer id = (Integer)user.get("id");
+		String titleName=request.getParameter("titlename");
+		String applyer=request.getParameter("author");
 		para.put("userId", id);
 		para.put("flag", "1");
+		para.put("titlename",titleName);
+		para.put("author",applyer);
 		DataTable dt = titleExamineService.getTitleByMajor(start, length, draw, para);
 		return dt;
 	}

@@ -88,8 +88,12 @@ public class TitleController extends BaseController {
 		Map user = ShiroUtil.getCurrentUser();
 		Integer userId = (Integer)user.get("id");
 		String roleCode = (String)user.get("roleCode");
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
 		para.put("userId", userId);
 		para.put("roleCode", roleCode);
+		para.put("author",author);
+		para.put("titlename",titlename);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
 		//取出list中的data值将专业代码转换成专业名称
 		/*List<HashMap<String, String>> list = dt.getData();
@@ -129,9 +133,13 @@ public class TitleController extends BaseController {
 		Map para = new HashMap();
 		Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
 		para.put("id",info.get("id"));
 		para.put("major",info.get("major"));
 		para.put("role",info.get("roleCode"));
+		para.put("author",author);
+		para.put("titlename",titlename);
 		DataTable dt = titleExamineService.selectByApplicant(start,length,draw,para);
 		return dt;
 	}
@@ -156,9 +164,13 @@ public class TitleController extends BaseController {
 		Map para = new HashMap();
         Map info=userService.selectById(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
         para.put("id",info.get("id"));
         para.put("major",info.get("major"));
         para.put("role",info.get("roleCode"));
+		para.put("author",author);
+		para.put("titlename",titlename);
 		DataTable dt = titleService.selectListStudent(start, length, draw, para);
 		return dt;
 	}
@@ -212,6 +224,16 @@ public class TitleController extends BaseController {
 	public ReturnBean title_application(HttpServletRequest request) {
 		ReturnBean rb;
 		try {
+			Integer selectednumber=titleExamineService.countSelectednumber(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+			if(selectednumber>=1){
+				rb=ReturnBean.getCustomReturnBean("alreadselected");
+				return rb;
+			}
+			Integer selectnumber =titleExamineService.countnumbyapplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+			if (selectnumber>=3){
+				rb=ReturnBean.getCustomReturnBean("overnumber");
+				return rb;
+			}
 			String id= request.getParameter("id");
 			Map map= titleService.selectById(Integer.parseInt(id));
 			Integer number= titleService.countPassNumber(id);
