@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="<%=basePath%>static/skin/css/login.css">
     <jsp:include page="/static/common/head.jsp" flush="true"/>
     <script type="text/javascript">
         if(self.location!=top.location){
@@ -13,12 +14,17 @@
         }
     </script>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
+<body class="hold-transition login-bg">
+
+<div class="login-left">
+    <img src="<%=basePath%>static/skin/images/ecut-logo.png" class="ecut-logo">
+    <div class="photo"></div>
+</div>
+<div class="login-box login-right" style="margin-top: 60px">
     <div class="login-logo">
-        <a href="#"><b>经开区征迁数据管理平台</b></a>
+        <a href="#"><b class="ecut-title">毕业设计选题系统</b></a>
     </div><!-- /.login-logo -->
-    <div class="login-box-body">
+    <div class="login-box-body login-ecut-body">
         <p class="login-box-msg">欢迎登录系统</p>
         <form action="#" method="post" id="loginForm">
             <div class="form-group has-feedback">
@@ -41,7 +47,6 @@
         </form>
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
-
 <!-- jQuery 2.1.4 -->
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="<%=basePath%>static/plugins/layer/layer.js"></script>

@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "suitScope", "width": "13%"},
 					{"data": "name","width":"13"},
 					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "10%"},
+					{"data": "operate", "width": "12%"},
 	            ],
 	            "columnDefs": [
 	                {
@@ -192,24 +192,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			         		top.layer.msg("操作成功");
 			         		refreshTable(datatable);
 			         	}
-                         if(msg.state=='overnumber'){
-                            top.layer.msg("预选题超过三个，无法继续预选");
-                            refreshTable(datatable);
-						}
-			         	if (msg.state=='overstep'){
+			         	else if (msg.state=='overstep'){
 						 top.layer.msg("超出选题人数上限");
 						 refreshTable(datatable);
 						 }
-                         if (msg.state=='alreadselected'){
-                             top.layer.msg("已被选择，无法继续选题");
-                             refreshTable(datatable);
-                         }
-                         if (msg.state=='error'){
-                            top.layer.msg("操作失败");
-                        }
+			         	else{
+			         		top.layer.msg("操作失败");
+			         	} 
 			         },
 			         error: function(){
 			        	 closeloading();
+                         top.layer.msg("操作失败");
 			         }
 			      });
 	   	    });
