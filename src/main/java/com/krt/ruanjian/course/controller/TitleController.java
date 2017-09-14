@@ -224,6 +224,16 @@ public class TitleController extends BaseController {
 	public ReturnBean title_application(HttpServletRequest request) {
 		ReturnBean rb;
 		try {
+			Integer selectednumber=titleExamineService.countSelectednumber(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+			if(selectednumber>=1){
+				rb=ReturnBean.getCustomReturnBean("alreadselected");
+				return rb;
+			}
+			Integer selectnumber =titleExamineService.countnumbyapplicant(Integer.parseInt(ShiroUtil.getCurrentUser().get("id").toString()));
+			if (selectnumber>=3){
+				rb=ReturnBean.getCustomReturnBean("overnumber");
+				return rb;
+			}
 			String id= request.getParameter("id");
 			Map map= titleService.selectById(Integer.parseInt(id));
 			Integer number= titleService.countPassNumber(id);

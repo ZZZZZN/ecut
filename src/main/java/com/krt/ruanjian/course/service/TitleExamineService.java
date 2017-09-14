@@ -73,4 +73,11 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		dataTable.setRecordsFiltered(pageInfo.getTotal());
 		return dataTable;
 	}
+	public Integer countnumbyapplicant(Integer applicant){
+		return titleExamineMapper.countnumbyapplicant(applicant);
+	}
+
+	public Integer countSelectednumber(Integer applicant){
+		return titleExamineMapper.countSelectednumber(applicant);
+	}
 }

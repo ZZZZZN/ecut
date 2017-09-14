@@ -272,5 +272,23 @@
 		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag!=1
 	</select>
 
+	<select id="countnumbyapplicant" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	applicant = #{applicant}
+	</select>
+	<select id="countSelectednumber" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	applicant = #{applicant}
+	AND
+    status='2'
+	</select>
 </mapper>
 

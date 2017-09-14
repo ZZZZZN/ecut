@@ -183,11 +183,19 @@ public class TitleExamineController extends BaseController {
 	@RequestMapping("ruanjian/course/titleExamine_passOrFail")
 	@ResponseBody
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
-		ReturnBean rb = null;
+		ReturnBean rb ;
 		Map param = new HashMap();
 		param.put("id", id);
 		param.put("status", status);
-		int result = titleExamineService.updateStatusById(param);
+		int result = 0;
+		try {
+			result = titleExamineService.updateStatusById(param);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			rb = ReturnBean.getErrorReturnBean();
+			return rb;
+		}
 		if (result == 1) {
 			rb = ReturnBean.getSuccessReturnBean();
 			return rb;
