@@ -85,7 +85,6 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	public Integer countSelectednumber(Integer applicant){
 		return titleExamineMapper.countSelectednumber(applicant);
 	}
-<<<<<<< HEAD
 
 	//学生选题数据
     public DataTable getStuSelData(Integer start, Integer length, Integer draw, Map para) {
