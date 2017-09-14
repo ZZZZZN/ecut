@@ -24,22 +24,23 @@
                         <div class="box-header">
                             <h5>学生信息导出</h5>
                         </div>
-                        <form action="#" id="stuForm" class="form-horizontal">
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="form-group" style="width: 200px;margin-left: 15px">
-                                        <label>请选择专业</label>
-                                        <select class="form-control" id="major_name" name="major_name">
-                                            <c:forEach items="${map}" var="major">
-                                                <option value="${major.major_name}">${major.major_name}</option>
-                                            </c:forEach>
-                                        </select>
-                                        <button id="searchBtn" class="btn btn-primary btn-sm"
-                                                style="position: relative;left: 220px;top: -32px">
-                                            <i class="fa fa-search fa-btn"></i>搜索
-                                        </button>
-                                    </div>
+
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="form-group" style="width: 200px;margin-left: 15px">
+                                    <label>请选择专业</label>
+                                    <select class="form-control" id="major_name" name="major_name" onchange="handleChange(event)">
+                                        <c:forEach items="${map}" var="major">
+                                            <option value="${major.major_name}">${major.major_name}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <button id="searchBtn" class="btn btn-primary btn-sm"
+                                            style="position: relative;left: 220px;top: -32px">
+                                        <i class="fa fa-search fa-btn"></i>搜索
+                                    </button>
                                 </div>
+                            </div>
+                            <form action="#" id="stuForm" class="form-horizontal">
                                 <table id="datatable" class="table table-striped table-bordered table-hover table-krt">
                                     <thead>
                                     <tr>
@@ -56,10 +57,13 @@
                                     </thead>
                                     <tbody>
                                     </tbody>
-                                    <input type="submit" value="导出excel" onclick="doSubmit()">
+
+                                    <input type="hidden" id="major_name1" name="major_name1">
+                                    <input class="btn btn-primary" type="submit" value="导出excel" onclick="doSubmit()"
+                                           style="float: right;">
                                 </table>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
@@ -88,7 +92,7 @@
 <script type="text/javascript">
 
     function doSubmit() {
-        $("#stuForm").attr("action", "<%=basePath%>formExport/students?major_name=" + $("#major_name").val());
+        $("#stuForm").attr("action", "<%=basePath%>formExport/students?major_name1=" + $("#major_name1").val());
         $("#stuForm").submit();
     }
 
@@ -257,6 +261,22 @@
         });
 
     });
+
+    function handleChange(e) {
+//        var major_name = document.getElementById("major_name");
+        console.log($("#major_name").find("option:selected").text());
+        $("#major_name1").val($("#major_name").find("option:selected").text());
+        console.log($("#major_name1").val());
+//        console.log(major_name1.options)
+//        var arr = [].slice.call(major_name1.options);
+//        arr.forEach(function(item){
+//            if(item.value === e.target.value){
+//                item.selected = true;
+//            }else{
+//                item.selected = false;
+//            }
+//        })
+    }
 </script>
 </body>
 </html>

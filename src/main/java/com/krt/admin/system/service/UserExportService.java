@@ -29,7 +29,7 @@ public class UserExportService {
      * @param users
      * @return
      */
-    public List<Map> createExcelRecord(List<User> users) {
+    public List<Map> createStuExcelRecord(List<User> users) {
         List<Map> listmap = new ArrayList<Map>();
         Map map = new HashMap<String, Object>();
         map.put("sheetName", "sheet1");
@@ -53,6 +53,32 @@ public class UserExportService {
         return listmap;
     }
 
-
+    /**
+     * 创建教师Excel记录
+     * @param users
+     * @return
+     */
+    public List<Map> createTeacExcelRecord(List<User> users) {
+        List<Map> listmap = new ArrayList<Map>();
+        Map map = new HashMap<String, Object>();
+        map.put("sheetName", "sheet1");
+        listmap.add(map);
+//        Project project=null;
+        User user = null;
+        for (int j = 0; j < users.size(); j++) {
+            user=users.get(j);
+            Map<String, Object> mapValue = new HashMap<String, Object>();
+//            mapValue.put("id", user.getId());
+            mapValue.put("name", user.getName());
+            mapValue.put("username", user.getUsername());
+            mapValue.put("institute", user.getInstitute());
+//            mapValue.put("major", user.getMajor());
+            mapValue.put("title_level", user.getTitle_level());
+            mapValue.put("department", user.getDepartment());
+            mapValue.put("note", user.getNote());
+            listmap.add(mapValue);
+        }
+        return listmap;
+    }
 
 }
