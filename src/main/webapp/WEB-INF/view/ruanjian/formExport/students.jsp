@@ -27,17 +27,17 @@
 
                         <div class="box-body">
                             <div class="row">
-                                <div class="form-group" style="width: 200px;margin-left: 15px">
+                                <div class="form-group pull-left" style="width: 200px;height: 30px;margin-left: 15px">
                                     <label>请选择专业</label>
                                     <select class="form-control" id="major_name" name="major_name" onchange="handleChange(event)">
                                         <c:forEach items="${map}" var="major">
                                             <option value="${major.major_name}">${major.major_name}</option>
                                         </c:forEach>
                                     </select>
-                                    <button id="searchBtn" class="btn btn-primary btn-sm"
+                                    <%--<button id="searchBtn" class="btn btn-primary btn-sm"
                                             style="position: relative;left: 220px;top: -32px">
                                         <i class="fa fa-search fa-btn"></i>搜索
-                                    </button>
+                                    </button>--%>
                                 </div>
                             </div>
                             <form action="#" id="stuForm" class="form-horizontal">
@@ -59,8 +59,7 @@
                                     </tbody>
 
                                     <input type="hidden" id="major_name1" name="major_name1">
-                                    <input class="btn btn-primary" type="submit" value="导出excel" onclick="doSubmit()"
-                                           style="float: right;">
+                                    <input class="btn btn-primary pull-left" style="position: relative; left: 250px;top: -20px" type="submit" value="导出excel" onclick="doSubmit()">
                                 </table>
                             </form>
                         </div>
@@ -180,12 +179,12 @@
         //初始化datatable
         initDatatable();
 
-        $("#searchBtn").on('click', function () {
-            var url = '<%=basePath%>ruanjian/formExport/students_export?major_name=' + $("#major_name").val();
-            url = encodeURI(url);
-            console.log(url);
-            datatable.ajax.url(url).load();
-        });
+        <%--$("#searchBtn").on('click', function () {--%>
+            <%--var url = '<%=basePath%>ruanjian/formExport/students_export?major_name=' + $("#major_name").val();--%>
+            <%--url = encodeURI(url);--%>
+            <%--console.log(url);--%>
+            <%--datatable.ajax.url(url).load();--%>
+        <%--});--%>
         <%--$(document).on("click","#searchBtn",function(){--%>
         <%--console.log($('#searchForm').serialize());--%>
         <%--var fun = function(){--%>
@@ -267,6 +266,11 @@
         console.log($("#major_name").find("option:selected").text());
         $("#major_name1").val($("#major_name").find("option:selected").text());
         console.log($("#major_name1").val());
+
+        var url = '<%=basePath%>ruanjian/formExport/students_export?major_name=' + $("#major_name").val();
+        url = encodeURI(url);
+        console.log(url);
+        datatable.ajax.url(url).load();
 //        console.log(major_name1.options)
 //        var arr = [].slice.call(major_name1.options);
 //        arr.forEach(function(item){
