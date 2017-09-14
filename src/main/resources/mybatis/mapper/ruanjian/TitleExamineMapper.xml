@@ -147,7 +147,7 @@
 
 	<update id="updateStatusById" parameterType="java.util.Map">
 		update title_examine
-		set status = #{status},dr = 1
+		set status = #{status}
 		where id = #{id}
 	</update>
 	<select id="selectByApplicant"  resultType="java.util.Map" parameterType="java.util.Map">
@@ -272,5 +272,9 @@
 		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag!=1
 	</select>
 
+	<!-- 一个学生只能选一个题目 -->
+	<select id="checkStuSelTitles" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT id FROM `title_examine` where applicant =(select applicant from title_examine where id = #{id} ) and status=2
+	</select>
 </mapper>
 
