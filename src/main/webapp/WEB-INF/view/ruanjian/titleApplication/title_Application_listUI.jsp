@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "suitScope", "width": "13%"},
 					{"data": "name","width":"13"},
 					{"data": "limit_person", "width": "10%"},
-					{"data": "operate", "width": "10%"},
+					{"data": "operate", "width": "12%"},
 	            ],
 	            "columnDefs": [
 	                {
@@ -202,6 +202,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 }
                          if (msg.state=='alreadselected'){
                              top.layer.msg("已被选择，无法继续选题");
+                             refreshTable(datatable);
+                         }
+                         if (msg.state=='overteacherlevel'){
+                             top.layer.msg("所选课题教师超出指导人数上限");
                              refreshTable(datatable);
                          }
                          if (msg.state=='error'){

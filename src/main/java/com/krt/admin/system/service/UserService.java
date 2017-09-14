@@ -104,4 +104,8 @@ public class UserService extends BaseServiceImpl<User> {
         return dataTable;
     }
 
+    public Integer selectTeacherLevelnumByid(Integer id){
+        return userMapper.selectTeacherLevelnumByid(id);
+    }
+
 }

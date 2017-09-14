@@ -1,0 +1,42 @@
+.login-bg{
+    background: #e0ecf7;
+}
+
+.ecut-logo{
+    position: relative;
+    left: -30px;
+    bottom: 100px;
+}
+
+.ecut-title{
+    position: relative;
+    top: -15px;
+    right: 226px;
+    text-shadow: 1px 1px 1px grey;
+}
+
+.login-left{
+    position: relative;
+    top: 183px;
+    left: 263px;
+}
+
+.login-right{
+    position: relative;
+    top: 60px;
+    left: 230px;
+}
+
+.photo{
+    width: 495px;
+    height: 255px;
+    position: absolute;
+    top: 100px;
+    background: url('../../../upload/ecut-1.jpg') no-repeat;
+    background-size: cover;
+    border: 4px solid #fff;
+}
+
+.login-ecut-body{
+    box-shadow: 5px 5px 6px #e5e5e5;
+}

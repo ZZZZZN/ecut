@@ -85,6 +85,7 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	public Integer countSelectednumber(Integer applicant){
 		return titleExamineMapper.countSelectednumber(applicant);
 	}
+<<<<<<< HEAD
 
 	//学生选题数据
     public DataTable getStuSelData(Integer start, Integer length, Integer draw, Map para) {
@@ -103,8 +104,11 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		return dataTable;
     }
 
-    //不份页面
+    //不分页
 	public List<Map> getStuSelDataList(Map para) {
 		return titleExamineMapper.getStuSelDataList(para);
+	}
+	public Integer countStudentsByteacherId(Integer auditor){
+		return titleExamineMapper.countStudentsByteacherId(auditor);
 	}
 }
