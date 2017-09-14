@@ -73,4 +73,9 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		dataTable.setRecordsFiltered(pageInfo.getTotal());
 		return dataTable;
 	}
+
+    public int checkStuSelTitles(Map param) {
+		List<TitleExamine> tmp = titleExamineMapper.checkStuSelTitles(param);
+		return tmp.size();
+    }
 }

@@ -33,6 +33,15 @@
 									<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
 										<i class="fa fa-search fa-btn"></i>搜索
 									</button>
+									<div class="col-sm-3 pull-right">
+										<select name="flag" id="flag" class="form-control" onchange="handleSelect(event)">
+											<option value="">全部</option>
+											<option value="1">待审核</option>
+											<option value="2">审核通过</option>
+											<option value="3">审核未通过</option>
+										</select>
+									</div>
+									<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 								</div>
 							</div>
 							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -44,7 +53,7 @@
 									<th>课题来源</th>
 									<th>适用专业</th>
 									<th>适用实训所在地</th>
-									<th>上限人数</th>
+									<th>状态</th>
 									<th>操作</th>
 								</tr>
 								</thead>
@@ -108,7 +117,7 @@
                 {"data": "titleSource", "width": "10%"},
                 {"data": "suitMajorName", "width": "13%"},
                 {"data": "suitScope", "width": "10%"},
-                {"data": "limitPerson", "width": "10%"},
+                {"data": "flag", "width": "10%"},
                 {"data": "operate", "width": "20%"},
             ],
             "columnDefs": [
@@ -130,7 +139,7 @@
                             +'</button>'
                             +'</shiro:hasPermission>'
                         }
-                        return ' <shiro:hasPermission name="title:see">'
+                        return ' <shiro:hasPermission name="title:applicationSee">'
                             +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
                             +'<i class="fa fa-eye fa-btn"></i>查看'
                             +'</button>'

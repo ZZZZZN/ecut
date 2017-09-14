@@ -265,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 top.layer.msg("审核成功");
                                 refreshTable(datatable);
                             }else{
-                                top.layer.msg("审核失败");
+                                top.layer.msg(msg.state);
                             }
                         },
                         error: function(){
