@@ -290,5 +290,14 @@ WHERE
 	AND
     status='2'
 	</select>
+	<select id="countStudentsByteacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+	COUNT(id)
+FROM
+	title_examine
+WHERE
+	auditor = #{auditor}
+AND STATUS = '2'
+	</select>
 </mapper>
 

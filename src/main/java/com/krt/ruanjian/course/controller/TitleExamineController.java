@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.krt.admin.system.service.UserService;
 import com.krt.core.bean.DataTable;
 import com.krt.core.bean.ReturnBean;
 import com.krt.core.util.ShiroUtil;
@@ -34,6 +35,8 @@ public class TitleExamineController extends BaseController {
 
 	@Resource
 	private TitleService titleService;
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 审核表（记录学生申请的题目）管理页
@@ -185,6 +188,15 @@ public class TitleExamineController extends BaseController {
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
 		ReturnBean rb ;
 		Map param = new HashMap();
+		Map map= titleExamineService.selectById(id);
+		//所选课题教师可带人数
+		Integer Level_num=userService.selectTeacherLevelnumByid(Integer.parseInt(map.get("auditor").toString()));
+		//当前该教师已带人数
+		Integer now_num=titleExamineService.countStudentsByteacherId(Integer.parseInt(map.get("auditor").toString()));
+		if(now_num>=Level_num){
+			rb=ReturnBean.getCustomReturnBean("overteacherlevel");
+			return rb;
+		}
 		param.put("id", id);
 		param.put("status", status);
 		int result = 0;

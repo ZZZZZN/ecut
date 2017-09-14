@@ -204,6 +204,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              top.layer.msg("已被选择，无法继续选题");
                              refreshTable(datatable);
                          }
+                         if (msg.state=='overteacherlevel'){
+                             top.layer.msg("所选课题教师超出指导人数上限");
+                             refreshTable(datatable);
+                         }
                          if (msg.state=='error'){
                             top.layer.msg("操作失败");
                         }

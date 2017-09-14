@@ -35,4 +35,6 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @return
 	 */
 	List<Map> selectTeachersByInstituteAndMajor(@Param("institute") String institute,@Param("major") String major);
+
+	Integer selectTeacherLevelnumByid(@Param("id") Integer id);
 }

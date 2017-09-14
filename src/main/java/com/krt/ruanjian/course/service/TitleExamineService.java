@@ -80,4 +80,7 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	public Integer countSelectednumber(Integer applicant){
 		return titleExamineMapper.countSelectednumber(applicant);
 	}
+	public Integer countStudentsByteacherId(Integer auditor){
+		return titleExamineMapper.countStudentsByteacherId(auditor);
+	}
 }
