@@ -297,7 +297,7 @@
             company,
             a.institute,
             note,
-            b.major_name
+            b.major_name AS major
         FROM
             t_user a,
             major b

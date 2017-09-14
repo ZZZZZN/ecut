@@ -26,7 +26,7 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @param major
 	 * @return
 	 */
-	List<Map> selectStudentsByInstituteAndMajor(@Param("institute") String institute,@Param("major") String major);
+	List<Map> selectStudentsByInstituteAndMajor(@Param("institute") String institute, @Param("major") String major);
 
 	/**
 	 * 根据学院和专业查询教师名单
