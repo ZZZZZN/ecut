@@ -386,4 +386,44 @@ public class TitleController extends BaseController {
 		}
 		return rb;
 	}
+
+	/**
+	 * 选题列表导出
+	 * @return
+	 */
+	@RequiresPermissions("title:exportlist")
+	@RequestMapping("ruanjian/course/title_ExportlistUI")
+	public String title_ExportlistUI() {
+		return "ruanjian/formExport/title_export";
+	}
+
+	/**
+	 * 选题列表导出datatable
+	 * @param start
+	 * @param length
+	 * @param draw
+	 * @param request
+	 * @return
+	 */
+	@RequiresPermissions("title:exportlist")
+	@RequestMapping("ruanjian/course/title_Exportlist")
+	@ResponseBody
+	public DataTable title_exportlist(Integer start, Integer length, Integer draw,
+								HttpServletRequest request) {
+		Map para = new HashMap();
+		Map user = ShiroUtil.getCurrentUser();
+		Integer userId = (Integer)user.get("id");
+		String roleCode = (String)user.get("roleCode");
+		String author= request.getParameter("author");
+		String titlename=request.getParameter("titlename");
+		String flag=request.getParameter("flag");
+		para.put("userId", userId);
+		para.put("roleCode", roleCode);
+		para.put("author",author);
+		para.put("titlename",titlename);
+		para.put("flag",flag);
+		DataTable dt = titleService.selectListPara(start, length, draw, para);
+
+		return dt;
+	}
 }
