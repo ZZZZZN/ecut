@@ -147,7 +147,7 @@
 
 	<update id="updateStatusById" parameterType="java.util.Map">
 		update title_examine
-		set status = #{status},dr = 1
+		set status = #{status}
 		where id = #{id}
 	</update>
 	<select id="selectByApplicant"  resultType="java.util.Map" parameterType="java.util.Map">
@@ -180,6 +180,9 @@
 		<if test="titlename != ''">
 			AND b.title_name like CONCAT('%',#{titlename},'%')
 		</if>
+		<if test="flag != ''">
+			AND a.status=#{flag}
+		</if>
 </if>
 		<if test="role=='admin'">
 			SELECT
@@ -209,6 +212,9 @@
 			</if>
 			<if test="titlename != ''">
 				AND b.title_name like CONCAT('%',#{titlename},'%')
+			</if>
+			<if test="flag != ''">
+				AND a.status=#{flag}
 			</if>
 		</if>
 	</select>
@@ -272,6 +278,10 @@
 		SELECT u.major FROM t_user u WHERE u.id = #{userId})) tmp ON t.author = tmp.id and t.flag!=1
 	</select>
 
+	<!-- 一个学生只能选一个题目 -->
+	<select id="checkStuSelTitles" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT id FROM `title_examine` where applicant =(select applicant from title_examine where id = #{id} ) and status=2
+	</select>
 	<select id="countnumbyapplicant" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 		SELECT
 	COUNT(id)
@@ -290,6 +300,45 @@ WHERE
 	AND
     status='2'
 	</select>
+	<!-- 带分页参数查询 -->
+	<select id="getStuSelData" resultType="java.util.Map">
+		SELECT
+			e.id ,
+			uu.username as stuNo,  # 学号
+			uu.name as stuName,
+			uu.stu_class as stuClass,
+			t.title_name AS titleName,
+			t.title_type as titleType,
+     		t.title_source as titleSource,
+			u. NAME AS teacName,
+			u.title_level as titleLevel
+		FROM
+			title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		JOIN t_user uu ON uu.id = e.applicant and  e.status=1
+		order by uu.stu_class
+	</select>
+	<!-- 不带分页参数 -->
+	<select id="getStuSelDataList" resultType="java.util.Map">
+		SELECT
+		e.id ,
+		uu.username as stuNo,  # 学号
+		uu.name as stuName,
+		uu.stu_class as stuClass,
+		t.title_name AS titleName,
+		t.title_type as titleType,
+		t.title_source as titleSource,
+		u. NAME AS teacName,
+		u.title_level as titleLevel
+		FROM
+		title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		JOIN t_user uu ON uu.id = e.applicant and  e.status=1
+		order by uu.stu_class
+	</select>
+
 	<select id="countStudentsByteacherId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 		SELECT
 	COUNT(id)

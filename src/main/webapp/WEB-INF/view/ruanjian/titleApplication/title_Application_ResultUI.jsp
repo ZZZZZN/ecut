@@ -32,8 +32,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
 											<i class="fa fa-search fa-btn"></i>搜索
 										</button>
+										<div class="col-sm-3 pull-right">
+											<select name="flag" id="flag" class="form-control" onchange="handleSelect(event)">
+												<option value="">全部</option>
+												<option value="1">待审核</option>
+												<option value="2">审核通过</option>
+												<option value="3">审核未通过</option>
+											</select>
+										</div>
+										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 									</div>
 								</div>
+
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 									<thead>
 										<tr>
@@ -93,6 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/title_application_Resulelist",
 	                "type": "post",
 	                "data": function (d) {
+	                    d.flag=$("#flag").val(),
                         d.titlename = $("#titlename").val(),
                             d.author = $("#author").val();
 	                }
@@ -141,7 +152,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            }
 	        });
    	    }
-   	    
+
+
+        function handleSelect(e) {
+            status = e.target.value;
+            datatable.ajax.reload();
+        }
    	    $(function(){
    	    
    	    	//pace监听ajax

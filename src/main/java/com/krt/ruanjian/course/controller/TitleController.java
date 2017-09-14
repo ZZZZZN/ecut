@@ -135,11 +135,13 @@ public class TitleController extends BaseController {
 		/*Map major= majorService.selectMajorCodeByMajorName(info.get("major").toString());*/
 		String author= request.getParameter("author");
 		String titlename=request.getParameter("titlename");
+		String flag=request.getParameter("flag");
 		para.put("id",info.get("id"));
 		para.put("major",info.get("major"));
 		para.put("role",info.get("roleCode"));
 		para.put("author",author);
 		para.put("titlename",titlename);
+		para.put("flag",flag);
 		DataTable dt = titleExamineService.selectByApplicant(start,length,draw,para);
 		return dt;
 	}
@@ -316,7 +318,7 @@ public class TitleController extends BaseController {
 	 * @param request
 	 * @return
 	 */
-	@RequiresPermissions("title:applicationSee")
+	@RequiresPermissions("title:see")
 	@RequestMapping("ruanjian/course/title_seeUI")
 	public String title_seeUI(Integer id, HttpServletRequest request) {
 		Map titleMap = titleService.selectById(id);

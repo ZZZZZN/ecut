@@ -73,12 +73,39 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 		dataTable.setRecordsFiltered(pageInfo.getTotal());
 		return dataTable;
 	}
+
+    public int checkStuSelTitles(Map param) {
+		List<TitleExamine> tmp = titleExamineMapper.checkStuSelTitles(param);
+		return tmp.size();
+    }
 	public Integer countnumbyapplicant(Integer applicant){
 		return titleExamineMapper.countnumbyapplicant(applicant);
 	}
 
 	public Integer countSelectednumber(Integer applicant){
 		return titleExamineMapper.countSelectednumber(applicant);
+	}
+
+	//学生选题数据
+    public DataTable getStuSelData(Integer start, Integer length, Integer draw, Map para) {
+		DataTable dataTable = new DataTable();
+		// 下面两句要连着写在一起，就可以实现分页
+		dataTable.setLength(length);
+		dataTable.setPageNum(start);
+		PageHelper.startPage(dataTable.getPageNum(), dataTable.getLength());
+		List<Map> list;
+		list = titleExamineMapper.getStuSelData(para);
+		// 下面这句是为了获取分页信息，比如记录总数等等
+		PageInfo<Map> pageInfo = new PageInfo<Map>(list);
+		dataTable.setData(list);
+		dataTable.setRecordsTotal(Long.valueOf(dataTable.getLength()));
+		dataTable.setRecordsFiltered(pageInfo.getTotal());
+		return dataTable;
+    }
+
+    //不分页
+	public List<Map> getStuSelDataList(Map para) {
+		return titleExamineMapper.getStuSelDataList(para);
 	}
 	public Integer countStudentsByteacherId(Integer auditor){
 		return titleExamineMapper.countStudentsByteacherId(auditor);

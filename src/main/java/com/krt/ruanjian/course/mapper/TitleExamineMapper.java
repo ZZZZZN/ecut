@@ -25,7 +25,12 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
 
     List<Map> getTitleByMajor(Map para);
 
+    List<TitleExamine> checkStuSelTitles(Map param);
     Integer countnumbyapplicant(@Param("applicant") Integer applicant);
     Integer countSelectednumber(@Param("applicant") Integer applicant);
+
+    List<Map> getStuSelData(Map para);
+
+    List<Map> getStuSelDataList(Map para);
     Integer countStudentsByteacherId(@Param("auditor") Integer auditor);
 }

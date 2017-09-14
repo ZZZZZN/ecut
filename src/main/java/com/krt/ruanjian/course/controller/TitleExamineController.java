@@ -82,6 +82,32 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
+	 * 查看审核信息
+	 *
+	 * @return
+	 */
+	@RequiresPermissions("titleExamine:see")
+	@RequestMapping("ruanjian/course/titleExamine_seeUI")
+	public String titleExamine_seeUI(Integer id, HttpServletRequest request) {
+		Map titleMap = titleExamineService.selectById(id);
+		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
+		MajorEnum majorEnum;
+		String newData = "";
+		for (int i = 0; i< array.length; i++) {
+			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
+			if (i+1 == array.length) {
+				newData += majorEnum.getName() ;
+			} else {
+				newData += majorEnum.getName() + ",";
+			}
+		}*/
+		request.setAttribute("title", titleMap);
+		return "ruanjian/course/titleExamine_seeUI";
+	}
+
+
+
+	/**
 	 * 新增审核表（记录学生申请的题目）页
 	 * 
 	 * @return
@@ -91,6 +117,8 @@ public class TitleExamineController extends BaseController {
 	public String titleExamine_insertUI(HttpServletRequest request) {
 		return "ruanjian/course/titleExamine_insertUI";
 	}
+
+
 
 	/**
 	 * 添加审核表（记录学生申请的题目）
@@ -186,7 +214,7 @@ public class TitleExamineController extends BaseController {
 	@RequestMapping("ruanjian/course/titleExamine_passOrFail")
 	@ResponseBody
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
-		ReturnBean rb ;
+		ReturnBean rb = null;
 		Map param = new HashMap();
 		Map map= titleExamineService.selectById(id);
 		//所选课题教师可带人数
@@ -199,20 +227,14 @@ public class TitleExamineController extends BaseController {
 		}
 		param.put("id", id);
 		param.put("status", status);
-		int result = 0;
-		try {
-			result = titleExamineService.updateStatusById(param);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			rb = ReturnBean.getErrorReturnBean();
-			return rb;
-		}
-		if (result == 1) {
-			rb = ReturnBean.getSuccessReturnBean();
+		int count = 0;
+		count = titleExamineService.checkStuSelTitles(param);
+		if(count > 0) {
+			rb = ReturnBean.getCustomReturnBean("该生已选题成功不能重复选题");
 			return rb;
 		} else {
-			rb = ReturnBean.getErrorReturnBean();
+			titleExamineService.updateStatusById(param);
+			rb = ReturnBean.getSuccessReturnBean();
 			return rb;
 		}
 	}
