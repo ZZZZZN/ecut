@@ -8,6 +8,7 @@ import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.entity.TitleExamine;
 import com.krt.ruanjian.course.service.DataExportService;
 import com.krt.ruanjian.course.service.TitleExamineService;
+import com.krt.ruanjian.course.service.TitleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,9 @@ public class DataExportController extends BaseController {
 
     @Autowired
     private TitleExamineService titleExamineService;
+    @Autowired
+    private TitleService titleService;
+
 
     @Autowired
     private DataExportService dataExportService;
@@ -138,4 +142,46 @@ public class DataExportController extends BaseController {
         dataExportService.stuSelDataExport(resp, fileName,newList,keys,columnNames);
         return rb;
     }
+    @RequestMapping("ruanjian/course/titleExport")
+    public ReturnBean titleExport(HttpServletRequest request,HttpServletResponse response){
+        ReturnBean rb =null;
+        Map para = new HashMap();
+        Map user = ShiroUtil.getCurrentUser();
+        Integer  userId = Integer.parseInt(user.get("id").toString());
+        String  roleCode = user.get("username").toString();
+        String author= request.getParameter("author");
+        String titlename=request.getParameter("titlename");
+        String flag=request.getParameter("flag");
+        para.put("userId", userId);
+        para.put("author",author);
+        para.put("titlename",titlename);
+        para.put("roleCode",roleCode);
+        para.put("flag",flag);
+        List<Map> list =titleService.getMapper().selectListPara(para);
+        //添加sheet
+        Map map = new HashMap();
+        map.put("sheetName","拟题数据");
+        List<Map> newList = new ArrayList<Map>();
+        newList.add(map);
+        for(Map tmp : list) {
+            newList.add(tmp);
+        }
+        String fileName="拟题数据导出";
+        //列名
+        String columnNames[]={"课题名称","课题类型","适用专业","适用实训所在地",
+                "上限人数","出题老师","课程意义与目标","学生基本条件和前期工作"};
+        //map中的key
+        String keys[] = {"title_name","title_type","suitMajorName","suitScope",
+                "limit_person","author","meaning_target","condition_work"};
+        try {
+            dataExportService.stuSelDataExport(response,fileName,newList,keys,columnNames);
+        } catch (IOException e) {
+            rb=ReturnBean.getErrorReturnBean();
+            e.printStackTrace();
+            return rb;
+        }
+        rb=ReturnBean.getSuccessReturnBean();
+        return rb;
+    }
+
 }

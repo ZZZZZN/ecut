@@ -61,10 +61,25 @@
 	
 	<!-- 根据ID查询审核表（记录学生申请的题目） -->
 	<select id="selectById" resultType="java.util.Map">
-		select
-			 id,title_id,applicant,auditor,status,ts,dr
-		from title_examine
-		where id = #{id,jdbcType=INTEGER}
+		SELECT
+			t.id ,
+			t.title_name,
+			t.title_type,
+			t.title_source,
+			t.suitMajorName,
+			t.suitScope,
+			t.limit_person,
+			t.meaning_target,
+			t.condition_work,
+			e.applicant AS applicantId,
+			uu. NAME AS applyer,
+			e.auditor AS auditorId,
+			u. NAME AS author
+		FROM
+			title_examine e
+		JOIN title t ON e.title_id = t.id and t.id = #{id,jdbcType=INTEGER}
+		JOIN t_user u ON u.id = e.auditor
+		JOIN t_user uu ON uu.id = e.applicant
 	</select>
 
 	<!-- 查询审核表（记录学生申请的题目）列表 -->
@@ -79,8 +94,8 @@
 
         <if test="role!='admin'">
 		SELECT
-			e.id ,
-			t.title_name AS titleName,
+			t.id ,
+			t.title_name,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
 			e.auditor AS auditorId,
@@ -112,7 +127,7 @@
         </if>
 		<if test="role=='admin'">
 			SELECT
-			e.id ,
+			t.id ,
 			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
