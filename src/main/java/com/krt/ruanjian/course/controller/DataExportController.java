@@ -22,21 +22,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 学生选题数据导出控制类
+ * 数据导出控制层
  */
 @Controller
-public class StuSelDataExportController extends BaseController {
+public class DataExportController extends BaseController {
 
     @Autowired
     private TitleExamineService titleExamineService;
 
-    //返回页面
+    //返回学生选题数据页面
     @RequestMapping("ruanjian/course/boss/stuSelDataExportUI")
     public String stuSelDataExportUI() {
         return "ruanjian/course/boss/stuSelDataExportUI";
     }
 
-    //渲染页面
+    //渲染学生选题数据页面
     @RequestMapping("ruanjian/course/boss/stuSelDataExport")
     @ResponseBody
     public DataTable stuSelDataExport(Integer start, Integer length, Integer draw,
@@ -47,7 +47,7 @@ public class StuSelDataExportController extends BaseController {
         return dt;
     }
 
-    //导出 excel 文件
+    //导出学生选题数据 excel文件
     @RequestMapping("ruanjian/course/boss/startExport")
     @ResponseBody
     public ReturnBean download(HttpServletRequest request, HttpServletResponse response) throws Exception {
