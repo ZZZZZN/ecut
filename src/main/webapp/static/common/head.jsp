@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 <meta name="renderer" content="webkit">
-<title>经开区征迁数据管理平台</title>
+<title>毕业设计选题系统</title>
 <!--[if lte IE 8]><script>window.location.href='<%=basePath%>static/common/browser.html';</script><![endif]-->
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">

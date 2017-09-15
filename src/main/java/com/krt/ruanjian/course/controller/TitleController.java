@@ -410,4 +410,36 @@ public class TitleController extends BaseController {
 
 		return dt;
 	}
+
+
+	/**
+	 * 教师所带人数列表导出
+	 * @return
+	 */
+	@RequiresPermissions("title:exportlist")
+	@RequestMapping("ruanjian/course/teacher_ExportlistUI")
+	public String teacher_ExportlistUI() {
+		return "ruanjian/formExport/teacher_export_number";
+	}
+
+	/**
+	 *
+	 * 教师所带人数列表导出datatable
+	 * @param start
+	 * @param length
+	 * @param draw
+	 * @param request
+	 * @return
+	 */
+	@RequiresPermissions("title:exportlist")
+	@RequestMapping("ruanjian/course/teacher_Exportlist")
+	@ResponseBody
+	public DataTable teacher_exportlist(Integer start, Integer length, Integer draw,
+									  HttpServletRequest request) {
+		Map para = new HashMap();
+		String teacher=request.getParameter("teacher");
+		para.put("teacher",teacher);
+			DataTable dt = titleService.teacherExport(start, length, draw, para);
+		return dt;
+	}
 }
