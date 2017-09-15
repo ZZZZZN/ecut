@@ -47,6 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</select>
 										</div>
 										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
+										<a class="btn btn-primary" id="export" onclick="exportClick(event)"  style="position: relative; left: 500px;top: -5px">导出excel</a>
 									</div>
 								</div>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
@@ -161,6 +162,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        });
    	    }
 
+        function exportClick(e) {
+            var flag= $('#flag').val();
+            var titlename = $("#titlename").val();
+                var author = $("#author").val();
+            e.target.href = "<%=basePath%>ruanjian/course/titleExport?flag="+flag+"&titlename="+titlename+"&author="+author
+        }
         function handleSelect(e) {
             status = e.target.value;
             datatable.ajax.reload();
