@@ -95,22 +95,6 @@ public class TitleController extends BaseController {
 		para.put("author",author);
 		para.put("titlename",titlename);
 		DataTable dt = titleService.selectListPara(start, length, draw, para);
-		//取出list中的data值将专业代码转换成专业名称
-		/*List<HashMap<String, String>> list = dt.getData();
-		for (int i =0; i < list.size(); i++) {
-			String[] array = list.get(i).get("suitMajor").split(",");
-			String newData = "";
-			MajorEnum tmpEnum;
-			for (int j = 0; j < array.length; j++) {
-				tmpEnum = MajorEnum.getMajorNameByCode(array[j]);
-				if (j+1 == array.length) {
-					newData += tmpEnum.getName() ;
-				} else {
-					newData += tmpEnum.getName() + ",";
-				}
-			}
-			list.get(i).put("suitMajor", newData);
-		}*/
 		return dt;
 	}
 	/*
