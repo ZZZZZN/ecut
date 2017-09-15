@@ -20,9 +20,9 @@
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini">征迁</span>
+            <span class="logo-mini">选题</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>经开区征迁数据管理平台</b></span>
+            <span class="logo-lg"><b>毕业设计选题系统</b></span>
         </a>
 
         <!-- Header Navbar -->
@@ -107,7 +107,7 @@
             <a href="<%=basePath%>admin/logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="J_mainContent" id="content-main" style="width: 100%">
-            <iframe class="J_iframe" src="<%=basePath%>druid" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless >
+            <iframe class="J_iframe" src="<%=basePath%>static/common/main.jsp" name="iframe0" width="100%" height="100%" frameborder="0" data-id="index_v1.html" seamless >
             </iframe>
 
         </div>
@@ -119,8 +119,8 @@
         <div class="pull-right hidden-xs">
             版本号: V1.0
         </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="http://www.cnkrt.com/" target="_blank">科睿特软件股份有限公司</a>.</strong> All rights reserved.
+        <%--<!-- Default to the left -->--%>
+        <strong>Copyright &copy; 2017 <a href="http://www.ecit.edu.cn/" target="_blank">东华理工大学</a>.</strong> All rights reserved.
     </footer>
 </div><!-- ./wrapper -->
 
