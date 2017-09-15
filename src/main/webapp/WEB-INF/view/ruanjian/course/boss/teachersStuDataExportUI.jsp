@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h5>学生选题数据导出</h5>
+								<h5>教师所带学生信息</h5>
 								<button class="btn btn-primary" onclick="doSubmit()">导出excel</button>
 								<%--<input type="submit" value="导出excel" onclick="doSubmit()">--%>
 							</div>
@@ -47,11 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>学号</th>
 											<th>学生姓名</th>
 											<th>学生班级</th>
-											<th>设计题目</th>
-											<th>课题类型</th>
-											<th>课题来源</th>
+											<th>备注</th>
 											<th>指导教师姓名</th>
-											<th>职称</th>
+											<th>教师所在系</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -99,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>static/plugins/datatables/language/cn.json"
 	            },
 	            "ajax": {
-	                "url": "<%=basePath%>ruanjian/course/boss/stuSelDataExport",
+	                "url": "<%=basePath%>ruanjian/course/boss/teachersStuDataExport",
 	                "type": "post",
 	                "data": function (d) {
 	                	d.status = $('#flag').val(),
@@ -113,15 +111,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					{"data": "stuNo", "width": "10%"},
 					{"data": "stuName", "width": "13%"},
 					{"data": "stuClass", "width": "11%"},
-                    {"data": "titleName", "width": "13%"},
-                    {"data": "titleType", "width": "13%"},
-                    {"data": "titleSource", "width": "13%"},
+                    {"data": "note", "width": "11%"},
                     {"data": "teacName", "width": "13%"},
-                    {"data": "titleLevel", "width": "16%"}
+                    {"data": "department", "width": "16%"}
 	            ],
 	            "columnDefs": [
 	                {
-	                    "targets": 8,
+	                    "targets": 6,
 	                    "data": "id",
 	                    "width": "20%"
 	                    /*"render": function(data, type, row) {
@@ -185,7 +181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
         function doSubmit() {
-            $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForAdmin");
+            $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForTeacher");
             $("#stuForm").submit();
         }
 
