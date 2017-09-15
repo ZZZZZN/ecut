@@ -325,6 +325,13 @@ WHERE
 		JOIN t_user u ON u.id = e.auditor
 		JOIN t_user uu ON uu.id = e.applicant and  e.`status`=2
 		JOIN major m on uu.major = m.major_code
+		WHERE 1 = 1
+		<if test="stuNo != ''">
+			AND uu.username like CONCAT('%',#{stuNo},'%')
+		</if>
+		<if test="teacName != ''">
+			AND u.name like CONCAT('%',#{teacName},'%')
+		</if>
 		order by institute,uu.stu_class,note
 	</select>
 	<!-- 不带分页参数 -->

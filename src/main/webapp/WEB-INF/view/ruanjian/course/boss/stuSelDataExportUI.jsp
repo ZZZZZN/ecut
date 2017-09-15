@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		margin-right:10px;
 		margin-left: 2px;
 	}
-	.btn{
+	.exportBtn{
 		float : right;
 	}
 </style>
@@ -35,10 +35,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="box">
 							<div class="box-header">
 								<h5>学生选题数据导出</h5>
-								<button class="btn btn-primary" onclick="doSubmit()">导出excel</button>
-								<%--<input type="submit" value="导出excel" onclick="doSubmit()">--%>
 							</div>
 							<div class="box-body">
+								<div class="row">
+									<div class="col-sm-12">
+										<span>学号: </span><input type="text" name="stuNo" id="stuNo" value="" class="form-control input-150 search-input">
+										<span>指导老师姓名: </span> <input type="text" name="teacName" id="teacName" value="" class="form-control input-150 search-input">
+										<button type="button" id="searchBtn" class="btn btn-primary btn-sm">
+											<i class="fa fa-search fa-btn"></i>搜索
+										</button>
+										<button class="btn btn-primary exportBtn" onclick="doSubmit()">导出excel</button>
+									</div>
+								</div>
 								<form action="#" id="stuForm" class="form-horizontal">
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 									<thead>
@@ -102,11 +110,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                "url": "<%=basePath%>ruanjian/course/boss/stuSelDataExport",
 	                "type": "post",
 	                "data": function (d) {
-	                	d.status = $('#flag').val(),
-                        d.titlename = $("#titlename").val(),
-							d.author = $("#author").val();
+                        d.stuNo = $("#stuNo").val(),
+                            d.teacName = $("#teacName").val();
 
-	                }
+                    }
 	            },
 	            "columns": [
 	                {"data": "id", "width": "7%"},
@@ -221,6 +228,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   			openDialog("修改表单","<%=basePath%>ruanjian/course/titleExamine_updateUI?id="+id,"800px", "380px","");
 	   	    });
 
+            $("#searchBtn").on('click', function () {
+                datatable.ajax.reload();
+            });
 	   	   
 	   	    //删除
 	   	    $(document).on("click",".deleteBtn",function(){

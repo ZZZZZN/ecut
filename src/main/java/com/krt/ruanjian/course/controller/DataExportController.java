@@ -50,6 +50,10 @@ public class DataExportController extends BaseController {
     public DataTable stuSelDataExport(Integer start, Integer length, Integer draw,
                                       HttpServletRequest request) {
         Map para = new HashMap();
+        String stuNo = request.getParameter("stuNo");
+        String teacName = request.getParameter("teacName");
+        para.put("stuNo", stuNo);
+        para.put("teacName", teacName);
         DataTable dt = titleExamineService.getStuSelData(start, length, draw, para);
         return dt;
     }
@@ -70,6 +74,10 @@ public class DataExportController extends BaseController {
     public DataTable teachersStuDataExport(Integer start, Integer length, Integer draw,
                                       HttpServletRequest request) {
         Map para = new HashMap();
+        String stuNo = request.getParameter("stuNo");
+        String teacName = request.getParameter("teacName");
+        para.put("stuNo", stuNo);
+        para.put("teacName", teacName);
         DataTable dt = titleExamineService.getStuSelData(start, length, draw, para);
         return dt;
     }
