@@ -37,8 +37,13 @@ public class UserImportService {
                 for (int i = 0; i < userList.size(); i++) {
                     userList.get(i).setRoleCode("teacr_in");
                     userList.get(i).setStatus("0");
+                    if (userList.get(i).getMajor() != null) {
+                        Map map = majorService.selectMajorCodeByMajorName(userList.get(i).getMajor());
+                        userList.get(i).setMajor((String) map.get("major_code"));
+                    }
                     userService.insert(userList.get(i));;
                 }
+
                 result = "上传成功";
             }else{
                 result = "上传失败";
