@@ -32,8 +32,6 @@ public class DataExportController extends BaseController {
     @Autowired
     private TitleExamineService titleExamineService;
     @Autowired
-    private DataExportService dataExportService;
-    @Autowired
     private TitleService titleService;
 
 
