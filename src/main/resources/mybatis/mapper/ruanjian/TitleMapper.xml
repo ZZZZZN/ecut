@@ -189,5 +189,48 @@
 		a.status='2'
 	</select>
 
+	<select id="teacherExport" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT
+		c.id as id,
+	c. NAME as name,
+  c.title_level as title_level,
+	d.number as number,
+  e.passnumber as passnumber,
+  e.selectednumber as selectednumber,
+  number-selectednumber as notselectednumber
+FROM
+	t_user c
+LEFT JOIN (
+	SELECT
+		b.author AS author,
+		COUNT(flag) AS number
+	FROM
+		t_user a
+	JOIN title b ON a.id = b.author
+	WHERE
+		b.flag = '2'
+	GROUP BY
+		a. NAME
+) d ON c.id = d.author
+LEFT JOIN (
+	SELECT
+		e.auditor AS auditor,
+		COUNT(e. STATUS) AS passnumber,
+    COUNT(e. title_id) AS selectednumber
+	FROM
+		t_user f
+	JOIN title_examine e ON f.id = e.auditor
+	WHERE
+		e. STATUS = '2'
+	GROUP BY
+		f. NAME
+) e ON c.id=e.auditor
+WHERE
+	c.roleCode LIKE '%teacr%'
+	<if test="teacher!=''">
+	 AND c.NAME  like CONCAT('%',#{teacher},'%')
+	</if>
+	</select>
+
 </mapper>
 

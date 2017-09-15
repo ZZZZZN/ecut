@@ -6,6 +6,7 @@ import com.krt.core.bean.ReturnBean;
 import com.krt.core.util.ExcelUtil;
 import com.krt.core.util.ShiroUtil;
 import com.krt.ruanjian.course.entity.TitleExamine;
+import com.krt.ruanjian.course.mapper.TitleMapper;
 import com.krt.ruanjian.course.service.DataExportService;
 import com.krt.ruanjian.course.service.TitleExamineService;
 import com.krt.ruanjian.course.service.TitleService;
@@ -33,6 +34,8 @@ public class DataExportController extends BaseController {
     private TitleExamineService titleExamineService;
     @Autowired
     private TitleService titleService;
+    @Autowired
+    private TitleMapper titleMapper;
 
 
     @Autowired
@@ -184,4 +187,36 @@ public class DataExportController extends BaseController {
         return rb;
     }
 
+    @RequestMapping("ruanjian/course/teacherExport")
+    public ReturnBean exportExport(HttpServletRequest request,HttpServletResponse response){
+        ReturnBean rb =null;
+        Map para = new HashMap();
+        String teacher= request.getParameter("teacher");
+        para.put("teacher",teacher);
+        List<Map> list = titleMapper.teacherExport(para);
+        //添加sheet
+        Map map = new HashMap();
+        map.put("sheetName","教师所带人数");
+        List<Map> newList = new ArrayList<Map>();
+        newList.add(map);
+        for(Map tmp : list) {
+            newList.add(tmp);
+        }
+        String fileName="教师所带人数导出";
+        //列名
+        String columnNames[]={"指导老师","职称","审核通过题目数","选题通过学生人数",
+                "未选到学生题目数"};
+        //map中的key
+        String keys[] = {"name","title_level","number","passnumber",
+                "notselectednumber"};
+        try {
+            dataExportService.stuSelDataExport(response,fileName,newList,keys,columnNames);
+        } catch (IOException e) {
+            rb=ReturnBean.getErrorReturnBean();
+            e.printStackTrace();
+            return rb;
+        }
+        rb=ReturnBean.getSuccessReturnBean();
+        return rb;
+    }
 }

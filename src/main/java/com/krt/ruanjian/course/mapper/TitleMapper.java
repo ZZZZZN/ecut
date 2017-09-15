@@ -19,4 +19,5 @@ public interface TitleMapper extends BaseMapper<Title>{
 
     Integer countPassNumber(@Param("id") String id);
 
+    List<Map> teacherExport (Map para);
 }
