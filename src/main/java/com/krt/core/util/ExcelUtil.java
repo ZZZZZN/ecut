@@ -87,26 +87,41 @@ public class ExcelUtil {
                         }
                     }else if (c == 3){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
-                            String title_level = String.valueOf(cell.getNumericCellValue());
-                            user.setTitle_level(title_level.substring(0, title_level.length()-2>0?title_level.length()-2:1));//职称
-                        }else{
-                            user.setTitle_level(cell.getStringCellValue());//职称
-                        }
-                    }else if (c == 4){
-                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String institute = String.valueOf(cell.getNumericCellValue());
                             user.setInstitute(institute.substring(0, institute.length()-2>0?institute.length()-2:1));//学院
                         }else{
                             user.setInstitute(cell.getStringCellValue());//学院
                         }
+                    }else if (c == 4){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String major = String.valueOf(cell.getNumericCellValue());
+                            user.setMajor(major.substring(0, major.length()-2>0?major.length()-2:1));//专业
+                        }else{
+                            user.setMajor(cell.getStringCellValue());//专业
+                        }
                     }else if (c == 5){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String title_level = String.valueOf(cell.getNumericCellValue());
+                            user.setTitle_level(title_level.substring(0, title_level.length()-2>0?title_level.length()-2:1));//职称
+                        }else{
+                            user.setTitle_level(cell.getStringCellValue());//职称
+                        }
+                    }else if (c == 6){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String title_level_num = String.valueOf(cell.getNumericCellValue());
+                            user.setTitle_level_num(Integer.valueOf(title_level_num.substring(0, title_level_num.length()-2>0?title_level_num.length()-2:1)));//职称
+                        }else{
+                            user.setTitle_level_num(Integer.valueOf(cell.getStringCellValue()));//职称
+                        }
+
+                    }else if (c == 7){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String department = String.valueOf(cell.getNumericCellValue());
                             user.setDepartment(department.substring(0, department.length()-2>0?department.length()-2:1));//所在系
                         }else{
                             user.setDepartment(cell.getStringCellValue());//所在系
                         }
-                    }else if (c == 6){
+                    }else if (c == 8){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注
