@@ -341,6 +341,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>removal</finalName>
+        <finalName>ecut</finalName>
     </build>
 </project>
