@@ -20,9 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Logo --> 
         <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini">征迁</span>
+          <span class="logo-mini">选题</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>经开区征迁数据管理平台</b></span>
+          <span class="logo-lg"><b>毕业设计选题系统</b></span>
         </a>
  
         <!-- Header Navbar -->
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          	版本号: V1.0
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="http://www.cnkrt.com/" target="_blank">科睿特软件股份有限公司</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2017 <a href="http://www.ecit.edu.cn/" target="_blank">东华理工大学</a>.</strong> All rights reserved.
       </footer>
     </div><!-- ./wrapper -->
 

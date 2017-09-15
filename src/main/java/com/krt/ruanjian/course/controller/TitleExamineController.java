@@ -239,33 +239,6 @@ public class TitleExamineController extends BaseController {
 		}
 	}
 
-//	/**
-//	 * 选题结果页面
-//	 */
-//	@RequiresPermissions("titleExamine:passList")
-//	@RequestMapping("ruanjian/course/titleExamine_passListUI")
-//	public String titleExamine_passListtUI() {
-//
-//		return "ruanjian/course/titleExamine_passListUI";
-//	}
-//
-//	/**
-//	 * 返回选题结果集合
-//	 */
-//	@RequiresPermissions("titleExamine:passList")
-//	@RequestMapping("ruanjian/course/titleExamine_passList")
-//	@ResponseBody
-//	public DataTable titleExamine_passList(Integer start, Integer length, Integer draw,
-//									   HttpServletRequest request) {
-//		Map para = new HashMap();
-//		Map user = ShiroUtil.getCurrentUser();
-//		Integer authorId = (Integer)user.get("id");
-//		para.put("authorId", authorId);
-//		para.put("status", 2);
-//		DataTable dt = titleExamineService.selectListPara(start, length, draw, para);
-//		return dt;
-//	}
-
 	@RequiresPermissions("titleExamine:bossList")
 	@RequestMapping("ruanjian/course/boss/titleExamine_bossListUI")
 	public String titleExamine_bossListUI() {
