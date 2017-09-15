@@ -328,7 +328,7 @@
             a.title_level,
             a.title_level_num,
             a.department,
-            b.major_name,
+            b.major_name AS major,
             a.note
         FROM
             t_user a,

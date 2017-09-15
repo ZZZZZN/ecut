@@ -17,6 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		margin-right:10px;
 		margin-left: 2px;
 	}
+	.my-td {
+		height: 37px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 </style>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
@@ -50,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<a class="btn btn-primary" id="export" onclick="exportClick(event)"  style="position: relative; left: 500px;top: -5px">导出excel</a>
 									</div>
 								</div>
-								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
+								<table id="datatable" style="table-layout: fixed" class="table table-striped table-bordered table-hover table-krt">
 									<thead>
 										<tr>
 											<th>序号</th>
@@ -62,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>上限人数</th>
 											<th>出题老师</th>
 											<th>课程意义与目标</th>
-											<th>学生基本条件和前期工作</th>
+											<th title="学生基本条件和前期工作">学生基本条件和前期工作</th>
 
 										</tr>
 									</thead>
@@ -118,21 +124,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	            },
 	            "columns": [
-	                {"data": "id", "width": "5%"},
-					{"data": "title_name", "width": "18%"},
-					{"data": "title_type", "width": "7%"},
-					{"data": "suitMajorName", "width": "13%"},
-					{"data": "suitScope", "width": "10%"},
-					{"data": "limit_person", "width": "7%"},
-					{"data": "author", "width": "7%"},
-					{"data": "meaning_target", "width": "10%"},
-                    {"data": "condition_work", "width": "10%"},
+	                {"data": "id", "width": "7%",},
+					{"data": "title_name", "width": "16%","className":"my-td mutiple-td","createdCell": function (td, cellData, rowData, row, col) {
+                        td.title = td.innerText;
+                    }},
+					{"data": "title_type", "width": "8%",},
+					{"data": "suitMajorName", "width": "13%",},
+					{"data": "suitScope", "width": "8%",},
+					{"data": "limit_person", "width": "8%",},
+					{"data": "author", "width": "8%",},
+					{"data": "meaning_target", "width": "11%","className":"my-td mutiple-td","createdCell": function (td, cellData, rowData, row, col) {
+                        td.title = td.innerText;
+                    }},
+                    {"data": "condition_work", "width": "14%","className":"my-td mutiple-td","createdCell": function (td, cellData, rowData, row, col) {
+                        td.title = td.innerText;
+                    }},
 	            ],
 	            "columnDefs": [
 	                {
 	                    "targets": 8,
 	                    "data": "id",
-	                    "width": "20%",
+	                    "width": "0%",
 	                   /* "render": function(data, type, row) {
 	                        return  ' <shiro:hasPermission name="title:see">'
 			                        +'<button class="btn btn-xs btn-info seeBtn" rid="'+row.id+'">'
@@ -181,6 +193,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
    	    	//初始化datatable
    	     	initDatatable();
+
+            $('#datatable tbody td').each(function(index, item){
+                var titleVal = item.innerText;
+                if (typeof titleVal === "string" && titleVal !== '') {
+                    item.setAttribute('title', titleVal);
+                }
+            });
    	    
 	   	    $("#searchBtn").on('click', function () {
 	            datatable.ajax.reload();
@@ -233,7 +252,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	    	confirmx("你确定删除吗？",fun);
 	   	    });
        
-	    }); 
+	    });
+
+   	    window.onload = function(){
+
+
+		}
  	</script>
 </body>
 </html>

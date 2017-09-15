@@ -12,6 +12,18 @@
         if(self.location!=top.location){
             top.location.href = self.location.href;
         }
+        (function (doc, win) {
+            var docEl = doc.documentElement
+            var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
+            var recalc = function () {
+                var clientWidth = docEl.clientWidth
+                if (!clientWidth) return
+                docEl.style.fontSize = 20 * (clientWidth / 1440) + 'px'
+            }
+            if (!doc.addEventListener) return
+            win.addEventListener(resizeEvt, recalc, false)
+            doc.addEventListener('DOMContentLoaded', recalc, false)
+        })(document, window)
     </script>
 </head>
 <body class="hold-transition login-bg">
@@ -20,11 +32,9 @@
     <img src="<%=basePath%>static/skin/images/ecut-logo.png" class="ecut-logo">
     <div class="photo"></div>
 </div>
-<div class="login-box login-right" style="margin-top: 60px">
-    <div class="login-logo">
-        <a href="#"><b class="ecut-title">毕业设计选题系统</b></a>
-    </div><!-- /.login-logo -->
-    <div class="login-box-body login-ecut-body">
+<div class="ecut-title">毕业设计选题系统</div>
+<div class="login-right">
+    <div class="login-ecut-body">
         <p class="login-box-msg">欢迎登录系统</p>
         <form action="#" method="post" id="loginForm">
             <div class="form-group has-feedback">
@@ -36,7 +46,7 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" id="code" name="code" class="form-control" placeholder="验证码" style="width:100px;display: inline;">
+                <input type="text" id="code" name="code" class="form-control" placeholder="验证码" style="width:5rem;display: inline;">
                 <img alt="验证码" id="imgCode" src="<%=basePath%>admin/tools/imgCode/imgCode_get" style="float: right" onclick="changeImg();">
             </div>
             <div class="row">

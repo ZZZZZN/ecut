@@ -152,10 +152,21 @@
                     </td>
                     <td class="active width-15">
                         <label class="pull-right">
-                            <font color="red"></font>备注
+                            <font color="red"></font>可带学生人数
                         </label>
                     </td>
                     <td class="width-35" >
+                        <input class="form-control" id="title_level_num" name="title_level_num" disabled = "disabled">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="active width-15">
+                        <label class="pull-right">
+                            <font color="red"></font>备注
+                        </label>
+                    </td>
+                    <td class="width-35" colspan="4">
                         <textarea class="form-control" id="note"></textarea>
                     </td>
                 </tr>
@@ -228,6 +239,7 @@
         $("#company").attr("disabled", "disabled");
         $("#title_level").attr("disabled", "disabled");
         $("#stu_class").attr("disabled", "disabled");
+        $("#title_level_num").removeAttr("disabled");
         var role = $("#roleCode").val();
         var t = role.indexOf('stu');
         if (t>=0) {
@@ -236,6 +248,7 @@
             $("#stu_class").removeAttr("disabled");
         }else {
             $("#title_level").removeAttr("disabled");
+            $("#title_level_num").removeAttr("disabled");
         }
     })
 </script>
