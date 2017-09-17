@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       					</td>
       					<td class="width-35"><input type="text" name="name" id="name" value="${user.name}" class="form-control" rangelength="1,10" required></td>
       				</tr>
-      				<tr>
+      				<%--<tr>
       					<td class="active width-15">
       						<label class="pull-right">
       							<font color="red">*</font>密码
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       						</label>
       					</td>
       					<td class="width-35"><input type="password" name="password2" id="password2" class="form-control" equalTo="#password"></td>
-      				</tr>
+      				</tr>--%>
       				<tr>
       					<td class="active width-15">
       						<label class="pull-right">所属角色</label>
@@ -61,16 +61,75 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</c:forEach>
       						</select>
       					</td>
-      					
-      					<td class="active width-15"><c:if test="${user.roleCode==dradmin}"><label class="pull-right"}>餐厅</label></c:if></td>
-      					<td class="width-35">
-      						<c:if test="${user.roleCode==dradmin}">
-								<c:forEach items="${diningroomlist}" var="dining">
-									${user.dId==dining.id?dining.name:''}
+						<td class="active width-15">
+							<label class="pull-right">学院</label>
+						</td>
+						<td class="width-35">
+							<select name="roleCode" class="form-control" required>
+								<option value="">==请选择==</option>
+								<c:forEach items="${institutes}" var="institute">
+									<option value="${institute.institute}" ${institute.institute==user.institute?'selected':''}>${institute.institute}</option>
 								</c:forEach>
-	      					</c:if>
-      					</td>
+							</select>
+						</td>
       				</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">专业</label>
+						</td>
+						<td class="width-35">
+							<select name="roleCode" class="form-control" required>
+								<option value="">==请选择==</option>
+								<c:forEach items="${majorList}" var="major">
+									<option value="${major.major_name}" ${major.major_name==user.major?'selected':''}>${major.major_name}</option>
+								</c:forEach>
+							</select>
+						</td>
+						<td class="active width-15">
+							<label class="pull-right">职称</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="title_level" id="title_level" value="${user.title_level}" class="form-control" rangelength="1,10" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">可带学生人数</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="title_level_num" id="title_level_num" value="${user.title_level_num}" class="form-control" rangelength="1,10" required>
+						</td>
+						<td class="active width-15">
+							<label class="pull-right">所在系</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="department" id="department" value="${user.department}" class="form-control" rangelength="1,10" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">实训地点</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="training_site" id="training_site" value="${user.training_site}" class="form-control" rangelength="1,10" required>
+						</td>
+						<td class="active width-15">
+							<label class="pull-right">所在企业</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="company" id="company" value="${user.company}" class="form-control" rangelength="1,10" required>
+						</td>
+					</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">
+								<font color="red"></font>备注
+							</label>
+						</td>
+						<td class="width-35" colspan="4">
+							<textarea class="form-control" id="note">${user.note}</textarea>
+						</td>
+					</tr>
       			</table>
       			<!-- 参数 -->
       			<input type="hidden" name="id" id="id" value="${user.id}">

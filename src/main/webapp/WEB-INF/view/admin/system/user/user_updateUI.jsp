@@ -63,9 +63,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</c:forEach>
       						</select>
       					</td>
-      					<td class="active width-15"></td>
-      					<td class="width-35"></td>
+						<td class="active width-15">
+							<label class="pull-right">学院</label>
+						</td>
+						<td class="width-35">
+							<select name="institute" class="form-control" required>
+								<option value="">==请选择==</option>
+								<c:forEach items="${institutes}" var="institute">
+									<option value="${institute.institute}" ${institute.institute==user.institute?'selected':''}>${institute.institute}</option>
+								</c:forEach>
+							</select>
+						</td>
       				</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">专业</label>
+						</td>
+						<td class="width-35">
+							<select name="major" class="form-control" required>
+								<option value="">==请选择==</option>
+								<c:forEach items="${majorList}" var="major">
+									<option value="${major.major_name}" ${major.major_name==user.major?'selected':''}>${major.major_name}</option>
+								</c:forEach>
+							</select>
+						</td>
+						<td class="active width-15">
+							<label class="pull-right">职称</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="title_level" id="title_level" value="${user.title_level}" class="form-control" rangelength="1,10" placeholder="学生勿填!">
+						</td>
+					</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">可带学生人数</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="title_level_num" id="title_level_num" value="${user.title_level_num}" class="form-control" rangelength="1,10" placeholder="学生勿填!">
+						</td>
+						<td class="active width-15">
+							<label class="pull-right">所在系</label>
+						</td>
+						<td class="width-35">
+							<select name="department" class="form-control" required>
+								<option value="">==请选择==</option>
+								<c:forEach items="${departments}" var="departments">
+									<option value="${departments.major_name}" ${departments.major_name==user.department?'selected':''}>${departments.major_name}</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">实训地点</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="training_site" id="training_site" value="${user.training_site}" class="form-control" rangelength="1,10" placeholder="教师勿填!">
+						</td>
+						<td class="active width-15">
+							<label class="pull-right">所在企业</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="company" id="company" value="${user.company}" class="form-control" rangelength="1,10" placeholder="教师勿填!">
+						</td>
+					</tr>
+					<tr>
+						<td class="active width-15">
+							<label class="pull-right">
+								<font color="red"></font>备注
+							</label>
+						</td>
+						<td class="width-35" colspan="4">
+							<textarea class="form-control" id="note">${user.note}</textarea>
+						</td>
+					</tr>
       			</table>
       			<!-- 参数 -->
       			<input type="hidden" name="id" id="id" value="${user.id}">

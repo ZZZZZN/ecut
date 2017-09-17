@@ -38,6 +38,37 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectById2" resultType="java.util.Map">
+        SELECT
+            a.id,
+            a.username,
+            a.PASSWORD,
+            a.name,
+            a.STATUS,
+            a.roleCode,
+            a.inserter,
+            a.insertTime,
+            a.updater,
+            a.updateTime,
+            a.stu_class,
+            a.stu_no,
+            a.tel,
+            a.direction,
+            a.company,
+            a.title_level,
+            a.title_level_num,
+            a.training_site,
+            b.major_name AS major,
+            a.note,
+            a.department,
+            a.institute
+        FROM t_user a, major b
+        WHERE
+            a.major = b.major_code
+            AND
+            a.id = #{id,jdbcType=INTEGER}
+    </select>
+
     <delete id="delete" parameterType="java.lang.Integer">
 		delete from t_user
 		where id = #{id,jdbcType=INTEGER}
@@ -253,7 +284,7 @@
                 department = #{department,jdbcType=VARCHAR},
             </if>
             <if test="institute != null">
-                institute = #{department,jdbcType=VARCHAR},
+                institute = #{institute,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -261,8 +292,22 @@
 
     <!-- 用户管理 -->
     <select id="selectListPara" resultType="java.util.Map">
-        select s1.*,s2.roleName from
-        (select id, username, name, status, roleCode from t_user where username != 'admin'
+        select s1.id,
+        s1.username,
+        s1. NAME,
+        s1.stu_class,
+        s1.institute,
+        m1.major_name AS major,
+        s1.training_site,
+        s1.company,
+        s1. STATUS,
+        s1.title_level,
+        s1.title_level_num,
+        s1.roleCode,
+        s1.note,
+        s2.roleName from(
+        (select id, username, name, stu_class,institute,major,training_site,company,status,title_level,title_level_num,
+        roleCode,note from t_user where username != 'admin'
         <if test="username!=''">
             and username like concat('%',#{username},'%')
         </if>
@@ -270,7 +315,8 @@
             and name like concat('%',#{name},'%')
         </if>
         )s1 left JOIN
-        (select * from t_role)s2 on s1.roleCode = s2.roleCode where 1=1
+        (select * from t_role)s2 on s1.roleCode = s2.roleCode)
+        LEFT JOIN (SELECT * FROM major) m1 ON s1.major =m1.major_code where 1=1
         <if test="roleName!=''">
             and roleName like concat('%',#{roleName},'%')
         </if>
@@ -341,11 +387,10 @@
     </select>
 
     <select id="selectTeacherLevelnumByid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-        SELECT
-        title_level_num
+        SELECT title_level_num
         FROM
-        t_user
+            t_user
         WHERE
-        id=#{id}
+            id = #{id}
     </select>
 </mapper>

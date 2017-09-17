@@ -108,4 +108,8 @@ public class UserService extends BaseServiceImpl<User> {
         return userMapper.selectTeacherLevelnumByid(id);
     }
 
+    public Map selectById2(Integer id) {
+        return userMapper.selectById2(id);
+    }
+
 }
