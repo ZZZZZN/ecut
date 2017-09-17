@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "7%"},
-					{"data": "titleName", "width": "31%"},
+					{"data": "title_name", "width": "31%"},
 					{"data": "applyer", "width": "13%"},
 					{"data": "author", "width": "13%"},
                     {"data": "flag", "width": "13%"},
@@ -239,6 +239,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         },
                         success: function(msg) {
                             closeloading();
+                            if(msg.state=='success')
+                            {
+                                top.layer.msg("审核成功");
+                            }
                             if(msg.state=='overteacherlevel'){
                                 top.layer.msg("所选课题教师超出指导人数上限");
                                 refreshTable(datatable);
