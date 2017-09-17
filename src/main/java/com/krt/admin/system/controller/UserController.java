@@ -353,8 +353,29 @@ public class UserController extends BaseController {
     public String user_updateUI(Integer id, HttpServletRequest request) {
         List roleList = roleService.selectAll();
         request.setAttribute("roleList", roleList);
-        Map userMap = userService.selectById(id);
+        Map userMap = userService.selectById2(id);
         request.setAttribute("user", userMap);
+
+        List<Map> institutes = new ArrayList<>();
+        Map<String, String> map1 = new HashMap<>();
+        Map<String, String> map2 = new HashMap<>();
+        map1.put("institute", "软件学院");
+        map2.put("institute", "信工学院");
+        institutes.add(0, map1);
+        institutes.add(1, map2);
+        request.setAttribute("institutes",institutes);
+
+        List majorList = majorService.selectAll();
+        request.setAttribute("majorList",majorList);
+
+        List<Map> departments = new ArrayList<>();
+        departments.addAll(majorList);
+        for (int i = 0; i < departments.size(); i++) {
+            if (departments.get(i).get("major_code").equals("080905")) {
+                departments.remove(i);
+            }
+        }
+        request.setAttribute("departments",departments);
         return "admin/system/user/user_updateUI";
     }
 
@@ -379,6 +400,11 @@ public class UserController extends BaseController {
                 // 密码加密
 //                password = AESvbjavajs.getAESEncrypt(password, Constant.PASS_KEY);
             }
+            if (user.getMajor() != null) {
+                Map map = majorService.selectMajorCodeByMajorName(user.getMajor());
+                user.setMajor((String) map.get("major_code"));
+            }
+
             user.setPassword(password);
             userService.update(user);
             rb = ReturnBean.getSuccessReturnBean();
@@ -448,8 +474,20 @@ public class UserController extends BaseController {
     public String user_seeUI(Integer id, HttpServletRequest request) {
         List roleList = roleService.selectAll();
         request.setAttribute("roleList", roleList);
-        Map userMap = userService.selectById(id);
+        Map userMap = userService.selectById2(id);
         request.setAttribute("user", userMap);
+
+        List<Map> institutes = new ArrayList<>();
+        Map<String, String> map1 = new HashMap<>();
+        Map<String, String> map2 = new HashMap<>();
+        map1.put("institute", "软件学院");
+        map2.put("institute", "信工学院");
+        institutes.add(0, map1);
+        institutes.add(1, map2);
+        request.setAttribute("institutes",institutes);
+
+        List majorList = majorService.selectAll();
+        request.setAttribute("majorList",majorList);
         return "admin/system/user/user_seeUI";
     }
 

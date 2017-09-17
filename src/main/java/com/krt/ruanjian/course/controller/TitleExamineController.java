@@ -218,9 +218,9 @@ public class TitleExamineController extends BaseController {
 		Map param = new HashMap();
 		Map map= titleExamineService.selectById(id);
 		//所选课题教师可带人数
-		Integer Level_num=userService.selectTeacherLevelnumByid(Integer.parseInt(map.get("auditor").toString()));
+		Integer Level_num=userService.selectTeacherLevelnumByid(Integer.parseInt(map.get("auditorId").toString()));
 		//当前该教师已带人数
-		Integer now_num=titleExamineService.countStudentsByteacherId(Integer.parseInt(map.get("auditor").toString()));
+		Integer now_num=titleExamineService.countStudentsByteacherId(Integer.parseInt(map.get("auditorId").toString()));
 		if(now_num>=Level_num){
 			rb=ReturnBean.getCustomReturnBean("overteacherlevel");
 			return rb;
