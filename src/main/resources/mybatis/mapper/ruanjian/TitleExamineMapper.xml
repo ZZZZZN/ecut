@@ -95,7 +95,7 @@
         <if test="role!='admin'">
 		SELECT
 			t.id ,
-			t.title_name,
+			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
 			e.auditor AS auditorId,
