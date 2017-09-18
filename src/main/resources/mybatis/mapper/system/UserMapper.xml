@@ -300,7 +300,7 @@
         m1.major_name AS major,
         s1.training_site,
         s1.company,
-        s1. STATUS,
+        s1.status,
         s1.title_level,
         s1.title_level_num,
         s1.roleCode,
