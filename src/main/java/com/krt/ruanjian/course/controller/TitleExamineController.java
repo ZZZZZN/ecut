@@ -230,7 +230,7 @@ public class TitleExamineController extends BaseController {
 		int count = 0;
 		count = titleExamineService.checkStuSelTitles(param);
 		if(count > 0) {
-			rb = ReturnBean.getCustomReturnBean("该生已选题成功不能重复选题");
+			rb = ReturnBean.getCustomReturnBean("hasSelect");
 			return rb;
 		} else {
 			titleExamineService.updateStatusById(param);

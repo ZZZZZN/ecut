@@ -242,6 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             if(msg.state=='success')
                             {
                                 top.layer.msg("审核成功");
+                                refreshTable(datatable);
                             }
                             if(msg.state=='overteacherlevel'){
                                 top.layer.msg("所选课题教师超出指导人数上限");
@@ -250,6 +251,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             if(msg.state=='error')
                             {
                                 top.layer.msg("审核失败");
+                            }
+                            if(msg.state=='hasSelect')
+                            {
+                                top.layer.msg("一个学生只能选一个题");
                             }
                         },
                         error: function(){

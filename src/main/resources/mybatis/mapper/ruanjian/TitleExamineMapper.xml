@@ -77,9 +77,11 @@
 			u. NAME AS author
 		FROM
 			title_examine e
-		JOIN title t ON e.title_id = t.id and t.id = #{id,jdbcType=INTEGER}
+		JOIN title t ON e.title_id = t.id
 		JOIN t_user u ON u.id = e.auditor
 		JOIN t_user uu ON uu.id = e.applicant
+		where e.id = #{id,jdbcType=INTEGER}
+		GROUP BY e.auditor
 	</select>
 
 	<!-- 查询审核表（记录学生申请的题目）列表 -->
@@ -94,7 +96,7 @@
 
         <if test="role!='admin'">
 		SELECT
-			t.id ,
+			e.id ,
 			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
@@ -127,7 +129,7 @@
         </if>
 		<if test="role=='admin'">
 			SELECT
-			t.id ,
+			e.id ,
 			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
