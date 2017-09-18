@@ -294,7 +294,7 @@
     <select id="selectListPara" resultType="java.util.Map">
         select s1.id,
         s1.username,
-        s1. NAME,
+        s1.name,
         s1.stu_class,
         s1.institute,
         m1.major_name AS major,

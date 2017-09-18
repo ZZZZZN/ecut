@@ -139,7 +139,7 @@
                             +'</button>'
                             +'</shiro:hasPermission>'
                         }
-                        return ' <shiro:hasPermission name="title:applicationSee">'
+                        return ' <shiro:hasPermission name="title:see">'
                             +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
                             +'<i class="fa fa-eye fa-btn"></i>查看'
                             +'</button>'
