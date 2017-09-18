@@ -12,6 +12,16 @@
 	<link rel="stylesheet" href="<%=basePath%>static/skin/css/base.css">
 	<link rel="stylesheet" href="<%=basePath%>static/plugins/datatables/dataTables.bootstrap.css">
 </head>
+<style>
+	.mybtn{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.search-input{
+		margin-right:10px;
+		margin-left: 2px;
+	}
+</style>
 <body class="hold-transition sidebar-mini body-bg">
 <div class="wrapper">
 	<!-- Content Wrapper. Contains page content -->
@@ -139,7 +149,7 @@
                             +'</button>'
                             +'</shiro:hasPermission>'
                         }
-                        return ' <shiro:hasPermission name="title:see">'
+                        return ' <shiro:hasPermission name="titleExamine:see">'
                             +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
                             +'<i class="fa fa-eye fa-btn"></i>查看'
                             +'</button>'
@@ -185,8 +195,7 @@
         //查看
         $(document).on("click",".seeBtn",function(){
             var id = $(this).attr("rid");
-            location.href = "<%=basePath%>ruanjian/course/title_seeUI?id=" +id;
-            <%--openDialogView("查看表单","<%=basePath%>ruanjian/course/title_seeUI?id="+id,"800px", "380px","");--%>
+            openDialogView("查看表单","<%=basePath%>ruanjian/course/titleExamine_seeUI?id="+id,"800px", "380px","");
         });
 
         //修改
