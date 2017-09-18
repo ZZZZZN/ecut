@@ -27,6 +27,7 @@ public class User extends BaseEntity{
 	private String note;//备注
 	private String department;//所在系（教师：软件工程系、网络工程系、数字媒体系、计算机科学与技术系、通信工程系）
 	private String institute;//学院（软件学院、信工学院）
+	private String education;//学历（教师）
 
 	public void setUsername(String username){
 		this.username=username;
@@ -155,6 +156,14 @@ public class User extends BaseEntity{
 		this.title_level_num = title_level_num;
 	}
 
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
@@ -175,6 +184,7 @@ public class User extends BaseEntity{
 				", note='" + note + '\'' +
 				", department='" + department + '\'' +
 				", institute='" + institute + '\'' +
+				", education='" + education + '\'' +
 				'}';
 	}
 }

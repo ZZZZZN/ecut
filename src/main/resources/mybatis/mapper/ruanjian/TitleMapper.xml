@@ -103,7 +103,7 @@
 	<!-- 带参数查询选题表列表 -->
 	<select id="selectListPara" resultType="java.util.Map" parameterType="java.util.Map">
 		SELECT
-		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,meaning_target,condition_work,b.name as author
+		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,meaning_target,condition_work,b.education,b.name as author
 		FROM
 		title a,
         t_user b
@@ -191,6 +191,7 @@
 		c.id as id,
 	c. NAME as name,
   c.title_level as title_level,
+  c.education as teacEducation,
 	d.number as number,
   e.passnumber as passnumber,
   e.selectednumber as selectednumber,

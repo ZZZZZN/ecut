@@ -115,25 +115,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td class="active width-15">
+							<label class="pull-right">学历</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="education" id="education" value="${user.education}" class="form-control" rangelength="1,10" required>
+						</td>
+						<td class="active width-15">
 							<label class="pull-right">实训地点</label>
 						</td>
 						<td class="width-35">
 							<input type="text" name="training_site" id="training_site" value="${user.training_site}" class="form-control" rangelength="1,10" placeholder="教师勿填!">
 						</td>
+					</tr>
+					<tr>
 						<td class="active width-15">
 							<label class="pull-right">所在企业</label>
 						</td>
 						<td class="width-35">
 							<input type="text" name="company" id="company" value="${user.company}" class="form-control" rangelength="1,10" placeholder="教师勿填!">
 						</td>
-					</tr>
-					<tr>
+
 						<td class="active width-15">
 							<label class="pull-right">
 								<font color="red"></font>备注
 							</label>
 						</td>
-						<td class="width-35" colspan="4">
+						<td class="width-35">
 							<textarea class="form-control" id="note">${user.note}</textarea>
 						</td>
 					</tr>

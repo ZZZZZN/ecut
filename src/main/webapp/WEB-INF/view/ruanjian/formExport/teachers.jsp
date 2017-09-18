@@ -50,6 +50,7 @@
                                         <th>学院</th>
                                         <th>职称</th>
                                         <th>所在系</th>
+                                        <th>学历</th>
                                         <th>备注</th>
                                     </tr>
                                     </thead>
@@ -122,6 +123,7 @@
                 {"data": "institute", "width": "13%"},
                 {"data": "title_level", "width": "13%"},
                 {"data": "department", "width": "13%"},
+                {"data": "education", "width": "13%"},
                 {"data": "note", "width": "18%"},
             ],
             "columnDefs": [],

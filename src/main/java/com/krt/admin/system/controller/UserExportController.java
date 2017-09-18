@@ -137,8 +137,8 @@ public class UserExportController extends BaseController{
         //填充projects数据
         List<User> users=BeanToMapUtil.convertListMap2ListBean(userList, User.class);
         List<Map> list1=userExportService.createTeacExcelRecord(users);
-        String columnNames[]={"姓名","工号","学院","专业","职称","可带学生人数","所在系","备注"};//列名
-        String keys[]   =    {"name","username","institute","major","title_level","title_level_num","department","note"};//map中的key
+        String columnNames[]={"姓名","工号","学院","专业","职称","可带学生人数","所在系","学历","备注"};//列名
+        String keys[]   =    {"name","username","institute","major","title_level","title_level_num","department","education","note"};//map中的key
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             ExcelUtil.createWorkBook(list1,keys,columnNames).write(os);
@@ -274,8 +274,8 @@ public class UserExportController extends BaseController{
         //填充projects数据
         List<User> users=BeanToMapUtil.convertListMap2ListBean(userList, User.class);
         List<Map> list1=userExportService.createTeacExcelRecord(users);
-        String columnNames[]={"姓名","工号","学院","专业","职称","可带学生人数","所在系","备注"};//列名
-        String keys[]   =    {"name","username","institute","major","title_level","title_level_num","department","note"};//map中的key
+        String columnNames[]={"姓名","工号","学院","专业","职称","可带学生人数","所在系","学历","备注"};//列名
+        String keys[]   =    {"name","username","institute","major","title_level","title_level_num","department","education","note"};//map中的key
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             ExcelUtil.createWorkBook(list1,keys,columnNames).write(os);

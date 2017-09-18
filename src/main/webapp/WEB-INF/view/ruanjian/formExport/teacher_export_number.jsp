@@ -51,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>序号</th>
 											<th>指导老师</th>
 											<th>职称</th>
+											<th>指导老师学历</th>
 											<%--<th>课题来源</th>--%>
 											<th>审核通过题目数</th>
 											<th>选题通过学生人数</th>
@@ -111,6 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                {"data": "id", "width": "7%",},
                     {"data": "name", "width": "8%",},
 					{"data": "title_level", "width": "8%",},
+					{"data": "teacEducation", "width": "8%",},
 					{"data": "number", "width": "13%",},
 					{"data": "passnumber", "width": "8%",},
 					{"data": "notselectednumber", "width": "8%",},
