@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            },
 	            "columns": [
 	                {"data": "id", "width": "7%"},
-					{"data": "title_name", "width": "31%"},
+					{"data": "titleName", "width": "31%"},
 					{"data": "applyer", "width": "13%"},
 					{"data": "author", "width": "13%"},
                     {"data": "flag", "width": "13%"},
