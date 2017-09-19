@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 图片验证码控制层
  * @date 2016年8月4日

@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 资源管理控制层
  * @date 2016年7月19日

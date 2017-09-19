@@ -5,7 +5,6 @@ import com.krt.core.base.BaseMapper;
 
 /**  
  * @Description: 日志管理映射层
- * @author 殷帅
  * @date 2016年7月21日
  * @version 1.0
  */

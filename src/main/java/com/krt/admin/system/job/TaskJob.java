@@ -4,8 +4,7 @@ import org.springframework.stereotype.Component;
 
 
 /**  
- * @Description: 每日定时任务 
- * @author 殷帅
+ * @Description: 每日定时任务
  * @date 2016年9月6日
  * @version 1.0
  */

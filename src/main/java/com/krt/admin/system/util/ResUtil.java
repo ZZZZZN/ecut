@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * @Description: 资源管理工具类
- * @author 殷帅
  * @date 2016年7月19日
  * @version 1.0
  */

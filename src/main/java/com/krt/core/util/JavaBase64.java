@@ -7,8 +7,7 @@ import java.io.IOException;
 * 项目名称：krtUserCenter  
 * 类名称：JavaBase64  
 * 类描述： 加密
-* 创建人：殷帅  
-* 创建时间：2015-9-3 上午10:59:12  
+* 创建时间：2015-9-3 上午10:59:12
 *   
 */ 
 public class JavaBase64 {

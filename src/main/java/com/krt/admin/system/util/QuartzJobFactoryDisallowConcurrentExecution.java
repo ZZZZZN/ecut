@@ -9,8 +9,7 @@ import org.quartz.JobExecutionException;
 
 /**        
 * 类名称：QuartzJobFactoryDisallowConcurrentExecution   
-* 类描述：若一个方法一次执行不完下次轮转时则等待改方法执行完后才执行下一次操作 
-* 创建人：殷帅   
+* 类描述：若一个方法一次执行不完下次轮转时则等待改方法执行完后才执行下一次操作
 * 创建时间：2016年3月8日    
 *    
 */

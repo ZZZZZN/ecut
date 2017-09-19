@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 字典管理服务层
  * @date 2016年7月25日

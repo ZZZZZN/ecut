@@ -16,7 +16,6 @@ import java.util.Map;
 /**
  * @version 1.0
  * @Description：区域服务层
- * @author：殷帅
  * @date：2016-07-26
  */
 @SuppressWarnings("rawtypes")

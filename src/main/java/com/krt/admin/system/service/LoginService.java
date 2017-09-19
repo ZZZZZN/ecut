@@ -12,7 +12,6 @@ import java.util.Map;
 /**
  * 类名称：LoginService
  * 类描述：系统登录服务层
- * 创建人：殷帅
  * 创建时间：2016年3月6日
  */
 @SuppressWarnings("rawtypes")

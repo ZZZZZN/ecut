@@ -5,7 +5,6 @@ import java.util.List;
 
 /**  
  * @Description: DataTable数据返回
- * @author 殷帅
  * @date 2016年8月1日
  * @version 1.0
  */

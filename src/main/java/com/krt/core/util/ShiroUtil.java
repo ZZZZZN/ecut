@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**  
  * @Description: Shiro工具类
- * @author 殷帅
  * @date 2016年7月20日
  * @version 1.0
  */

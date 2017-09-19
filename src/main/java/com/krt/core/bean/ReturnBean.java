@@ -6,8 +6,7 @@ import java.io.Serializable;
 *     
 * 类名称：ReturnBean   
 * 类描述：返回实体  
-* 创建人：殷帅   
-* 创建时间：2016-1-13 下午03:37:18    
+* 创建时间：2016-1-13 下午03:37:18
 *    
 */ 
 @SuppressWarnings("serial")

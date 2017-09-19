@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
  * @Description: XSS攻击过滤url参数
- * @author 殷帅
  * @date 2016年7月29日
  * @version 1.0
  */

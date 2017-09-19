@@ -11,8 +11,7 @@ import java.util.Properties;
 * 项目名称：krtUserCenter  
 * 类名称：PropertiesUtil  
 * 类描述： property文件读取工具类 
-* 创建人：殷帅  
-* 创建时间：2015-11-24 上午09:32:06  
+* 创建时间：2015-11-24 上午09:32:06
 *   
 */ 
 public class PropertyUtil {

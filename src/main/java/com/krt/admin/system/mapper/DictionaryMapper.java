@@ -8,7 +8,6 @@ import java.util.List;
 
 /**  
  * @Description: 字典映射层
- * @author 殷帅
  * @date 2016年7月25日
  * @version 1.0
  */

@@ -4,8 +4,7 @@ package com.krt.admin.system.entity;
 import com.krt.core.base.BaseEntity;
 
 /**
- * @Description：Region实体类 
- * @author：殷帅
+ * @Description：Region实体类
  * @date：2016-07-26
  * @version 1.0
  */

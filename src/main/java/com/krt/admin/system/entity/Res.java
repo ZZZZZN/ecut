@@ -3,7 +3,6 @@ import com.krt.core.base.BaseEntity;
 
 /**
  * @Description: 资源实体类
- * @author 殷帅
  * @date 2016年7月19日
  * @version 1.0
  */

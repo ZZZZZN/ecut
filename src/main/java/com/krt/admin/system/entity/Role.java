@@ -5,7 +5,6 @@ import com.krt.core.base.BaseEntity;
 
 /**
  * @Description: 角色实体类
- * @author 殷帅
  * @date 2016年5月20日
  * @version 1.0
  */

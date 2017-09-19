@@ -9,8 +9,7 @@ import org.quartz.JobExecutionException;
 
 /**
 * 类名称：QuartzJobFactory   
-* 类描述：计划任务执行处 无状态 
-* 创建人：殷帅   
+* 类描述：计划任务执行处 无状态
 * 创建时间：2016年3月8日    
 *    
 */

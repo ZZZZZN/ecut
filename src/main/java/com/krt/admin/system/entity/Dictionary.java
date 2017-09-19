@@ -5,7 +5,6 @@ import com.krt.core.base.BaseEntity;
 
 /**
  * @Description: 字典实体类
- * @author 殷帅
  * @date 2016年7月25日
  * @version 1.0
  */

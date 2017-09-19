@@ -4,8 +4,7 @@ package com.krt.core.config;
 /**        
 * 类名称：Constant   
 * 类描述：系统全局常量 
-* 创建人：殷帅   
-* 创建时间：2016年3月1日    
+* 创建时间：2016年3月1日
 *    
 */
 public class Constant {

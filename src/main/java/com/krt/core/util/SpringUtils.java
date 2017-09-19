@@ -7,7 +7,6 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**  
  * @Description: spring工具类
- * @author 殷帅
  * @date 2016年4月8日
  * @version 1.0
  */

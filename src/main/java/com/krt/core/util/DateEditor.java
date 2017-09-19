@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * @Description: spring mvc绑定对象String转Date 
- * @author 殷帅
  * @date 2016年11月14日
  * @version 1.0
  */

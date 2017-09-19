@@ -9,8 +9,7 @@ import java.lang.reflect.Method;
 
 /**        
 * 类名称：TaskUtils   
-* 类描述：任务操作工具类 
-* 创建人：殷帅   
+* 类描述：任务操作工具类
 * 创建时间：2016年3月8日    
 *    
 */

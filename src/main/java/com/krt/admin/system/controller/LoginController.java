@@ -21,7 +21,6 @@ import java.util.Enumeration;
 import java.util.Map;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 系统登录控制层
  * @date 2016年7月15日

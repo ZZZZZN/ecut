@@ -5,8 +5,7 @@ import com.krt.core.base.BaseEntity;
 
 /**
 * 类名称：ScheduleJob   
-* 类描述：计划任务信息 
-* 创建人：殷帅   
+* 类描述：计划任务信息
 * 创建时间：2016年3月8日    
 *    
 */

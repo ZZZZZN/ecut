@@ -9,7 +9,6 @@ import java.util.Map;
 
 /**
  * @Description：区域映射层
- * @author：殷帅
  * @date：2016-07-26
  * @version 1.0
  */
