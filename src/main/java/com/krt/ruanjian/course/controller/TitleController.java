@@ -362,6 +362,7 @@ public class TitleController extends BaseController {
 	public ReturnBean title_delete(Integer id) {
 		ReturnBean rb;
 		try {
+			//如果该课题有学生选了 则不允许删除
 			titleService.delete(id);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
