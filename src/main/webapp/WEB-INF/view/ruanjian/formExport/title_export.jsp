@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</select>
 										</div>
 										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
-										<a class="btn btn-primary" id="export" onclick="exportClick(event)"  style="position: relative; left: 300px;top: -2px">导出excel</a>
+										<a class="btn btn-primary pull-right" id="export" onclick="exportClick(event)"  style="margin-right: 15px;">导出excel</a>
 									</div>
 								</div>
 								<table id="datatable" style="table-layout: fixed" class="table table-striped table-bordered table-hover table-krt">
