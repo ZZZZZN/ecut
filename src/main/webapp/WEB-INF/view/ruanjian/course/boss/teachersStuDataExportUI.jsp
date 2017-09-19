@@ -58,6 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<th>学生专业</th>
 											<th>备注</th>
 											<th>指导教师姓名</th>
+											<th>指导教师学历</th>
 											<th>教师所在系</th>
 										</tr>
 									</thead>
@@ -121,6 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     {"data": "majorName", "width": "11%"},
                     {"data": "note", "width": "11%"},
                     {"data": "teacName", "width": "13%"},
+                    {"data": "teacEducation", "width": "13%"},
                     {"data": "department", "width": "16%"}
 	            ],
 	            "columnDefs": [

@@ -76,6 +76,7 @@ public class UserExportService {
             mapValue.put("title_level", user.getTitle_level());
             mapValue.put("title_level_num", user.getTitle_level_num());
             mapValue.put("department", user.getDepartment());
+            mapValue.put("education", user.getEducation());
             mapValue.put("note", user.getNote());
             listmap.add(mapValue);
         }

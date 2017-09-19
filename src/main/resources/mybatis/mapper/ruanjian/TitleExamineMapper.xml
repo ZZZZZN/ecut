@@ -334,6 +334,7 @@ WHERE
 			t.title_type titleType,
      		t.title_source as titleSource,
 			u. NAME AS teacName,
+			u.education AS teacEducation,
 			u.department,
 			u.title_level as titleLevel
 		FROM
@@ -368,6 +369,7 @@ WHERE
 			t.title_type titleType,
      		t.title_source as titleSource,
 			u. NAME AS teacName,
+			u.education AS teacEducation,
 			u.department,
 			u.title_level as titleLevel
 		FROM

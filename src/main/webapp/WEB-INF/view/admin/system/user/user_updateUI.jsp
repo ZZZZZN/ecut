@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="pull-right">职称</label>
 						</td>
 						<td class="width-35">
-							<input type="text" name="title_level" id="title_level" value="${user.title_level}" class="form-control" rangelength="1,10" placeholder="学生勿填!">
+							<input type="text" name="title_level" id="title_level" value="${user.title_level}" class="form-control" rangelength="1,10" placeholder="学生角色勿填!">
 						</td>
 					</tr>
 					<tr>
@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="pull-right">可带学生人数</label>
 						</td>
 						<td class="width-35">
-							<input type="text" name="title_level_num" id="title_level_num" value="${user.title_level_num}" class="form-control" rangelength="1,10" placeholder="学生勿填!">
+							<input type="text" name="title_level_num" id="title_level_num" value="${user.title_level_num}" class="form-control" rangelength="1,10" placeholder="学生角色勿填!">
 						</td>
 						<td class="active width-15">
 							<label class="pull-right">所在系</label>
@@ -115,25 +115,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td class="active width-15">
+							<label class="pull-right">学历</label>
+						</td>
+						<td class="width-35">
+							<input type="text" name="education" id="education" value="${user.education}" class="form-control" rangelength="1,10" placeholder="学生角色勿填!" required>
+						</td>
+						<td class="active width-15">
 							<label class="pull-right">实训地点</label>
 						</td>
 						<td class="width-35">
-							<input type="text" name="training_site" id="training_site" value="${user.training_site}" class="form-control" rangelength="1,10" placeholder="教师勿填!">
+							<input type="text" name="training_site" id="training_site" value="${user.training_site}" class="form-control" rangelength="1,10" placeholder="教师角色勿填!">
 						</td>
+					</tr>
+					<tr>
 						<td class="active width-15">
 							<label class="pull-right">所在企业</label>
 						</td>
 						<td class="width-35">
-							<input type="text" name="company" id="company" value="${user.company}" class="form-control" rangelength="1,10" placeholder="教师勿填!">
+							<input type="text" name="company" id="company" value="${user.company}" class="form-control" rangelength="1,10" placeholder="教师角色勿填!">
 						</td>
-					</tr>
-					<tr>
+
 						<td class="active width-15">
 							<label class="pull-right">
 								<font color="red"></font>备注
 							</label>
 						</td>
-						<td class="width-35" colspan="4">
+						<td class="width-35">
 							<textarea class="form-control" id="note">${user.note}</textarea>
 						</td>
 					</tr>

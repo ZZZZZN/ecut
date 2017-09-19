@@ -123,6 +123,13 @@ public class ExcelUtil {
                         }
                     }else if (c == 8){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String education = String.valueOf(cell.getNumericCellValue());
+                            user.setEducation(education.substring(0, education.length()-2>0?education.length()-2:1));//学历
+                        }else{
+                            user.setEducation(cell.getStringCellValue());//学历
+                        }
+                    }else if (c == 9){
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注
                         }else{
