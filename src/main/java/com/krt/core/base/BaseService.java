@@ -5,7 +5,6 @@ import java.util.Map;
 /**
  * 
  * @Description: 抽取公共服务层接口
- * @author 殷帅
  * @date 2016年7月16日
  * @version 1.0
  */

@@ -4,7 +4,6 @@ package com.krt.admin.system.entity;
 import com.krt.core.base.BaseEntity;
 /**
  * @Description: 字典类型实体类
- * @author 殷帅
  * @date 2016年7月25日
  * @version 1.0
  */

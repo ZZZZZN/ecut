@@ -12,7 +12,6 @@ import java.io.UnsupportedEncodingException;
  * 项目名称：krtCenter
  * 类名称：AESvbjavajs
  * 类描述： AES加密算法
- * 创建人：殷帅
  * 创建时间：2015-9-7 下午05:50:16
  */
 public class AESvbjavajs {

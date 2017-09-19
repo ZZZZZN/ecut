@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 /**  
  * @Description: 字典类型映射层
- * @author 殷帅
  * @date 2016年7月25日
  * @version 1.0
  */

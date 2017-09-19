@@ -5,7 +5,6 @@ import java.lang.annotation.*;
 
 /**  
  * @Description: 自定义日志注解
- * @author 殷帅
  * @date 2016年7月21日
  * @version 1.0
  */

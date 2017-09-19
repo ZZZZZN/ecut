@@ -21,7 +21,6 @@ import java.util.Map;
 /**
  * @version 1.0
  * @Description：区域控制层
- * @author：殷帅
  * @date：2016-07-26
  */
 @SuppressWarnings({"rawtypes", "unchecked"})

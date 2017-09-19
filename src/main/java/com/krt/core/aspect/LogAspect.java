@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 切面日志
  * @date 2016年7月21日

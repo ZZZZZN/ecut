@@ -8,7 +8,6 @@ import com.krt.generator.GenServiceUtil;
 
 /**  
  * @Description: 偷懒代码生成
- * @author 殷帅
  * @date 2016年7月26日
  * @version 1.0
  */

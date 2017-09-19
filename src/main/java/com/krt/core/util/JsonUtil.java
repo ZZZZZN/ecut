@@ -11,8 +11,7 @@ import java.util.*;
 * 项目名称：zfzwServer  
 * 类名称：JsonUtil  
 * 类描述：JSON转换工具类  
-* 创建人：殷帅  
-* 创建时间：2015-8-20 上午11:32:24  
+* 创建时间：2015-8-20 上午11:32:24
 *   
 */ 
 public class JsonUtil {

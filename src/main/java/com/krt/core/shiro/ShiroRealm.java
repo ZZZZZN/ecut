@@ -17,7 +17,6 @@ import java.util.Map;
 
 /**  
  * @Description: 自定义Realm
- * @author 殷帅
  * @date 2016年4月18日
  * @version 1.0
  */

@@ -8,7 +8,6 @@ import java.util.List;
 
 /**  
  * @Description: 角色管理映射层
- * @author 殷帅
  * @date 2016年7月16日
  * @version 1.0
  */

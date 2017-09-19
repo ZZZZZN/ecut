@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 任务调度控制层
  * @date 2016年7月22日

@@ -11,7 +11,6 @@ import java.net.URLConnection;
 
 /**
  * @Description: HTTP 访问工具类
- * @author 殷帅
  * @date 2016年4月19日
  * @version 1.0
  */

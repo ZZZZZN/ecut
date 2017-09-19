@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 角色管理控制层
  * @date 2016年7月16日

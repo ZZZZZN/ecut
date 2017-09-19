@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 异常页控制层
  * @date 2016年7月22日

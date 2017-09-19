@@ -7,7 +7,6 @@ import java.util.Map;
 
 /**  
  * @Description: 登录操作映射层
- * @author 殷帅
  * @date 2016年7月15日
  * @version 1.0
  */

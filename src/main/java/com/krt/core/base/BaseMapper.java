@@ -5,7 +5,6 @@ import java.util.Map;
 
 /**
  * @Description: 公共抽取的映射层
- * @author 殷帅
  * @date 2016年7月16日
  * @version 1.0
  */

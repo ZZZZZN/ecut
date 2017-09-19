@@ -12,7 +12,6 @@ import java.util.Date;
 
 /**  
  * @Description: 控制器基类
- * @author 殷帅
  * @date 2016年7月16日
  * @version 1.0
  */

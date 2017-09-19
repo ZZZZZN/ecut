@@ -5,7 +5,6 @@ import com.krt.core.base.BaseEntity;
 
 /**
  * @Description: 系统操作日志实体类
- * @author 殷帅
  * @date 2016年7月21日
  * @version 1.0
  */

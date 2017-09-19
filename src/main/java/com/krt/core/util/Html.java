@@ -7,8 +7,7 @@ import java.util.regex.Pattern;
 * 项目名称：zgqzhsq  
 * 类名称：Html  
 * 类描述：去掉html标签  
-* 创建人：殷帅  
-* 创建时间：2014-2-16 下午09:41:29    
+* 创建时间：2014-2-16 下午09:41:29
 *   
 */ 
 public class Html {

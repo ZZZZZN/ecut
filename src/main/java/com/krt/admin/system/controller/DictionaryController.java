@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.krt.core.util.Common;
 
 /**
- * @author 殷帅
  * @version 1.0
  * @Description: 字典管理控制层
  * @date 2016年7月25日

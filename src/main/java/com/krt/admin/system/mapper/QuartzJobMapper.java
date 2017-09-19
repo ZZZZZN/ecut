@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * @Description: 任务调度映射层
- * @author 殷帅
  * @date 2016年7月22日
  * @version 1.0
  */

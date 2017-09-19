@@ -7,7 +7,6 @@ import java.io.UnsupportedEncodingException;
 /**
  * 
  * @Description: 公用的工具类
- * @author 殷帅
  * @date 2016年7月20日
  * @version 1.0
  */
