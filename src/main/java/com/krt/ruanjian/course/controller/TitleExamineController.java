@@ -287,9 +287,9 @@ public class TitleExamineController extends BaseController {
 	public ReturnBean batchUpdate(HttpServletRequest request) {
 		ReturnBean rb = null;
 		String para = request.getParameter("ids");
-		String[] array = para.split(",");
+		String[] ids = para.split(",");
 		try {
-			titleService.updateBatch(array);
+			titleService.updateBatch(ids);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
 			e.printStackTrace();
