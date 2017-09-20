@@ -82,25 +82,14 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
-	 * 查看审核信息
+	 * 系主任查看按钮
 	 *
 	 * @return
 	 */
 	@RequiresPermissions("titleExamine:see")
 	@RequestMapping("ruanjian/course/titleExamine_seeUI")
 	public String titleExamine_seeUI(Integer id, HttpServletRequest request) {
-		Map titleMap = titleExamineService.selectById(id);
-		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
-		MajorEnum majorEnum;
-		String newData = "";
-		for (int i = 0; i< array.length; i++) {
-			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
-			if (i+1 == array.length) {
-				newData += majorEnum.getName() ;
-			} else {
-				newData += majorEnum.getName() + ",";
-			}
-		}*/
+		Map titleMap = titleService.selectById(id);
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/titleExamine_seeUI";
 	}
