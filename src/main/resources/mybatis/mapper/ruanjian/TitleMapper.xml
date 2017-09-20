@@ -230,5 +230,17 @@ WHERE
 	</if>
 	</select>
 
+	<!-- 系主任批量审核题目 -->
+	<update id="updateBatch"  parameterType="java.lang.String">
+		update title
+		<set>
+			flag = 2
+		</set>
+		where id in
+		<foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+
 </mapper>
 
