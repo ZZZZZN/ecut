@@ -240,7 +240,7 @@
 	<!-- 系主任查看本系所有老师出的所有题目-->
 	<select id="getTitleByMajor" resultType="java.util.Map">
 		SELECT
-		t.id,
+		t.id titleId,
 		t.title_name titleName,
 		t.title_type titleType,
 		t.title_source titleSource,
