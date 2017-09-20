@@ -278,4 +278,22 @@ public class TitleExamineController extends BaseController {
 		}
 		return rb;
 	}
+
+	/**
+	 * 系主任批量审核题目
+	 */
+	@RequestMapping("ruanjian/course/boss/batchUpdate")
+	@ResponseBody
+	public ReturnBean batchUpdate(HttpServletRequest request) {
+		ReturnBean rb = null;
+		String para = request.getParameter("ids");
+		String[] array = para.split(",");
+		try {
+			titleService.updateBatch(array);
+			rb = ReturnBean.getSuccessReturnBean();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rb;
+	}
 }
