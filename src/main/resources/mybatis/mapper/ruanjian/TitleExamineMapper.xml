@@ -100,6 +100,8 @@
 			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
+			uu.stu_no as stuNo,
+			uu.stu_Class as stuClass,
 			e.auditor AS auditorId,
 			u. NAME AS author,
 			CASE

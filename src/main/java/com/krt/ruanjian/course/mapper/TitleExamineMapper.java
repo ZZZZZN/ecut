@@ -33,4 +33,5 @@ public interface TitleExamineMapper extends BaseMapper<TitleExamine>{
 
     List<Map> getStuSelDataList(Map para);
     Integer countStudentsByteacherId(@Param("auditor") Integer auditor);
+
 }

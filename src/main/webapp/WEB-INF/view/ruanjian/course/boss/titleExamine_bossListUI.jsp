@@ -17,12 +17,18 @@
 		margin-left: 5px;
 		margin-right: 5px;
 	}
-	.batch {
+	.batch,.exportBtn{
 		float : right;
+		height: 30px;
+		margin-left: 50px;
 	}
 	.search-input{
 		margin-right:10px;
 		margin-left: 2px;
+	}
+	.exportBtn{
+		height: 30px;
+		margin-left: 50px;
 	}
 </style>
 <body class="hold-transition sidebar-mini body-bg">
@@ -36,6 +42,7 @@
 					<div class="box">
 						<div class="box-header">
 							<h5>选题表管理</h5>
+							<button class="btn btn-primary exportBtn" onclick="doSubmit()">导出excel</button>
 							<button class="btn btn-primary batch">批量审核</button>
 						</div>
 						<div class="box-body">
@@ -57,26 +64,28 @@
 									<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 								</div>
 							</div>
-							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
-								<thead>
-								<tr>
-									<th > 全选
-										<input type="checkbox" name="checkAll" id="checkAll"
-											   class="group-checkable" data-set="#sample_1 .checkboxes" />
-									</th>
-									<th>序号</th>
-									<th>课题名称</th>
-									<th>课题类型</th>
-									<th>课题来源</th>
-									<th>适用专业</th>
-									<th>适用实训所在地</th>
-									<th>状态</th>
-									<th>操作</th>
-								</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+							<form action="#" id="stuForm" class="form-horizontal">
+								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
+									<thead>
+									<tr>
+										<th > 全选
+											<input type="checkbox" name="checkAll" id="checkAll"
+												   class="group-checkable" data-set="#sample_1 .checkboxes" />
+										</th>
+										<th>序号</th>
+										<th>课题名称</th>
+										<th>课题类型</th>
+										<th>课题来源</th>
+										<th>适用专业</th>
+										<th>适用实训所在地</th>
+										<th>状态</th>
+										<th>操作</th>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</form>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -193,6 +202,11 @@
     function handleSelect(e) {
         status = e.target.value;
         datatable.ajax.reload();
+    }
+	//导出excel
+    function doSubmit() {
+        $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForDean");
+        $("#stuForm").submit();
     }
 
     $(function(){
