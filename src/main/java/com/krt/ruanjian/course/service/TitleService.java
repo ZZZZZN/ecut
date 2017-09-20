@@ -64,4 +64,9 @@ public class TitleService extends BaseServiceImpl<Title> {
 		dataTable.setRecordsFiltered(pageInfo.getTotal());
 		return dataTable;
 	}
+
+    public void updateBatch(String[] array) {
+		int result = titleMapper.updateBatch(array);
+		//System.out.println(result);
+	}
 }
