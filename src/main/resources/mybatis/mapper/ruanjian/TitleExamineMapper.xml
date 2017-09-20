@@ -249,6 +249,7 @@
 		t.limit_person limitPerson,
 		t.meaning_target meaningTarget,
 		t.condition_work conditionWork,
+		tmp.name teacherName,
 		CASE
 		when t.flag='1' THEN
 		'待审核'
