@@ -74,8 +74,8 @@
 										</th>
 										<th>序号</th>
 										<th>课题名称</th>
+										<th>出题教师</th>
 										<th>课题类型</th>
-										<th>课题来源</th>
 										<th>适用专业</th>
 										<th>适用实训所在地</th>
 										<th>状态</th>
@@ -151,8 +151,8 @@
                 },
                 {"data": "titleId", "width": "7%"},
                 {"data": "titleName", "width": "12%"},
+                {"data": "teacherName", "width": "10%"},
                 {"data": "titleType", "width": "10%"},
-                {"data": "titleSource", "width": "10%"},
                 {"data": "suitMajorName", "width": "13%"},
                 {"data": "suitScope", "width": "10%"},
                 {"data": "flag", "width": "10%"},
@@ -167,18 +167,18 @@
                         var optBtn = '';
                         if (row.flag == disflag ) {
                             optBtn = '<shiro:hasPermission name="titleExamine:anoPassOrFail">'
-                            +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
+                            +'<button class="btn btn-xs btn-success passBtn" rid="'+row.titleId+'">'
                             +'<i class="fa fa-check fa-btn"></i>通过'
                             +'</button>'
                             +'</shiro:hasPermission>'
                             +' <shiro:hasPermission name="titleExamine:anoPassOrFail">'
-                            +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
+                            +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.titleId+'">'
                             +'<i class="fa fa-remove fa-btn"></i>不通过'
                             +'</button>'
                             +'</shiro:hasPermission>'
                         }
                         return ' <shiro:hasPermission name="titleExamine:see">'
-                            +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
+                            +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.titleId+'">'
                             +'<i class="fa fa-eye fa-btn"></i>查看'
                             +'</button>'
                             +'</shiro:hasPermission>'
@@ -346,6 +346,9 @@
                     $.ajax({
                         type: "POST",
                         url:"<%=basePath%>ruanjian/course/boss/batchUpdate",
+                        beforeSend:function(){
+                            return loading();
+                        },
                         data : {
                             ids : ids
                         },

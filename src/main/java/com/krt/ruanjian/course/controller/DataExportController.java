@@ -227,10 +227,12 @@ public class DataExportController extends BaseController {
     @ResponseBody
     public ReturnBean exportExcelForDean(HttpServletRequest request, HttpServletResponse resp) throws Exception {
         ReturnBean rb =null;
+        Map user = ShiroUtil.getCurrentUser();
         Map para = new HashMap();
         para.put("flag", "");
         para.put("titlename","");
         para.put("author","");
+        para.put("userId",user.get("id").toString());
         List<Map> list = titleExamineService.exportExcelForDean(para);
         //添加sheet
         Map map = new HashMap();
@@ -247,12 +249,19 @@ public class DataExportController extends BaseController {
         //map中的key
         String keys[] = {"titleName","teacherName","titleType","titleSource",
                 "suitMajorName","suitScope","meaningTarget","conditionWork","flag"};
-        dataExportService.stuSelDataExport(resp, fileName,newList,keys,columnNames);
+        try {
+            dataExportService.stuSelDataExport(resp,fileName,newList,keys,columnNames);
+        } catch (IOException e) {
+            rb=ReturnBean.getErrorReturnBean();
+            e.printStackTrace();
+            return rb;
+        }
+        rb=ReturnBean.getSuccessReturnBean();
         return rb;
     }
 
     /**
-     * 申请记录页面导出
+     * 教师管理的申请记录导出
      */
     @RequestMapping("ruanjian/course/boss/exportExcelForTeaccher")
     @ResponseBody
@@ -280,7 +289,14 @@ public class DataExportController extends BaseController {
         //map中的key
         String keys[] = {"stuNo","applyer","stuClass","titleName",
                 "teacName"};
-        dataExportService.stuSelDataExport(resp, fileName,newList,keys,columnNames);
+        try {
+            dataExportService.stuSelDataExport(resp,fileName,newList,keys,columnNames);
+        } catch (IOException e) {
+            rb=ReturnBean.getErrorReturnBean();
+            e.printStackTrace();
+            return rb;
+        }
+        rb=ReturnBean.getSuccessReturnBean();
         return rb;
     }
 }
