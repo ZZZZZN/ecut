@@ -130,6 +130,13 @@ public class ExcelUtil {
                         }
                     }else if (c == 9){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
+                            String age = String.valueOf(cell.getNumericCellValue());
+                            user.setAge(age.substring(0, age.length()-2>0?age.length()-2:1));//age
+                        }else{
+                            user.setAge(cell.getStringCellValue());//age
+                        }
+                    } else if(c==10) {
+                        if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String note = String.valueOf(cell.getNumericCellValue());
                             user.setNote(note.substring(0, note.length()-2>0?note.length()-2:1));//备注
                         }else{
