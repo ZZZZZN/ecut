@@ -251,5 +251,20 @@ WHERE
 		</foreach>
 	</update>
 
+	<!--  教师查看详情 -->
+	<select id="selectByTeacherId" resultType="java.util.Map">
+		SELECT
+			t.title_name AS titleName,
+			uu. NAME AS applyer,
+			uu.username as stuNo,
+			uu.stu_Class as stuClass,
+			u. NAME AS author
+		FROM
+			title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		AND u.id = #{id,jdbcType=INTEGER}
+		JOIN t_user uu ON uu.id = e.applicant
+	</select>
 </mapper>
 
