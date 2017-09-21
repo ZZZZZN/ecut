@@ -94,6 +94,22 @@ public class TitleExamineController extends BaseController {
 		return "ruanjian/course/titleExamine_seeUI";
 	}
 
+	/**
+	 * 教师查看按钮
+	 *
+	 * @return
+	 */
+	@RequiresPermissions("titleExamine:teacherSeeUI")
+	@RequestMapping("ruanjian/course/teacherSeeUI")
+	public String teacherSeeUI(Integer id, HttpServletRequest request) {
+		//传过的参数id暂时不用
+		Map teacher = ShiroUtil.getCurrentUser();
+		Integer tId = (Integer)teacher.get("id");
+		Map titleMap = titleService.selectByTeacherId(tId);
+		request.setAttribute("info", titleMap);
+		return "ruanjian/course/teacherSeeUI";
+	}
+
 
 
 	/**
