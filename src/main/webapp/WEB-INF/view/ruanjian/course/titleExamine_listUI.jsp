@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="box">
 							<div class="box-header">
 								<h5>学生申请记录表</h5>
-								<button class="btn btn-primary exportBtn" onclick="doSubmit()">导出excel</button>
+								<a class="btn btn-primary exportBtn" id="export" onclick="doSubmit()">导出excel</a>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -58,7 +58,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 									</div>
 								</div>
-								<form action="#" id="stuForm" class="form-horizontal">
 									<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 										<thead>
 											<tr>
@@ -72,7 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</thead>
 										<tbody>
 										</tbody>
-									</table>
 								</form>
 							</div>
 							<!-- /.box-body -->
@@ -174,13 +172,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             status = e.target.value;
             datatable.ajax.reload();
         }
-
         //导出excel
         function doSubmit() {
-            $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForTeaccher");
-            $("#stuForm").submit();
+            $("#export").attr("href", "<%=basePath%>ruanjian/course/boss/exportExcelForTeaccher");
         }
-
 
         $(function(){
    	    
@@ -273,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             }
                             if(msg.state=='one')
                             {
-                                top.layer.msg("该课题已有人选");
+                                top.layer.msg("该课题已有学生选");
                             }
                         },
                         error: function(){
