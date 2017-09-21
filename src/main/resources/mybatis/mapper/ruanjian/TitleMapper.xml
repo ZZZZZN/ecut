@@ -103,7 +103,12 @@
 	<!-- 带参数查询选题表列表 -->
 	<select id="selectListPara" resultType="java.util.Map" parameterType="java.util.Map">
 		SELECT
-		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,meaning_target,condition_work,b.education,b.name as author
+		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,meaning_target,condition_work,b.education,b.name as author,
+			case
+			when a.flag = '1' then '待审核'
+			when a.flag = '2' then '审核通过'
+			when a.flag = '3' then '审核未通过'
+			end status
 		FROM
 		title a,
         t_user b
