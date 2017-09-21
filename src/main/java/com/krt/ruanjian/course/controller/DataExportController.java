@@ -272,6 +272,8 @@ public class DataExportController extends BaseController {
         Integer authorId = (Integer)user.get("id");
         para.put("authorId", authorId);
         para.put("status", "2");
+        para.put("titleName", "");
+        para.put("applyer", "");
         para.put("role",user.get("roleCode"));
         List<Map> list = titleExamineService.exportExcelForTeaccher(para);
         //添加sheet
@@ -288,7 +290,7 @@ public class DataExportController extends BaseController {
                 "指导老师姓名"};
         //map中的key
         String keys[] = {"stuNo","applyer","stuClass","titleName",
-                "teacName"};
+                "author"};
         try {
             dataExportService.stuSelDataExport(resp,fileName,newList,keys,columnNames);
         } catch (IOException e) {

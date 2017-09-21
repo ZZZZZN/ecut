@@ -25,6 +25,9 @@ public class DataExportService extends BaseServiceImpl<Title> {
         return titleMapper;
     }
 
+    /**
+     * excel导出通用方法
+     */
     public void stuSelDataExport(HttpServletResponse response, String fileName,
                                  List<Map> newList, String[] keys, String[] columnNames) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
