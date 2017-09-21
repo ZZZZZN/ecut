@@ -172,10 +172,10 @@ public class DataExportController extends BaseController {
         String fileName="拟题数据导出";
         //列名
         String columnNames[]={"课题名称","课题类型","适用专业","适用实训所在地",
-                "上限人数","出题老师","学历","课程意义与目标","学生基本条件和前期工作"};
+                "上限人数","出题老师","学历","课程意义与目标","学生基本条件和前期工作","审核状态"};
         //map中的key
         String keys[] = {"title_name","title_type","suitMajorName","suitScope",
-                "limit_person","author","education","meaning_target","condition_work"};
+                "limit_person","author","education","meaning_target","condition_work","status"};
         try {
             dataExportService.stuSelDataExport(response,fileName,newList,keys,columnNames);
         } catch (IOException e) {
