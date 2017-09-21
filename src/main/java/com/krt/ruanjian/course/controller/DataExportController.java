@@ -219,4 +219,84 @@ public class DataExportController extends BaseController {
         rb=ReturnBean.getSuccessReturnBean();
         return rb;
     }
+
+    /**
+     * 系主任页面导出
+     */
+    @RequestMapping("ruanjian/course/boss/exportExcelForDean")
+    @ResponseBody
+    public ReturnBean exportExcelForDean(HttpServletRequest request, HttpServletResponse resp) throws Exception {
+        ReturnBean rb =null;
+        Map user = ShiroUtil.getCurrentUser();
+        Map para = new HashMap();
+        para.put("flag", "");
+        para.put("titlename","");
+        para.put("author","");
+        para.put("userId",user.get("id").toString());
+        List<Map> list = titleExamineService.exportExcelForDean(para);
+        //添加sheet
+        Map map = new HashMap();
+        map.put("sheetName","sheet1");
+        List<Map> newList = new ArrayList<Map>();
+        newList.add(map);
+        for(Map tmp : list) {
+            newList.add(tmp);
+        }
+        String fileName="教师拟题数据";
+        //列名
+        String columnNames[]={"课题名称","教师姓名","课题类型","课题来源","适用专业",
+                "适用实训在地","课程意义与目标","学生基本条件","状态"};
+        //map中的key
+        String keys[] = {"titleName","teacherName","titleType","titleSource",
+                "suitMajorName","suitScope","meaningTarget","conditionWork","flag"};
+        try {
+            dataExportService.stuSelDataExport(resp,fileName,newList,keys,columnNames);
+        } catch (IOException e) {
+            rb=ReturnBean.getErrorReturnBean();
+            e.printStackTrace();
+            return rb;
+        }
+        rb=ReturnBean.getSuccessReturnBean();
+        return rb;
+    }
+
+    /**
+     * 教师管理的申请记录导出
+     */
+    @RequestMapping("ruanjian/course/boss/exportExcelForTeaccher")
+    @ResponseBody
+    public ReturnBean exportExcelForTeaccher(HttpServletRequest request, HttpServletResponse resp) throws Exception {
+        ReturnBean rb =null;
+        Map para = new HashMap();
+        Map user = ShiroUtil.getCurrentUser();
+        Integer authorId = (Integer)user.get("id");
+        para.put("authorId", authorId);
+        para.put("status", "2");
+        para.put("role",user.get("roleCode"));
+        List<Map> list = titleExamineService.exportExcelForTeaccher(para);
+        //添加sheet
+        Map map = new HashMap();
+        map.put("sheetName","sheet1");
+        List<Map> newList = new ArrayList<Map>();
+        newList.add(map);
+        for(Map tmp : list) {
+            newList.add(tmp);
+        }
+        String fileName="学生选题数据";
+        //列名
+        String columnNames[]={"学号","学生姓名","学生班级","设计题目",
+                "指导老师姓名"};
+        //map中的key
+        String keys[] = {"stuNo","applyer","stuClass","titleName",
+                "teacName"};
+        try {
+            dataExportService.stuSelDataExport(resp,fileName,newList,keys,columnNames);
+        } catch (IOException e) {
+            rb=ReturnBean.getErrorReturnBean();
+            e.printStackTrace();
+            return rb;
+        }
+        rb=ReturnBean.getSuccessReturnBean();
+        return rb;
+    }
 }

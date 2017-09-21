@@ -17,9 +17,18 @@
 		margin-left: 5px;
 		margin-right: 5px;
 	}
+	.batch,.exportBtn{
+		float : right;
+		height: 30px;
+		margin-left: 50px;
+	}
 	.search-input{
 		margin-right:10px;
 		margin-left: 2px;
+	}
+	.exportBtn{
+		height: 30px;
+		margin-left: 50px;
 	}
 </style>
 <body class="hold-transition sidebar-mini body-bg">
@@ -33,8 +42,9 @@
 					<div class="box">
 						<div class="box-header">
 							<h5>选题表管理</h5>
+							<button class="btn btn-primary exportBtn" onclick="doSubmit()">导出excel</button>
+							<button class="btn btn-primary batch">批量审核</button>
 						</div>
-
 						<div class="box-body">
 							<div class="row">
 								<div class="col-sm-12">
@@ -54,22 +64,28 @@
 									<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 								</div>
 							</div>
-							<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
-								<thead>
-								<tr>
-									<th>序号</th>
-									<th>课题名称</th>
-									<th>课题类型</th>
-									<th>课题来源</th>
-									<th>适用专业</th>
-									<th>适用实训所在地</th>
-									<th>状态</th>
-									<th>操作</th>
-								</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+							<form action="#" id="stuForm" class="form-horizontal">
+								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
+									<thead>
+									<tr>
+										<th > 全选
+											<input type="checkbox" name="checkAll" id="checkAll"
+												   class="group-checkable" data-set="#sample_1 .checkboxes" />
+										</th>
+										<th>序号</th>
+										<th>课题名称</th>
+										<th>出题教师</th>
+										<th>课题类型</th>
+										<th>适用专业</th>
+										<th>适用实训所在地</th>
+										<th>状态</th>
+										<th>操作</th>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</form>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -121,10 +137,22 @@
                 }
             },
             "columns": [
-                {"data": "id", "width": "7%"},
+                {
+                    className: "td-checkbox",
+                    orderable : false,
+                    bSortable : false,
+                    data : "id",
+                    render : function(data, type, row) {
+                        var content = '<label style="margin-left:32px;" class="mt-checkbox mt-checkbox-single mt-checkbox-outline">';
+                        content += '    <input type="checkbox" name="subBox" id="subBox" value="' + row.titleId+ '" />';
+                        content += '</label>';
+                        return content;
+                    }
+                },
+                {"data": "titleId", "width": "7%"},
                 {"data": "titleName", "width": "12%"},
+                {"data": "teacherName", "width": "10%"},
                 {"data": "titleType", "width": "10%"},
-                {"data": "titleSource", "width": "10%"},
                 {"data": "suitMajorName", "width": "13%"},
                 {"data": "suitScope", "width": "10%"},
                 {"data": "flag", "width": "10%"},
@@ -132,25 +160,25 @@
             ],
             "columnDefs": [
                 {
-                    "targets": 7,
+                    "targets": 8,
                     "data": "id",
                     "width": "20%",
                     "render": function(data, type, row) {
                         var optBtn = '';
                         if (row.flag == disflag ) {
                             optBtn = '<shiro:hasPermission name="titleExamine:anoPassOrFail">'
-                            +'<button class="btn btn-xs btn-success passBtn" rid="'+row.id+'">'
+                            +'<button class="btn btn-xs btn-success passBtn" rid="'+row.titleId+'">'
                             +'<i class="fa fa-check fa-btn"></i>通过'
                             +'</button>'
                             +'</shiro:hasPermission>'
                             +' <shiro:hasPermission name="titleExamine:anoPassOrFail">'
-                            +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.id+'">'
+                            +'<button class="btn btn-xs btn-danger failBtn" rid="'+row.titleId+'">'
                             +'<i class="fa fa-remove fa-btn"></i>不通过'
                             +'</button>'
                             +'</shiro:hasPermission>'
                         }
                         return ' <shiro:hasPermission name="titleExamine:see">'
-                            +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
+                            +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.titleId+'">'
                             +'<i class="fa fa-eye fa-btn"></i>查看'
                             +'</button>'
                             +'</shiro:hasPermission>'
@@ -161,7 +189,11 @@
             "fnDrawCallback": function(){
                 var api = this.api();
                 var startIndex= api.context[0]._iDisplayStart;//获取到本页开始的条数
-                api.column(0).nodes().each(function(cell, i) {
+                /*api.column(0).nodes().each(function(cell, i) {
+                    cell.innerHTML = '<input type="checkbox"/>';
+                });*/
+                //控制序号的位置
+                api.column(1).nodes().each(function(cell, i) {
                     cell.innerHTML = startIndex + i + 1;
                 });
             }
@@ -170,6 +202,11 @@
     function handleSelect(e) {
         status = e.target.value;
         datatable.ajax.reload();
+    }
+	//导出excel
+    function doSubmit() {
+        $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForDean");
+        $("#stuForm").submit();
     }
 
     $(function(){
@@ -285,6 +322,55 @@
             confirmx("不允许该学生选择该课题？",fun);
         });
 
+        //全选
+        $('input[name="checkAll"]').click(function(){
+            if($(this).is(':checked')){
+                $('input[name="subBox"]').each(function(){
+                    $(this).prop("checked",true);
+                });
+            }else{
+                $('input[name="subBox"]').each(function(){
+                    $(this).removeAttr("checked",false);
+                });
+            }
+        });
+
+        //批量审核
+        $(document).on("click",".batch",function(){
+            var ids = "";
+			$('input[name="subBox"]:checked').each(function() {
+                ids = ids + $(this).val() + ",";
+			});
+			if (ids != "") {
+                var fun = function(){
+                    $.ajax({
+                        type: "POST",
+                        url:"<%=basePath%>ruanjian/course/boss/batchUpdate",
+                        beforeSend:function(){
+                            return loading();
+                        },
+                        data : {
+                            ids : ids
+                        },
+                        success: function(msg) {
+                            closeloading();
+                            if(msg.state=='success'){
+                                top.layer.msg("审核成功");
+                                refreshTable(datatable);
+                            }else{
+                                top.layer.msg("审核失败");
+                            }
+                        },
+                        error: function(){
+                            closeloading();
+                        }
+                    });
+                };
+                confirmx("确认所选课题全部通过",fun);
+			} else {
+                alert("请勾选审核题目!");
+			}
+        });
     });
 </script>
 </body>

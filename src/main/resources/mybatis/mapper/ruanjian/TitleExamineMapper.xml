@@ -100,6 +100,8 @@
 			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
+			uu.stu_no as stuNo,
+			uu.stu_Class as stuClass,
 			e.auditor AS auditorId,
 			u. NAME AS author,
 			CASE
@@ -240,7 +242,7 @@
 	<!-- 系主任查看本系所有老师出的所有题目-->
 	<select id="getTitleByMajor" resultType="java.util.Map">
 		SELECT
-		t.id,
+		t.id titleId,
 		t.title_name titleName,
 		t.title_type titleType,
 		t.title_source titleSource,
@@ -249,6 +251,7 @@
 		t.limit_person limitPerson,
 		t.meaning_target meaningTarget,
 		t.condition_work conditionWork,
+		tmp.name teacherName,
 		CASE
 		when t.flag='1' THEN
 		'待审核'

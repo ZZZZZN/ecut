@@ -20,6 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		margin-right:10px;
 		margin-left: 2px;
 	}
+	.exportBtn{
+		float : right;
+		height: 30px;
+		margin-left: 50px;
+	}
 </style>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
@@ -32,6 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="box">
 							<div class="box-header">
 								<h5>学生申请记录表</h5>
+								<button class="btn btn-primary exportBtn" onclick="doSubmit()">导出excel</button>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -52,20 +58,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 									</div>
 								</div>
-								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
-									<thead>
-										<tr>
-											<th>序号</th>
-											<th>选题名称</th>
-											<th>申请人</th>
-											<th>审核人</th>
-											<th>审核状态</th>
-											<th>操作</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+								<form action="#" id="stuForm" class="form-horizontal">
+									<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>选题名称</th>
+												<th>申请人</th>
+												<th>审核人</th>
+												<th>审核状态</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</form>
 							</div>
 							<!-- /.box-body -->
 						</div>
@@ -167,7 +175,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             datatable.ajax.reload();
         }
 
-   	    $(function(){
+        //导出excel
+        function doSubmit() {
+            $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForTeaccher");
+            $("#stuForm").submit();
+        }
+
+
+        $(function(){
    	    
    	    	//pace监听ajax
    	    	$(document).ajaxStart(function() {

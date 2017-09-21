@@ -110,4 +110,13 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	public Integer countStudentsByteacherId(Integer auditor){
 		return titleExamineMapper.countStudentsByteacherId(auditor);
 	}
+
+	//返回系主任审核数据
+    public List<Map> exportExcelForDean(Map para) {
+		return titleExamineMapper.getTitleByMajor(para);
+    }
+
+	public List<Map> exportExcelForTeaccher(Map para) {
+		return getMapper().selectListPara(para);
+	}
 }

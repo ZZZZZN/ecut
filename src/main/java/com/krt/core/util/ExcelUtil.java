@@ -74,16 +74,16 @@ public class ExcelUtil {
                     } else if (c == 1) {
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String username = String.valueOf(cell.getNumericCellValue());
-                            user.setUsername(username.substring(0, username.length()-2>0?username.length()-2:1));
+                            user.setUsername(username.substring(0, username.length()-2>0?username.length()-2:1).replace(" ",""));
                         }else{
-                            user.setUsername(cell.getStringCellValue());//用户名
+                            user.setUsername(cell.getStringCellValue().replace(" ",""));//用户名
                         }
                     } else if (c == 2){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String password = String.valueOf(cell.getNumericCellValue());
-                            user.setPassword(password.substring(0, password.length()-2>0?password.length()-2:1));//密码
+                            user.setPassword(password.substring(0, password.length()-2>0?password.length()-2:1).replace(" ",""));//密码
                         }else{
-                            user.setPassword(cell.getStringCellValue());//密码
+                            user.setPassword(cell.getStringCellValue().replace(" ",""));//密码
                         }
                     }else if (c == 3){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
@@ -181,9 +181,10 @@ public class ExcelUtil {
                     } else if (c == 1) {
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
                             String username = String.valueOf(cell.getNumericCellValue());
-                            user.setUsername(username.substring(0, username.length()-2>0?username.length()-2:1));
+                            user.setUsername(username.substring(0, username.length()-2>0?username.length()-2:1).replace(" ",""));
                         }else{
-                            user.setUsername(cell.getStringCellValue());//用户名
+//                            user.setUsername(cell.getStringCellValue());//用户名
+                            user.setUsername(cell.getStringCellValue().replace(" ",""));//用户名
                         }
                     } else if (c == 2){
                         if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
