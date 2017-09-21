@@ -263,8 +263,8 @@ WHERE
 			title_examine e
 		JOIN title t ON e.title_id = t.id
 		JOIN t_user u ON u.id = e.auditor
-		AND u.id = #{id,jdbcType=INTEGER}
 		JOIN t_user uu ON uu.id = e.applicant
+		where e.id = #{id,jdbcType=VARCHAR}
 	</select>
 </mapper>
 

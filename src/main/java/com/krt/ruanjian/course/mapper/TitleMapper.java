@@ -22,4 +22,6 @@ public interface TitleMapper extends BaseMapper<Title>{
     List<Map> teacherExport (Map para);
 
     int updateBatch(String[] array);
+
+    Map selectByTeacherId(Integer id);
 }

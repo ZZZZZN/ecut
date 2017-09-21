@@ -393,5 +393,10 @@ WHERE
 	auditor = #{auditor}
 AND STATUS = '2'
 	</select>
+	<!--查看题目是否已经有人选成功了-->
+	<select id="selectTitleSelInfo" resultType="java.lang.Integer">
+	    select count(1) from title_examine WHERE title_id = (
+		select title_id from title_examine where id = #{id,jdbcType=INTEGER}) and status=2
+	</select>
 </mapper>
 

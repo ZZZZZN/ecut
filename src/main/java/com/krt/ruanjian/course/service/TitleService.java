@@ -69,4 +69,8 @@ public class TitleService extends BaseServiceImpl<Title> {
 		int result = titleMapper.updateBatch(array);
 		//System.out.println(result);
 	}
+	//教师查看按钮返回数据
+    public Map selectByTeacherId(Integer id) {
+		return titleMapper.selectByTeacherId(id);
+    }
 }

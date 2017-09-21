@@ -271,6 +271,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             {
                                 top.layer.msg("一个学生只能选一个题");
                             }
+                            if(msg.state=='one')
+                            {
+                                top.layer.msg("该课题已有人选");
+                            }
                         },
                         error: function(){
                             closeloading();

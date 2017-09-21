@@ -119,4 +119,9 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 	public List<Map> exportExcelForTeaccher(Map para) {
 		return getMapper().selectListPara(para);
 	}
+
+	//判断题目是否已经有人选过并且成功过
+    public int selectTitleSelInfo(Integer id) {
+		return titleExamineMapper.selectTitleSelInfo(id);
+    }
 }
