@@ -132,6 +132,8 @@
 		   AND
 		   a.author=b.id
 		AND flag='2'
+		   AND
+		   flag!='4'
 		  <if test="role=='stu_in'">
 			  AND suitScope='校内实训'
 		  </if>
@@ -166,6 +168,8 @@
 			a.author=b.id
 			AND
 			flag='2'
+			AND
+			flag!='4'
 			<if test="author != ''">
 				AND b.name like CONCAT('%',#{author},'%')
 			</if>
