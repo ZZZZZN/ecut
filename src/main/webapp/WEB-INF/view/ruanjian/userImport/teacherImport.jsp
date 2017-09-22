@@ -75,7 +75,13 @@
                 type : type,
                 data : data,
                 success : function(result) {
-                    alert( "excel上传成功！");
+                    if (result == "success") {
+                        alert( "excel上传成功！");
+                    }else if(result == "null") {
+                        alert( "excel表没有数据！");
+                    }else {
+                        alert( "excel上传失败！");
+                    }
                 },
                 error : function() {
                     alert( "excel上传失败！");
