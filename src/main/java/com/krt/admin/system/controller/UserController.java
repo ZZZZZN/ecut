@@ -290,11 +290,11 @@ public class UserController extends BaseController {
         List<Map> map = majorService.selectAll();
         List<Map> departments = new ArrayList<>();
         departments.addAll(map);
-        for (int i = 0; i < departments.size(); i++) {
-            if (departments.get(i).get("major_code").equals("080905")) {
-                departments.remove(i);
-            }
-        }
+//        for (int i = 0; i < departments.size(); i++) {
+//            if (departments.get(i).get("major_code").equals("080905")) {
+//                departments.remove(i);
+//            }
+//        }
         List<Map> list1 = new ArrayList<>();
         Map<String, String> map1 = new HashMap<>();
         Map<String, String> map2 = new HashMap<>();
@@ -369,11 +369,11 @@ public class UserController extends BaseController {
 
         List<Map> departments = new ArrayList<>();
         departments.addAll(majorList);
-        for (int i = 0; i < departments.size(); i++) {
-            if (departments.get(i).get("major_code").equals("080905")) {
-                departments.remove(i);
-            }
-        }
+//        for (int i = 0; i < departments.size(); i++) {
+//            if (departments.get(i).get("major_code").equals("080905")) {
+//                departments.remove(i);
+//            }
+//        }
         request.setAttribute("departments",departments);
         return "admin/system/user/user_updateUI";
     }
