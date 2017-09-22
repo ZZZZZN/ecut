@@ -109,7 +109,7 @@ public class DataExportController extends BaseController {
         }
         String fileName="学生选题数据";
         //列名
-        String columnNames[]={"学号","学生姓名","学生班级","备注","设计题目",
+        String columnNames[]={"序号","学号","学生姓名","学生班级","备注","设计题目",
                 "课题类型","课题来源","指导老师姓名","职称","出生年月"};
         //map中的key
         String keys[] = {"stuNo","stuName","stuClass","note","titleName",
