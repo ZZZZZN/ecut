@@ -24,12 +24,12 @@
         <result column="department" jdbcType="VARCHAR" property="department"/>
         <result column="institute" jdbcType="VARCHAR" property="institute"/>
         <result column="education" jdbcType="VARCHAR" property="education"/>
-
+        <result column="age" jdbcType="VARCHAR" property="age"/>
     </resultMap>
 
     <sql id="Base_Column_List">
 		id,username,password,name,status,roleCode,inserter,insertTime,updater,updateTime,
-		stu_class,stu_no,tel,direction,company,title_level,title_level_num,training_site,major,note,department,institute,education
+		stu_class,stu_no,tel,direction,company,title_level,title_level_num,training_site,major,note,department,institute,education,age
 	</sql>
 
     <select id="selectById" resultType="java.util.Map">
@@ -63,7 +63,8 @@
             a.note,
             a.department,
             a.institute,
-            a.education
+            a.education,
+            a.age
         FROM t_user a, major b
         WHERE
             a.major = b.major_code
@@ -149,6 +150,9 @@
             <if test="education != null">
                 education,
             </if>
+            <if test="age != null">
+                age,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -220,6 +224,9 @@
             </if>
             <if test="education != null">
                 #{education,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -297,6 +304,9 @@
             <if test="education != null">
                 education = #{education,jdbcType=VARCHAR},
             </if>
+            <if test="age != null">
+                age = #{age,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -317,9 +327,10 @@
         s1.roleCode,
         s1.note,
         s1.education,
+        s1.age,
         s2.roleName from(
         (select id, username, name, stu_class,institute,major,training_site,company,status,title_level,title_level_num,
-        roleCode,education,note from t_user where username != 'admin'
+        roleCode,education,age,note from t_user where username != 'admin'
         <if test="username!=''">
             and username like concat('%',#{username},'%')
         </if>
@@ -387,6 +398,7 @@
             a.title_level_num,
             a.department,
             a.education,
+            a.age,
             b.major_name AS major,
             a.note
         FROM

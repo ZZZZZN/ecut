@@ -50,7 +50,7 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
-	 * 审核表（记录学生申请的题目）管理
+	 * 教师管理---> 申请记录
 	 * 
 	 * @param start
 	 *            起始数
@@ -82,34 +82,31 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
-	 * 查看审核信息
-	 *
-	 * @return
+	 * 系主任查看按钮
 	 */
 	@RequiresPermissions("titleExamine:see")
 	@RequestMapping("ruanjian/course/titleExamine_seeUI")
 	public String titleExamine_seeUI(Integer id, HttpServletRequest request) {
-		Map titleMap = titleExamineService.selectById(id);
-		/*String[] array = ((String)titleMap.get("suitMajor")).split(",");
-		MajorEnum majorEnum;
-		String newData = "";
-		for (int i = 0; i< array.length; i++) {
-			majorEnum = MajorEnum.getMajorNameByCode(array[i]);
-			if (i+1 == array.length) {
-				newData += majorEnum.getName() ;
-			} else {
-				newData += majorEnum.getName() + ",";
-			}
-		}*/
+		Map titleMap = titleService.selectById(id);
 		request.setAttribute("title", titleMap);
 		return "ruanjian/course/titleExamine_seeUI";
 	}
 
+	/**
+	 * 教师查看按钮
+	 */
+	@RequiresPermissions("titleExamine:teacherSeeUI")
+	@RequestMapping("ruanjian/course/teacherSeeUI")
+	public String teacherSeeUI(Integer id, HttpServletRequest request) {
+		Map titleMap = titleService.selectByTeacherId(id);
+		request.setAttribute("info", titleMap);
+		return "ruanjian/course/teacherSeeUI";
+	}
 
 
 	/**
 	 * 新增审核表（记录学生申请的题目）页
-	 * 
+	 *
 	 * @return
 	 */
 	@RequiresPermissions("titleExamine:insert")
@@ -122,7 +119,7 @@ public class TitleExamineController extends BaseController {
 
 	/**
 	 * 添加审核表（记录学生申请的题目）
-	 * 
+	 *
 	 * @param titleExamine
 	 *            审核表（记录学生申请的题目）
 	 * @return
@@ -145,7 +142,7 @@ public class TitleExamineController extends BaseController {
 
 	/**
 	 * 修改审核表（记录学生申请的题目）页
-	 * 
+	 *
 	 * @param id
 	 *            审核表（记录学生申请的题目） id
 	 * @param request
@@ -161,7 +158,7 @@ public class TitleExamineController extends BaseController {
 
 	/**
 	 * 修改审核表（记录学生申请的题目）
-	 * 
+	 *
 	 * @param titleExamine
 	 *            审核表（记录学生申请的题目）
 	 * @return
@@ -206,7 +203,7 @@ public class TitleExamineController extends BaseController {
 	}
 
 	/**
-	 * 教师审核
+	 * 教师管理-->申请记录-->审批
 	 * @author pengYi
 	 * @date 2017-9-10
 	 */
@@ -215,6 +212,12 @@ public class TitleExamineController extends BaseController {
 	@ResponseBody
 	public ReturnBean titleExamine_passOrFail(Integer id, String status) {
 		ReturnBean rb = null;
+		//题目和学生一对一关系  先判断要审核的题目是否有人选过并且是通过的
+		int checkTitle = titleExamineService.selectTitleSelInfo(id);
+		if(checkTitle>0) {
+			rb = ReturnBean.getCustomReturnBean("one");
+			return rb;
+		}
 		Map param = new HashMap();
 		Map map= titleExamineService.selectById(id);
 		//所选课题教师可带人数
@@ -228,6 +231,7 @@ public class TitleExamineController extends BaseController {
 		param.put("id", id);
 		param.put("status", status);
 		int count = 0;
+		//核对学生是否选过题目并且审过成功的题
 		count = titleExamineService.checkStuSelTitles(param);
 		if(count > 0) {
 			rb = ReturnBean.getCustomReturnBean("hasSelect");
@@ -283,6 +287,24 @@ public class TitleExamineController extends BaseController {
 		title.setFlag(flag);
 		try {
 			titleService.update(title);
+			rb = ReturnBean.getSuccessReturnBean();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rb;
+	}
+
+	/**
+	 * 系主任批量审核题目
+	 */
+	@RequestMapping("ruanjian/course/boss/batchUpdate")
+	@ResponseBody
+	public ReturnBean batchUpdate(HttpServletRequest request) {
+		ReturnBean rb = null;
+		String para = request.getParameter("ids");
+		String[] ids = para.split(",");
+		try {
+			titleService.updateBatch(ids);
 			rb = ReturnBean.getSuccessReturnBean();
 		} catch (Exception e) {
 			e.printStackTrace();

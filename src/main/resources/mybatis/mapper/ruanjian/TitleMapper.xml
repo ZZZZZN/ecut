@@ -103,7 +103,12 @@
 	<!-- 带参数查询选题表列表 -->
 	<select id="selectListPara" resultType="java.util.Map" parameterType="java.util.Map">
 		SELECT
-		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,meaning_target,condition_work,b.education,b.name as author
+		 a.title_name,a.id,title_type,title_source,suitMajorName,suitScope,limit_person,meaning_target,condition_work,b.education,b.name as author,
+			case
+			when a.flag = '1' then '待审核'
+			when a.flag = '2' then '审核通过'
+			when a.flag = '3' then '审核未通过'
+			end status
 		FROM
 		title a,
         t_user b
@@ -118,6 +123,9 @@
         <if test="titlename != ''">
             AND a.title_name like CONCAT('%',#{titlename},'%')
         </if>
+        ORDER BY
+        a.flag
+        DESC
 	</select>
 	<!--当前学生可申请的课题列表-->
 	<select id="selectListStudent" resultType="java.util.Map" parameterType="java.util.Map">
@@ -132,6 +140,8 @@
 		   AND
 		   a.author=b.id
 		AND flag='2'
+		   AND
+		   flag!='4'
 		  <if test="role=='stu_in'">
 			  AND suitScope='校内实训'
 		  </if>
@@ -166,6 +176,8 @@
 			a.author=b.id
 			AND
 			flag='2'
+			AND
+			flag!='4'
 			<if test="author != ''">
 				AND b.name like CONCAT('%',#{author},'%')
 			</if>
@@ -230,5 +242,32 @@ WHERE
 	</if>
 	</select>
 
+	<!-- 系主任批量审核题目 -->
+	<update id="updateBatch"  parameterType="java.lang.String">
+		update title
+		<set>
+			flag = 2
+		</set>
+		where id in
+		<foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+
+	<!--  教师查看详情 -->
+	<select id="selectByTeacherId" resultType="java.util.Map">
+		SELECT
+			t.title_name AS titleName,
+			uu. NAME AS applyer,
+			uu.username as stuNo,
+			uu.stu_Class as stuClass,
+			u. NAME AS author
+		FROM
+			title_examine e
+		JOIN title t ON e.title_id = t.id
+		JOIN t_user u ON u.id = e.auditor
+		JOIN t_user uu ON uu.id = e.applicant
+		where e.id = #{id,jdbcType=VARCHAR}
+	</select>
 </mapper>
 

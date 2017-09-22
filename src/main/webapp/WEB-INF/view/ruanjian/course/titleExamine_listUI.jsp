@@ -20,6 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		margin-right:10px;
 		margin-left: 2px;
 	}
+	.exportBtn{
+		float : right;
+		height: 30px;
+		margin-left: 50px;
+	}
 </style>
 <body class="hold-transition sidebar-mini body-bg">
 	<div class="wrapper">
@@ -32,6 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="box">
 							<div class="box-header">
 								<h5>学生申请记录表</h5>
+								<a class="btn btn-primary exportBtn" id="export" onclick="doSubmit()">导出excel</a>
 							</div>
 							<div class="box-body">
 								<div class="row">
@@ -52,20 +58,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 									</div>
 								</div>
-								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
-									<thead>
-										<tr>
-											<th>序号</th>
-											<th>选题名称</th>
-											<th>申请人</th>
-											<th>审核人</th>
-											<th>审核状态</th>
-											<th>操作</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+									<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>选题名称</th>
+												<th>申请人</th>
+												<th>审核人</th>
+												<th>审核状态</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+								</form>
 							</div>
 							<!-- /.box-body -->
 						</div>
@@ -143,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     +'</button>'
                                     +'</shiro:hasPermission>'
                             }
-                            return  ' <shiro:hasPermission name="titleExamine:see">'
+                            return  ' <shiro:hasPermission name="titleExamine:teacherSeeUI">'
                                 +'<button class="btn mybtn btn-xs btn-info seeBtn" rid="'+row.id+'">'
                                 +'<i class="fa fa-eye fa-btn"></i>查看'
                                 +'</button>'
@@ -166,8 +172,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             status = e.target.value;
             datatable.ajax.reload();
         }
+        //导出excel
+        function doSubmit() {
+            $("#export").attr("href", "<%=basePath%>ruanjian/course/boss/exportExcelForTeaccher");
+        }
 
-   	    $(function(){
+        $(function(){
    	    
    	    	//pace监听ajax
    	    	$(document).ajaxStart(function() {
@@ -190,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	    //查看
 	   	    $(document).on("click",".seeBtn",function(){
 	   			var id = $(this).attr("rid");
-	   			openDialogView("查看表单","<%=basePath%>ruanjian/course/titleExamine_seeUI?id="+id,"800px", "380px","");
+	   			openDialogView("查看表单","<%=basePath%>ruanjian/course/teacherSeeUI?id="+id,"800px", "380px","");
 	   	    });
 	   	   
 	   	    //修改
@@ -255,6 +265,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             if(msg.state=='hasSelect')
                             {
                                 top.layer.msg("一个学生只能选一个题");
+                            }
+                            if(msg.state=='one')
+                            {
+                                top.layer.msg("该课题已有学生选");
                             }
                         },
                         error: function(){

@@ -192,6 +192,7 @@ public class TitleController extends BaseController {
             title.setTs(DateUtil.dateToString("yyyy-MM-dd HH:mm:ss"
 					, DateUtil.getIntenetTime()));
 			title.setAuthor((Integer)user.get("id"));
+			title.setLimit_person("1");
 			title.setDr(0);
 			title.setFlag(1);
 			titleService.insert(title);
