@@ -123,6 +123,9 @@
         <if test="titlename != ''">
             AND a.title_name like CONCAT('%',#{titlename},'%')
         </if>
+        ORDER BY
+        a.flag
+        DESC
 	</select>
 	<!--当前学生可申请的课题列表-->
 	<select id="selectListStudent" resultType="java.util.Map" parameterType="java.util.Map">
