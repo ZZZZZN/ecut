@@ -204,10 +204,10 @@ public class DataExportController extends BaseController {
         }
         String fileName="教师所带人数导出";
         //列名
-        String columnNames[]={"指导老师","职称","指导老师学历","审核通过题目数","选题通过学生人数",
+        String columnNames[]={"指导老师","职称","指导老师学历","出生年月","审核通过题目数","选题通过学生人数",
                 "未选到学生题目数"};
         //map中的key
-        String keys[] = {"name","title_level","teacEducation","number","passnumber",
+        String keys[] = {"name","title_level","teacEducation","age","number","passnumber",
                 "notselectednumber"};
         try {
             dataExportService.stuSelDataExport(response,fileName,newList,keys,columnNames);

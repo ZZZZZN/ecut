@@ -204,6 +204,7 @@
 	c. NAME as name,
   c.title_level as title_level,
   c.education as teacEducation,
+		c.age,
 	d.number as number,
   e.passnumber as passnumber,
   e.selectednumber as selectednumber,
