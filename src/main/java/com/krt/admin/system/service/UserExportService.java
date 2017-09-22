@@ -39,7 +39,7 @@ public class UserExportService {
         for (int j = 0; j < users.size(); j++) {
             user=users.get(j);
             Map<String, Object> mapValue = new HashMap<String, Object>();
-//            mapValue.put("id", user.getId());
+            mapValue.put("id", j+1);
             mapValue.put("username", user.getUsername());
             mapValue.put("name", user.getName());
             mapValue.put("stu_class", user.getStu_class());
@@ -68,7 +68,7 @@ public class UserExportService {
         for (int j = 0; j < users.size(); j++) {
             user=users.get(j);
             Map<String, Object> mapValue = new HashMap<String, Object>();
-//            mapValue.put("id", user.getId());
+            mapValue.put("id", j+1);
             mapValue.put("name", user.getName());
             mapValue.put("username", user.getUsername());
             mapValue.put("institute", user.getInstitute());
