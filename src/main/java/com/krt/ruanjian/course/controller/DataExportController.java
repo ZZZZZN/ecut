@@ -171,7 +171,7 @@ public class DataExportController extends BaseController {
         }
         String fileName="拟题数据导出";
         //列名
-        String columnNames[]={"课题名称","课题类型","适用专业","适用实训所在地",
+        String columnNames[]={"序号","课题名称","课题类型","适用专业","适用实训所在地",
                 "上限人数","出题老师","学历","课程意义与目标","学生基本条件和前期工作","审核状态"};
         //map中的key
         String keys[] = {"title_name","title_type","suitMajorName","suitScope",
@@ -204,7 +204,7 @@ public class DataExportController extends BaseController {
         }
         String fileName="教师所带人数导出";
         //列名
-        String columnNames[]={"指导老师","职称","指导老师学历","审核通过题目数","选题通过学生人数",
+        String columnNames[]={"序号","指导老师","职称","指导老师学历","审核通过题目数","选题通过学生人数",
                 "未选到学生题目数"};
         //map中的key
         String keys[] = {"name","title_level","teacEducation","number","passnumber",
