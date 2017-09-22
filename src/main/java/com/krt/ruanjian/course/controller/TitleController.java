@@ -420,9 +420,7 @@ public class TitleController extends BaseController {
 	 */
 	@RequiresPermissions("title:exportlist")
 	@RequestMapping("ruanjian/course/teacher_ExportlistUI")
-	public String teacher_ExportlistUI() {
-
-		return "ruanjian/formExport/teacher_export_number";
+	public String teacher_ExportlistUI() { return "ruanjian/formExport/teacher_export_number";
 	}
 
 	/**
