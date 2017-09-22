@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<span>教师名: </span><input type="text" name="teacher" id="teacher" value="" class="form-control input-150 search-input">
 											<button type="button" id="searchBtn" class="btn btn-primary btn-sm"><i class="fa fa-search fa-btn"></i>搜索
 										</button>
-										<a class="btn btn-primary" id="export" onclick="exportClick(event)"  style="position: relative; left: 1000px;top: -5px">导出excel</a>
+										<a class="btn btn-primary" id="export" onclick="exportClick(event)" style="float:right">导出excel</a>
 									</div>
 								</div>
 								<table id="datatable" style="table-layout: fixed" class="table table-striped table-bordered table-hover table-krt">

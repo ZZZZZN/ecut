@@ -78,7 +78,7 @@
 	</delete>
 
     <insert id="insert" parameterType="com.krt.admin.system.entity.User" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user
+        insert IGNORE into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,

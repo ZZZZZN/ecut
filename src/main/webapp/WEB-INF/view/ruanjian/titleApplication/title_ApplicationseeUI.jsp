@@ -112,13 +112,13 @@
 </div>
 
 </div><!-- ./wrapper -->
-
 <script src="<%=basePath%>static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
 <script src="<%=basePath%>static/plugins/layer/layer.js"></script>
 <script src="<%=basePath%>static/plugins/JQueryValidate/jquery.validate.min.js"></script>
 <script src="<%=basePath%>static/plugins/JQueryValidate/localization/messages_zh.js"></script>
 <script src="<%=basePath%>static/skin/js/common.js"></script>
+
 <script type="text/javascript">
 
     //申请

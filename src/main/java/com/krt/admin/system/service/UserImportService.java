@@ -32,7 +32,7 @@ public class UserImportService {
         String result = "";
         ExcelUtil excelUtil = new ExcelUtil();
         List<User> userList = excelUtil.getTeacherExcelInfo(file);
-        try {
+
             if(userList != null && !userList.isEmpty()){
                 for (int i = 0; i < userList.size(); i++) {
                     userList.get(i).setRoleCode("teacr_in");
@@ -41,17 +41,16 @@ public class UserImportService {
                         Map map = majorService.selectMajorCodeByMajorName(userList.get(i).getMajor());
                         userList.get(i).setMajor((String) map.get("major_code"));
                     }
-                    userService.insert(userList.get(i));;
+                    try {
+                        userService.insert(userList.get(i));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-
-                result = "上传成功";
+                result = "success";
             }else{
-                result = "上传失败";
+                result = "null";
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            result = "上传失败";
-        }
         return result;
     }
 

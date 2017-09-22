@@ -100,7 +100,7 @@
 			t.title_name AS titleName,
 			e.applicant AS applicantId,
 			uu. NAME AS applyer,
-			uu.stu_no as stuNo,
+			uu.username as stuNo,
 			uu.stu_Class as stuClass,
 			e.auditor AS auditorId,
 			u. NAME AS author,
@@ -339,7 +339,8 @@ WHERE
 			u. NAME AS teacName,
 			u.education AS teacEducation,
 			u.department,
-			u.title_level as titleLevel
+			u.title_level as titleLevel,
+			u.age
 		FROM
 			title_examine e
 		JOIN title t ON e.title_id = t.id
@@ -353,34 +354,6 @@ WHERE
 		<if test="teacName != ''">
 			AND u.name like CONCAT('%',#{teacName},'%')
 		</if>
-		order by institute,uu.stu_class,note
-	</select>
-	<!-- 不带分页参数 -->
-	<select id="getStuSelDataList" resultType="java.util.Map">
-		SELECT
-			e.id ,
-			uu.username as stuNo,
-			uu.name as stuName,
-			uu.stu_class as stuClass,
-			m.major_name as majorName,
-			uu.institute,
-			case
-			when uu.roleCode = 'stu_in' then '校内'
-			when uu.roleCode = 'stu_out' then '校外'
-			END note,
-			t.title_name AS titleName,
-			t.title_type titleType,
-     		t.title_source as titleSource,
-			u. NAME AS teacName,
-			u.education AS teacEducation,
-			u.department,
-			u.title_level as titleLevel
-		FROM
-			title_examine e
-		JOIN title t ON e.title_id = t.id
-		JOIN t_user u ON u.id = e.auditor
-		JOIN t_user uu ON uu.id = e.applicant and  e.`status`=2
-		JOIN major m on uu.major = m.major_code
 		order by institute,uu.stu_class,note
 	</select>
 

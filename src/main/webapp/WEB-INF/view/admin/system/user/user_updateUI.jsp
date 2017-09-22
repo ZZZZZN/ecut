@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label class="pull-right">学历</label>
 						</td>
 						<td class="width-35">
-							<input type="text" name="education" id="education" value="${user.education}" class="form-control" rangelength="1,10" placeholder="学生角色勿填!" required>
+							<input type="text" name="education" id="education" value="${user.education}" class="form-control" rangelength="1,10" placeholder="学生角色勿填!">
 						</td>
 						<td class="active width-15">
 							<label class="pull-right">实训地点</label>

@@ -42,7 +42,7 @@
 					<div class="box">
 						<div class="box-header">
 							<h5>选题表管理</h5>
-							<button class="btn btn-primary exportBtn" onclick="doSubmit()">导出excel</button>
+							<a class="btn btn-primary exportBtn" id="export" onclick="doSubmit()">导出excel</a>
 							<button class="btn btn-primary batch">批量审核</button>
 						</div>
 						<div class="box-body">
@@ -64,7 +64,7 @@
 									<span class="pull-right" style="height: 34px;line-height: 34px;font-size: 15px;">筛选：</span>
 								</div>
 							</div>
-							<form action="#" id="stuForm" class="form-horizontal">
+							<%--<form action="#" id="stuForm" class="form-horizontal">--%>
 								<table id="datatable" class="table table-striped table-bordered table-hover table-krt">
 									<thead>
 									<tr>
@@ -85,7 +85,7 @@
 									<tbody>
 									</tbody>
 								</table>
-							</form>
+							<%--</form>--%>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -107,9 +107,9 @@
 <!-- DataTables -->
 <script src="<%=basePath%>static/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<%=basePath%>static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
 <script src="<%=basePath%>static/plugins/layer/layer.js"></script>
 <script src="<%=basePath%>static/skin/js/common.js"></script>
-<script src="<%=basePath%>static/plugins/pace/pace.min.js"></script>
 <!-- page script -->
 <script type="text/javascript">
     var datatable;
@@ -205,8 +205,7 @@
     }
 	//导出excel
     function doSubmit() {
-        $("#stuForm").attr("action", "<%=basePath%>ruanjian/course/boss/exportExcelForDean");
-        $("#stuForm").submit();
+        $("#export").attr("href", "<%=basePath%>ruanjian/course/boss/exportExcelForDean");
     }
 
     $(function(){

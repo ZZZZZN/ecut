@@ -408,16 +408,34 @@ public class ExcelUtil {
             cell.setCellValue(columnNames[i]);
             cell.setCellStyle(cs);
         }
-        //设置每行每列的值
-        for (short i = 1; i < list.size(); i++) {
-            // Row 行,Cell 方格 , Row 和 Cell 都是从0开始计数的
-            // 创建一行，在页sheet上
-            Row row1 = sheet.createRow((short) i);
-            // 在row行上创建一个方格
-            for(short j=0;j<keys.length;j++){
-                Cell cell = row1.createCell(j);
-                cell.setCellValue(list.get(i).get(keys[j]) == null?" ": list.get(i).get(keys[j]).toString());
-                cell.setCellStyle(cs2);
+        //设置每行的值
+        if(keys.length == columnNames.length) {
+            for (short i = 1; i < list.size(); i++) {
+                // Row 行,Cell 方格 , Row 和 Cell 都是从0开始计数的
+                // 创建一行，在页sheet上
+                Row row1 = sheet.createRow((short) i);
+                // 在row行上创建一个方格
+                for(short j=0;j<keys.length;j++){
+                    Cell cell = row1.createCell(j);
+                    cell.setCellValue(list.get(i).get(keys[j]) == null?" ": list.get(i).get(keys[j]).toString());
+                    cell.setCellStyle(cs2);
+                }
+            }
+        } else {
+            for (short i = 1; i < list.size(); i++) {
+                // Row 行,Cell 方格 , Row 和 Cell 都是从0开始计数的
+                // 创建一行，在页sheet上
+                Row row1 = sheet.createRow((short) i);
+                // 在row行上创建一个方格
+                for(short j=0;j<=keys.length;j++){
+                    Cell cell = row1.createCell(j);
+                    if(j!=0) {
+                        cell.setCellValue(list.get(i).get(keys[j-1]) == null?" ": list.get(i).get(keys[j-1]).toString());
+                    } else {
+                        cell.setCellValue(i);
+                    }
+                    cell.setCellStyle(cs2);
+                }
             }
         }
         return wb;

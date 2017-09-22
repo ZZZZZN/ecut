@@ -105,7 +105,9 @@ public class TitleExamineService extends BaseServiceImpl<TitleExamine>{
 
     //不分页
 	public List<Map> getStuSelDataList(Map para) {
-		return titleExamineMapper.getStuSelDataList(para);
+		para.put("stuNo","");
+		para.put("teacName","");
+		return titleExamineMapper.getStuSelData(para);
 	}
 	public Integer countStudentsByteacherId(Integer auditor){
 		return titleExamineMapper.countStudentsByteacherId(auditor);
